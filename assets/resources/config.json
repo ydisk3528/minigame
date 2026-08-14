@@ -1,0 +1,71 @@
+{
+  "designResolution": {
+    "width": 1920,
+    "height": 1280,
+    "fitWidth": true,
+    "fitHeight": true
+  },
+  "boardRows": 8,
+  "boardColumns": 12,
+  "previewCount": 3,
+  "theme": "default",
+  "shop": {
+    "products": [
+      {
+        "id": "bomb",
+        "kind": "booster",
+        "storageKey": "bomb",
+        "title": "BOMB",
+        "description": "CLEAR A 3x3 AREA",
+        "price": 900,
+        "iconPath": "images/items/booster/bomb-icon/spriteFrame",
+        "order": 10,
+        "enabled": true
+      },
+      {
+        "id": "hammer",
+        "kind": "booster",
+        "storageKey": "hammer",
+        "title": "HAMMER",
+        "description": "REMOVE ONE GEM",
+        "price": 1200,
+        "iconPath": "images/items/booster/hammer-icon/spriteFrame",
+        "order": 20,
+        "enabled": true
+      },
+      {
+        "id": "rainbow",
+        "kind": "booster",
+        "storageKey": "rainbow",
+        "title": "RAINBOW",
+        "description": "CLEAR ONE COLOR",
+        "price": 1600,
+        "iconPath": "images/items/booster/rainbow-icon/spriteFrame",
+        "order": 30,
+        "enabled": true
+      },
+      {
+        "id": "luck",
+        "kind": "buff",
+        "storageKey": "luck",
+        "title": "LUCK +25%",
+        "description": "+25% SCORE · 10 MIN",
+        "price": 3200,
+        "iconPath": "images/shop/buff-luck/spriteFrame",
+        "order": 40,
+        "enabled": true
+      },
+      {
+        "id": "free-gift",
+        "kind": "buff",
+        "storageKey": "freeGift",
+        "title": "FREE GIFT 25%",
+        "description": "25% ON LEVEL WIN · ONCE",
+        "price": 3800,
+        "iconPath": "images/shop/buff-gift/spriteFrame",
+        "order": 50,
+        "enabled": true
+      }
+    ]
+  }
+}
