@@ -1,35 +1,22 @@
+# Cocos Creator generated files
+**/.creator/
+**/library/
+**/temp/
+**/local/
+**/build/
+**/profiles/
+**/native/
+**/tmp/
 
-#///////////////////////////
-# Cocos Creator 3D Project
-#///////////////////////////
-.creator/
-library/
-temp/
-local/
-build/
-profiles/
-native
-tmp/
-#//////////////////////////
-# NPM
-#//////////////////////////
-node_modules/
-*.tsbuildinfo
-*.log
+# Node/build output
+**/node_modules/
+**/dist/
+**/*.tsbuildinfo
+**/*.log
 
-#//////////////////////////
-# VSCode
-#//////////////////////////
-.vscode/
-
-#//////////////////////////
-# WebStorm
-#//////////////////////////
-.idea/
-
-#//////////////////////////
-# OS generated files
-#//////////////////////////
-.DS_Store
-Thumbs.db
-Desktop.ini
+# Editors and OS
+**/.vscode/
+**/.idea/
+**/.DS_Store
+**/Thumbs.db
+**/Desktop.ini

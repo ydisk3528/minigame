@@ -1,0 +1,20 @@
+{
+  "name": "puzzle-cohe-lucky-level-editor",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vue-tsc -b && vite build",
+    "normalize": "node scripts/normalize-levels.mjs",
+    "validate": "node scripts/validate-levels.mjs"
+  },
+  "dependencies": {
+    "@types/node": "^24.2.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "^5.8.3",
+    "vite": "^7.1.1",
+    "vue": "^3.5.18",
+    "vue-tsc": "^3.0.5"
+  }
+}
