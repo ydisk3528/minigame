@@ -5,7 +5,7 @@ const path = resolve(import.meta.dirname, '../../../assets/resources/datas/level
 const lines = (await readFile(path, 'utf8')).replace(/^\uFEFF/, '').trim().split(/\r?\n/);
 const oldColumns = lines[2].split(',');
 const columns = [...oldColumns.filter((column) => column !== 'boardMask' && column !== 'propReward'), 'boardMask', 'propReward'];
-const cakeOptions = Array.from({ length: 8 }, (_, index) => `cake0${index + 1}`);
+const cakeOptions = Array.from({ length: 10 }, (_, index) => `cake${String(index + 1).padStart(2, '0')}`);
 const patterns = ['rounded', 'diamond', 'cross', 'ring', 'hourglass', 'h', 'stairs', 'islands'];
 
 function createMask(pattern) {

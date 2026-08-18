@@ -1,4 +1,4 @@
-:root { font-family: Inter, system-ui, sans-serif; color-scheme: dark; background: #02050b; }
+:root { font-family: "Courier New", monospace; color-scheme: dark; background: #02050b; }
 * { box-sizing: border-box; }
 html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #02050b; touch-action: none; }
-canvas { display: block; width: 100%; height: 100%; }
+canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }

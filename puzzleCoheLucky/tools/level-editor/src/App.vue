@@ -11,7 +11,7 @@ const FULL_MASK = '1'.repeat(CELL_COUNT);
 const columns = ['ID', 'name', 'cakes', 'targets', 'limit', 'stars', 'golds', 'boardMask', 'propReward'];
 const comments = ['关卡ID', '关卡名称', '随机元素种类（至少3色）', '消除目标', '关卡步数', '3星要求', '金币奖励', '棋盘形状64位掩码', '首次通关道具奖励'];
 const types = ['number', 'string', 'string', 'string', 'number', 'string', 'string', 'string', 'string'];
-const cakeOptions = Array.from({ length: 8 }, (_, index) => `cake0${index + 1}`);
+const cakeOptions = Array.from({ length: 10 }, (_, index) => `cake${String(index + 1).padStart(2, '0')}`);
 const propOptions = [
   ['none', '无奖励'], ['random', '随机（锤子/魔法棒/刷新）'],
   ['1', '锤子'], ['2', '魔法棒'], ['3', '刷新'], ['4', '无限道具'],
@@ -200,7 +200,9 @@ function generateBatch(): void {
   const targetAmount = Math.max(1, Number(String(template.targets || '').split('-')[1]) || 10);
   const presetNames = presetOptions.map(([name]) => name);
   for (let id = start; id <= end; id++) {
-    const cakes = [...cakeOptions].sort(() => Math.random() - .5).slice(0, Math.min(8, Math.max(3, batchColors.value)));
+    const cakeCount = Math.min(cakeOptions.length, Math.max(3, batchColors.value));
+    const cakes = [...cakeOptions.slice(-2), ...cakeOptions.slice(0, -2).sort(() => Math.random() - .5)]
+      .slice(0, cakeCount).sort(() => Math.random() - .5);
     const shape = batchShape.value === 'random'
       ? presetNames[Math.floor(Math.random() * presetNames.length)]
       : batchShape.value;
@@ -278,12 +280,12 @@ onMounted(async () => {
         <label>起始关卡<input v-model.number="batchStart" type="number" min="1" /></label>
         <label>生成数量<input v-model.number="batchCount" type="number" min="1" max="5000" /></label>
         <label>棋盘形状<select v-model="batchShape"><option value="random">随机形状</option><option v-for="option in presetOptions" :key="option[0]" :value="option[0]">{{ option[1] }}</option></select></label>
-        <label>元素种类数<input v-model.number="batchColors" type="number" min="3" max="8" /></label>
+        <label>元素种类数<input v-model.number="batchColors" type="number" min="3" max="10" /></label>
         <label>首次通关道具<select v-model="batchReward"><option v-for="option in propOptions" :key="option[0]" :value="option[0]">{{ option[1] }}</option></select></label>
         <label>道具数量<input v-model.number="batchRewardAmount" type="number" min="1" max="99" /></label>
         <button class="primary" @click="generateBatch">批量生成</button>
       </div>
-      <p class="hint">步数、目标数量、星级和金币沿用当前关卡；形状可随机，元素每关随机抽取且不会少于 3 种。</p>
+      <p class="hint">步数、目标数量、星级和金币沿用当前关卡；每关保证出现红、绿宝石，其余元素随机抽取。</p>
     </section>
 
     <section class="workspace">

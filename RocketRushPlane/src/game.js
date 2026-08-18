@@ -44,6 +44,15 @@ export class MultiplierController {
   }
 }
 
+export function createLeaderboard(random = Math.random, count = 5) {
+  const names = [...CONFIG.leaderboardNames];
+  for (let i = names.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [names[i], names[j]] = [names[j], names[i]];
+  }
+  return names.slice(0, count).map((name) => ({ name, score: 500 + Math.floor(random() * 9500) })).sort((a, b) => b.score - a.score);
+}
+
 const defaults = { totalScore: 0, bestMultiplier: 1, history: [], soundEnabled: true };
 
 export class SaveStore {

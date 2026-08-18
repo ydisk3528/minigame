@@ -31,10 +31,10 @@ button:hover { border-color: #728bd5; color: white; }
 .cell.active { border: 1px solid #bfcaff; background: linear-gradient(145deg, #967bf0, #4b429f); box-shadow: inset 0 2px #ffffff55, 0 4px 12px #6a5ee455; }
 .hint, .notice { margin: 13px 0 0; color: #8294b6; font-size: 12px; line-height: 1.6; }
 .settings > label { display: block; margin-bottom: 10px; color: #a8b8d5; font-size: 13px; font-weight: 700; }
-.cakes { display: grid; grid-template-columns: repeat(8, 1fr); gap: 7px; margin-bottom: 20px; }
+.cakes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; margin-bottom: 20px; }
 .cakes button { aspect-ratio: 1; padding: 0; opacity: .3; border-radius: 50%; color: white; font-weight: 900; }
 .cakes button.selected { opacity: 1; border-color: white; box-shadow: 0 0 0 3px #ffffff22, 0 8px 15px #0005; }
-.cake-1 { background: #ff9b25; }.cake-2 { background: #e93443; }.cake-3 { background: #ffd83f; color: #5b4700 !important; }.cake-4 { background: #ef62ba; }.cake-5 { background: #5bd66e; }.cake-6 { background: #ff694b; }.cake-7 { background: #f3b51d; }.cake-8 { background: #25a8ee; }
+.cake-1 { background: #ff9b25; }.cake-2 { background: #e93443; }.cake-3 { background: #ffd83f; color: #5b4700 !important; }.cake-4 { background: #ef62ba; }.cake-5 { background: #5bd66e; }.cake-6 { background: #ff694b; }.cake-7 { background: #f3b51d; }.cake-8 { background: #25a8ee; }.cake-9 { background: #f0183e; }.cake-10 { background: #13bd50; }
 .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
 label { color: #8fa3c7; font-size: 12px; }
 input, select { width: 100%; margin-top: 6px; padding: 10px 11px; color: #f4f7ff; border: 1px solid #30466f; border-radius: 9px; outline: none; background: #080f23; }

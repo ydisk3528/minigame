@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { FlightMultiplierGenerator, GameMachine, GameState, MultiplierController } from './game.js';
+import { createLeaderboard, FlightMultiplierGenerator, GameMachine, GameState, MultiplierController } from './game.js';
 
 test('core flight logic remains deterministic and bounded', () => {
   const multiplier = new MultiplierController();
@@ -14,4 +14,12 @@ test('core flight logic remains deterministic and bounded', () => {
   machine.move(GameState.Flying);
   assert.equal(machine.state, GameState.Flying);
   assert.throws(() => machine.move(GameState.Result));
+});
+
+test('simulated leaderboard is unique and score-sorted', () => {
+  let seed = 0;
+  const board = createLeaderboard(() => ((seed += 0.173) % 1), 5);
+  assert.equal(board.length, 5);
+  assert.equal(new Set(board.map((entry) => entry.name)).size, 5);
+  assert.deepEqual(board.map((entry) => entry.score), board.map((entry) => entry.score).toSorted((a, b) => b - a));
 });
