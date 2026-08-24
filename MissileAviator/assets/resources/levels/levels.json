@@ -10,10 +10,69 @@
       "backgroundSpeed": 45,
       "movingRingChance": 0.12,
       "shrinkingRingChance": 0.08,
-      "powerUpChance": 0.08,
+      "powerUpChance": 0.2,
+      "powerUpWeights": {
+        "repair": 3,
+        "shield": 3,
+        "rapid": 3,
+        "spread": 2,
+        "laser": 2,
+        "plasma": 1,
+        "rocket": 1
+      },
       "targetScore": 20,
       "difficultyEvery": 5,
-      "difficultySpeedStep": 16
+      "difficultySpeedStep": 16,
+      "waves": [
+        {
+          "id": 1,
+          "truckCount": 3,
+          "fighterCount": 4,
+          "bomberCount": 1,
+          "diveBomberCount": 2,
+          "tankCount": 2,
+          "rocketTruckCount": 1,
+          "interceptorCount": 0,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1.6,
+          "formationChance": 0.7,
+          "formationSize": 3,
+          "formationPattern": "auto"
+        },
+        {
+          "id": 2,
+          "truckCount": 3,
+          "fighterCount": 4,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 2,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.5,
+          "formationSize": 3,
+          "formationPattern": "v"
+        },
+        {
+          "id": 3,
+          "truckCount": 5,
+          "fighterCount": 5,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 3,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.65,
+          "formationSize": 4,
+          "formationPattern": "echelon"
+        }
+      ]
     },
     {
       "id": 2,
@@ -25,10 +84,69 @@
       "backgroundSpeed": 62,
       "movingRingChance": 0.24,
       "shrinkingRingChance": 0.16,
-      "powerUpChance": 0.1,
+      "powerUpChance": 0.17,
+      "powerUpWeights": {
+        "repair": 2,
+        "shield": 2,
+        "rapid": 3,
+        "spread": 3,
+        "laser": 2,
+        "plasma": 2,
+        "rocket": 2
+      },
       "targetScore": 30,
       "difficultyEvery": 4,
-      "difficultySpeedStep": 20
+      "difficultySpeedStep": 20,
+      "waves": [
+        {
+          "id": 1,
+          "truckCount": 4,
+          "fighterCount": 4,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 1,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.5,
+          "formationSize": 3,
+          "formationPattern": "line"
+        },
+        {
+          "id": 2,
+          "truckCount": 3,
+          "fighterCount": 6,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 3,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.65,
+          "formationSize": 4,
+          "formationPattern": "v"
+        },
+        {
+          "id": 3,
+          "truckCount": 6,
+          "fighterCount": 7,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 4,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.75,
+          "formationSize": 5,
+          "formationPattern": "echelon"
+        }
+      ]
     },
     {
       "id": 3,
@@ -41,10 +159,68 @@
       "movingRingChance": 0.3,
       "shrinkingRingChance": 0.24,
       "powerUpChance": 0.12,
+      "powerUpWeights": {
+        "repair": 1,
+        "shield": 2,
+        "rapid": 2,
+        "spread": 3,
+        "laser": 3,
+        "plasma": 3,
+        "rocket": 3
+      },
       "targetScore": 45,
       "difficultyEvery": 3,
-      "difficultySpeedStep": 22
+      "difficultySpeedStep": 22,
+      "waves": [
+        {
+          "id": 1,
+          "truckCount": 5,
+          "fighterCount": 6,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 2,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.6,
+          "formationSize": 4,
+          "formationPattern": "auto"
+        },
+        {
+          "id": 2,
+          "truckCount": 7,
+          "fighterCount": 8,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 4,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.75,
+          "formationSize": 5,
+          "formationPattern": "v"
+        },
+        {
+          "id": 3,
+          "truckCount": 8,
+          "fighterCount": 10,
+          "bomberCount": 1,
+          "diveBomberCount": 1,
+          "tankCount": 1,
+          "rocketTruckCount": 0,
+          "interceptorCount": 6,
+          "spawnInterval": 1.2,
+          "enemySpeedScale": 1,
+          "fireRateScale": 1,
+          "formationChance": 0.85,
+          "formationSize": 6,
+          "formationPattern": "echelon"
+        }
+      ]
     }
   ]
 }
-

@@ -1,130 +1,108 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue';
 
-interface Level {
-  id: number; name: string; ringSpawnInterval: number; ringSpeed: number; ringRadius: number;
-  ringRandomY: number; backgroundSpeed: number; movingRingChance: number;
-  shrinkingRingChance: number; powerUpChance: number; targetScore: number;
-  difficultyEvery: number; difficultySpeedStep: number;
-}
+type FormationPattern = 'auto' | 'v' | 'line' | 'echelon' | 'convoy';
+type PowerUpKind = 'repair' | 'shield' | 'rapid' | 'spread' | 'laser' | 'plasma' | 'rocket';
+type PowerUpWeights = Record<PowerUpKind, number>;
+interface Wave { id: number; truckCount: number; fighterCount: number; bomberCount: number; diveBomberCount: number; tankCount: number; rocketTruckCount: number; interceptorCount: number; spawnInterval: number; enemySpeedScale: number; fireRateScale: number; formationChance: number; formationSize: number; formationPattern: FormationPattern }
+interface Level { id: number; name: string; ringSpawnInterval: number; ringSpeed: number; ringRadius: number; ringRandomY: number; backgroundSpeed: number; movingRingChance: number; shrinkingRingChance: number; powerUpChance: number; powerUpWeights: PowerUpWeights; targetScore: number; difficultyEvery: number; difficultySpeedStep: number; waves: Wave[] }
+type Tab = 'level' | 'wave' | 'powerups';
+type GeneratorStyle = 'mixed' | 'air' | 'ground';
 
+const defaultWeights = (): PowerUpWeights => ({ repair: 2, shield: 2, rapid: 3, spread: 3, laser: 2, plasma: 2, rocket: 2 });
+const wave = (id: number): Wave => ({ id, truckCount: 3, fighterCount: 4, bomberCount: 1, diveBomberCount: 1, tankCount: 1, rocketTruckCount: 0, interceptorCount: Math.max(0, id - 1), spawnInterval: 1.2, enemySpeedScale: 1, fireRateScale: 1, formationChance: .5, formationSize: 3, formationPattern: 'auto' });
+const enemyCount = (item: Wave) => item.truckCount + item.fighterCount + item.bomberCount + item.diveBomberCount + item.tankCount + item.rocketTruckCount + item.interceptorCount;
 const seed: Level[] = [
-  { id: 1, name: '蓝天巡航', ringSpawnInterval: 1.8, ringSpeed: 260, ringRadius: 92, ringRandomY: 220, backgroundSpeed: 45, movingRingChance: .12, shrinkingRingChance: .08, powerUpChance: .08, targetScore: 20, difficultyEvery: 5, difficultySpeedStep: 16 },
-  { id: 2, name: '落日乱流', ringSpawnInterval: 1.45, ringSpeed: 310, ringRadius: 82, ringRandomY: 235, backgroundSpeed: 62, movingRingChance: .24, shrinkingRingChance: .16, powerUpChance: .1, targetScore: 30, difficultyEvery: 4, difficultySpeedStep: 20 },
-  { id: 3, name: '王牌航线', ringSpawnInterval: 1.15, ringSpeed: 360, ringRadius: 74, ringRandomY: 245, backgroundSpeed: 78, movingRingChance: .3, shrinkingRingChance: .24, powerUpChance: .12, targetScore: 45, difficultyEvery: 3, difficultySpeedStep: 22 },
+  { id: 1, name: '蓝天巡航', ringSpawnInterval: 1.8, ringSpeed: 260, ringRadius: 92, ringRandomY: 220, backgroundSpeed: 45, movingRingChance: .12, shrinkingRingChance: .08, powerUpChance: .08, powerUpWeights: { repair: 3, shield: 3, rapid: 3, spread: 2, laser: 2, plasma: 1, rocket: 1 }, targetScore: 20, difficultyEvery: 5, difficultySpeedStep: 16, waves: [{ ...wave(1), truckCount: 3, fighterCount: 2, bomberCount: 0, formationChance: .35 }, { ...wave(2), formationPattern: 'v' }, { ...wave(3), truckCount: 5, fighterCount: 5, formationPattern: 'echelon', formationSize: 4, formationChance: .65 }] },
+  { id: 2, name: '落日乱流', ringSpawnInterval: 1.45, ringSpeed: 310, ringRadius: 82, ringRandomY: 235, backgroundSpeed: 62, movingRingChance: .24, shrinkingRingChance: .16, powerUpChance: .1, powerUpWeights: defaultWeights(), targetScore: 30, difficultyEvery: 4, difficultySpeedStep: 20, waves: [{ ...wave(1), truckCount: 4, formationPattern: 'line' }, { ...wave(2), fighterCount: 6, formationPattern: 'v', formationSize: 4, formationChance: .65 }, { ...wave(3), truckCount: 6, fighterCount: 7, formationPattern: 'echelon', formationSize: 5, formationChance: .75 }] },
+  { id: 3, name: '王牌航线', ringSpawnInterval: 1.15, ringSpeed: 360, ringRadius: 74, ringRandomY: 245, backgroundSpeed: 78, movingRingChance: .3, shrinkingRingChance: .24, powerUpChance: .12, powerUpWeights: { repair: 1, shield: 2, rapid: 2, spread: 3, laser: 3, plasma: 3, rocket: 3 }, targetScore: 45, difficultyEvery: 3, difficultySpeedStep: 22, waves: [{ ...wave(1), truckCount: 5, fighterCount: 6, formationSize: 4, formationChance: .6 }, { ...wave(2), truckCount: 7, fighterCount: 8, formationPattern: 'v', formationSize: 5, formationChance: .75 }, { ...wave(3), truckCount: 8, fighterCount: 10, formationPattern: 'echelon', formationSize: 6, formationChance: .85 }] },
+];
+const enemies = [
+  ['truckCount', '防空卡车', 'AA'], ['fighterCount', '敌方战机', 'F'], ['bomberCount', '重型轰炸机', 'B'],
+  ['diveBomberCount', '俯冲轰炸机', 'D'], ['tankCount', '重型坦克', 'T'], ['rocketTruckCount', '火箭发射车', 'R'], ['interceptorCount', '高速截击机', 'I'],
+] as const;
+const formations: { id: FormationPattern; label: string; glyph: string; hint: string }[] = [
+  { id: 'auto', label: '自动混合', glyph: '✦', hint: '每次随机选择空中编队' }, { id: 'v', label: 'V 字', glyph: '⌄', hint: '适合战机与轰炸机' },
+  { id: 'line', label: '横排', glyph: '•••', hint: '同高度依次进入' }, { id: 'echelon', label: '梯队', glyph: '⁝', hint: '斜向依次进入' },
+  { id: 'convoy', label: '车队', glyph: '▰▰', hint: '地面单位自动使用车队' },
+];
+const powerUps: { id: PowerUpKind; label: string; icon: string; color: string }[] = [
+  { id: 'repair', label: '修理', icon: '✚', color: '#77dca5' }, { id: 'shield', label: '护盾', icon: '◇', color: '#70c7ff' },
+  { id: 'rapid', label: '高速射击', icon: '»', color: '#ffd25e' }, { id: 'spread', label: '散射', icon: '⋔', color: '#ff9b62' },
+  { id: 'laser', label: '激光炮', icon: '━', color: '#54e9ff' }, { id: 'plasma', label: '等离子炮', icon: '●', color: '#ce83ff' },
+  { id: 'rocket', label: '火箭', icon: '➤', color: '#ff6b62' },
 ];
 
-const levels = ref<Level[]>(structuredClone(seed));
-const selectedId = ref(1);
-const canvas = ref<HTMLCanvasElement>();
-const toast = ref('');
-const current = computed(() => levels.value.find(level => level.id === selectedId.value) ?? levels.value[0]);
-const difficulty = computed(() => Math.round((current.value.ringSpeed / 90 + 2 / current.value.ringSpawnInterval + current.value.movingRingChance * 4 + current.value.shrinkingRingChance * 5) * 10));
+const levels = ref<Level[]>(structuredClone(seed)); const selectedId = ref(1); const selectedWaveId = ref(1); const tab = ref<Tab>('wave');
+const canvas = ref<HTMLCanvasElement>(); const toast = ref('');
+const generator = reactive({ count: 5, waveMin: 2, waveMax: 5, enemyMin: 8, enemyMax: 22, difficultyStart: 1, difficultyStep: .18, style: 'mixed' as GeneratorStyle, replace: false });
+const current = computed(() => levels.value.find(item => item.id === selectedId.value) ?? levels.value[0]);
+const selectedWave = computed(() => current.value.waves.find(item => item.id === selectedWaveId.value) ?? current.value.waves[0]);
+const totalEnemies = computed(() => current.value.waves.reduce((sum, item) => sum + enemyCount(item), 0));
+const weightTotal = computed(() => Object.values(current.value.powerUpWeights).reduce((sum, value) => sum + Math.max(0, value), 0));
+const difficulty = computed(() => Math.round(current.value.waves.reduce((sum, item) => sum + enemyCount(item) * item.enemySpeedScale * item.fireRateScale / item.spawnInterval, 0)));
 const errors = computed(() => {
-  const l = current.value; const result: string[] = [];
-  if (!l.name.trim()) result.push('关卡名称不能为空');
-  if (l.ringRadius < 50 || l.ringRadius > 140) result.push('圆环半径应在 50–140');
-  if (l.ringRandomY + l.ringRadius > 340) result.push('随机高度 + 半径不能超过 340，否则圆环会越界');
-  if ([l.movingRingChance, l.shrinkingRingChance, l.powerUpChance].some(v => v < 0 || v > 1)) result.push('概率必须在 0–1');
-  if (l.movingRingChance + l.shrinkingRingChance > 1) result.push('移动环与缩小环概率之和不能超过 1');
-  return result;
+  const result: string[] = []; if (!current.value.name.trim()) result.push('关卡名称不能为空');
+  if (current.value.powerUpChance < 0 || current.value.powerUpChance > 1) result.push('道具掉落概率必须在 0–1'); if (weightTotal.value <= 0) result.push('至少启用一种道具');
+  current.value.waves.forEach((item, index) => { if (enemyCount(item) < 1) result.push(`第 ${index + 1} 波没有敌人`); if (item.spawnInterval <= 0 || item.enemySpeedScale <= 0 || item.fireRateScale <= 0) result.push(`第 ${index + 1} 波参数必须大于 0`); if (item.formationChance < 0 || item.formationChance > 1 || item.formationSize < 2 || item.formationSize > 6) result.push(`第 ${index + 1} 波编队参数无效`); }); return result;
 });
 
-const fields: { key: keyof Level; label: string; min: number; max: number; step: number; unit: string }[] = [
-  { key: 'ringSpawnInterval', label: '生成间隔', min: .7, max: 4, step: .05, unit: '秒' },
-  { key: 'ringSpeed', label: '圆环速度', min: 120, max: 600, step: 5, unit: 'px/s' },
-  { key: 'ringRadius', label: '圆环半径', min: 50, max: 140, step: 1, unit: 'px' },
-  { key: 'ringRandomY', label: '上下随机范围', min: 0, max: 250, step: 5, unit: 'px' },
-  { key: 'backgroundSpeed', label: '背景速度', min: 0, max: 150, step: 5, unit: 'px/s' },
-  { key: 'movingRingChance', label: '移动环概率', min: 0, max: 1, step: .01, unit: '%' },
-  { key: 'shrinkingRingChance', label: '缩小环概率', min: 0, max: 1, step: .01, unit: '%' },
-  { key: 'powerUpChance', label: '道具概率', min: 0, max: 1, step: .01, unit: '%' },
-  { key: 'targetScore', label: '目标分数', min: 1, max: 999, step: 1, unit: '分' },
-  { key: 'difficultyEvery', label: '难度提升间隔', min: 1, max: 30, step: 1, unit: '环' },
-  { key: 'difficultySpeedStep', label: '每档速度增量', min: 0, max: 100, step: 1, unit: 'px/s' },
-];
-
-function addLevel() {
-  const id = Math.max(0, ...levels.value.map(l => l.id)) + 1;
-  levels.value.push({ ...current.value, id, name: `新航线 ${id}` }); selectedId.value = id;
+function selectLevel(id: number) { selectedId.value = id; selectedWaveId.value = current.value.waves[0]?.id ?? 1; }
+function selectWave(id: number) { selectedWaveId.value = id; tab.value = 'wave'; }
+function addLevel() { const id = Math.max(0, ...levels.value.map(item => item.id)) + 1; const copy = structuredClone(current.value); levels.value.push({ ...copy, id, name: `新任务 ${id}` }); selectLevel(id); }
+function cloneLevel() { const id = Math.max(0, ...levels.value.map(item => item.id)) + 1; const copy = structuredClone(current.value); levels.value.push({ ...copy, id, name: `${copy.name} 副本` }); selectLevel(id); }
+function removeLevel() { if (levels.value.length === 1) return flash('至少保留一个关卡'); const index = levels.value.findIndex(item => item.id === selectedId.value); levels.value.splice(index, 1); selectLevel(levels.value[Math.max(0, index - 1)].id); }
+function addWave() { const item = wave(current.value.waves.length + 1); current.value.waves.push(item); selectWave(item.id); }
+function cloneWave(index: number) { const copy = structuredClone(current.value.waves[index]); current.value.waves.splice(index + 1, 0, copy); renumberWaves(); selectedWaveId.value = index + 2; }
+function removeWave(index: number) { if (current.value.waves.length === 1) return flash('至少保留一个波次'); current.value.waves.splice(index, 1); renumberWaves(); selectedWaveId.value = current.value.waves[Math.min(index, current.value.waves.length - 1)].id; }
+function moveWave(index: number, offset: number) { const target = index + offset; if (target < 0 || target >= current.value.waves.length) return; const [item] = current.value.waves.splice(index, 1); current.value.waves.splice(target, 0, item); renumberWaves(); selectedWaveId.value = target + 1; }
+function renumberWaves() { current.value.waves.forEach((item, index) => item.id = index + 1); }
+function applyPreset(kind: 'air' | 'mixed' | 'ground') { const item = selectedWave.value; if (kind === 'air') Object.assign(item, { truckCount: 0, fighterCount: 6, bomberCount: 2, diveBomberCount: 3, tankCount: 0, rocketTruckCount: 0, interceptorCount: 3, formationPattern: 'v', formationSize: 4 }); else if (kind === 'ground') Object.assign(item, { truckCount: 4, fighterCount: 0, bomberCount: 0, diveBomberCount: 0, tankCount: 3, rocketTruckCount: 2, interceptorCount: 0, formationPattern: 'convoy', formationSize: 3 }); else Object.assign(item, { truckCount: 3, fighterCount: 4, bomberCount: 1, diveBomberCount: 2, tankCount: 2, rocketTruckCount: 1, interceptorCount: 2, formationPattern: 'auto', formationSize: 3 }); flash('已套用编队预设'); }
+function randomInt(min: number, max: number) { const low = Math.ceil(Math.min(min, max)); return low + Math.floor(Math.random() * (Math.floor(Math.max(min, max)) - low + 1)); }
+function randomWave(id: number, difficulty: number): Wave {
+  const item = wave(id); const total = randomInt(generator.enemyMin, generator.enemyMax);
+  const keys = generator.style === 'air' ? ['fighterCount', 'bomberCount', 'diveBomberCount', 'interceptorCount'] as const : generator.style === 'ground' ? ['truckCount', 'tankCount', 'rocketTruckCount'] as const : enemies.map(enemy => enemy[0]);
+  for (const enemy of enemies) item[enemy[0]] = 0;
+  for (let index = 0; index < total; index++) item[keys[randomInt(0, keys.length - 1)]]++;
+  item.spawnInterval = Number(Math.max(.45, 1.55 - difficulty * .15).toFixed(2)); item.enemySpeedScale = Number((.85 + difficulty * .16).toFixed(2)); item.fireRateScale = Number((.8 + difficulty * .18).toFixed(2));
+  item.formationChance = Number(Math.min(.95, .35 + difficulty * .1).toFixed(2)); item.formationSize = Math.min(6, Math.max(2, 2 + Math.floor(difficulty / 1.4)));
+  item.formationPattern = generator.style === 'ground' ? 'convoy' : (['auto', 'v', 'line', 'echelon'] as FormationPattern[])[randomInt(0, 3)]; return item;
 }
-function cloneLevel() {
-  const source = { ...current.value }; const id = Math.max(0, ...levels.value.map(l => l.id)) + 1;
-  levels.value.push({ ...source, id, name: `${source.name} 副本` }); selectedId.value = id;
+function generateRandomLevels() {
+  const amount = Math.max(1, Math.min(100, Math.floor(generator.count))); const minWaves = Math.max(1, Math.floor(Math.min(generator.waveMin, generator.waveMax))); const maxWaves = Math.max(minWaves, Math.floor(Math.max(generator.waveMin, generator.waveMax)));
+  const firstId = generator.replace ? 1 : Math.max(0, ...levels.value.map(item => item.id)) + 1; const generated: Level[] = [];
+  for (let index = 0; index < amount; index++) {
+    const id = firstId + index; const difficulty = Math.max(.1, generator.difficultyStart + index * generator.difficultyStep); const waveCount = randomInt(minWaves, maxWaves);
+    generated.push({ ...structuredClone(seed[0]), id, name: `随机任务 ${id}`, ringSpeed: Math.round(230 + difficulty * 45), backgroundSpeed: Math.round(35 + difficulty * 9), targetScore: Math.round(15 + difficulty * 8), difficultyEvery: Math.max(2, Math.round(6 - difficulty)), difficultySpeedStep: Math.round(12 + difficulty * 3), powerUpChance: Number(Math.max(.06, .22 - difficulty * .015).toFixed(2)), powerUpWeights: defaultWeights(), waves: Array.from({ length: waveCount }, (_, waveIndex) => randomWave(waveIndex + 1, difficulty + waveIndex * .16)) });
+  }
+  if (generator.replace) levels.value = generated; else levels.value.push(...generated); selectLevel(generated[0].id); flash(`已生成 ${amount} 个随机关卡`);
 }
-function removeLevel() {
-  if (levels.value.length === 1) return flash('至少保留一个关卡');
-  const index = levels.value.findIndex(l => l.id === selectedId.value); levels.value.splice(index, 1);
-  selectedId.value = levels.value[Math.max(0, index - 1)].id;
-}
-function exportJson() {
-  if (errors.value.length) return flash('请先修复配置错误');
-  const blob = new Blob([JSON.stringify({ levels: levels.value }, null, 2)], { type: 'application/json' });
-  const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'levels.json'; link.click(); URL.revokeObjectURL(link.href); flash('已导出 levels.json');
-}
-function importJson(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0]; if (!file) return;
-  const reader = new FileReader(); reader.onload = () => {
-    try {
-      const parsed = JSON.parse(String(reader.result)) as { levels: Level[] };
-      if (!Array.isArray(parsed.levels) || !parsed.levels.length) throw new Error();
-      levels.value = parsed.levels; selectedId.value = levels.value[0].id; flash(`已导入 ${levels.value.length} 个关卡`);
-    } catch { flash('JSON 格式无效'); }
-  }; reader.readAsText(file); (event.target as HTMLInputElement).value = '';
-}
+function chance(kind: PowerUpKind) { return weightTotal.value ? Math.round(current.value.powerUpWeights[kind] / weightTotal.value * 100) : 0; }
+function exportJson() { if (errors.value.length) return flash('请先修复配置错误'); const blob = new Blob([JSON.stringify({ levels: levels.value }, null, 2)], { type: 'application/json' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'levels.json'; link.click(); URL.revokeObjectURL(link.href); flash('已导出 levels.json'); }
+function importJson(event: Event) { const file = (event.target as HTMLInputElement).files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => { try { const parsed = JSON.parse(String(reader.result)) as { levels: Partial<Level>[] }; if (!Array.isArray(parsed.levels) || !parsed.levels.length) throw new Error(); levels.value = parsed.levels.map((item, index) => ({ ...structuredClone(seed[0]), ...item, id: item.id ?? index + 1, powerUpWeights: { ...defaultWeights(), ...item.powerUpWeights }, waves: item.waves?.length ? item.waves.map((entry, waveIndex) => ({ ...wave(waveIndex + 1), ...entry, id: waveIndex + 1 })) : [wave(1)] })); selectLevel(levels.value[0].id); flash(`已导入 ${levels.value.length} 个关卡`); } catch { flash('JSON 格式无效'); } }; reader.readAsText(file); (event.target as HTMLInputElement).value = ''; }
 function flash(message: string) { toast.value = message; window.setTimeout(() => { if (toast.value === message) toast.value = ''; }, 2200); }
 
 function draw() {
-  const el = canvas.value; if (!el) return; const ctx = el.getContext('2d'); if (!ctx) return;
-  const ratio = devicePixelRatio; const width = el.clientWidth; const height = el.clientHeight;
-  el.width = width * ratio; el.height = height * ratio; ctx.scale(ratio, ratio); ctx.imageSmoothingEnabled = false;
-  const sky = ctx.createLinearGradient(0, 0, 0, height); sky.addColorStop(0, '#4ba9dc'); sky.addColorStop(1, '#bde8ef'); ctx.fillStyle = sky; ctx.fillRect(0, 0, width, height);
-  ctx.fillStyle = '#dff8ff'; for (let x = 50; x < width; x += 250) { ctx.fillRect(x, 66, 88, 18); ctx.fillRect(x + 18, 50, 50, 18); }
-  ctx.fillStyle = '#5d7792'; for (let x = -30; x < width; x += 160) { ctx.beginPath(); ctx.moveTo(x, height - 42); ctx.lineTo(x + 78, height - 130); ctx.lineTo(x + 155, height - 42); ctx.fill(); }
-  ctx.fillStyle = '#29484c'; ctx.fillRect(0, height - 42, width, 42);
-  const l = current.value; const scale = Math.min(width / 900, height / 520); const cy = height / 2 - l.ringRandomY * scale * .35;
-  const rings = [width * .55, width * .76, width * .94];
-  rings.forEach((x, i) => { ctx.strokeStyle = i === 1 ? '#67e7ff' : '#f6b83f'; ctx.lineWidth = Math.max(8, 14 * scale); ctx.beginPath(); ctx.arc(x, cy + i * 55, l.ringRadius * scale, 0, Math.PI * 2); ctx.stroke(); ctx.strokeStyle = '#fff18a'; ctx.lineWidth = 2; ctx.stroke(); });
-  const px = width * .2, py = height / 2; ctx.fillStyle = '#718348'; ctx.fillRect(px - 44, py - 10, 82, 20); ctx.fillRect(px - 12, py - 25, 35, 50); ctx.fillStyle = '#d85832'; ctx.fillRect(px + 36, py - 13, 8, 26); ctx.fillStyle = '#fff18a'; ctx.fillRect(px + 48, py - 25, 4, 50);
-  ctx.strokeStyle = '#ffffff55'; ctx.setLineDash([5, 6]); ctx.beginPath(); ctx.moveTo(0, height / 2 - l.ringRandomY * scale); ctx.lineTo(width, height / 2 - l.ringRandomY * scale); ctx.moveTo(0, height / 2 + l.ringRandomY * scale); ctx.lineTo(width, height / 2 + l.ringRandomY * scale); ctx.stroke(); ctx.setLineDash([]);
+  const el = canvas.value; const item = selectedWave.value; if (!el || !item) return; const ctx = el.getContext('2d'); if (!ctx) return;
+  const ratio = devicePixelRatio; const width = el.clientWidth; const height = el.clientHeight; el.width = width * ratio; el.height = height * ratio; ctx.scale(ratio, ratio); ctx.imageSmoothingEnabled = false;
+  const sky = ctx.createLinearGradient(0, 0, 0, height); sky.addColorStop(0, '#3d8fc8'); sky.addColorStop(1, '#bce4e8'); ctx.fillStyle = sky; ctx.fillRect(0, 0, width, height);
+  ctx.fillStyle = '#dff8ff'; for (let x = 35; x < width; x += 250) { ctx.fillRect(x, 48, 90, 14); ctx.fillRect(x + 20, 35, 50, 14); }
+  ctx.fillStyle = '#56728a'; for (let x = -40; x < width; x += 170) { ctx.beginPath(); ctx.moveTo(x, height - 38); ctx.lineTo(x + 82, height - 116); ctx.lineTo(x + 165, height - 38); ctx.fill(); } ctx.fillStyle = '#283f43'; ctx.fillRect(0, height - 38, width, 38);
+  const px = width * .16, py = height * .48; ctx.fillStyle = '#6f8147'; ctx.fillRect(px - 42, py - 9, 80, 18); ctx.fillRect(px - 10, py - 23, 34, 46); ctx.fillStyle = '#db6041'; ctx.fillRect(px + 36, py - 12, 8, 24);
+  const count = Math.min(6, item.formationSize); const baseX = width * .62; const baseY = height * .42; const pattern = item.formationPattern === 'auto' ? 'v' : item.formationPattern;
+  for (let i = 0; i < count; i++) { const slot = i - (count - 1) / 2; const ground = pattern === 'convoy'; const x = pattern === 'v' ? baseX + Math.abs(slot) * 48 : baseX + i * 58; const y = ground ? height - 57 : baseY + (pattern === 'v' ? slot * 38 : pattern === 'echelon' ? slot * 30 : 0); ctx.fillStyle = ground ? '#536337' : i % 2 ? '#8d493d' : '#59683d'; if (ground) { ctx.fillRect(x - 24, y - 12, 48, 21); ctx.fillStyle = '#202b27'; ctx.fillRect(x - 18, y + 7, 11, 11); ctx.fillRect(x + 8, y + 7, 11, 11); } else { ctx.fillRect(x - 26, y - 6, 52, 12); ctx.fillRect(x - 4, y - 16, 20, 32); } }
+  ctx.fillStyle = '#ffffffaa'; ctx.font = '12px sans-serif'; ctx.fillText(`${formations.find(entry => entry.id === item.formationPattern)?.label} · ${Math.round(item.formationChance * 100)}% 出现`, 16, height - 14);
 }
-
-watch(levels, () => nextTick(draw), { deep: true });
-watch(selectedId, () => nextTick(draw));
-onMounted(() => { draw(); new ResizeObserver(draw).observe(canvas.value!); });
+watch(levels, () => nextTick(draw), { deep: true }); watch([selectedId, selectedWaveId], () => nextTick(draw)); onMounted(() => { draw(); new ResizeObserver(draw).observe(canvas.value!); });
 </script>
 
 <template>
-  <main class="shell">
-    <header>
-      <div><p class="eyebrow">RING AVIATORX</p><h1>航线控制台</h1></div>
-      <div class="actions"><label class="button ghost">导入 JSON<input type="file" accept="application/json" @change="importJson"></label><button class="button primary" @click="exportJson">导出关卡</button></div>
-    </header>
-    <section class="workspace">
-      <aside class="level-list">
-        <div class="section-title"><span>关卡</span><button title="新增关卡" @click="addLevel">＋</button></div>
-        <button v-for="level in levels" :key="level.id" class="level-card" :class="{ active: level.id === selectedId }" @click="selectedId = level.id">
-          <span class="level-number">{{ String(level.id).padStart(2, '0') }}</span><span><b>{{ level.name }}</b><small>{{ level.ringSpeed }} px/s · {{ level.ringRadius }} px</small></span>
-        </button>
-        <div class="list-actions"><button @click="cloneLevel">复制</button><button class="danger" @click="removeLevel">删除</button></div>
-      </aside>
-      <section class="center">
-        <div class="preview-card">
-          <div class="card-head"><span>实时航线预览</span><span class="badge">难度 {{ difficulty }}</span></div><canvas ref="canvas"></canvas>
-          <div class="metrics"><span><b>{{ current.ringSpawnInterval }}</b> 秒/环</span><span><b>{{ current.ringSpeed }}</b> 飞行速度</span><span><b>{{ Math.round((current.movingRingChance + current.shrinkingRingChance) * 100) }}%</b> 变体环</span><span><b>{{ current.targetScore }}</b> 目标分</span></div>
-        </div>
-        <div v-if="errors.length" class="errors"><b>配置需要调整</b><span v-for="error in errors" :key="error">{{ error }}</span></div>
-        <div v-else class="valid">✓ 配置有效，可直接导出到 Cocos Creator</div>
-      </section>
-      <aside class="inspector">
-        <div class="section-title"><span>关卡参数</span><span>#{{ current.id }}</span></div>
-        <label class="name-field"><span>航线名称</span><input v-model.trim="current.name"></label>
-        <label v-for="field in fields" :key="field.key" class="field">
-          <span>{{ field.label }} <em>{{ field.unit === '%' ? Math.round(Number(current[field.key]) * 100) + '%' : current[field.key] + ' ' + field.unit }}</em></span>
-          <input v-model.number="current[field.key]" type="range" :min="field.min" :max="field.max" :step="field.step">
-        </label>
-      </aside>
-    </section>
-    <div v-if="toast" class="toast">{{ toast }}</div>
-  </main>
+  <main class="shell"><header class="topbar"><div><p class="eyebrow">RING AVIATORX</p><h1>战斗关卡编辑器</h1></div><div class="actions"><label class="button ghost">导入 JSON<input type="file" accept="application/json" @change="importJson"></label><button class="button primary" @click="exportJson">导出关卡</button></div></header>
+    <section class="workspace"><aside class="panel level-list"><div class="section-title"><span>关卡列表</span><button title="新增关卡" @click="addLevel">＋</button></div><button v-for="level in levels" :key="level.id" class="level-card" :class="{ active: level.id === selectedId }" @click="selectLevel(level.id)"><span class="level-number">{{ String(level.id).padStart(2, '0') }}</span><span><b>{{ level.name }}</b><small>{{ level.waves.length }} 波 · {{ level.waves.reduce((sum, item) => sum + enemyCount(item), 0) }} 敌人</small></span></button><div class="list-actions"><button @click="cloneLevel">复制</button><button class="danger" @click="removeLevel">删除</button></div></aside>
+      <section class="center"><div class="preview-card"><div class="card-head"><span>WAVE {{ selectedWave.id }} 编队预览</span><span class="badge">难度 {{ difficulty }}</span></div><canvas ref="canvas"></canvas><div class="metrics"><span><b>{{ current.waves.length }}</b> 波次</span><span><b>{{ totalEnemies }}</b> 敌人</span><span><b>{{ Math.round(current.powerUpChance * 100) }}%</b> 掉落率</span><span><b>{{ current.targetScore }}</b> 目标分</span></div></div><div class="wave-toolbar"><b>波次时间线</b><button @click="addWave">＋ 新波次</button></div><div class="wave-list"><article v-for="(item, index) in current.waves" :key="item.id" class="wave-summary" :class="{ active: item.id === selectedWaveId }" @click="selectWave(item.id)"><div><b>W{{ item.id }}</b><span>{{ formations.find(entry => entry.id === item.formationPattern)?.label }}</span></div><strong>{{ enemyCount(item) }}</strong><small>敌人</small><footer><button title="上移" @click.stop="moveWave(index, -1)">↑</button><button title="下移" @click.stop="moveWave(index, 1)">↓</button><button title="复制" @click.stop="cloneWave(index)">⧉</button><button title="删除" @click.stop="removeWave(index)">×</button></footer></article></div><div v-if="errors.length" class="errors"><b>配置需要调整</b><span v-for="error in errors" :key="error">{{ error }}</span></div><div v-else class="valid">✓ 配置有效，可导出到 Cocos Creator</div></section>
+      <aside class="panel inspector"><nav class="tabs"><button :class="{ active: tab === 'level' }" @click="tab = 'level'">关卡</button><button :class="{ active: tab === 'wave' }" @click="tab = 'wave'">当前波次</button><button :class="{ active: tab === 'powerups' }" @click="tab = 'powerups'">道具</button></nav>
+        <section v-if="tab === 'level'" class="tab-content"><h2>关卡参数 <small>#{{ current.id }}</small></h2><label class="wide-field">任务名称<input v-model.trim="current.name"></label><div class="field-grid"><label>场景速度<input v-model.number="current.ringSpeed" type="number" min="120"></label><label>背景速度<input v-model.number="current.backgroundSpeed" type="number" min="0"></label><label>目标分数<input v-model.number="current.targetScore" type="number" min="1"></label><label>难度间隔<input v-model.number="current.difficultyEvery" type="number" min="1"></label></div><label class="slider-field"><span>道具总体掉落率 <b>{{ Math.round(current.powerUpChance * 100) }}%</b></span><input v-model.number="current.powerUpChance" type="range" min="0" max="0.5" step="0.01"></label><div class="generator"><h3>随机批量生成</h3><div class="field-grid"><label>关卡数量<input v-model.number="generator.count" type="number" min="1" max="100"></label><label>生成方式<select v-model="generator.replace"><option :value="false">追加</option><option :value="true">覆盖全部</option></select></label><label>最少波次<input v-model.number="generator.waveMin" type="number" min="1"></label><label>最多波次<input v-model.number="generator.waveMax" type="number" min="1"></label><label>每波最少敌人<input v-model.number="generator.enemyMin" type="number" min="1"></label><label>每波最多敌人<input v-model.number="generator.enemyMax" type="number" min="1"></label><label>起始难度<input v-model.number="generator.difficultyStart" type="number" min="0.1" step="0.1"></label><label>每关难度递增<input v-model.number="generator.difficultyStep" type="number" min="0" step="0.01"></label></div><label class="wide-field">部队规则<select v-model="generator.style"><option value="mixed">空地混合</option><option value="air">纯空战</option><option value="ground">地面部队</option></select></label><button class="button primary generate-button" @click="generateRandomLevels">按规则批量生成</button></div></section>
+        <section v-else-if="tab === 'wave'" class="tab-content"><h2>WAVE {{ selectedWave.id }} <small>{{ enemyCount(selectedWave) }} 敌人</small></h2><div class="presets"><button @click="applyPreset('air')">空中突击</button><button @click="applyPreset('mixed')">混合部队</button><button @click="applyPreset('ground')">地面车队</button></div><h3>敌人组成</h3><div class="enemy-grid"><label v-for="enemy in enemies" :key="enemy[0]"><i>{{ enemy[2] }}</i><span>{{ enemy[1] }}</span><input v-model.number="selectedWave[enemy[0]]" type="number" min="0" max="99"></label></div><h3>编队样式</h3><div class="formation-grid"><button v-for="formation in formations" :key="formation.id" :class="{ active: selectedWave.formationPattern === formation.id }" :title="formation.hint" @click="selectedWave.formationPattern = formation.id"><b>{{ formation.glyph }}</b><span>{{ formation.label }}</span></button></div><label class="slider-field"><span>编队出现概率 <b>{{ Math.round(selectedWave.formationChance * 100) }}%</b></span><input v-model.number="selectedWave.formationChance" type="range" min="0" max="1" step="0.05"></label><label class="slider-field"><span>每组规模 <b>{{ selectedWave.formationSize }} 架/辆</b></span><input v-model.number="selectedWave.formationSize" type="range" min="2" max="6" step="1"></label><div class="field-grid"><label>生成间隔<input v-model.number="selectedWave.spawnInterval" type="number" min="0.1" step="0.05"></label><label>移动倍率<input v-model.number="selectedWave.enemySpeedScale" type="number" min="0.1" step="0.05"></label><label>射速倍率<input v-model.number="selectedWave.fireRateScale" type="number" min="0.1" step="0.05"></label></div></section>
+        <section v-else class="tab-content"><h2>道具掉落 <small>权重配置</small></h2><p class="help">先按关卡掉落率决定是否出现，再按下面的权重选择道具。设为 0 即关闭。</p><label class="slider-field power-rate"><span>总体掉落率 <b>{{ Math.round(current.powerUpChance * 100) }}%</b></span><input v-model.number="current.powerUpChance" type="range" min="0" max="0.5" step="0.01"></label><div class="power-list"><label v-for="item in powerUps" :key="item.id"><i :style="{ color: item.color, borderColor: item.color }">{{ item.icon }}</i><span><b>{{ item.label }}</b><small>{{ chance(item.id) }}% 分布</small></span><input v-model.number="current.powerUpWeights[item.id]" type="number" min="0" max="20"></label></div><div class="distribution"><span v-for="item in powerUps" :key="item.id" :style="{ width: chance(item.id) + '%', background: item.color }"></span></div><small class="hint">总权重 {{ weightTotal }}，只影响道具之间的相对概率。</small></section>
+      </aside></section><div v-if="toast" class="toast">{{ toast }}</div></main>
 </template>

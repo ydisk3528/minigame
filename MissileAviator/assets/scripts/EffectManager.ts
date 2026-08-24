@@ -27,4 +27,16 @@ export class EffectManager {
         .call(() => node.destroy()).start();
     }
   }
+
+  explosion(position: Vec3): void {
+    const colors = [new Color('#fff18a'), new Color('#ff9b42'), new Color('#e7472e')];
+    for (let i = 0; i < 18; i++) {
+      const node = new Node('ExplosionPixel'); node.setParent(this.layer); node.setPosition(position); node.layer = this.layer.layer;
+      node.addComponent(UITransform).setContentSize(12, 12);
+      const label = node.addComponent(Label); label.string = '■'; label.fontSize = i % 3 === 0 ? 24 : 16; label.color = colors[i % colors.length];
+      const angle = i * Math.PI * 2 / 18; const distance = 45 + i % 4 * 18;
+      tween(node).by(.38, { position: new Vec3(Math.cos(angle) * distance, Math.sin(angle) * distance), scale: new Vec3(.45, .45) })
+        .to(.12, { scale: new Vec3(.05, .05) }).call(() => node.destroy()).start();
+    }
+  }
 }

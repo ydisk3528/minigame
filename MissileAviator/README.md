@@ -2,6 +2,8 @@
 
 基于 Cocos Creator 3.8.6 + TypeScript 的 2D 像素风飞机钻圈小游戏。
 
+游戏采用 `1280 × 720` 横屏设计，Web Mobile 与微信小游戏构建方向均锁定为 landscape。
+
 ## 运行
 
 1. 用 Cocos Creator 3.8.6 打开本目录。

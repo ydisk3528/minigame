@@ -1,48 +1,74 @@
-import { _decorator, Color, Component, Graphics, Node, resources, Sprite, SpriteFrame, Texture2D, UITransform } from 'cc';
+import { _decorator, Color, Component, Graphics, Node, resources, Sprite, SpriteFrame, UITransform } from 'cc';
 const { ccclass } = _decorator;
+
+type ScrollLayer = { nodes: Node[]; speed: number };
 
 @ccclass('BackgroundScroller')
 export class BackgroundScroller extends Component {
   private offset = 0;
   private graphics!: Graphics;
-  private art: Node | null = null;
+  private layers: ScrollLayer[] = [];
 
   onLoad(): void {
     this.getComponent(UITransform) ?? this.addComponent(UITransform).setContentSize(1280, 720);
     this.graphics = this.getComponent(Graphics) ?? this.addComponent(Graphics);
-    this.draw();
-    this.loadArt();
+    this.drawFallback();
+    this.loadLayers();
   }
 
-  scroll(dt: number, speed: number): void { this.offset = (this.offset + speed * dt) % 320; this.draw(); }
+  scroll(dt: number, speed: number): void {
+    if (!this.layers.length) {
+      this.offset = (this.offset + speed * dt) % 320;
+      this.drawFallback();
+      return;
+    }
+    for (const layer of this.layers) {
+      for (const tile of layer.nodes) tile.setPosition(tile.position.x - speed * layer.speed * dt, tile.position.y);
+      for (const tile of layer.nodes) {
+        if (tile.position.x > -1920) continue;
+        const rightmost = layer.nodes.reduce((right, other) => other.position.x > right.position.x ? other : right);
+        tile.setPosition(rightmost.position.x + 1280, tile.position.y);
+      }
+    }
+  }
 
-  private draw(): void {
+  private loadLayers(): void {
+    const names = ['sky', 'clouds', 'distant-trees', 'grass'];
+    Promise.all(names.map(name => new Promise<SpriteFrame | null>(resolve =>
+      resources.load(`art/background/${name}/spriteFrame`, SpriteFrame, (error, frame) => resolve(error ? null : frame)))))
+      .then(([sky, clouds, trees, grass]) => {
+        if (!this.isValid || !sky || !clouds || !trees || !grass) return;
+        this.graphics.enabled = false;
+        this.layers = [
+          { nodes: this.tiles('Sky', sky, 720, 0), speed: .08 },
+          { nodes: this.tiles('Clouds', clouds, 210, 120), speed: .28 },
+          { nodes: this.tiles('DistantTrees', trees, 300, -165), speed: .58 },
+          { nodes: this.tiles('Grass', grass, 120, -350), speed: 1.35 },
+        ];
+      });
+  }
+
+  private tiles(name: string, frame: SpriteFrame, height: number, y: number): Node[] {
+    return [
+      this.sprite(`${name}Left`, frame, 1280, height, -1280, y),
+      this.sprite(`${name}Center`, frame, 1280, height, 0, y),
+      this.sprite(`${name}Right`, frame, 1280, height, 1280, y),
+    ];
+  }
+
+  private sprite(name: string, frame: SpriteFrame, width: number, height: number, x: number, y: number): Node {
+    const node = new Node(name); node.layer = this.node.layer; node.setParent(this.node); node.setPosition(x, y);
+    node.addComponent(UITransform).setContentSize(width, height);
+    const sprite = node.addComponent(Sprite); sprite.sizeMode = Sprite.SizeMode.CUSTOM; sprite.spriteFrame = frame;
+    return node;
+  }
+
+  private drawFallback(): void {
     const g = this.graphics; g.clear();
     g.fillColor = new Color('#65b9e8'); g.rect(-640, -360, 1280, 720); g.fill();
-    g.fillColor = new Color('#9bdcf1'); g.rect(-640, -70, 1280, 90); g.fill();
-    g.fillColor = new Color('#547ca0');
-    for (let x = -760 - this.offset * .35; x < 760; x += 210) {
-      g.moveTo(x, -270); g.lineTo(x + 90, -120); g.lineTo(x + 180, -270); g.fill();
-    }
-    g.fillColor = new Color('#325a63'); g.rect(-640, -310, 1280, 45); g.fill();
     g.fillColor = new Color('#dff8ff');
-    for (let x = -750 - this.offset; x < 760; x += 320) {
-      g.rect(x, 160, 95, 22); g.rect(x + 22, 181, 55, 18); g.rect(x + 12, 148, 120, 15);
-    }
+    for (let x = -750 - this.offset; x < 760; x += 320) { g.rect(x, 160, 120, 24); g.rect(x + 22, 184, 60, 18); }
     g.fill();
-    g.fillColor = new Color('#23434b'); g.rect(-640, -360, 1280, 50); g.fill();
-    g.fillColor = new Color('#4f7f5d'); g.rect(-640, -310, 1280, 16); g.fill();
-  }
-
-  private loadArt(): void {
-    const art = new Node('SkyBackgroundSprite'); art.layer = this.node.layer; art.setParent(this.node); art.setSiblingIndex(0);
-    art.addComponent(UITransform).setContentSize(1280, 720);
-    const sprite = art.addComponent(Sprite); sprite.sizeMode = Sprite.SizeMode.CUSTOM;
-    resources.load('art/sky-background/texture', Texture2D, (error, texture) => {
-      if (error || !this.isValid) return art.destroy();
-      texture.setFilters(Texture2D.Filter.NEAREST, Texture2D.Filter.NEAREST);
-      const frame = new SpriteFrame(); frame.texture = texture;
-      sprite.spriteFrame = frame; this.art = art; this.graphics.enabled = false;
-    });
+    g.fillColor = new Color('#325a63'); g.rect(-640, -305, 1280, 70); g.fill();
   }
 }
