@@ -7,7 +7,7 @@ type Enemy = { controller: EnemyController; poolKey: string };
 export type PlayerBulletKind = 'normal' | 'laser' | 'plasma' | 'rocket';
 type Bullet = { node: Node; velocity: Vec3; friendly: boolean; poolKey: string; damage: number };
 type PowerUp = { node: Node; kind: PowerUpKind };
-export type CombatResult = { playerHit: boolean; enemyShot: boolean; destroyed: Vec3[]; powerUps: PowerUpKind[] };
+export type CombatResult = { playerHit: boolean; playerShot: boolean; enemyShot: boolean; destroyed: Vec3[]; powerUps: PowerUpKind[] };
 
 const ENEMY_KINDS: EnemyKind[] = ['truck', 'fighter', 'bomber', 'diveBomber', 'tank', 'rocketTruck', 'interceptor'];
 const DEFAULT_WAVE: WaveConfig = { id: 1, truckCount: 3, fighterCount: 3, bomberCount: 1, diveBomberCount: 1, tankCount: 1, rocketTruckCount: 1, interceptorCount: 1, spawnInterval: 1.4, enemySpeedScale: 1, fireRateScale: 1, formationChance: .5, formationSize: 3, formationPattern: 'auto' };
@@ -48,7 +48,7 @@ export class CombatSystem {
   }
 
   tick(dt: number, worldSpeed: number, player: Vec3): CombatResult {
-    const result: CombatResult = { playerHit: false, enemyShot: false, destroyed: [], powerUps: [] };
+    const result: CombatResult = { playerHit: false, playerShot: false, enemyShot: false, destroyed: [], powerUps: [] };
     const wave = this.waves[this.waveIndex] ?? DEFAULT_WAVE;
     this.rapidTimer = Math.max(0, this.rapidTimer - dt); this.spreadTimer = Math.max(0, this.spreadTimer - dt);
     if (this.weaponTimer > 0 && (this.weaponTimer -= dt) <= 0) this.weapon = this.baseWeapon;
@@ -74,6 +74,7 @@ export class CombatSystem {
       } else if (this.spreadTimer > 0) {
         this.spawnPlayerBullet(origin, new Vec3(660, 0), 'plasma'); this.spawnPlayerBullet(origin, new Vec3(650, 135), 'plasma'); this.spawnPlayerBullet(origin, new Vec3(650, -135), 'plasma');
       } else this.spawnPlayerBullet(origin, new Vec3(700, 0), this.rapidTimer > 0 ? 'laser' : 'normal');
+      result.playerShot = true;
       this.fireIn = this.weapon === 'laser' ? .1 : this.weapon === 'rocket' ? .42 : this.rapidTimer > 0 ? .1 : .2;
     }
 
@@ -132,8 +133,18 @@ export class CombatSystem {
     if (kind === 'laser' || kind === 'plasma' || kind === 'rocket') { this.weapon = kind; this.weaponTimer = 10; }
   }
 
+  spawnTestPowerUps(player: Vec3): void {
+    (['repair', 'shield', 'rapid', 'spread', 'laser', 'plasma', 'rocket'] as PowerUpKind[])
+      .forEach((kind, index) => this.spawnPowerUp(new Vec3(player.x + 180 + index * 90, player.y), kind));
+  }
+
   private beginWave(): void {
     const wave = this.waves[this.waveIndex] ?? DEFAULT_WAVE;
+    if (wave.formationPattern === 'custom' && wave.customFormation?.length) {
+      this.remaining = { truck: 0, fighter: 0, bomber: 0, diveBomber: 0, tank: 0, rocketTruck: 0, interceptor: 0 };
+      for (const slot of wave.customFormation) this.spawnEnemy(slot.kind, new Vec3(720 + Math.max(0, Math.min(7, slot.col)) * 86, 220 - Math.max(0, Math.min(4, slot.row)) * 105));
+      this.spawnIn = .8; return;
+    }
     this.remaining = {
       truck: Math.max(0, wave.truckCount), fighter: Math.max(0, wave.fighterCount), bomber: Math.max(0, wave.bomberCount ?? 0),
       diveBomber: Math.max(0, wave.diveBomberCount ?? 0), tank: Math.max(0, wave.tankCount ?? 0), rocketTruck: Math.max(0, wave.rocketTruckCount ?? 0), interceptor: Math.max(0, wave.interceptorCount ?? 0),
@@ -142,7 +153,7 @@ export class CombatSystem {
 
   private spawnFormation(kind: EnemyKind, count: number, configured: FormationPattern): void {
     const ground = kind === 'truck' || kind === 'tank' || kind === 'rocketTruck';
-    const pattern: FormationPattern = ground ? 'convoy' : configured === 'auto' ? (['v', 'line', 'echelon'] as FormationPattern[])[Math.floor(Math.random() * 3)] : configured;
+    const pattern: FormationPattern = ground ? 'convoy' : configured === 'auto' ? (['v', 'line', 'echelon'] as FormationPattern[])[Math.floor(Math.random() * 3)] : configured === 'custom' ? 'line' : configured;
     const baseY = ground ? -270 : (kind === 'bomber' ? 140 + Math.random() * 70 : (Math.random() * 2 - 1) * 130);
     for (let i = 0; i < count; i++) {
       const slot = i - (count - 1) / 2;
@@ -176,9 +187,9 @@ export class CombatSystem {
     node.setRotationFromEuler(0, 0, Math.atan2(velocity.y, velocity.x) * 180 / Math.PI); this.bullets.push({ node, velocity, friendly: false, poolKey, damage: 1 });
   }
 
-  private spawnPowerUp(position: Vec3): void {
+  private spawnPowerUp(position: Vec3, forcedKind?: PowerUpKind): void {
     const kinds = Object.keys(this.powerUpWeights) as PowerUpKind[]; const total = kinds.reduce((sum, kind) => sum + Math.max(0, this.powerUpWeights[kind]), 0);
-    let roll = Math.random() * total; const kind = total > 0 ? kinds.find(item => (roll -= Math.max(0, this.powerUpWeights[item])) <= 0) ?? 'repair' : 'repair';
+    let roll = Math.random() * total; const kind = forcedKind ?? (total > 0 ? kinds.find(item => (roll -= Math.max(0, this.powerUpWeights[item])) <= 0) ?? 'repair' : 'repair');
     const node = this.pool.acquire('powerup', this.powerUpPrefab, this.layer); node.setPosition(position);
     const icon = node.getChildByName('Icon') ?? node; const sprite = icon.getComponent(Sprite) ?? icon.addComponent(Sprite);
     icon.getComponent(UITransform)?.setContentSize(52, 52); sprite.sizeMode = Sprite.SizeMode.CUSTOM; sprite.spriteFrame = this.powerFrames.get(kind) ?? null;

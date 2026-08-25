@@ -1,8 +1,8 @@
 {
   "id": 21,
   "gameMode": "match3",
-  "difficulty": "normal",
-  "targetScore": 3000,
+  "difficulty": "easy",
+  "targetScore": 3100,
   "availableShapes": [
     1,
     2,
@@ -27,9 +27,12 @@
     21,
     22,
     23,
-    24
+    24,
+    25,
+    26,
+    27
   ],
-  "reward": 299,
+  "reward": 500,
   "boardMask": [
     "00000000000011000000000000",
     "00000000000111100000000000",
@@ -41,8 +44,15 @@
     "00000000000011000000000000"
   ],
   "match3Config": {
-    "moveLimit": 40,
+    "moveLimit": 65,
     "colorCount": 0,
-    "matchLength": 3
+    "matchLength": 3,
+    "guaranteedFeatures": [
+      "vortex"
+    ]
+  },
+  "boosterReward": {
+    "type": "hammer",
+    "amount": 1
   }
 }

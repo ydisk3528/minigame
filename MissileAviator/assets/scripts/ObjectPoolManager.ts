@@ -6,20 +6,21 @@ export class ObjectPoolManager {
   acquire(key: string, prefab: Prefab, parent: Node): Node {
     const pool = this.pools.get(key) ?? [];
     this.pools.set(key, pool);
-    const node = pool.pop() ?? instantiate(prefab);
+    let node = pool.pop(); while (node && !node.isValid) node = pool.pop(); node ??= instantiate(prefab);
     node.active = true;
     node.setParent(parent);
     return node;
   }
 
-  release(key: string, node: Node): void {
+  release(key: string, node: Node | null | undefined): void {
+    if (!node?.isValid) return;
     node.active = false;
     node.removeFromParent();
     (this.pools.get(key) ?? this.makePool(key)).push(node);
   }
 
   clear(): void {
-    this.pools.forEach(pool => pool.forEach(node => node.destroy()));
+    this.pools.forEach(pool => pool.forEach(node => { if (node.isValid) node.destroy(); }));
     this.pools.clear();
   }
 

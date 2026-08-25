@@ -1,7 +1,12 @@
-import { Color, Label, Node, tween, UITransform, Vec3 } from 'cc';
+import { Color, instantiate, Label, Node, Prefab, Sprite, SpriteFrame, tween, UITransform, Vec3 } from 'cc';
 
 export class EffectManager {
+  private explosionPrefab: Prefab | null = null;
+  private explosionFrames: SpriteFrame[] = [];
+
   constructor(private layer: Node) {}
+
+  setEnemyExplosionAssets(prefab: Prefab, frames: SpriteFrame[]): void { this.explosionPrefab = prefab; this.explosionFrames = frames; }
 
   text(message: string, position: Vec3, color = new Color('#fff18a'), size = 38): void {
     const node = new Node('Popup');
@@ -38,5 +43,16 @@ export class EffectManager {
       tween(node).by(.38, { position: new Vec3(Math.cos(angle) * distance, Math.sin(angle) * distance), scale: new Vec3(.45, .45) })
         .to(.12, { scale: new Vec3(.05, .05) }).call(() => node.destroy()).start();
     }
+  }
+
+  enemyExplosion(position: Vec3): void {
+    if (!this.explosionPrefab || !this.explosionFrames.length) { this.burst(position, true); return; }
+    const node = instantiate(this.explosionPrefab); node.layer = this.layer.layer; node.setParent(this.layer); node.setPosition(position);
+    const sprite = node.getComponent(Sprite); if (!sprite) { node.destroy(); return; }
+    let frame = 0; const advance = (): void => {
+      if (!node.isValid) return;
+      if (frame >= this.explosionFrames.length) { node.destroy(); return; }
+      sprite.spriteFrame = this.explosionFrames[frame++]; tween(node).delay(.045).call(advance).start();
+    }; advance();
   }
 }

@@ -1,4 +1,5 @@
 import { _decorator, AudioClip, AudioSource, Camera, Canvas, Color, Component, director, EventMouse, EventTouch, input, Input, Layers, Node, Prefab, resources, ResolutionPolicy, SpriteFrame, sys, UITransform, Vec2, Vec3, view } from 'cc';
+import { EDITOR, PREVIEW } from 'cc/env';
 import { BackgroundScroller } from './BackgroundScroller';
 import { CombatSystem } from './CombatSystem';
 import { EffectManager } from './EffectManager';
@@ -59,19 +60,24 @@ export class GameManager extends Component {
     backgroundLayer.setSiblingIndex(0);
     this.background = backgroundLayer.addComponent(BackgroundScroller);
     this.effects = new EffectManager(effectLayer);
-    this.ui = new UIManager(uiLayer, () => this.openLevels(), () => this.startGame(), () => this.toMenu(), () => this.reviveFromAd());
+    this.ui = new UIManager(uiLayer, () => this.startGame(), () => this.toMenu(), () => this.reviveFromAd());
     await this.levelManager.load(); this.level = this.levelManager.get(Number(sys.localStorage.getItem('selectedLevelId')) || 1);
+    this.background.setTheme(this.level.backgroundTheme);
     this.audio = this.node.getComponent(AudioSource) ?? this.node.addComponent(AudioSource);
-    await Promise.all(['enemyDied', 'enemyShoot', 'prop', 'planeDied'].map(async name => this.sfx.set(name, await this.loadAudio(`music/${name}`))));
+    await Promise.all(['enemyDied', 'enemyShoot', 'playerShoot', 'prop', 'planeDied'].map(async name => this.sfx.set(name, await this.loadAudio(`music/${name}`))));
+    this.audio.stop(); this.audio.clip = await this.loadAudio('music/bg'); this.audio.loop = true; this.audio.volume = .35; if (PlayerProfile.load().musicEnabled) this.audio.play();
     const [playerPrefab, ringPrefab, truckPrefab, fighterPrefab, bomberPrefab, diveBomberPrefab, tankPrefab, rocketTruckPrefab, interceptorPrefab,
-      playerBulletPrefab, laserBulletPrefab, plasmaBulletPrefab, rocketBulletPrefab, enemyBulletPrefab, powerUpPrefab, healthBarPrefab] = await Promise.all([
+      playerBulletPrefab, laserBulletPrefab, plasmaBulletPrefab, rocketBulletPrefab, enemyBulletPrefab, powerUpPrefab, healthBarPrefab, testPowerUpsButtonPrefab] = await Promise.all([
       this.loadPrefab('prefabs/Player'), this.loadPrefab('prefabs/Ring'), this.loadPrefab('prefabs/EnemyTruck'),
       this.loadPrefab('prefabs/EnemyFighter'), this.loadPrefab('prefabs/EnemyBomber'), this.loadPrefab('prefabs/EnemyDiveBomber'),
       this.loadPrefab('prefabs/EnemyTank'), this.loadPrefab('prefabs/EnemyRocketTruck'), this.loadPrefab('prefabs/EnemyInterceptor'), this.loadPrefab('prefabs/Bullet'),
       this.loadPrefab('prefabs/LaserBullet'), this.loadPrefab('prefabs/PlasmaBullet'), this.loadPrefab('prefabs/RocketBullet'), this.loadPrefab('prefabs/EnemyBullet'),
-      this.loadPrefab('prefabs/PowerUp'), this.loadPrefab('prefabs/HealthBar'),
+      this.loadPrefab('prefabs/PowerUp'), this.loadPrefab('prefabs/HealthBar'), this.loadPrefab('prefabs/TestPowerUpsButton'),
     ]);
-    const revivePanelPrefab = await this.loadPrefab('prefabs/RevivePanel');
+    const [revivePanelPrefab, enemyExplosionPrefab, enemyExplosionFrames] = await Promise.all([
+      this.loadPrefab('prefabs/RevivePanel'), this.loadPrefab('prefabs/EnemyExplosion'), this.loadFrames('art/effects/enemy-explosion'),
+    ]);
+    this.effects.setEnemyExplosionAssets(enemyExplosionPrefab, enemyExplosionFrames);
     const playerNode = this.pool.acquire('player', playerPrefab, playerLayer);
     const player = playerNode.getComponent(PlayerController); if (!player) throw new Error('Player.prefab missing PlayerController'); this.player = player;
     playerNode.on(Node.EventType.TOUCH_START, this.onTouchStart, this);
@@ -86,7 +92,8 @@ export class GameManager extends Component {
       enemyBulletPrefab, powerUpPrefab, this.pool);
     this.ui.attachHealthBar(healthBarPrefab);
     this.ui.attachRevivePanel(revivePanelPrefab);
-    if (sys.localStorage.getItem('autoStart') === '1') { sys.localStorage.removeItem('autoStart'); this.startGame(); } else this.toMenu();
+    if (EDITOR || PREVIEW) this.ui.attachTestButton(testPowerUpsButtonPrefab, () => { if (this.state === GameState.Playing) this.combat.spawnTestPowerUps(this.player.node.position); });
+    if (sys.localStorage.getItem('autoStart') === '1') { sys.localStorage.removeItem('autoStart'); this.startGame(); } else director.loadScene('Start');
     input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this);
     input.on(Input.EventType.MOUSE_UP, this.onMouseRelease, this);
   }
@@ -111,6 +118,7 @@ export class GameManager extends Component {
       this.rings.recycleOffscreen();
     }
     const combat = this.combat.tick(dt, this.level.ringSpeed * this.speedScale, this.player.node.position);
+    if (combat.playerShot) this.playSfx('playerShoot', .22);
     if (combat.enemyShot) this.playSfx('enemyShoot', .28);
     for (const position of combat.destroyed) this.onEnemyDestroyed(position);
     for (const kind of combat.powerUps) this.applyPowerUp(kind);
@@ -137,6 +145,8 @@ export class GameManager extends Component {
   }
 
   private startGame(): void {
+    NativeAds.hideBanner();
+    this.unscheduleAllCallbacks();
     const profile = PlayerProfile.load();
     this.rings.reset(); this.combat.reset(this.level.waves, this.level.powerUpChance, this.level.powerUpWeights, profile.equippedWeapon); this.score.reset(); this.speedScale = 1; this.lives = 3; this.health = this.maxHealth; this.adReviveUsed = false; this.invulnerable = 0; this.dragging = false; this.activeTouchId = null;
     this.player.node.active = true; this.player.node.setPosition(-350, 20); this.player.reset();
@@ -149,19 +159,32 @@ export class GameManager extends Component {
     this.state = GameState.GameOver; this.score.fail();
     this.player.node.active = false;
     this.ui.showGameOver(this.score.score, this.score.best, !this.adReviveUsed);
+    NativeAds.showBanner();
   }
 
-  private toMenu(): void { this.state = GameState.Menu; this.rings?.reset(); this.combat?.reset(); if (this.player) this.player.node.active = false; this.ui.showMenu(); }
+  private toMenu(): void { director.loadScene('Start'); }
 
   private onPass(perfect: boolean, position: Vec3): void {
     const gained = this.score.pass(perfect); this.ui.updateScore(this.score.score, this.score.combo);
     this.effects.burst(position, perfect);
     this.effects.text(perfect ? `PERFECT! +${gained}` : '+1', position, undefined, perfect ? 40 : 30);
+    if (this.score.score >= this.level.targetScore) this.completeLevel();
   }
 
   private onEnemyDestroyed(position: Vec3): void {
     this.score.pass(false); this.ui.updateScore(this.score.score, this.score.combo);
-    PlayerProfile.addCoins(1); this.effects.explosion(position); this.effects.text('+1', position, undefined, 28); this.playSfx('enemyDied', .6);
+    PlayerProfile.addCoins(1); this.effects.enemyExplosion(position); this.effects.text('+1', position, undefined, 28); this.playSfx('enemyDied', .6);
+    if (this.score.score >= this.level.targetScore) this.completeLevel();
+  }
+
+  private completeLevel(): void {
+    if (this.state !== GameState.Playing) return;
+    this.state = GameState.GameOver; this.score.fail(); PlayerProfile.completeLevel(this.level.id); this.player.node.active = false;
+    const levels = this.levelManager.all(); const nextLevel = levels[levels.indexOf(this.level) + 1];
+    this.ui.showLevelComplete(this.score.score, this.score.best, nextLevel?.id);
+    if (!nextLevel) return;
+    sys.localStorage.setItem('selectedLevelId', String(nextLevel.id)); sys.localStorage.setItem('autoStart', '1');
+    this.scheduleOnce(() => director.loadScene('Main'), 1.8);
   }
 
   private takeDamage(): boolean {
@@ -188,13 +211,12 @@ export class GameManager extends Component {
       if (this.state !== GameState.GameOver) return;
       if (!success) { this.ui.setReviveBusy(false, true); return; }
       const profile = PlayerProfile.load(); this.adReviveUsed = true; this.lives = 1; this.health = this.maxHealth; this.invulnerable = 5;
+      NativeAds.hideBanner();
       this.combat.reset(this.level.waves, this.level.powerUpChance, this.level.powerUpWeights, profile.equippedWeapon);
       this.player.node.active = true; this.player.node.setPosition(-350, 20); this.player.reset(); this.player.startBlink(5);
       this.state = GameState.Playing; this.ui.showPlaying(); this.ui.updateLives(this.lives); this.ui.updateHealth(this.health, this.maxHealth); this.ui.setReviveBusy(false);
     });
   }
-
-  private openLevels(): void { director.loadScene('Levels'); }
 
   private onTouchStart(event: EventTouch): void {
     if (this.state !== GameState.Playing || this.activeTouchId !== null) return;
@@ -232,5 +254,6 @@ export class GameManager extends Component {
   private loadPrefab(path: string): Promise<Prefab> { return new Promise((resolve, reject) => resources.load(path, Prefab, (e, asset) => e ? reject(e) : resolve(asset))); }
   private loadAudio(path: string): Promise<AudioClip> { return new Promise((resolve, reject) => resources.load(path, AudioClip, (e, asset) => e ? reject(e) : resolve(asset))); }
   private loadFrame(path: string): Promise<SpriteFrame> { return new Promise((resolve, reject) => resources.load(`${path}/spriteFrame`, SpriteFrame, (e, asset) => e ? reject(e) : resolve(asset))); }
-  private playSfx(name: string, volume = 1): void { const clip = this.sfx.get(name); if (clip) this.audio.playOneShot(clip, volume); }
+  private loadFrames(path: string): Promise<SpriteFrame[]> { return new Promise((resolve, reject) => resources.loadDir(path, SpriteFrame, (e, assets) => e ? reject(e) : resolve(assets.sort((a, b) => a.name.localeCompare(b.name))))); }
+  private playSfx(name: string, volume = 1): void { const clip = this.sfx.get(name); if (clip && PlayerProfile.load().sfxEnabled) this.audio.playOneShot(clip, volume); }
 }

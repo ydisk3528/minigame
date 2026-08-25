@@ -14,10 +14,7 @@ export class ScoreManager extends Component {
     private animationDuration = 0;
     private scoreAnimating = false;
     private combo = 0;
-    private matchMultiplier = 10;
-    private matchMultiplierPrepared = false;
     private onScoreChanged: ((score: number) => void) | null = null;
-    private onMatchMultiplierRolled: ((multiplier: number) => Promise<void> | void) | null = null;
 
     public initialize(scoreLabel: Label): void {
         this.scoreLabel = scoreLabel;
@@ -27,21 +24,6 @@ export class ScoreManager extends Component {
 
     public setScoreChangedCallback(callback: ((score: number) => void) | null): void {
         this.onScoreChanged = callback;
-    }
-
-    public setMatchMultiplierCallback(
-        callback: ((multiplier: number) => Promise<void> | void) | null,
-    ): void {
-        this.onMatchMultiplierRolled = callback;
-    }
-
-    public async prepareMatchClear(): Promise<void> {
-        if (this.combo !== 0 || this.matchMultiplierPrepared) {
-            return;
-        }
-        this.matchMultiplierPrepared = true;
-        this.matchMultiplier = 10 + Math.floor(Math.random() * 21);
-        await this.onMatchMultiplierRolled?.(this.matchMultiplier);
     }
 
     public recordPlacement(placedCellCount: number, clearResult: LineClearResult): number {
@@ -75,7 +57,7 @@ export class ScoreManager extends Component {
         const baseScore = Math.max(0, Math.floor(clearedCellCount)) * 25;
         const chainBonus = Math.max(0, normalizedCascade - 1) * 75;
         const gainedScore = this.applyLuckBonus(
-            (baseScore * normalizedCascade + chainBonus) * this.matchMultiplier,
+            baseScore * normalizedCascade + chainBonus,
         );
         this.score += gainedScore;
         this.animateScoreTo(this.score, gainedScore);
@@ -85,7 +67,6 @@ export class ScoreManager extends Component {
 
     public resetCombo(): void {
         this.combo = 0;
-        this.matchMultiplierPrepared = false;
     }
 
     public getScore(): number {
@@ -99,7 +80,6 @@ export class ScoreManager extends Component {
     public resetScore(): void {
         this.score = 0;
         this.combo = 0;
-        this.matchMultiplierPrepared = false;
         this.scoreAnimating = false;
         this.displayedScore = 0;
         this.animationStartScore = 0;

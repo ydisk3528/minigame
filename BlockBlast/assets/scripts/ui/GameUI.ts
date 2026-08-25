@@ -24,12 +24,12 @@ import { AudioManager } from '../core/AudioManager';
 import { BoardManager } from '../core/BoardManager';
 import { ScoreManager } from '../core/ScoreManager';
 import { EffectManager } from '../effect/EffectManager';
-import { PlaneMultiplierEffect } from '../effect/PlaneMultiplierEffect';
 import { LevelManager } from '../level/LevelManager';
 import { MatchBoardManager } from '../match/MatchBoardManager';
 import { ShopManager } from '../shop/ShopManager';
 import { LevelSelectionState } from './LevelSelectionState';
 import { LevelTransitionUI } from './LevelTransitionUI';
+import { MayaGameLayoutView } from './MayaGameLayoutView';
 import { ResultUI } from './ResultUI';
 import { SettingsUI } from './SettingsUI';
 import { TutorialManager } from './TutorialManager';
@@ -47,8 +47,6 @@ export class GameUI extends Component {
     @property(SpriteFrame) public shopMenuFrame: SpriteFrame | null = null;
     @property(SpriteFrame) public boardBackplateFrame: SpriteFrame | null = null;
     @property(SpriteFrame) public gemTileFrame: SpriteFrame | null = null;
-    @property(SpriteFrame) public planeRedFrame: SpriteFrame | null = null;
-    @property(SpriteFrame) public plasmaBulletFrame: SpriteFrame | null = null;
     @property([SpriteFrame]) public gemShapeFrames: SpriteFrame[] = [];
     @property(SpriteFrame) public rocketHorizontalFrame: SpriteFrame | null = null;
     @property(SpriteFrame) public rocketVerticalFrame: SpriteFrame | null = null;
@@ -64,6 +62,7 @@ export class GameUI extends Component {
     @property(SpriteFrame) public hammerIconFrame: SpriteFrame | null = null;
     @property(SpriteFrame) public rainbowIconFrame: SpriteFrame | null = null;
     @property(SpriteFrame) public adIconFrame: SpriteFrame | null = null;
+    @property(Prefab) public mayaLayoutPrefab: Prefab | null = null;
     @property(Prefab) public shopPanelPrefab: Prefab | null = null;
     @property(Prefab) public blockPrefab: Prefab | null = null;
     @property(Prefab) public destroyEffectPrefab: Prefab | null = null;
@@ -96,12 +95,32 @@ export class GameUI extends Component {
 
     private buildLayout(): void {
         const root = this.node;
+        if (this.mayaLayoutPrefab === null) {
+            throw new Error('[GameUI] Maya Game Layout Prefab is not assigned.');
+        }
+        const mayaLayout = instantiate(this.mayaLayoutPrefab);
+        mayaLayout.setParent(root);
+        mayaLayout.setPosition(0, 0, 0);
+        this.applyLayerRecursively(mayaLayout, UI_LAYER);
+        const layoutView = mayaLayout.getComponent(MayaGameLayoutView);
+        if (layoutView?.bestScoreLabel === null
+            || layoutView?.currentScoreLabel === null
+            || layoutView?.levelTargetLabel === null
+            || layoutView?.boosterStatusLabel === null
+            || layoutView?.boosterCountLabels.length !== 3
+            || layoutView?.boosterButtons.length !== 3
+            || layoutView?.boosterIcons.length !== 3
+            || layoutView?.boosterAdIcons.length !== 3) {
+            throw new Error('[GameUI] Maya Game Layout Prefab references are incomplete.');
+        }
+        const bestScoreLabel = layoutView.bestScoreLabel;
+        const currentScoreLabel = layoutView.currentScoreLabel;
+        const levelTargetLabel = layoutView.levelTargetLabel;
+        const boosterStatusLabel = layoutView.boosterStatusLabel;
+
         const topBar = this.createNode('TopBar', root, { width: 1820, height: 86, y: 585 });
         const bestIcon = this.createSpriteNode('BestIcon', topBar, { width: 64, height: 64, x: -865 });
         this.applySprite(bestIcon, this.bestCrownFrame, 'Best Crown Frame');
-        const bestScoreLabel = this.createLabelNode('BestScoreLabel', topBar, '0', 46, {
-            width: 230, height: 64, x: -730,
-        });
         const settingsButton = this.createSpriteNode('SettingButton', topBar, {
             width: 66, height: 66, x: 865,
         });
@@ -118,18 +137,10 @@ export class GameUI extends Component {
         this.applySprite(shopButton, this.shopMenuFrame, 'Shop Menu Frame');
         this.configureScaleButton(shopButton, 0.94);
 
-        const scoreArea = this.createNode('ScoreArea', root, { width: 720, height: 76, y: 580 });
-        const currentScoreLabel = this.createLabelNode('CurrentScoreLabel', scoreArea, '0', 58, {
-            width: 190, height: 68, x: -250,
-        }, true);
-        const levelTargetLabel = this.createLabelNode(
-            'LevelTargetLabel', scoreArea, 'LEVEL 1  •  TARGET 500', 25,
-            { width: 500, height: 52, x: 105 }, true, new Color(145, 224, 255, 255),
-        );
-        const scoreManager = scoreArea.addComponent(ScoreManager);
+        const scoreManager = root.addComponent(ScoreManager);
         scoreManager.initialize(currentScoreLabel);
 
-        const boardRoot = this.createNode('BoardRoot', root, { width: 1800, height: 864, y: 45 });
+        const boardRoot = this.createNode('BoardRoot', root, { width: 1800, height: 864, y: -75 });
         const backplateLayer = this.createNode('BackplateLayer', boardRoot, { width: 2700, height: 860 });
         const cellLayer = this.createNode('CellLayer', boardRoot, { width: 2650, height: 816 });
         const blockLayer = this.createNode('BlockLayer', boardRoot, { width: 2650, height: 816 });
@@ -167,12 +178,7 @@ export class GameUI extends Component {
         blockFactory.initialize(
             boardManager, scoreManager, effectManager, previewSlots, this.getGemFrames(), this.blockPrefab,
         );
-        const boosterBar = this.createNode('BoosterBar', root, { width: 560, height: 120, y: -535 });
-        const boosterStatusLabel = this.createLabelNode(
-            'BoosterStatusLabel', boosterBar, 'CONNECT 3 BLOCKS OF THE SAME COLOR', 24,
-            { width: 520, height: 30, y: 52 }, true, new Color(148, 225, 255, 255),
-        );
-        const boosterButtons = this.createBoosterButtons(boosterBar);
+        const boosterButtons = this.bindBoosterButtons(layoutView);
         const adManager = root.addComponent(AdManager);
         const boosterManager = boardRoot.addComponent(BoosterManager);
         boosterManager.initialize(boardManager, effectManager, adManager, boosterButtons, boosterStatusLabel);
@@ -235,11 +241,6 @@ export class GameUI extends Component {
             else tutorial.showFirstPlay(bottomBlockArea, boardRoot);
         });
 
-        const plane = this.createNode('FlightMultiplierScreen', root, {
-            width: DESIGN_WIDTH, height: DESIGN_HEIGHT,
-        }).addComponent(PlaneMultiplierEffect);
-        plane.initialize(this.planeRedFrame, this.plasmaBulletFrame);
-        scoreManager.setMatchMultiplierCallback((multiplier) => plane.play(multiplier));
         transitionLayer.setSiblingIndex(Math.max(0, root.children.length - 1));
     }
 
@@ -280,29 +281,21 @@ export class GameUI extends Component {
         }));
     }
 
-    private createBoosterButtons(parent: Node): BoosterButtonBinding[] {
+    private bindBoosterButtons(layoutView: MayaGameLayoutView): BoosterButtonBinding[] {
         return [
-            { type: 'bomb' as const, x: -150, frame: this.bombIconFrame },
-            { type: 'hammer' as const, x: 0, frame: this.hammerIconFrame },
-            { type: 'rainbow' as const, x: 150, frame: this.rainbowIconFrame },
-        ].map((entry) => {
-            const node = this.createNode(`${entry.type}BoosterButton`, parent, {
-                width: 125, height: 90, x: entry.x, y: -10,
-            });
+            { type: 'bomb' as const, frame: this.bombIconFrame },
+            { type: 'hammer' as const, frame: this.hammerIconFrame },
+            { type: 'rainbow' as const, frame: this.rainbowIconFrame },
+        ].map((entry, index) => {
+            const node = layoutView.boosterButtons[index];
             this.configureScaleButton(node, 0.92);
-            const icon = this.createSpriteNode(`${entry.type}Icon`, node, { width: 66, height: 66, y: 12 });
-            this.applySprite(icon, entry.frame, `${entry.type} Icon Frame`);
-            const countLabel = this.createLabelNode(`${entry.type}CountLabel`, node, '0', 32, {
-                width: 44, height: 32, x: -28, y: -28,
-            }, true, new Color(255, 229, 75, 255));
-            let adIcon: Node | undefined;
-            if (this.adIconFrame !== null) {
-                adIcon = this.createSpriteNode(`${entry.type}AdIcon`, node, {
-                    width: 30, height: 30, x: 34, y: -28,
-                });
-                const sprite = adIcon.getComponent(Sprite);
-                if (sprite !== null) sprite.spriteFrame = this.adIconFrame;
-            }
+            const icon = layoutView.boosterIcons[index];
+            icon.spriteFrame = entry.frame;
+            const countLabel = layoutView.boosterCountLabels[index];
+            const adIcon = layoutView.boosterAdIcons[index];
+            const adSprite = adIcon.getComponent(Sprite);
+            adIcon.active = this.adIconFrame !== null;
+            if (adSprite !== null) adSprite.spriteFrame = this.adIconFrame;
             return { type: entry.type, node, countLabel, adIcon };
         });
     }
@@ -360,7 +353,7 @@ export class GameUI extends Component {
     }
 
     private configureScaleButton(node: Node, zoomScale: number): Button {
-        const button = node.addComponent(Button);
+        const button = node.getComponent(Button) ?? node.addComponent(Button);
         button.transition = Button.Transition.SCALE;
         button.zoomScale = zoomScale;
         button.duration = 0.08;

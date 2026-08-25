@@ -674,7 +674,6 @@ export class MatchBoardManager extends Component {
     ): Promise<void> {
         const centerGem = this.gems[absorption.center.row]?.[absorption.center.column] ?? null;
         const centerWorldPosition = centerGem?.node.worldPosition.clone() ?? this.node.worldPosition.clone();
-        await this.scoreManager?.prepareMatchClear();
         if (!this.active || version !== this.modeVersion) {
             return;
         }
@@ -846,7 +845,6 @@ export class MatchBoardManager extends Component {
         version: number,
         preferredCreation: BoardCoordinate | null = null,
     ): Promise<void> {
-        await this.scoreManager?.prepareMatchClear();
         if (!this.active || version !== this.modeVersion) {
             return;
         }
@@ -979,7 +977,6 @@ export class MatchBoardManager extends Component {
         if (gem === null || gem.special === 'none' || !gem.node.isValid) {
             return;
         }
-        await this.scoreManager?.prepareMatchClear();
         if (!this.active || version !== this.modeVersion || !gem.node.isValid) {
             return;
         }

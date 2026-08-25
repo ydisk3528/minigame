@@ -4,8 +4,8 @@ import { LevelConfig, PowerUpWeights } from './GameTypes';
 const DEFAULT_POWER_UP_WEIGHTS: PowerUpWeights = { repair: 2, shield: 2, rapid: 3, spread: 3, laser: 2, plasma: 2, rocket: 2 };
 
 const FALLBACK: LevelConfig[] = [{
-  id: 1, name: '蓝天巡航', ringSpawnInterval: 1.8, ringSpeed: 260,
-  ringRadius: 92, ringRandomY: 220, backgroundSpeed: 45,
+  id: 1, name: 'Level 1', ringSpawnInterval: 1.8, ringSpeed: 260,
+  ringRadius: 92, ringRandomY: 220, backgroundSpeed: 45, backgroundTheme: 'spring-morning',
   movingRingChance: 0.12, shrinkingRingChance: 0.08, powerUpChance: 0.08,
   targetScore: 20, difficultyEvery: 5, difficultySpeedStep: 16,
   powerUpWeights: DEFAULT_POWER_UP_WEIGHTS,
@@ -21,10 +21,10 @@ export class LevelManager {
   async load(): Promise<void> {
     this.levels = await new Promise(resolve => resources.load('levels/levels', JsonAsset,
       (error, asset) => resolve(error ? FALLBACK : (asset.json as { levels: LevelConfig[] }).levels.map(level => ({
-        ...level, waves: (level.waves?.length ? level.waves : FALLBACK[0].waves).map(wave => ({
+        ...level, name: `Level ${level.id}`, backgroundTheme: level.backgroundTheme ?? 'spring-morning', waves: (level.waves?.length ? level.waves : FALLBACK[0].waves).map(wave => ({
           ...wave, bomberCount: wave.bomberCount ?? 0, diveBomberCount: wave.diveBomberCount ?? 0,
           tankCount: wave.tankCount ?? 0, rocketTruckCount: wave.rocketTruckCount ?? 0, interceptorCount: wave.interceptorCount ?? 0,
-          formationChance: wave.formationChance ?? .45, formationSize: wave.formationSize ?? 3, formationPattern: wave.formationPattern ?? 'auto',
+          formationChance: wave.formationChance ?? .45, formationSize: wave.formationSize ?? 3, formationPattern: wave.formationPattern ?? 'auto', customFormation: wave.customFormation ?? [],
         })),
         powerUpWeights: { ...DEFAULT_POWER_UP_WEIGHTS, ...level.powerUpWeights },
       })))));

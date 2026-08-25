@@ -731,7 +731,7 @@ export class BoardManager extends Component {
             + BOARD_CELL_SIZE + BOARD_BACKPLATE_PADDING;
         const contentHeight = (maxRow - minRow) * BOARD_CELL_STEP
             + BOARD_CELL_SIZE + BOARD_BACKPLATE_PADDING;
-        const scale = Math.min(1, 1400 / contentWidth, 1050 / contentHeight);
+        const scale = Math.min(1, 1400 / contentWidth, 820 / contentHeight);
         this.node.setScale(scale, scale, 1);
     }
 }

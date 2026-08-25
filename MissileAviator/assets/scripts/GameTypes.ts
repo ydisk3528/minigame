@@ -3,8 +3,11 @@ import { Vec3 } from 'cc';
 export enum GameState { Menu, Playing, GameOver }
 export type RingKind = 'normal' | 'moving' | 'shrinking' | 'coin' | 'speed';
 export type PowerUpKind = 'repair' | 'shield' | 'rapid' | 'spread' | 'laser' | 'plasma' | 'rocket';
-export type FormationPattern = 'auto' | 'v' | 'line' | 'echelon' | 'convoy';
+export type BackgroundTheme = 'spring-morning' | 'summer-noon' | 'autumn-evening' | 'winter-night';
+export type CustomEnemyKind = 'fighter' | 'bomber' | 'diveBomber' | 'interceptor';
+export type FormationPattern = 'auto' | 'v' | 'line' | 'echelon' | 'convoy' | 'custom';
 export type PowerUpWeights = Record<PowerUpKind, number>;
+export interface CustomFormationSlot { kind: CustomEnemyKind; col: number; row: number }
 
 export interface WaveConfig {
   id: number;
@@ -21,6 +24,7 @@ export interface WaveConfig {
   formationChance: number;
   formationSize: number;
   formationPattern: FormationPattern;
+  customFormation?: CustomFormationSlot[];
 }
 
 export interface LevelConfig {
@@ -31,6 +35,7 @@ export interface LevelConfig {
   ringRadius: number;
   ringRandomY: number;
   backgroundSpeed: number;
+  backgroundTheme: BackgroundTheme;
   movingRingChance: number;
   shrinkingRingChance: number;
   powerUpChance: number;
