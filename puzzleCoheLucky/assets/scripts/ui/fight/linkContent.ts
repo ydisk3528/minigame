@@ -98,9 +98,9 @@ export class LinkContent extends Component {
     }
 
     getLevelCakes() {
-        const cakes = [...new Set(String(this.levelInfo.cakes || '').split('|').filter(Boolean))];
-        for (let index = 1; cakes.length < 3 && index <= 8; index++) {
-            const cake = `cake0${index}`;
+        const cakes = loadsh.uniq(String(this.levelInfo.cakes || '').split('|').filter(Boolean));
+        for (let index = 1; cakes.length < 3 && index <= 10; index++) {
+            const cake = `cake${String(index).padStart(2, '0')}`;
             if (!cakes.includes(cake)) cakes.push(cake);
         }
         return cakes;
@@ -156,13 +156,13 @@ export class LinkContent extends Component {
 
     initCake(callback?: any) {
         let arrRandom = this.getLevelCakes();
-        const guaranteedChain = new Set(this.findPlayableChain());
+        const guaranteedChain = this.findPlayableChain();
         const guaranteedCake = arrRandom[loadsh.random(0, arrRandom.length - 1)];
         for (let idxRow = 0; idxRow < constants.LINK_ROWS_COUNT; idxRow++) {
             for (let idxCol = 0; idxCol < constants.LINK_COLS_COUNT; idxCol++) {
                 let key = idxCol + idxRow * constants.LINK_COLS_COUNT;
                 if (!this.isCellActive(key)) continue;
-                let randomCake = guaranteedChain.has(key)
+                let randomCake = guaranteedChain.indexOf(key) !== -1
                     ? guaranteedCake
                     : arrRandom[loadsh.random(0, arrRandom.length - 1)];
                 this.createCake(key, randomCake, false);
