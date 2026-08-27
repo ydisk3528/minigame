@@ -1,0 +1,13 @@
+{
+  "_$ver": 1,
+  "_$id": "obstaclegeneric01",
+  "_$type": "GImage",
+  "name": "Obstacle",
+  "width": 96,
+  "height": 96,
+  "autoSize": false,
+  "_$child": [
+    { "_$id": "obstaclelight", "_$type": "Sprite", "name": "LightReceiver", "x": 48, "y": 48, "width": 96, "height": 96 },
+    { "_$id": "obstacledamage", "_$type": "GImage", "name": "DamageCrack", "width": 96, "height": 96, "alpha": 0, "blendMode": "lighter", "autoSize": false, "src": "res://8d6d66ba-8d83-451a-afe4-7cf4342c8601" }
+  ]
+}

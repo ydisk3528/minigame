@@ -1,0 +1,314 @@
+{
+  "level": 93,
+  "rows": 8,
+  "columns": 8,
+  "difficulty": "expert",
+  "shape": "ring",
+  "matchLength": 3,
+  "moveLimit": 22,
+  "gemTypes": 6,
+  "starScores": [
+    6200,
+    9600,
+    12900
+  ],
+  "props": [
+    {
+      "type": "hammer",
+      "count": 3
+    },
+    {
+      "type": "magic",
+      "count": 1
+    },
+    {
+      "type": "refresh",
+      "count": 1
+    },
+    {
+      "type": "infinite",
+      "count": 0
+    }
+  ],
+  "goals": [
+    {
+      "type": "collectGem",
+      "gemType": 0,
+      "count": 21
+    },
+    {
+      "type": "breakIce",
+      "count": 5
+    },
+    {
+      "type": "score",
+      "count": 8500
+    }
+  ],
+  "obstacles": [
+    {
+      "row": 2,
+      "column": 5,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 0,
+      "column": 4,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 2,
+      "column": 4,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 6,
+      "column": 1,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 6,
+      "column": 6,
+      "type": 2,
+      "hitPoints": 1
+    },
+    {
+      "row": 6,
+      "column": 2,
+      "type": 2,
+      "hitPoints": 1
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "type": 3,
+      "hitPoints": 1
+    },
+    {
+      "row": 6,
+      "column": 5,
+      "type": 3,
+      "hitPoints": 1
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "type": 3,
+      "hitPoints": 1
+    },
+    {
+      "row": 4,
+      "column": 0,
+      "type": 3,
+      "hitPoints": 1
+    },
+    {
+      "row": 7,
+      "column": 4,
+      "type": 4,
+      "hitPoints": 2
+    },
+    {
+      "row": 1,
+      "column": 4,
+      "type": 4,
+      "hitPoints": 2
+    }
+  ],
+  "initialSpecials": [
+    {
+      "row": 2,
+      "column": 3,
+      "specialType": 1
+    },
+    {
+      "row": 3,
+      "column": 6,
+      "specialType": 2
+    },
+    {
+      "row": 2,
+      "column": 7,
+      "specialType": 3
+    },
+    {
+      "row": 2,
+      "column": 0,
+      "specialType": 4
+    }
+  ],
+  "mask": [
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ]
+  ],
+  "initialLayout": [
+    [
+      0,
+      0,
+      3,
+      5,
+      2,
+      5,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      2,
+      4,
+      4,
+      2,
+      4,
+      0
+    ],
+    [
+      1,
+      2,
+      0,
+      3,
+      0,
+      3,
+      0,
+      5
+    ],
+    [
+      3,
+      3,
+      5,
+      0,
+      0,
+      1,
+      2,
+      1
+    ],
+    [
+      0,
+      2,
+      0,
+      0,
+      0,
+      4,
+      3,
+      0
+    ],
+    [
+      5,
+      1,
+      2,
+      3,
+      5,
+      0,
+      3,
+      4
+    ],
+    [
+      0,
+      1,
+      5,
+      0,
+      5,
+      4,
+      5,
+      0
+    ],
+    [
+      0,
+      0,
+      2,
+      1,
+      2,
+      0,
+      0,
+      0
+    ]
+  ]
+}

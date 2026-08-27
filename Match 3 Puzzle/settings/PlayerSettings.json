@@ -1,0 +1,30 @@
+{
+  "resolution": {
+    "designWidth": 1080,
+    "designHeight": 1920,
+    "scaleMode": "fixedwidth",
+    "alignV": "middle",
+    "alignH": "center",
+    "backgroundColor": "#000000"
+  },
+  "modules": {
+    "laya.ui": true,
+    "laya.d3": true,
+    "laya.line2D": true,
+    "laya.trail2D": true,
+    "laya.particle": true,
+    "laya.light2D": true,
+    "laya.particle3D": true,
+    "laya.trail3D": true,
+    "laya.postProcess": true,
+    "laya.physics3D": true,
+    "laya.physics2D": true
+  },
+  "addons": {
+    "laya.ui": "ui2"
+  },
+  "splash": {
+    "fit": "center"
+  },
+  "alertGlobalError": true
+}

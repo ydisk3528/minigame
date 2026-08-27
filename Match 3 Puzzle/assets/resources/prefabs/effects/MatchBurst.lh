@@ -1,0 +1,63 @@
+{
+  "_$ver": 1,
+  "_$id": "matchburstroot",
+  "_$type": "Sprite",
+  "name": "MatchBurst",
+  "width": 108,
+  "height": 108,
+  "mouseThrough": true,
+  "_$child": [
+    {
+      "_$id": "burstimage01",
+      "_$type": "GImage",
+      "name": "Burst",
+      "x": 54,
+      "y": 54,
+      "width": 184,
+      "height": 184,
+      "pivotX": 92,
+      "pivotY": 92,
+      "alpha": 0,
+      "autoSize": false,
+      "src": "res://12e1324a-816b-426f-8d0f-37dc6a9f6b5e"
+    },
+    {
+      "_$id": "shardsimage1",
+      "_$type": "GImage",
+      "name": "Shards",
+      "x": 54,
+      "y": 54,
+      "width": 172,
+      "height": 172,
+      "pivotX": 86,
+      "pivotY": 86,
+      "alpha": 0,
+      "autoSize": false,
+      "src": "res://a775f766-d0fb-4aae-803b-43e2d6147e02"
+    },
+    { "_$id": "particle000", "_$type": "GImage", "name": "Particle0", "x": 54, "y": 54, "width": 28, "height": 28, "pivotX": 14, "pivotY": 14, "alpha": 0, "color": "#7FF6FF", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    { "_$id": "particle001", "_$type": "GImage", "name": "Particle1", "x": 54, "y": 54, "width": 22, "height": 22, "pivotX": 11, "pivotY": 11, "alpha": 0, "color": "#FF7BFF", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    { "_$id": "particle002", "_$type": "GImage", "name": "Particle2", "x": 54, "y": 54, "width": 25, "height": 25, "pivotX": 12.5, "pivotY": 12.5, "alpha": 0, "color": "#FFF0A1", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    { "_$id": "particle003", "_$type": "GImage", "name": "Particle3", "x": 54, "y": 54, "width": 18, "height": 18, "pivotX": 9, "pivotY": 9, "alpha": 0, "color": "#A67CFF", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    { "_$id": "particle004", "_$type": "GImage", "name": "Particle4", "x": 54, "y": 54, "width": 26, "height": 26, "pivotX": 13, "pivotY": 13, "alpha": 0, "color": "#72FFB1", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    { "_$id": "particle005", "_$type": "GImage", "name": "Particle5", "x": 54, "y": 54, "width": 20, "height": 20, "pivotX": 10, "pivotY": 10, "alpha": 0, "color": "#67B9FF", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    { "_$id": "particle006", "_$type": "GImage", "name": "Particle6", "x": 54, "y": 54, "width": 24, "height": 24, "pivotX": 12, "pivotY": 12, "alpha": 0, "color": "#FF8C65", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    { "_$id": "particle007", "_$type": "GImage", "name": "Particle7", "x": 54, "y": 54, "width": 17, "height": 17, "pivotX": 8.5, "pivotY": 8.5, "alpha": 0, "color": "#FFFFFF", "autoSize": false, "src": "res://8a1c1012-7a11-4c31-9111-000000000012" },
+    {
+      "_$id": "receiver0001",
+      "_$type": "Sprite",
+      "name": "LightReceiver",
+      "x": 54,
+      "y": 54,
+      "width": 172,
+      "height": 172
+    },
+    {
+      "_$id": "lightsource01",
+      "_$type": "Sprite",
+      "name": "LightSource",
+      "x": 54,
+      "y": 54
+    }
+  ]
+}

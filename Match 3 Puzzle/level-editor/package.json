@@ -1,0 +1,16 @@
+{
+  "name": "crystal-match-level-editor",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "check": "node scripts/check-editor.mjs",
+    "generate": "node scripts/generate-default-levels.mjs",
+    "catalog": "node scripts/sync-catalog.mjs",
+    "validate": "node scripts/validate-levels.mjs"
+  },
+  "dependencies": { "vue": "^3.5.13" },
+  "devDependencies": { "@vitejs/plugin-vue": "^5.2.1", "vite": "^5.4.14" }
+}

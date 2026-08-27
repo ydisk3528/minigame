@@ -1,0 +1,15 @@
+{
+  "_$ver": 1,
+  "_$id": "specialBomb1",
+  "_$type": "GImage",
+  "name": "SpecialBomb",
+  "width": 96,
+  "height": 96,
+  "color": "#FFFFFF",
+  "autoSize": false,
+  "src": "res://e7ecac35-ed15-42de-90e7-ff1515c797bf",
+  "_$child": [
+    { "_$id": "specialbombglow", "_$type": "GImage", "name": "IdleGlow", "x": 48, "y": 48, "width": 132, "height": 132, "pivotX": 66, "pivotY": 66, "alpha": 0.34, "color": "#FF875C", "blendMode": "lighter", "autoSize": false, "src": "res://9d293304-99d5-48e8-b141-b6531f6ae2d1", "touchable": false, "mouseEnabled": false },
+    { "_$id": "specialbomblight", "_$type": "Sprite", "name": "LightReceiver", "x": 48, "y": 48, "width": 96, "height": 96, "touchable": false, "mouseEnabled": false }
+  ]
+}

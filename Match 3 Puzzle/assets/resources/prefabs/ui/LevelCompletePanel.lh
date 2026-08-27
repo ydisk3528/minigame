@@ -1,0 +1,220 @@
+{
+  "_$ver": 1,
+  "_$id": "completepanelroot",
+  "_$type": "Sprite",
+  "name": "LevelCompletePanel",
+  "width": 1080,
+  "height": 1920,
+  "_$child": [
+    {
+      "_$id": "vwh6v0e6",
+      "_$type": "Sprite",
+      "name": "mark",
+      "width": 1080,
+      "height": 1920,
+      "alpha": 0.702,
+      "texture": {
+        "_$uuid": "00000000-0000-0000-0001-000000000001",
+        "_$type": "Texture"
+      }
+    },
+    {
+      "_$id": "completeframe01",
+      "_$type": "GImage",
+      "name": "Frame",
+      "x": 140,
+      "y": 390,
+      "width": 800,
+      "height": 1180,
+      "src": "res://6c12a70b-b96d-49fb-a47f-1d14e8c6c004",
+      "autoSize": false
+    },
+    {
+      "_$id": "completetitle01",
+      "_$type": "GTextField",
+      "name": "CompleteTitle",
+      "x": 200,
+      "y": 605,
+      "width": 680,
+      "height": 100,
+      "text": "LEVEL COMPLETE!",
+      "fontSize": 54,
+      "color": "#FFF1B8",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "letterSpacing": 0,
+      "stroke": 5,
+      "strokeColor": "#492070"
+    },
+    {
+      "_$id": "starbase1",
+      "_$type": "GImage",
+      "name": "StarBase1",
+      "x": 235,
+      "y": 730,
+      "width": 150,
+      "height": 150,
+      "src": "res://91a10001-1111-4111-8111-000000000001",
+      "autoSize": false
+    },
+    {
+      "_$id": "starbase2",
+      "_$type": "GImage",
+      "name": "StarBase2",
+      "x": 465,
+      "y": 680,
+      "width": 150,
+      "height": 150,
+      "src": "res://91a10001-1111-4111-8111-000000000001",
+      "autoSize": false
+    },
+    {
+      "_$id": "starbase3",
+      "_$type": "GImage",
+      "name": "StarBase3",
+      "x": 695,
+      "y": 730,
+      "width": 150,
+      "height": 150,
+      "src": "res://91a10001-1111-4111-8111-000000000001",
+      "autoSize": false
+    },
+    {
+      "_$id": "starearned1",
+      "_$type": "GImage",
+      "name": "StarEarned1",
+      "x": 310,
+      "y": 805,
+      "width": 150,
+      "height": 150,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": 0,
+      "src": "res://91a10002-1111-4111-8111-000000000002",
+      "autoSize": false
+    },
+    {
+      "_$id": "starearned2",
+      "_$type": "GImage",
+      "name": "StarEarned2",
+      "x": 540,
+      "y": 755,
+      "width": 150,
+      "height": 150,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": 0,
+      "src": "res://91a10002-1111-4111-8111-000000000002",
+      "autoSize": false
+    },
+    {
+      "_$id": "starearned3",
+      "_$type": "GImage",
+      "name": "StarEarned3",
+      "x": 770,
+      "y": 805,
+      "width": 150,
+      "height": 150,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "alpha": 0,
+      "src": "res://91a10002-1111-4111-8111-000000000002",
+      "autoSize": false
+    },
+    {
+      "_$id": "completescore01",
+      "_$type": "GTextField",
+      "name": "CompleteScore",
+      "x": 220,
+      "y": 999,
+      "width": 640,
+      "height": 90,
+      "text": "SCORE 0 · 0/3 STARS",
+      "fontSize": 38,
+      "color": "#DDF9FF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "letterSpacing": 0,
+      "stroke": 4,
+      "strokeColor": "#203077"
+    },
+    {
+      "_$id": "nextbutton01",
+      "_$type": "Sprite",
+      "name": "NextButton",
+      "x": 220,
+      "y": 1110,
+      "width": 640,
+      "height": 190,
+      "_$child": [
+        {
+          "_$id": "nextimage01",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "width": 640,
+          "height": 190,
+          "src": "res://7cc468e7-e519-447c-811b-b7159288160e",
+          "autoSize": false
+        },
+        {
+          "_$id": "nextlabel01",
+          "_$type": "GTextField",
+          "name": "ButtonLabel",
+          "x": 60,
+          "y": 45,
+          "width": 520,
+          "height": 90,
+          "text": "NEXT LEVEL",
+          "fontSize": 44,
+          "color": "#FFFFFF",
+          "bold": true,
+          "align": "center",
+          "valign": "middle",
+          "letterSpacing": 0,
+          "stroke": 5,
+          "strokeColor": "#3A237D"
+        }
+      ]
+    },
+    {
+      "_$id": "levelsbutton01",
+      "_$type": "Sprite",
+      "name": "LevelsButton",
+      "x": 300,
+      "y": 1340,
+      "width": 480,
+      "height": 140,
+      "_$child": [
+        {
+          "_$id": "levelsimage01",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "width": 480,
+          "height": 140,
+          "src": "res://7cc468e7-e519-447c-811b-b7159288160e",
+          "autoSize": false
+        },
+        {
+          "_$id": "levelslabel01",
+          "_$type": "GTextField",
+          "name": "ButtonLabel",
+          "x": 40,
+          "y": 32,
+          "width": 400,
+          "height": 70,
+          "text": "LEVELS",
+          "fontSize": 34,
+          "color": "#FFFFFF",
+          "bold": true,
+          "align": "center",
+          "valign": "middle",
+          "letterSpacing": 0,
+          "stroke": 4,
+          "strokeColor": "#3A237D"
+        }
+      ]
+    }
+  ]
+}

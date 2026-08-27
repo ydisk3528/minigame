@@ -1,0 +1,250 @@
+{
+  "level": 31,
+  "rows": 8,
+  "columns": 8,
+  "difficulty": "hard",
+  "shape": "diamond",
+  "matchLength": 3,
+  "moveLimit": 27,
+  "gemTypes": 6,
+  "starScores": [
+    6800,
+    10500,
+    14200
+  ],
+  "props": [
+    {
+      "type": "hammer",
+      "count": 3
+    },
+    {
+      "type": "magic",
+      "count": 1
+    },
+    {
+      "type": "refresh",
+      "count": 1
+    },
+    {
+      "type": "infinite",
+      "count": 0
+    }
+  ],
+  "goals": [
+    {
+      "type": "breakCrate",
+      "count": 1
+    },
+    {
+      "type": "score",
+      "count": 10250
+    }
+  ],
+  "obstacles": [
+    {
+      "row": 6,
+      "column": 4,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 5,
+      "column": 6,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 4,
+      "column": 6,
+      "type": 2,
+      "hitPoints": 1
+    },
+    {
+      "row": 7,
+      "column": 3,
+      "type": 3,
+      "hitPoints": 1
+    }
+  ],
+  "initialSpecials": [
+    {
+      "row": 3,
+      "column": 1,
+      "specialType": 1
+    },
+    {
+      "row": 2,
+      "column": 6,
+      "specialType": 2
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "specialType": 3
+    }
+  ],
+  "mask": [
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ]
+  ],
+  "initialLayout": [
+    [
+      0,
+      0,
+      0,
+      2,
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      3,
+      0,
+      0
+    ],
+    [
+      0,
+      3,
+      2,
+      3,
+      2,
+      5,
+      1,
+      0
+    ],
+    [
+      2,
+      1,
+      5,
+      3,
+      4,
+      3,
+      5,
+      2
+    ],
+    [
+      1,
+      4,
+      0,
+      2,
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      3,
+      3,
+      5,
+      5,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      5,
+      1,
+      4,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      3,
+      5,
+      0,
+      0,
+      0
+    ]
+  ]
+}

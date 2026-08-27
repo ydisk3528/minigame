@@ -1,0 +1,47 @@
+{
+  "name": "Puzzle",
+  "displayName": "Puzzle",
+  "minifyJS": true,
+  "startupScene": "res://91a20001-2222-4222-8222-000000000001",
+  "includedScenes": [
+    "res://9b931ecf-fde9-44dd-acf3-15f8dc807965",
+    "res://91a20002-2222-4222-8222-000000000002",
+    "res://91a20001-2222-4222-8222-000000000001"
+  ],
+  "enableVersion": true,
+  "versionAlgorithm": "sha1",
+  "versionTagLength": 16,
+  "enableSubpackages": true,
+  "subpackages": [
+    {
+      "path": "textures/gems/default",
+      "remote": false,
+      "autoLoad": false,
+      "packAllAssets": true
+    },
+    {
+      "path": "textures/gems/mahjong",
+      "remote": false,
+      "autoLoad": false,
+      "packAllAssets": true
+    },
+    {
+      "path": "textures/backgrounds/default",
+      "remote": false,
+      "autoLoad": false,
+      "packAllAssets": true
+    }
+  ],
+  "web": {
+    "useSafeFileExtensions": true
+  },
+  "android": {
+    "targetArchitectures": {
+      "ARMv7": false,
+      "ARM64": true,
+      "x86": false,
+      "x86-64": false
+    },
+    "exportFormat": "APK"
+  }
+}
