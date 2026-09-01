@@ -1,0 +1,52 @@
+{
+  "_$id": "tile-root",
+  "_$type": "Sprite",
+  "name": "MahjongTile",
+  "x": 0,
+  "y": 0,
+  "width": 92,
+  "height": 122,
+  "_$child": [
+    {
+      "_$id": "tile-base",
+      "_$type": "GImage",
+      "name": "Base",
+      "x": 0,
+      "y": 0,
+      "width": 92,
+      "height": 122,
+      "src": "res://b5000001-1111-4111-8111-000000000001",
+      "autoSize": false
+    },
+    {
+      "_$id": "tile-face",
+      "_$type": "GImage",
+      "name": "Face",
+      "x": 0,
+      "y": 0,
+      "width": 92,
+      "height": 122,
+      "src": "res://a1773e95-f617-465e-a2ce-12ed71d874f3",
+      "autoSize": false
+    },
+    {
+      "_$id": "tile-debug",
+      "_$type": "GTextField",
+      "name": "DebugText",
+      "x": 2,
+      "y": 28,
+      "width": 88,
+      "height": 58,
+      "text": "#1001\nL1 FREE",
+      "fontSize": 11,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "stroke": 3,
+      "strokeColor": "#304A40",
+      "visible": false
+    }
+  ],
+  "_$ver": 1
+}

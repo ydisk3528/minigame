@@ -1,0 +1,33 @@
+{
+  "name": "MahjongTripleQuest",
+  "displayName": "Mahjong Triple Quest",
+  "minifyJS": true,
+  "startupScene": "res://9b931ecf-fde9-44dd-acf3-15f8dc807965",
+  "includedScenes": [
+    "res://9b931ecf-fde9-44dd-acf3-15f8dc807965",
+    "res://a1000001-1111-4111-8111-000000000001",
+    "res://a1000002-2222-4222-8222-000000000002",
+    "res://a1000003-3333-4333-8333-000000000003"
+  ],
+  "enableVersion": true,
+  "enableFileConfigHash": true,
+  "versionAlgorithm": "sha1",
+  "versionTagLength": 12,
+  "web": {
+    "keepTextureSourceFile": true,
+    "compressWasm": true,
+    "useSafeFileExtensions": true
+  },
+  "android": {
+    "targetArchitectures": {
+      "ARMv7": false,
+      "ARM64": true,
+      "x86": false,
+      "x86-64": false
+    },
+    "exportFormat": "APK"
+  },
+  "wxgame": {
+    "appid": "wx0f564571e7779f84"
+  }
+}

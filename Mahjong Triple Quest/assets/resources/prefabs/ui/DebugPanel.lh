@@ -1,0 +1,386 @@
+{
+  "_$id": "debug-root",
+  "_$type": "Sprite",
+  "name": "DebugPanel",
+  "x": 510,
+  "y": 122,
+  "width": 225,
+  "height": 735,
+  "_$child": [
+    {
+      "_$id": "debug-panel",
+      "_$type": "GImage",
+      "name": "PanelImage",
+      "x": 0,
+      "y": 0,
+      "width": 225,
+      "height": 735,
+      "src": "res://b4cd53be-76ca-45aa-9e80-455b6c6c12cf",
+      "autoSize": false
+    },
+    {
+      "_$id": "debug-title",
+      "_$type": "GTextField",
+      "name": "TitleText",
+      "x": 18,
+      "y": 14,
+      "width": 189,
+      "height": 42,
+      "text": "调试面板",
+      "fontSize": 23,
+      "color": "#A64B3F",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "debug-prev",
+      "_$type": "Sprite",
+      "name": "PrevButton",
+      "x": 14,
+      "y": 68,
+      "width": 94,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-previ",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-prevt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 62,
+          "text": "上一关",
+          "fontSize": 17,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-next",
+      "_$type": "Sprite",
+      "name": "NextButton",
+      "x": 117,
+      "y": 68,
+      "width": 94,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-nexti",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-nextt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 62,
+          "text": "下一关",
+          "fontSize": 17,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-win",
+      "_$type": "Sprite",
+      "name": "WinButton",
+      "x": 14,
+      "y": 150,
+      "width": 94,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-wini",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-wint",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 62,
+          "text": "胜利",
+          "fontSize": 18,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-fail",
+      "_$type": "Sprite",
+      "name": "FailButton",
+      "x": 117,
+      "y": 150,
+      "width": 94,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-faili",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-failt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 94,
+          "height": 62,
+          "text": "失败",
+          "fontSize": 18,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-coin",
+      "_$type": "Sprite",
+      "name": "CoinButton",
+      "x": 14,
+      "y": 232,
+      "width": 197,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-coini",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-coint",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 62,
+          "text": "金币 +100",
+          "fontSize": 18,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-state",
+      "_$type": "Sprite",
+      "name": "StateButton",
+      "x": 14,
+      "y": 314,
+      "width": 197,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-statei",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-statet",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 62,
+          "text": "显示ID/层级/遮挡",
+          "fontSize": 16,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-sequence",
+      "_$type": "Sprite",
+      "name": "SequenceButton",
+      "x": 14,
+      "y": 396,
+      "width": 197,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-sequencei",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-sequencet",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 62,
+          "text": "测试顺子",
+          "fontSize": 18,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-special",
+      "_$type": "Sprite",
+      "name": "SpecialButton",
+      "x": 14,
+      "y": 478,
+      "width": 197,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-speciali",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-specialt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 62,
+          "text": "测试中发白",
+          "fontSize": 18,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-auto",
+      "_$type": "Sprite",
+      "name": "AutoButton",
+      "x": 14,
+      "y": 560,
+      "width": 197,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "debug-autoi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 70,
+          "src": "res://45e8bb45-9082-4a67-9af1-69fdddbae031",
+          "autoSize": false
+        },
+        {
+          "_$id": "debug-autot",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 197,
+          "height": 62,
+          "text": "按规则自动通关",
+          "fontSize": 17,
+          "color": "#FFF9E9",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "debug-fps",
+      "_$type": "GTextField",
+      "name": "FpsText",
+      "x": 14,
+      "y": 652,
+      "width": 197,
+      "height": 32,
+      "text": "FPS显示在左上角",
+      "fontSize": 14,
+      "color": "#71887A",
+      "bold": false,
+      "align": "center",
+      "valign": "middle"
+    }
+  ],
+  "_$ver": 1
+}

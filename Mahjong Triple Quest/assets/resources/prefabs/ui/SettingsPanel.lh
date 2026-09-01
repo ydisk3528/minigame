@@ -1,0 +1,253 @@
+{
+  "_$id": "settings-root",
+  "_$type": "Sprite",
+  "name": "SettingsPanel",
+  "x": 55,
+  "y": 237,
+  "width": 640,
+  "height": 860,
+  "_$child": [
+    {
+      "_$id": "settings-panel",
+      "_$type": "GImage",
+      "name": "PanelImage",
+      "x": 0,
+      "y": 0,
+      "width": 640,
+      "height": 860,
+      "src": "res://b4cd53be-76ca-45aa-9e80-455b6c6c12cf",
+      "autoSize": false
+    },
+    {
+      "_$id": "settings-title",
+      "_$type": "GTextField",
+      "name": "TitleText",
+      "x": 70,
+      "y": 55,
+      "width": 500,
+      "height": 70,
+      "text": "SETTINGS",
+      "fontSize": 40,
+      "color": "#345D4D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "settings-music",
+      "_$type": "Sprite",
+      "name": "MusicButton",
+      "x": 110,
+      "y": 145,
+      "width": 420,
+      "height": 88,
+      "_$child": [
+        {
+          "_$id": "settings-musici",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 88,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "settings-musict",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 80,
+          "text": "MUSIC: ON",
+          "fontSize": 25,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "settings-sound",
+      "_$type": "Sprite",
+      "name": "SoundButton",
+      "x": 110,
+      "y": 245,
+      "width": 420,
+      "height": 88,
+      "_$child": [
+        {
+          "_$id": "settings-soundi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 88,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "settings-soundt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 80,
+          "text": "SOUND: ON",
+          "fontSize": 25,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "settings-language-title",
+      "_$type": "GTextField",
+      "name": "LanguageTitle",
+      "x": 90,
+      "y": 350,
+      "width": 460,
+      "height": 34,
+      "text": "LANGUAGE",
+      "fontSize": 19,
+      "color": "#71887A",
+      "bold": false,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "settings-language",
+      "_$type": "Sprite",
+      "name": "LanguageButton",
+      "x": 110,
+      "y": 395,
+      "width": 420,
+      "height": 88,
+      "_$child": [
+        {
+          "_$id": "settings-languagei",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 88,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "settings-languaget",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 80,
+          "text": "ENGLISH",
+          "fontSize": 25,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "settings-language-note",
+      "_$type": "GTextField",
+      "name": "LanguageNote",
+      "x": 90,
+      "y": 487,
+      "width": 460,
+      "height": 30,
+      "text": "SELECT ENGLISH, THEN CONFIRM",
+      "fontSize": 16,
+      "color": "#71887A",
+      "bold": false,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "settings-privacy",
+      "_$type": "Sprite",
+      "name": "PrivacyButton",
+      "x": 110,
+      "y": 535,
+      "width": 420,
+      "height": 88,
+      "_$child": [
+        {
+          "_$id": "settings-privacyi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 88,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "settings-privacyt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 80,
+          "text": "PRIVACY & TERMS",
+          "fontSize": 22,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "settings-confirm",
+      "_$type": "Sprite",
+      "name": "ConfirmButton",
+      "x": 160,
+      "y": 680,
+      "width": 320,
+      "height": 96,
+      "_$child": [
+        {
+          "_$id": "settings-confirmi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 96,
+          "src": "res://45e8bb45-9082-4a67-9af1-69fdddbae031",
+          "autoSize": false
+        },
+        {
+          "_$id": "settings-confirmt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 88,
+          "text": "CONFIRM",
+          "fontSize": 26,
+          "color": "#FFF9E9",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    }
+  ],
+  "_$ver": 1
+}

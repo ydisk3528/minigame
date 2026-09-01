@@ -1,0 +1,159 @@
+{
+  "_$id": "privacy-root",
+  "_$type": "Sprite",
+  "name": "PrivacyPanel",
+  "x": 0,
+  "y": 0,
+  "width": 750,
+  "height": 1334,
+  "_$child": [
+    {
+      "_$id": "privacy-panel",
+      "_$type": "GImage",
+      "name": "PanelImage",
+      "x": 45,
+      "y": 125,
+      "width": 660,
+      "height": 1080,
+      "src": "res://b4cd53be-76ca-45aa-9e80-455b6c6c12cf",
+      "autoSize": false
+    },
+    {
+      "_$id": "privacy-title",
+      "_$type": "GTextField",
+      "name": "TitleText",
+      "x": 85,
+      "y": 165,
+      "width": 580,
+      "height": 70,
+      "text": "PRIVACY & USER AGREEMENT",
+      "fontSize": 35,
+      "color": "#345D4D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "privacy-version",
+      "_$type": "GTextField",
+      "name": "VersionText",
+      "x": 185,
+      "y": 235,
+      "width": 380,
+      "height": 34,
+      "text": "VERSION 1",
+      "fontSize": 17,
+      "color": "#71887A",
+      "bold": false,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "privacy-body",
+      "_$type": "GTextField",
+      "name": "BodyText",
+      "x": 90,
+      "y": 295,
+      "width": 570,
+      "height": 430,
+      "text": "",
+      "fontSize": 20,
+      "color": "#4D665A",
+      "bold": false,
+      "align": "left",
+      "valign": "top",
+      "wordWrap": true,
+      "leading": 10
+    },
+    {
+      "_$id": "privacy-note",
+      "_$type": "GTextField",
+      "name": "NoteText",
+      "x": 100,
+      "y": 735,
+      "width": 550,
+      "height": 62,
+      "text": "PLEASE READ BEFORE CONTINUING",
+      "fontSize": 19,
+      "color": "#A64B3F",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "privacy-platform",
+      "_$type": "Sprite",
+      "name": "PlatformPrivacyButton",
+      "x": 125,
+      "y": 815,
+      "width": 500,
+      "height": 88,
+      "_$child": [
+        {
+          "_$id": "privacy-platformi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 500,
+          "height": 88,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "privacy-platformt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 500,
+          "height": 80,
+          "text": "VIEW PLATFORM PRIVACY GUIDE",
+          "fontSize": 21,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "privacy-agree",
+      "_$type": "Sprite",
+      "name": "AgreeButton",
+      "x": 125,
+      "y": 955,
+      "width": 500,
+      "height": 100,
+      "_$child": [
+        {
+          "_$id": "privacy-agreei",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 500,
+          "height": 100,
+          "src": "res://45e8bb45-9082-4a67-9af1-69fdddbae031",
+          "autoSize": false
+        },
+        {
+          "_$id": "privacy-agreet",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 500,
+          "height": 92,
+          "text": "CONFIRM",
+          "fontSize": 25,
+          "color": "#FFF9E9",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    }
+  ],
+  "_$ver": 1
+}

@@ -1,0 +1,470 @@
+{
+  "_$id": "theme-root",
+  "_$type": "Sprite",
+  "name": "ThemePanel",
+  "x": 55,
+  "y": 215,
+  "width": 640,
+  "height": 900,
+  "_$child": [
+    {
+      "_$id": "theme-panel",
+      "_$type": "GImage",
+      "name": "PanelImage",
+      "x": 0,
+      "y": 0,
+      "width": 640,
+      "height": 900,
+      "src": "res://b4cd53be-76ca-45aa-9e80-455b6c6c12cf",
+      "autoSize": false
+    },
+    {
+      "_$id": "theme-title",
+      "_$type": "GTextField",
+      "name": "TitleText",
+      "x": 70,
+      "y": 28,
+      "width": 500,
+      "height": 62,
+      "text": "DECORATIONS & BUFFS",
+      "fontSize": 32,
+      "color": "#345D4D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "theme-coin",
+      "_$type": "GImage",
+      "name": "CoinIcon",
+      "x": 225,
+      "y": 94,
+      "width": 44,
+      "height": 44,
+      "src": "res://8656b09e-9024-4155-bf89-dfd38f230338",
+      "autoSize": false
+    },
+    {
+      "_$id": "theme-coins",
+      "_$type": "GTextField",
+      "name": "CoinText",
+      "x": 270,
+      "y": 94,
+      "width": 160,
+      "height": 44,
+      "text": "COINS 0",
+      "fontSize": 21,
+      "color": "#496958",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "theme-1",
+      "_$type": "Sprite",
+      "name": "Theme1",
+      "x": 45,
+      "y": 155,
+      "width": 550,
+      "height": 182,
+      "_$child": [
+        {
+          "_$id": "theme-1-panel",
+          "_$type": "GImage",
+          "name": "CardPanel",
+          "x": 0,
+          "y": 0,
+          "width": 550,
+          "height": 182,
+          "src": "res://e94d7915-732b-4325-baab-ee9fc5db3d85",
+          "autoSize": false
+        },
+        {
+          "_$id": "theme-1-background",
+          "_$type": "GImage",
+          "name": "PreviewBackground",
+          "x": 18,
+          "y": 20,
+          "width": 150,
+          "height": 140,
+          "src": "res://fe6bf0e3-8228-4700-9aba-8dd500606484",
+          "autoSize": false
+        },
+        {
+          "_$id": "theme-1-tile",
+          "_$type": "Sprite",
+          "name": "PreviewTile",
+          "x": 49,
+          "y": 29,
+          "width": 76,
+          "height": 101,
+          "_$child": [
+            {
+              "_$id": "theme-1-tile-base",
+              "_$type": "GImage",
+              "name": "Base",
+              "x": 0,
+              "y": 0,
+              "width": 76,
+              "height": 101,
+              "src": "res://b5000001-1111-4111-8111-000000000001",
+              "autoSize": false
+            },
+            {
+              "_$id": "theme-1-tile-face",
+              "_$type": "GImage",
+              "name": "Face",
+              "x": 0,
+              "y": 0,
+              "width": 76,
+              "height": 101,
+              "src": "res://a1773e95-f617-465e-a2ce-12ed71d874f3",
+              "autoSize": false
+            }
+          ]
+        },
+        {
+          "_$id": "theme-1-title",
+          "_$type": "GTextField",
+          "name": "TitleText",
+          "x": 185,
+          "y": 24,
+          "width": 180,
+          "height": 52,
+          "text": "THEME 1",
+          "fontSize": 24,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        },
+        {
+          "_$id": "theme-1-select",
+          "_$type": "Sprite",
+          "name": "SelectButton",
+          "x": 355,
+          "y": 50,
+          "width": 175,
+          "height": 78,
+          "_$child": [
+            {
+              "_$id": "theme-1-selecti",
+              "_$type": "GImage",
+              "name": "ButtonImage",
+              "x": 0,
+              "y": 0,
+              "width": 175,
+              "height": 78,
+              "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+              "autoSize": false
+            },
+            {
+              "_$id": "theme-1-selectt",
+              "_$type": "GTextField",
+              "name": "Label",
+              "x": 0,
+              "y": 0,
+              "width": 175,
+              "height": 70,
+              "text": "SELECTED",
+              "fontSize": 17,
+              "color": "#3F6555",
+              "bold": true,
+              "align": "center",
+              "valign": "middle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "theme-2",
+      "_$type": "Sprite",
+      "name": "Theme2",
+      "x": 45,
+      "y": 360,
+      "width": 550,
+      "height": 182,
+      "_$child": [
+        {
+          "_$id": "theme-2-panel",
+          "_$type": "GImage",
+          "name": "CardPanel",
+          "x": 0,
+          "y": 0,
+          "width": 550,
+          "height": 182,
+          "src": "res://e94d7915-732b-4325-baab-ee9fc5db3d85",
+          "autoSize": false
+        },
+        {
+          "_$id": "theme-2-background",
+          "_$type": "GImage",
+          "name": "PreviewBackground",
+          "x": 18,
+          "y": 20,
+          "width": 150,
+          "height": 140,
+          "src": "res://fe6bf0e3-8228-4700-9aba-8dd500606484",
+          "autoSize": false
+        },
+        {
+          "_$id": "theme-2-tile",
+          "_$type": "Sprite",
+          "name": "PreviewTile",
+          "x": 49,
+          "y": 29,
+          "width": 76,
+          "height": 101,
+          "_$child": [
+            {
+              "_$id": "theme-2-tile-base",
+              "_$type": "GImage",
+              "name": "Base",
+              "x": 0,
+              "y": 0,
+              "width": 76,
+              "height": 101,
+              "src": "res://b5000001-1111-4111-8111-000000000001",
+              "autoSize": false
+            },
+            {
+              "_$id": "theme-2-tile-face",
+              "_$type": "GImage",
+              "name": "Face",
+              "x": 0,
+              "y": 0,
+              "width": 76,
+              "height": 101,
+              "src": "res://a1773e95-f617-465e-a2ce-12ed71d874f3",
+              "autoSize": false
+            }
+          ]
+        },
+        {
+          "_$id": "theme-2-title",
+          "_$type": "GTextField",
+          "name": "TitleText",
+          "x": 185,
+          "y": 24,
+          "width": 180,
+          "height": 52,
+          "text": "THEME 2",
+          "fontSize": 24,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        },
+        {
+          "_$id": "theme-2-select",
+          "_$type": "Sprite",
+          "name": "SelectButton",
+          "x": 355,
+          "y": 50,
+          "width": 175,
+          "height": 78,
+          "_$child": [
+            {
+              "_$id": "theme-2-selecti",
+              "_$type": "GImage",
+              "name": "ButtonImage",
+              "x": 0,
+              "y": 0,
+              "width": 175,
+              "height": 78,
+              "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+              "autoSize": false
+            },
+            {
+              "_$id": "theme-2-selectt",
+              "_$type": "GTextField",
+              "name": "Label",
+              "x": 0,
+              "y": 0,
+              "width": 175,
+              "height": 70,
+              "text": "400 COINS",
+              "fontSize": 17,
+              "color": "#3F6555",
+              "bold": true,
+              "align": "center",
+              "valign": "middle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "theme-3",
+      "_$type": "Sprite",
+      "name": "Theme3",
+      "x": 45,
+      "y": 565,
+      "width": 550,
+      "height": 182,
+      "_$child": [
+        {
+          "_$id": "theme-3-panel",
+          "_$type": "GImage",
+          "name": "CardPanel",
+          "x": 0,
+          "y": 0,
+          "width": 550,
+          "height": 182,
+          "src": "res://e94d7915-732b-4325-baab-ee9fc5db3d85",
+          "autoSize": false
+        },
+        {
+          "_$id": "theme-3-background",
+          "_$type": "GImage",
+          "name": "PreviewBackground",
+          "x": 18,
+          "y": 20,
+          "width": 150,
+          "height": 140,
+          "src": "res://fe6bf0e3-8228-4700-9aba-8dd500606484",
+          "autoSize": false
+        },
+        {
+          "_$id": "theme-3-tile",
+          "_$type": "Sprite",
+          "name": "PreviewTile",
+          "x": 49,
+          "y": 29,
+          "width": 76,
+          "height": 101,
+          "_$child": [
+            {
+              "_$id": "theme-3-tile-base",
+              "_$type": "GImage",
+              "name": "Base",
+              "x": 0,
+              "y": 0,
+              "width": 76,
+              "height": 101,
+              "src": "res://b5000001-1111-4111-8111-000000000001",
+              "autoSize": false
+            },
+            {
+              "_$id": "theme-3-tile-face",
+              "_$type": "GImage",
+              "name": "Face",
+              "x": 0,
+              "y": 0,
+              "width": 76,
+              "height": 101,
+              "src": "res://a1773e95-f617-465e-a2ce-12ed71d874f3",
+              "autoSize": false
+            }
+          ]
+        },
+        {
+          "_$id": "theme-3-title",
+          "_$type": "GTextField",
+          "name": "TitleText",
+          "x": 185,
+          "y": 24,
+          "width": 180,
+          "height": 52,
+          "text": "THEME 3",
+          "fontSize": 24,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        },
+        {
+          "_$id": "theme-3-select",
+          "_$type": "Sprite",
+          "name": "SelectButton",
+          "x": 355,
+          "y": 50,
+          "width": 175,
+          "height": 78,
+          "_$child": [
+            {
+              "_$id": "theme-3-selecti",
+              "_$type": "GImage",
+              "name": "ButtonImage",
+              "x": 0,
+              "y": 0,
+              "width": 175,
+              "height": 78,
+              "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+              "autoSize": false
+            },
+            {
+              "_$id": "theme-3-selectt",
+              "_$type": "GTextField",
+              "name": "Label",
+              "x": 0,
+              "y": 0,
+              "width": 175,
+              "height": 70,
+              "text": "400 COINS",
+              "fontSize": 17,
+              "color": "#3F6555",
+              "bold": true,
+              "align": "center",
+              "valign": "middle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "theme-status",
+      "_$type": "GTextField",
+      "name": "StatusText",
+      "x": 70,
+      "y": 778,
+      "width": 500,
+      "height": 36,
+      "text": "",
+      "fontSize": 18,
+      "color": "#A64B3F",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "theme-close",
+      "_$type": "Sprite",
+      "name": "CloseButton",
+      "x": 210,
+      "y": 820,
+      "width": 220,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "theme-closei",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 220,
+          "height": 70,
+          "src": "res://45e8bb45-9082-4a67-9af1-69fdddbae031",
+          "autoSize": false
+        },
+        {
+          "_$id": "theme-closet",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 220,
+          "height": 62,
+          "text": "CLOSE",
+          "fontSize": 21,
+          "color": "#FFF9E9",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    }
+  ],
+  "_$ver": 1
+}

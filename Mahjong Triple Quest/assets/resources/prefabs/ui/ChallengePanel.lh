@@ -1,0 +1,293 @@
+{
+  "_$id": "challenge-root",
+  "_$type": "Sprite",
+  "name": "ChallengePanel",
+  "x": 55,
+  "y": 260,
+  "width": 640,
+  "height": 800,
+  "_$child": [
+    {
+      "_$id": "challenge-panel",
+      "_$type": "GImage",
+      "name": "PanelImage",
+      "x": 0,
+      "y": 0,
+      "width": 640,
+      "height": 800,
+      "src": "res://b4cd53be-76ca-45aa-9e80-455b6c6c12cf",
+      "autoSize": false
+    },
+    {
+      "_$id": "challenge-title",
+      "_$type": "GTextField",
+      "name": "TitleText",
+      "x": 70,
+      "y": 35,
+      "width": 500,
+      "height": 62,
+      "text": "DAILY CHALLENGE",
+      "fontSize": 35,
+      "color": "#345D4D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "challenge-date",
+      "_$type": "GTextField",
+      "name": "DateText",
+      "x": 140,
+      "y": 98,
+      "width": 360,
+      "height": 38,
+      "text": "2026/9/1",
+      "fontSize": 18,
+      "color": "#71887A",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "challenge-preview",
+      "_$type": "GImage",
+      "name": "PreviewPanel",
+      "x": 80,
+      "y": 155,
+      "width": 480,
+      "height": 250,
+      "src": "res://e94d7915-732b-4325-baab-ee9fc5db3d85",
+      "autoSize": false
+    },
+    {
+      "_$id": "challenge-tile-1",
+      "_$type": "Sprite",
+      "name": "PreviewTile1",
+      "x": 165,
+      "y": 218,
+      "width": 86,
+      "height": 114,
+      "_$child": [
+        {
+          "_$id": "challenge-tile-1-base",
+          "_$type": "GImage",
+          "name": "Base",
+          "x": 0,
+          "y": 0,
+          "width": 86,
+          "height": 114,
+          "src": "res://b5000001-1111-4111-8111-000000000001",
+          "autoSize": false
+        },
+        {
+          "_$id": "challenge-tile-1-face",
+          "_$type": "GImage",
+          "name": "Face",
+          "x": 0,
+          "y": 0,
+          "width": 86,
+          "height": 114,
+          "src": "res://a1773e95-f617-465e-a2ce-12ed71d874f3",
+          "autoSize": false
+        }
+      ]
+    },
+    {
+      "_$id": "challenge-tile-2",
+      "_$type": "Sprite",
+      "name": "PreviewTile2",
+      "x": 277,
+      "y": 192,
+      "width": 86,
+      "height": 114,
+      "_$child": [
+        {
+          "_$id": "challenge-tile-2-base",
+          "_$type": "GImage",
+          "name": "Base",
+          "x": 0,
+          "y": 0,
+          "width": 86,
+          "height": 114,
+          "src": "res://b5000001-1111-4111-8111-000000000001",
+          "autoSize": false
+        },
+        {
+          "_$id": "challenge-tile-2-face",
+          "_$type": "GImage",
+          "name": "Face",
+          "x": 0,
+          "y": 0,
+          "width": 86,
+          "height": 114,
+          "src": "res://9bc4a408-239d-4c0e-b8f4-3d951f882cba",
+          "autoSize": false
+        }
+      ]
+    },
+    {
+      "_$id": "challenge-tile-3",
+      "_$type": "Sprite",
+      "name": "PreviewTile3",
+      "x": 389,
+      "y": 218,
+      "width": 86,
+      "height": 114,
+      "_$child": [
+        {
+          "_$id": "challenge-tile-3-base",
+          "_$type": "GImage",
+          "name": "Base",
+          "x": 0,
+          "y": 0,
+          "width": 86,
+          "height": 114,
+          "src": "res://b5000001-1111-4111-8111-000000000001",
+          "autoSize": false
+        },
+        {
+          "_$id": "challenge-tile-3-face",
+          "_$type": "GImage",
+          "name": "Face",
+          "x": 0,
+          "y": 0,
+          "width": 86,
+          "height": 114,
+          "src": "res://3fac357c-8e2b-473d-8259-f1f8369f0675",
+          "autoSize": false
+        }
+      ]
+    },
+    {
+      "_$id": "challenge-level",
+      "_$type": "GTextField",
+      "name": "LevelText",
+      "x": 70,
+      "y": 430,
+      "width": 500,
+      "height": 54,
+      "text": "SPECIAL LAYOUT · LEVEL 1",
+      "fontSize": 24,
+      "color": "#3F6555",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "challenge-coin",
+      "_$type": "GImage",
+      "name": "CoinIcon",
+      "x": 225,
+      "y": 497,
+      "width": 52,
+      "height": 52,
+      "src": "res://8656b09e-9024-4155-bf89-dfd38f230338",
+      "autoSize": false
+    },
+    {
+      "_$id": "challenge-reward",
+      "_$type": "GTextField",
+      "name": "RewardText",
+      "x": 275,
+      "y": 496,
+      "width": 150,
+      "height": 52,
+      "text": "250 COINS",
+      "fontSize": 24,
+      "color": "#C58B35",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "challenge-status",
+      "_$type": "GTextField",
+      "name": "StatusText",
+      "x": 70,
+      "y": 565,
+      "width": 500,
+      "height": 42,
+      "text": "COMPLETE ONCE TO EARN THE REWARD",
+      "fontSize": 17,
+      "color": "#A64B3F",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "challenge-start",
+      "_$type": "Sprite",
+      "name": "StartButton",
+      "x": 110,
+      "y": 625,
+      "width": 420,
+      "height": 90,
+      "_$child": [
+        {
+          "_$id": "challenge-starti",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 90,
+          "src": "res://45e8bb45-9082-4a67-9af1-69fdddbae031",
+          "autoSize": false
+        },
+        {
+          "_$id": "challenge-startt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 420,
+          "height": 82,
+          "text": "START CHALLENGE",
+          "fontSize": 23,
+          "color": "#FFF9E9",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "challenge-close",
+      "_$type": "Sprite",
+      "name": "CloseButton",
+      "x": 220,
+      "y": 725,
+      "width": 200,
+      "height": 64,
+      "_$child": [
+        {
+          "_$id": "challenge-closei",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 200,
+          "height": 64,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "challenge-closet",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 200,
+          "height": 56,
+          "text": "CLOSE",
+          "fontSize": 20,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    }
+  ],
+  "_$ver": 1
+}

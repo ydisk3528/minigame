@@ -1,0 +1,263 @@
+{
+  "_$id": "task-root",
+  "_$type": "Sprite",
+  "name": "TaskPanel",
+  "x": 55,
+  "y": 185,
+  "width": 640,
+  "height": 970,
+  "_$child": [
+    {
+      "_$id": "task-panel",
+      "_$type": "GImage",
+      "name": "PanelImage",
+      "x": 0,
+      "y": 0,
+      "width": 640,
+      "height": 970,
+      "src": "res://b4cd53be-76ca-45aa-9e80-455b6c6c12cf",
+      "autoSize": false
+    },
+    {
+      "_$id": "task-title",
+      "_$type": "GTextField",
+      "name": "TitleText",
+      "x": 55,
+      "y": 34,
+      "width": 530,
+      "height": 62,
+      "text": "TASKS & ACHIEVEMENTS",
+      "fontSize": 31,
+      "color": "#345D4D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "task-daily",
+      "_$type": "Sprite",
+      "name": "DailyTab",
+      "x": 55,
+      "y": 112,
+      "width": 250,
+      "height": 76,
+      "_$child": [
+        {
+          "_$id": "task-dailyi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 250,
+          "height": 76,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "task-dailyt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 250,
+          "height": 68,
+          "text": "DAILY TASKS",
+          "fontSize": 19,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "task-achievement",
+      "_$type": "Sprite",
+      "name": "AchievementTab",
+      "x": 335,
+      "y": 112,
+      "width": 250,
+      "height": 76,
+      "_$child": [
+        {
+          "_$id": "task-achievementi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 250,
+          "height": 76,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "task-achievementt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 250,
+          "height": 68,
+          "text": "ACHIEVEMENTS",
+          "fontSize": 19,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "task-list",
+      "_$type": "Sprite",
+      "name": "ListLayer",
+      "x": 40,
+      "y": 215,
+      "width": 560,
+      "height": 580,
+      "_$child": []
+    },
+    {
+      "_$id": "task-prev",
+      "_$type": "Sprite",
+      "name": "PrevPageButton",
+      "x": 145,
+      "y": 785,
+      "width": 110,
+      "height": 58,
+      "_$child": [
+        {
+          "_$id": "task-previ",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 110,
+          "height": 58,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "task-prevt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 110,
+          "height": 50,
+          "text": "‹",
+          "fontSize": 28,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "task-page",
+      "_$type": "GTextField",
+      "name": "PageText",
+      "x": 270,
+      "y": 790,
+      "width": 100,
+      "height": 45,
+      "text": "1 / 1",
+      "fontSize": 18,
+      "color": "#496958",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "task-next",
+      "_$type": "Sprite",
+      "name": "NextPageButton",
+      "x": 385,
+      "y": 785,
+      "width": 110,
+      "height": 58,
+      "_$child": [
+        {
+          "_$id": "task-nexti",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 110,
+          "height": 58,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "task-nextt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 110,
+          "height": 50,
+          "text": "›",
+          "fontSize": 28,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
+      "_$id": "task-status",
+      "_$type": "GTextField",
+      "name": "StatusText",
+      "x": 70,
+      "y": 840,
+      "width": 500,
+      "height": 38,
+      "text": "",
+      "fontSize": 18,
+      "color": "#A64B3F",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "task-close",
+      "_$type": "Sprite",
+      "name": "CloseButton",
+      "x": 210,
+      "y": 885,
+      "width": 220,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "task-closei",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 220,
+          "height": 70,
+          "src": "res://45e8bb45-9082-4a67-9af1-69fdddbae031",
+          "autoSize": false
+        },
+        {
+          "_$id": "task-closet",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 220,
+          "height": 62,
+          "text": "CLOSE",
+          "fontSize": 21,
+          "color": "#FFF9E9",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    }
+  ],
+  "_$ver": 1
+}

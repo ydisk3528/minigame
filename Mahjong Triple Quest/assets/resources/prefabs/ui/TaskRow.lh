@@ -1,0 +1,138 @@
+{
+  "_$id": "task-row",
+  "_$type": "Sprite",
+  "name": "TaskRow",
+  "x": 0,
+  "y": 0,
+  "width": 560,
+  "height": 104,
+  "_$child": [
+    {
+      "_$id": "task-row-panel",
+      "_$type": "GImage",
+      "name": "PanelImage",
+      "x": 0,
+      "y": 0,
+      "width": 560,
+      "height": 104,
+      "src": "res://e94d7915-732b-4325-baab-ee9fc5db3d85",
+      "autoSize": false
+    },
+    {
+      "_$id": "task-row-title",
+      "_$type": "GTextField",
+      "name": "TitleText",
+      "x": 18,
+      "y": 9,
+      "width": 280,
+      "height": 35,
+      "text": "TASK",
+      "fontSize": 18,
+      "color": "#3F6555",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "task-row-progress-back",
+      "_$type": "GImage",
+      "name": "ProgressBack",
+      "x": 22,
+      "y": 59,
+      "width": 190,
+      "height": 18,
+      "src": "res://e44fdeb6-c4f6-46ea-8644-35b14259aeb8",
+      "autoSize": false
+    },
+    {
+      "_$id": "task-row-progress",
+      "_$type": "GImage",
+      "name": "ProgressFill",
+      "x": 22,
+      "y": 59,
+      "width": 95,
+      "height": 18,
+      "src": "res://45e8bb45-9082-4a67-9af1-69fdddbae031",
+      "autoSize": false
+    },
+    {
+      "_$id": "task-row-progress-text",
+      "_$type": "GTextField",
+      "name": "ProgressText",
+      "x": 214,
+      "y": 48,
+      "width": 82,
+      "height": 42,
+      "text": "0 / 1",
+      "fontSize": 16,
+      "color": "#71887A",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "task-row-coin",
+      "_$type": "GImage",
+      "name": "CoinIcon",
+      "x": 300,
+      "y": 13,
+      "width": 38,
+      "height": 38,
+      "src": "res://8656b09e-9024-4155-bf89-dfd38f230338",
+      "autoSize": false
+    },
+    {
+      "_$id": "task-row-reward",
+      "_$type": "GTextField",
+      "name": "RewardText",
+      "x": 335,
+      "y": 11,
+      "width": 80,
+      "height": 40,
+      "text": "+50",
+      "fontSize": 18,
+      "color": "#C58B35",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "task-row-claim",
+      "_$type": "Sprite",
+      "name": "ClaimButton",
+      "x": 408,
+      "y": 17,
+      "width": 135,
+      "height": 70,
+      "_$child": [
+        {
+          "_$id": "task-row-claimi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 135,
+          "height": 70,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "task-row-claimt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 135,
+          "height": 62,
+          "text": "CLAIM",
+          "fontSize": 16,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    }
+  ],
+  "_$ver": 1
+}

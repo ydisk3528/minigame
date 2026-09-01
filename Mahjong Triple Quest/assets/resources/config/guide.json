@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "steps": [
+    { "id": "select_same_tiles", "scene": "game", "target": "matching_tile", "event": "tile_selected", "value": "wan_1", "repeat": 3, "messageZh": "连续点击三张相同的一万，集齐三张后会自动消除。", "messageEn": "Tap three matching One Characters. The set clears automatically." },
+    { "id": "use_hint", "scene": "game", "target": "HintButton", "event": "prop_used", "value": "hint", "messageZh": "点击提示道具，系统会标出可以组成消除的牌。", "messageEn": "Tap Hint to highlight tiles that can form a match." },
+    { "id": "open_challenge", "scene": "home", "target": "ChallengeButton", "event": "open_challenge", "pauseAfter": true, "messageZh": "每日挑战每天提供固定特殊布局，首次完成可获得金币。", "messageEn": "Daily Challenge offers one fixed special layout and a coin reward each day." },
+    { "id": "open_themes", "scene": "home", "target": "ThemesButton", "event": "open_themes", "pauseAfter": true, "messageZh": "主题可以用金币解锁，只改变麻将和背景外观。", "messageEn": "Unlock themes with coins. Themes only change the appearance." },
+    { "id": "open_tasks", "scene": "home", "target": "TasksButton", "event": "open_tasks", "pauseAfter": true, "messageZh": "任务与成就记录通关、消除和道具使用，完成后可领取金币。", "messageEn": "Tasks and achievements reward level clears, matches and prop use." },
+    { "id": "open_daily", "scene": "home", "target": "DailyButton", "event": "open_daily", "pauseAfter": true, "messageZh": "每日签到可以领取金币，也可以看广告获得双倍奖励。", "messageEn": "Claim daily coins here, or watch an ad to double the reward." }
+  ]
+}

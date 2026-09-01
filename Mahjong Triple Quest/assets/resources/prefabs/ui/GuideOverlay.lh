@@ -1,0 +1,62 @@
+{
+  "_$id": "guide-overlay-root",
+  "_$type": "Sprite",
+  "name": "GuideOverlay",
+  "x": 0,
+  "y": 0,
+  "width": 750,
+  "height": 1334,
+  "_$child": [
+    {
+      "_$id": "guide-overlay-hand",
+      "_$type": "GImage",
+      "name": "HandImage",
+      "x": 0,
+      "y": 0,
+      "width": 88,
+      "height": 88,
+      "src": "res://20600914-207b-4aa9-8a1a-a141f4fdc580",
+      "autoSize": false
+    },
+    {
+      "_$id": "guide-overlay-message",
+      "_$type": "Sprite",
+      "name": "MessagePanel",
+      "x": 75,
+      "y": 760,
+      "width": 600,
+      "height": 150,
+      "_$child": [
+        {
+          "_$id": "guide-overlay-message-bg",
+          "_$type": "GImage",
+          "name": "PanelImage",
+          "x": 0,
+          "y": 0,
+          "width": 600,
+          "height": 150,
+          "src": "res://e94d7915-732b-4325-baab-ee9fc5db3d85",
+          "autoSize": false
+        },
+        {
+          "_$id": "guide-overlay-message-text",
+          "_$type": "GTextField",
+          "name": "MessageText",
+          "x": 35,
+          "y": 20,
+          "width": 530,
+          "height": 110,
+          "text": "",
+          "fontSize": 22,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle",
+          "wordWrap": true,
+          "leading": 7
+        }
+      ]
+    }
+  ],
+  "_$ver": 1
+}

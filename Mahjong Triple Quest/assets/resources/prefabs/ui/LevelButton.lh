@@ -1,0 +1,68 @@
+{
+  "_$id": "level-button",
+  "_$type": "GBox",
+  "name": "LevelButton",
+  "x": 0,
+  "y": 0,
+  "width": 132,
+  "height": 122,
+  "_$child": [
+    {
+      "_$id": "level-button-image",
+      "_$type": "GImage",
+      "name": "ButtonImage",
+      "x": 0,
+      "y": 0,
+      "width": 132,
+      "height": 105,
+      "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+      "autoSize": false
+    },
+    {
+      "_$id": "level-number",
+      "_$type": "GTextField",
+      "name": "LevelText",
+      "x": 12,
+      "y": 5,
+      "width": 108,
+      "height": 48,
+      "text": "1",
+      "fontSize": 30,
+      "color": "#3F6555",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "level-state",
+      "_$type": "GTextField",
+      "name": "StateText",
+      "x": 10,
+      "y": 50,
+      "width": 112,
+      "height": 22,
+      "text": "CURRENT",
+      "fontSize": 11,
+      "color": "#A64B3F",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    },
+    {
+      "_$id": "level-stars",
+      "_$type": "GTextField",
+      "name": "StarsText",
+      "x": 8,
+      "y": 73,
+      "width": 116,
+      "height": 24,
+      "text": "☆☆☆",
+      "fontSize": 17,
+      "color": "#C79A46",
+      "bold": true,
+      "align": "center",
+      "valign": "middle"
+    }
+  ],
+  "_$ver": 1
+}
