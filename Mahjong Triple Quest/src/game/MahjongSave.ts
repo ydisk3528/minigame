@@ -2,8 +2,9 @@ export interface TaskStats {
     levelsCompleted: number; starsEarned: number; matches: number; bestCombo: number;
     propsUsed: { undo: number; shuffle: number; move: number; hint: number; freeze: number };
 }
+export type SavedLanguage = "" | "en" | "id" | "th" | "ja" | "fr";
 export interface SaveData {
-    highestCompleted: number; coins: number; musicEnabled: boolean; soundEnabled: boolean; language: "" | "en";
+    highestCompleted: number; coins: number; musicEnabled: boolean; soundEnabled: boolean; language: SavedLanguage;
     dailyClaimDate: string; dailyStreak: number; privacyAcceptedVersion: string;
     guideVersion: number; guideStep: number; guideProgress: number;
     dailyChallengeClaimDate: string; selectedTheme: string; unlockedThemes: string[];
@@ -29,7 +30,7 @@ export class MahjongSave {
     public static coins(): number { return this.data.coins; }
     public static musicEnabled(): boolean { return this.data.musicEnabled; }
     public static soundEnabled(): boolean { return this.data.soundEnabled; }
-    public static language(): "" | "en" { return this.data.language; }
+    public static language(): SavedLanguage { return this.data.language; }
     public static privacyAccepted(): boolean { return this.data.privacyAcceptedVersion === PRIVACY_VERSION; }
     public static guideVersion(): number { return this.data.guideVersion; }
     public static guideStep(): number { return this.data.guideStep; }
@@ -60,7 +61,7 @@ export class MahjongSave {
     public static setGuideState(step: number, progress: number, version: number): void { this.data.guideVersion = Math.max(0, Math.floor(version)); this.data.guideStep = Math.max(0, Math.floor(step)); this.data.guideProgress = Math.max(0, Math.floor(progress)); this.write(); }
     public static setMusicEnabled(enabled: boolean): void { this.data.musicEnabled = enabled; this.write(); }
     public static setSoundEnabled(enabled: boolean): void { this.data.soundEnabled = enabled; this.write(); }
-    public static setLanguage(language: "" | "en"): void { this.data.language = language; this.write(); }
+    public static setLanguage(language: SavedLanguage): void { this.data.language = language; this.write(); }
     public static acceptPrivacy(): void { this.data.privacyAcceptedVersion = PRIVACY_VERSION; this.write(); }
     public static recordMatch(combo: number): void { this.ensureDailyStats(); for (const stats of [this.data.stats, this.data.dailyStats]) { stats.matches++; stats.bestCombo = Math.max(stats.bestCombo, Math.floor(combo)); } this.write(); }
     public static recordProp(type: keyof SaveData["props"]): void { this.ensureDailyStats(); this.data.stats.propsUsed[type]++; this.data.dailyStats.propsUsed[type]++; this.write(); }
@@ -79,8 +80,8 @@ export class MahjongSave {
     public static grantTheme(id: string): void { if (!this.themeUnlocked(id)) { this.data.unlockedThemes.push(id); this.write(); } }
     public static selectTheme(id: string): void { if (this.themeUnlocked(id)) { this.data.selectedTheme = id; this.write(); } }
     public static selfCheck(): void {
-        const value = this.normalize({ highestCompleted: 2.8, coins: 9.9 } as SaveData);
-        if (value.highestCompleted !== 2 || value.coins !== 9 || value.language !== "" || value.props.undo !== 0 || value.dailyClaimDate !== "" || value.dailyStreak !== 0 || value.privacyAcceptedVersion !== "" || value.selectedTheme !== "classic" || Object.keys(value.stars).length) throw new Error("MahjongSave self-check failed");
+        const value = this.normalize({ highestCompleted: 2.8, coins: 9.9, language: "th" } as SaveData);
+        if (value.highestCompleted !== 2 || value.coins !== 9 || value.language !== "th" || value.props.undo !== 0 || value.dailyClaimDate !== "" || value.dailyStreak !== 0 || value.privacyAcceptedVersion !== "" || value.selectedTheme !== "classic" || Object.keys(value.stars).length) throw new Error("MahjongSave self-check failed");
     }
     private static read(): SaveData {
         let raw = "";
@@ -97,7 +98,9 @@ export class MahjongSave {
         const normalizeStats = (stats?: Partial<TaskStats>): TaskStats => ({ levelsCompleted: Math.max(0, Math.floor(Number(stats?.levelsCompleted) || 0)), starsEarned: Math.max(0, Math.floor(Number(stats?.starsEarned) || 0)), matches: Math.max(0, Math.floor(Number(stats?.matches) || 0)), bestCombo: Math.max(0, Math.floor(Number(stats?.bestCombo) || 0)), propsUsed: { undo: Math.max(0, Math.floor(Number(stats?.propsUsed?.undo) || 0)), shuffle: Math.max(0, Math.floor(Number(stats?.propsUsed?.shuffle) || 0)), move: Math.max(0, Math.floor(Number(stats?.propsUsed?.move) || 0)), hint: Math.max(0, Math.floor(Number(stats?.propsUsed?.hint) || 0)), freeze: Math.max(0, Math.floor(Number(stats?.propsUsed?.freeze) || 0)) } });
         const cleanIds = (items?: string[]): string[] => [...new Set((items ?? []).filter(item => typeof item === "string" && /^[a-z0-9_-]+$/i.test(item)))];
         const unlockedThemes = cleanIds(value.unlockedThemes); if (!unlockedThemes.includes("classic")) unlockedThemes.unshift("classic");
-        return { highestCompleted: Math.max(0, Math.floor(Number(value.highestCompleted) || 0)), coins: Math.max(0, Math.floor(Number(value.coins) || 0)), musicEnabled: value.musicEnabled !== false, soundEnabled: value.soundEnabled !== false, language: value.language === "en" ? "en" : "", dailyClaimDate, dailyStreak: dailyClaimDate ? Math.max(1, Math.min(7, Math.floor(Number(value.dailyStreak) || 1))) : 0, privacyAcceptedVersion: value.privacyAcceptedVersion === PRIVACY_VERSION ? PRIVACY_VERSION : "", guideVersion: Math.max(0, Math.floor(Number(value.guideVersion) || 0)), guideStep: Math.max(0, Math.floor(Number(value.guideStep) || 0)), guideProgress: Math.max(0, Math.floor(Number(value.guideProgress) || 0)), dailyChallengeClaimDate: /^\d{4}-\d{1,2}-\d{1,2}$/.test(value.dailyChallengeClaimDate ?? "") ? value.dailyChallengeClaimDate! : "", selectedTheme: typeof value.selectedTheme === "string" ? value.selectedTheme : "classic", unlockedThemes, stats: normalizeStats(value.stats), dailyStatsDate: /^\d{4}-\d{1,2}-\d{1,2}$/.test(value.dailyStatsDate ?? "") ? value.dailyStatsDate! : "", dailyStats: normalizeStats(value.dailyStats), dailyTaskClaims: cleanIds(value.dailyTaskClaims), achievementClaims: cleanIds(value.achievementClaims),
+        const supportedLanguages: SavedLanguage[] = ["en", "id", "th", "ja", "fr"];
+        const language: SavedLanguage = supportedLanguages.indexOf(value.language ?? "") >= 0 ? value.language! : "";
+        return { highestCompleted: Math.max(0, Math.floor(Number(value.highestCompleted) || 0)), coins: Math.max(0, Math.floor(Number(value.coins) || 0)), musicEnabled: value.musicEnabled !== false, soundEnabled: value.soundEnabled !== false, language, dailyClaimDate, dailyStreak: dailyClaimDate ? Math.max(1, Math.min(7, Math.floor(Number(value.dailyStreak) || 1))) : 0, privacyAcceptedVersion: value.privacyAcceptedVersion === PRIVACY_VERSION ? PRIVACY_VERSION : "", guideVersion: Math.max(0, Math.floor(Number(value.guideVersion) || 0)), guideStep: Math.max(0, Math.floor(Number(value.guideStep) || 0)), guideProgress: Math.max(0, Math.floor(Number(value.guideProgress) || 0)), dailyChallengeClaimDate: /^\d{4}-\d{1,2}-\d{1,2}$/.test(value.dailyChallengeClaimDate ?? "") ? value.dailyChallengeClaimDate! : "", selectedTheme: typeof value.selectedTheme === "string" ? value.selectedTheme : "classic", unlockedThemes, stats: normalizeStats(value.stats), dailyStatsDate: /^\d{4}-\d{1,2}-\d{1,2}$/.test(value.dailyStatsDate ?? "") ? value.dailyStatsDate! : "", dailyStats: normalizeStats(value.dailyStats), dailyTaskClaims: cleanIds(value.dailyTaskClaims), achievementClaims: cleanIds(value.achievementClaims),
             stars,
             props: { undo: Math.max(0, Math.floor(Number(value.props?.undo ?? base.props.undo))), shuffle: Math.max(0, Math.floor(Number(value.props?.shuffle ?? base.props.shuffle))), move: Math.max(0, Math.floor(Number(value.props?.move ?? base.props.move))), hint: Math.max(0, Math.floor(Number(value.props?.hint ?? base.props.hint))), freeze: Math.max(0, Math.floor(Number(value.props?.freeze ?? base.props.freeze))) } };
     }

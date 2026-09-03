@@ -170,10 +170,21 @@ write("resources/prefabs/ui/SettingsPanel.lh", { ...sprite("settings-root", "Set
   button("settings-sound", "SoundButton", 110, 245, 420, 88, "assets/resources/images/ui/button_secondary.png", "SOUND: ON", 25),
   text("settings-language-title", "LanguageTitle", 90, 350, 460, 34, "LANGUAGE", 19, "#71887A"),
   button("settings-language", "LanguageButton", 110, 395, 420, 88, "assets/resources/images/ui/button_secondary.png", "ENGLISH", 25),
-  text("settings-language-note", "LanguageNote", 90, 487, 460, 30, "SELECT ENGLISH, THEN CONFIRM", 16, "#71887A"),
+  text("settings-language-note", "LanguageNote", 90, 487, 460, 30, "TAP TO CHOOSE, THEN CONFIRM", 16, "#71887A"),
   button("settings-privacy", "PrivacyButton", 110, 535, 420, 88, "assets/resources/images/ui/button_secondary.png", "PRIVACY & TERMS", 22),
   button("settings-confirm", "ConfirmButton", 160, 680, 320, 96, "assets/resources/images/ui/button_primary.png", "CONFIRM", 26)
 ]), _$ver: 1 }, "a2000006-6666-4666-8666-000000000006");
+
+write("resources/prefabs/ui/LanguagePickerPanel.lh", { ...sprite("language-picker-root", "LanguagePickerPanel", 0, 0, 750, 1334, [
+  image("language-picker-panel", "PanelImage", 55, 160, 640, 1030, "assets/resources/images/ui/panel_large.png"),
+  text("language-picker-title", "TitleText", 110, 205, 530, 70, "SELECT LANGUAGE", 35, "#345D4D", true),
+  button("language-id", "IndonesianButton", 125, 315, 500, 76, "assets/resources/images/ui/button_secondary.png", "Bahasa Indonesia", 23),
+  button("language-th", "ThaiButton", 125, 415, 500, 76, "assets/resources/images/ui/button_secondary.png", "ไทย", 23),
+  button("language-ja", "JapaneseButton", 125, 515, 500, 76, "assets/resources/images/ui/button_secondary.png", "日本語", 23),
+  button("language-fr", "FrenchButton", 125, 615, 500, 76, "assets/resources/images/ui/button_secondary.png", "Français", 23),
+  button("language-en", "EnglishButton", 125, 715, 500, 76, "assets/resources/images/ui/button_secondary.png", "English", 23),
+  button("language-close", "CloseButton", 215, 855, 320, 88, "assets/resources/images/ui/button_primary.png", "CANCEL", 24)
+]), _$ver: 1 }, "a2000020-2020-4020-8020-000000000020");
 
 write("resources/prefabs/ui/PrivacyPanel.lh", { ...sprite("privacy-root", "PrivacyPanel", 0, 0, 750, 1334, [
   image("privacy-panel", "PanelImage", 45, 125, 660, 1080, "assets/resources/images/ui/panel_large.png"),

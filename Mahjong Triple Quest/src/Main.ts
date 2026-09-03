@@ -4,7 +4,7 @@ import { GuideSystem } from "./game/GuideSystem";
 import { TaskDefinition, TaskSystem } from "./game/TaskSystem";
 import { ThemeDefinition, ThemeSystem } from "./game/ThemeSystem";
 import { GamePlatform } from "./platform/GamePlatform";
-import { localizeTree, setEnglishUi, uiText, usesEnglishUi } from "./platform/UiText";
+import { localizedText, localizeTree, setUiLanguage, UiLanguage, uiLanguage, uiText, uiTextSelfCheck } from "./platform/UiText";
 const { regClass } = Laya;
 
 interface CatalogEntry { level: number; file: string; difficulty?: string; shape?: string; }
@@ -16,12 +16,31 @@ let maxLevel = 0;
 let dailyChallenge: DailyChallengeConfig = { levelPool: [1], rewardCoins: 250 };
 const PRIVACY_BODY_EN = "This game stores progress, stars, coins, settings and prop inventory locally on your device so play can continue next time.\n\nThe game does not request your name, phone number, contacts, precise location, camera, microphone or payment information.\n\nRewarded ads are provided by the current platform and may process necessary device and network information under its privacy rules.\n\nThe game contains no gambling, wagering, cash withdrawal or real-money exchange. Minors should use the game with guardian guidance.\n\nTap CONFIRM after reading this privacy notice and user agreement.";
 const PRIVACY_BODY_ZH = "本游戏仅在你的设备本地保存关卡进度、星级、金币、设置和道具数量，以便下次继续游戏。\n\n游戏不会申请或收集你的姓名、手机号码、通讯录、精确位置、相机、麦克风或支付信息。\n\n激励广告由当前运行平台提供，平台可能依据其隐私规则处理必要的设备与网络信息。\n\n本游戏不含赌博、下注、现金提现或真实货币兑换。未成年人应在监护人指导下使用。\n\n阅读本隐私政策与用户协议后，点击“确定”继续。";
+const PRIVACY_BODIES: Record<Exclude<UiLanguage, "">, string> = {
+    en: PRIVACY_BODY_EN,
+    id: "Game ini menyimpan progres, bintang, koin, pengaturan, dan persediaan item secara lokal di perangkat agar permainan dapat dilanjutkan lain kali.\n\nGame tidak meminta nama, nomor telepon, kontak, lokasi presisi, kamera, mikrofon, atau informasi pembayaran Anda.\n\nIklan berhadiah disediakan oleh platform saat ini dan dapat memproses informasi perangkat serta jaringan yang diperlukan sesuai aturan privasinya.\n\nGame ini tidak mengandung perjudian, taruhan, penarikan tunai, atau penukaran uang sungguhan. Anak di bawah umur harus bermain dengan bimbingan wali.\n\nKetuk KONFIRMASI setelah membaca pemberitahuan privasi dan perjanjian pengguna ini.",
+    th: "เกมนี้บันทึกความคืบหน้า ดาว เหรียญ การตั้งค่า และจำนวนไอเทมไว้ในอุปกรณ์ของคุณ เพื่อให้เล่นต่อได้ในครั้งถัดไป\n\nเกมจะไม่ขอชื่อ หมายเลขโทรศัพท์ รายชื่อผู้ติดต่อ ตำแหน่งที่แม่นยำ กล้อง ไมโครโฟน หรือข้อมูลการชำระเงินของคุณ\n\nโฆษณารางวัลให้บริการโดยแพลตฟอร์มปัจจุบัน และอาจประมวลผลข้อมูลอุปกรณ์และเครือข่ายที่จำเป็นตามกฎความเป็นส่วนตัวของแพลตฟอร์ม\n\nเกมนี้ไม่มีการพนัน การเดิมพัน การถอนเงินสด หรือการแลกเปลี่ยนเงินจริง ผู้เยาว์ควรเล่นภายใต้คำแนะนำของผู้ปกครอง\n\nแตะ ยืนยัน หลังจากอ่านประกาศความเป็นส่วนตัวและข้อตกลงผู้ใช้นี้",
+    ja: "このゲームは、次回も続きから遊べるよう、進行状況、スター、コイン、設定、アイテム所持数を端末内に保存します。\n\n氏名、電話番号、連絡先、正確な位置情報、カメラ、マイク、決済情報を要求・収集することはありません。\n\n報酬広告は現在のプラットフォームから提供され、各プラットフォームのプライバシールールに基づいて必要な端末・ネットワーク情報を処理する場合があります。\n\nこのゲームには、ギャンブル、賭け、現金の引き出し、現実の通貨との交換は含まれません。未成年者は保護者の指導のもとで利用してください。\n\nこのプライバシー通知と利用規約を読んだ後、「決定」をタップしてください。",
+    fr: "Ce jeu enregistre localement sur votre appareil la progression, les étoiles, les pièces, les paramètres et les objets afin de reprendre votre partie plus tard.\n\nLe jeu ne demande ni votre nom, ni votre numéro de téléphone, vos contacts, votre position précise, l'accès à la caméra ou au microphone, ni vos informations de paiement.\n\nLes publicités récompensées sont fournies par la plateforme actuelle, qui peut traiter les informations nécessaires sur l'appareil et le réseau selon ses règles de confidentialité.\n\nCe jeu ne contient ni jeu d'argent, ni pari, ni retrait d'espèces, ni échange contre de l'argent réel. Les mineurs doivent jouer sous la supervision d'un responsable légal.\n\nTouchez CONFIRMER après avoir lu cet avis de confidentialité et cet accord utilisateur.",
+};
+const LANGUAGE_OPTIONS = [
+    { code: "id", button: "IndonesianButton", label: "Bahasa Indonesia" },
+    { code: "th", button: "ThaiButton", label: "ไทย" },
+    { code: "ja", button: "JapaneseButton", label: "日本語" },
+    { code: "fr", button: "FrenchButton", label: "Français" },
+    { code: "en", button: "EnglishButton", label: "English" },
+] as const;
+const LANGUAGE_NAMES: Record<UiLanguage, string> = { "": "简体中文", en: "English", id: "Bahasa Indonesia", th: "ไทย", ja: "日本語", fr: "Français" };
 
 export async function main(): Promise<void> {
     Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_AUTO;
     MahjongSave.selfCheck();
     MahjongSave.initialize();
-    setEnglishUi(MahjongSave.language() === "en");
+    const platform = GamePlatform.platformName(), savedLanguage = MahjongSave.language();
+    const language: UiLanguage = platform === "android" ? savedLanguage || "en" : platform === "wechat" || platform === "douyin" ? "" : savedLanguage;
+    if (platform === "android" && !savedLanguage) MahjongSave.setLanguage("en");
+    setUiLanguage(language);
+    uiTextSelfCheck();
     if (typeof document !== "undefined") document.title = uiText("Mahjong Triple Quest");
     applyAudioSettings();
     const [resource, challengeResource] = await Promise.all([
@@ -75,22 +94,47 @@ async function showSettings(scene: Laya.Scene): Promise<void> {
     const music = panel.getChildByName("MusicButton") as Laya.Sprite;
     const sound = panel.getChildByName("SoundButton") as Laya.Sprite;
     const language = panel.getChildByName("LanguageButton") as Laya.Sprite;
-    let englishSelected = usesEnglishUi();
+    const languageTitle = panel.getChildByName("LanguageTitle") as Laya.Sprite;
+    const languageNote = panel.getChildByName("LanguageNote") as Laya.Sprite;
+    const privacy = panel.getChildByName("PrivacyButton") as Laya.Sprite;
+    const confirm = panel.getChildByName("ConfirmButton") as Laya.Sprite;
+    const settingsPlatform = GamePlatform.platformName();
+    const languageVisible = settingsPlatform !== "wechat" && settingsPlatform !== "douyin";
+    language.visible = languageTitle.visible = languageNote.visible = languageVisible;
+    if (!languageVisible) { privacy.y = 385; confirm.y = 535; }
+    let selectedLanguage = uiLanguage();
     const refresh = (): void => {
         (music.getChildByName("Label") as Laya.GTextField).text = uiText(`MUSIC: ${MahjongSave.musicEnabled() ? "ON" : "OFF"}`);
         (sound.getChildByName("Label") as Laya.GTextField).text = uiText(`SOUND: ${MahjongSave.soundEnabled() ? "ON" : "OFF"}`);
-        (language.getChildByName("Label") as Laya.GTextField).text = englishSelected ? uiText("ENGLISH · SELECTED") : "ENGLISH";
+        (language.getChildByName("Label") as Laya.GTextField).text = LANGUAGE_NAMES[selectedLanguage];
     };
     const click = requireSound(scene, "ButtonClick");
     bindPress(music, () => { MahjongSave.setMusicEnabled(!MahjongSave.musicEnabled()); applyAudioSettings(); if (MahjongSave.musicEnabled()) requireSound(scene, "HomeBgm").play(0); refresh(); }, click);
     bindPress(sound, () => { MahjongSave.setSoundEnabled(!MahjongSave.soundEnabled()); applyAudioSettings(); refresh(); }, click);
-    bindPress(language, () => { englishSelected = true; refresh(); }, click);
-    bindPress(panel.getChildByName("PrivacyButton") as Laya.Sprite, () => void showPrivacy(scene, false, click), click);
-    bindPress(panel.getChildByName("ConfirmButton") as Laya.Sprite, () => {
-        if (!englishSelected || usesEnglishUi()) { panel.destroy(); return; }
-        MahjongSave.setLanguage("en"); setEnglishUi(true); panel.destroy(); void showHome();
+    if (languageVisible) bindPress(language, () => void showLanguagePicker(scene, selectedLanguage, value => { selectedLanguage = value; refresh(); }, click), click);
+    bindPress(privacy, () => void showPrivacy(scene, false, click), click);
+    bindPress(confirm, () => {
+        if (!languageVisible || selectedLanguage === uiLanguage()) { panel.destroy(); return; }
+        MahjongSave.setLanguage(selectedLanguage); setUiLanguage(selectedLanguage); panel.destroy(); void showHome();
     }, click);
     refresh(); contentRoot(scene).addChild(panel);
+}
+
+async function showLanguagePicker(scene: Laya.Scene, selected: UiLanguage, choose: (language: UiLanguage) => void, click: Laya.SoundNode): Promise<void> {
+    const root = contentRoot(scene);
+    if (root.getChildByName("LanguagePickerPanel")) return;
+    await Laya.loader.load("resources/prefabs/ui/LanguagePickerPanel.lh", Laya.Loader.HIERARCHY);
+    if (scene.destroyed) return;
+    const picker = await Laya.Prefab.instantiate<Laya.Sprite>("resources/prefabs/ui/LanguagePickerPanel.lh");
+    localizeTree(picker); picker.zOrder = 1100000; picker.mouseEnabled = true; picker.mouseThrough = false;
+    picker.hitArea = new Laya.Rectangle(0, 0, picker.width, picker.height);
+    for (const option of LANGUAGE_OPTIONS) {
+        const button = picker.getChildByName(option.button) as Laya.Sprite;
+        (button.getChildByName("Label") as Laya.GTextField).text = `${option.label}${selected === option.code ? "  ✓" : ""}`;
+        bindPress(button, () => { choose(option.code); picker.destroy(); }, click);
+    }
+    bindPress(picker.getChildByName("CloseButton") as Laya.Sprite, () => picker.destroy(), click);
+    root.addChild(picker);
 }
 
 async function showPrivacy(scene: Laya.Scene, required: boolean, click: Laya.SoundNode): Promise<void> {
@@ -101,7 +145,8 @@ async function showPrivacy(scene: Laya.Scene, required: boolean, click: Laya.Sou
     localizeTree(panel);
     panel.zOrder = 1000000; panel.mouseEnabled = true; panel.mouseThrough = false;
     panel.hitArea = new Laya.Rectangle(0, 0, panel.width, panel.height);
-    (panel.getChildByName("BodyText") as Laya.GTextField).text = usesEnglishUi() ? PRIVACY_BODY_EN : PRIVACY_BODY_ZH;
+    const language = uiLanguage();
+    (panel.getChildByName("BodyText") as Laya.GTextField).text = language === "" ? PRIVACY_BODY_ZH : PRIVACY_BODIES[language];
     (panel.getChildByName("NoteText") as Laya.GTextField).text = uiText(required ? "PLEASE READ BEFORE CONTINUING" : "YOU CAN REVIEW THIS AGREEMENT AT ANY TIME");
     const platform = panel.getChildByName("PlatformPrivacyButton") as Laya.Sprite;
     platform.visible = GamePlatform.canOpenPrivacyContract();
@@ -201,7 +246,7 @@ async function showTasks(scene: Laya.Scene, refreshHomeCoins: () => void): Promi
             if (panel.destroyed || current !== generation) { row.destroy(); return; }
             const progress = TaskSystem.progress(task, daily), claimed = TaskSystem.claimed(task, daily), complete = progress >= task.target;
             row.y = index * 112;
-            (row.getChildByName("TitleText") as Laya.GTextField).text = usesEnglishUi() ? task.titleEn : task.titleZh;
+            (row.getChildByName("TitleText") as Laya.GTextField).text = localizedText(task.titleEn, task.titleZh);
             (row.getChildByName("ProgressText") as Laya.GTextField).text = `${progress} / ${task.target}`;
             (row.getChildByName("RewardText") as Laya.GTextField).text = `+${task.reward}${task.rewardDecoration ? " +◆" : ""}`;
             (row.getChildByName("ProgressFill") as Laya.GImage).width = 190 * Math.min(1, progress / task.target);
@@ -241,7 +286,8 @@ async function showDailyChallenge(scene: Laya.Scene, refreshHomeCoins: () => voi
     const panel = await Laya.Prefab.instantiate<Laya.Sprite>("resources/prefabs/ui/ChallengePanel.lh");
     localizeTree(panel); contentRoot(scene).addChild(panel);
     const entry = todayChallengeEntry(), completed = MahjongSave.dailyChallengeCompleted(), click = requireSound(scene, "ButtonClick");
-    (panel.getChildByName("DateText") as Laya.GTextField).text = new Date().toLocaleDateString(usesEnglishUi() ? "en-US" : "zh-CN");
+    const dateLocales: Record<UiLanguage, string> = { "": "zh-CN", en: "en-US", id: "id-ID", th: "th-TH", ja: "ja-JP", fr: "fr-FR" };
+    (panel.getChildByName("DateText") as Laya.GTextField).text = new Date().toLocaleDateString(dateLocales[uiLanguage()]);
     (panel.getChildByName("LevelText") as Laya.GTextField).text = `${uiText("SPECIAL LAYOUT")} · ${uiText("LEVEL")} ${entry.level}`;
     (panel.getChildByName("RewardText") as Laya.GTextField).text = `${dailyChallenge.rewardCoins} ${uiText("COINS")}`;
     (panel.getChildByName("StatusText") as Laya.GTextField).text = uiText(completed ? "TODAY'S REWARD COLLECTED" : "COMPLETE ONCE TO EARN THE REWARD");
@@ -267,7 +313,7 @@ async function showThemes(scene: Laya.Scene, refreshHomeCoins: () => void): Prom
     const refresh = (): void => {
         ThemeSystem.all().slice(0, 3).forEach((theme, index) => {
             const card = panel.getChildByName(`Theme${index + 1}`) as Laya.Sprite, unlocked = MahjongSave.themeUnlocked(theme.id), selected = MahjongSave.selectedTheme() === theme.id;
-            (card.getChildByName("TitleText") as Laya.GTextField).text = usesEnglishUi() ? theme.titleEn : theme.titleZh;
+            (card.getChildByName("TitleText") as Laya.GTextField).text = localizedText(theme.titleEn, theme.titleZh);
             ThemeSystem.applyPreview(card.getChildByName("PreviewBackground") as Laya.Sprite, theme, true);
             ThemeSystem.applyPreview(card.getChildByName("PreviewTile") as Laya.Sprite, theme);
             ThemeSystem.applyButtonPreview(card.getChildByName("SelectButton") as Laya.Sprite, theme);
@@ -309,7 +355,7 @@ async function showDaily(scene: Laya.Scene, refreshHomeCoins: () => void): Promi
         doubleLabel.text = available ? `${uiText("WATCH AD · GET")} ${reward * 2}` : uiText("CLAIMED TODAY");
         claim.alpha = doubleClaim.alpha = available && !adPending ? 1 : 0.55;
         claim.mouseEnabled = doubleClaim.mouseEnabled = available && !adPending;
-        streak.text = usesEnglishUi() ? (available ? `DAY ${day} OF 7` : `DAY ${day} COMPLETE`) : (available ? `第 ${day} / 7 天` : `第 ${day} 天已完成`);
+        streak.text = uiText(available ? `DAY ${day} OF 7` : `DAY ${day} COMPLETE`);
         rewardText.text = `${reward} ${uiText("COINS")}`;
         for (let index = 1; index <= 7; index++) (panel.getChildByName(`Day${index}`) as Laya.Sprite).alpha = index === day ? 1 : index < day ? 0.72 : 0.42;
         status.text = uiText(message ?? (available ? "YOUR DAILY COINS ARE READY" : "COME BACK TOMORROW"));
@@ -319,7 +365,7 @@ async function showDaily(scene: Laya.Scene, refreshHomeCoins: () => void): Promi
         const amount = MahjongSave.claimDailyReward();
         if (amount) {
             requireSound(scene, "CoinReward").play();
-            refresh(usesEnglishUi() ? `${amount} COINS COLLECTED` : `已领取 ${amount} 金币`);
+            refresh(uiText(`${amount} COINS COLLECTED`));
         } else refresh();
     }, requireSound(scene, "ButtonClick"));
     bindPress(doubleClaim, () => {
@@ -331,7 +377,7 @@ async function showDaily(scene: Laya.Scene, refreshHomeCoins: () => void): Promi
             const amount = rewarded ? MahjongSave.claimDailyReward(2) : 0;
             if (amount) {
                 requireSound(scene, "CoinReward").play();
-                refresh(usesEnglishUi() ? `${amount} COINS COLLECTED` : `已领取 ${amount} 金币`);
+                refresh(uiText(`${amount} COINS COLLECTED`));
             } else refresh("WATCH THE FULL AD TO GET 2X");
         });
     }, requireSound(scene, "ButtonClick"));
@@ -365,7 +411,7 @@ async function showLevels(): Promise<void> {
         ThemeSystem.applyButtonPreview(button, ThemeSystem.current());
     };
     list.setVirtual(); list.numItems = maxLevel;
-    (findNode(scene, "LevelCountText") as Laya.GTextField).text = usesEnglishUi() ? `${maxLevel} LEVELS · SWIPE TO SCROLL` : `共 ${maxLevel} 关 · 上下滑动`;
+    (findNode(scene, "LevelCountText") as Laya.GTextField).text = uiText(`${maxLevel} LEVELS · SWIPE TO SCROLL`);
     list.scroller.scrollTo(Math.min(maxLevel - 1, MahjongSave.highestCompleted()), false, true);
 }
 

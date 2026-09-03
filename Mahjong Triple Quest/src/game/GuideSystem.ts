@@ -1,5 +1,5 @@
 import { MahjongSave } from "./MahjongSave";
-import { usesEnglishUi } from "../platform/UiText";
+import { localizedText } from "../platform/UiText";
 
 interface GuideStep {
     id: string; scene: "game" | "home"; target: string; event: string; value?: string;
@@ -35,7 +35,7 @@ export class GuideSystem {
         this.overlay?.destroy(); this.overlay = null;
         if (progress < repeat) MahjongSave.setGuideState(MahjongSave.guideStep(), progress, this.config.version);
         else MahjongSave.setGuideState(MahjongSave.guideStep() + 1, 0, this.config.version);
-        if (!step.pauseAfter) Laya.timer.once(80, this, () => void this.show());
+        if (!step.pauseAfter) Laya.timer.once(80, this, (): void => { void this.show(); });
         return true;
     }
     public static async show(): Promise<void> {
@@ -61,7 +61,7 @@ export class GuideSystem {
         const message = overlay.getChildByName("MessagePanel") as Laya.Sprite;
         message.x = Math.max(20, Math.min(root.width - message.width - 20, (x + right - message.width) / 2));
         message.y = bottom + message.height + 25 < root.height ? bottom + 25 : Math.max(25, y - message.height - 25);
-        (message.getChildByName("MessageText") as Laya.GTextField).text = usesEnglishUi() ? step.messageEn : step.messageZh;
+        (message.getChildByName("MessageText") as Laya.GTextField).text = localizedText(step.messageEn, step.messageZh);
         overlay.zOrder = 900000; overlay.mouseEnabled = true; overlay.mouseThrough = true;
         hand.mouseEnabled = false; hand.mouseThrough = true; message.mouseEnabled = false; message.mouseThrough = true;
         root.addChild(overlay); this.overlay = overlay;

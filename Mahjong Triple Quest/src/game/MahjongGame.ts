@@ -3,7 +3,7 @@ import { LevelConfig, TilePlacement, loadLevel } from "./LevelData";
 import { MahjongSave, SaveData } from "./MahjongSave";
 import { MatchKind, MatchSystem } from "./MatchSystem";
 import { GamePlatform } from "../platform/GamePlatform";
-import { localizeTree, uiText, usesEnglishUi } from "../platform/UiText";
+import { localizeTree, uiText } from "../platform/UiText";
 import { ThemeSystem } from "./ThemeSystem";
 import { GuideSystem } from "./GuideSystem";
 
@@ -299,7 +299,7 @@ export class MahjongGame {
         const failureDetail = this.failureReason === "time" ? "TIME UP. TRY AGAIN" : this.failureReason === "moves" ? "OUT OF MOVES. TRY AGAIN" : "NO SPACE. TRY AGAIN";
         (panel.getChildByName("TitleText") as Laya.GTextField).text = won && this.context?.completeTitle ? this.context.completeTitle : uiText(won ? "LEVEL COMPLETE" : failureTitle);
         (panel.getChildByName("StarsText") as Laya.GTextField).text = won ? `${"★  ".repeat(stars)}${"☆  ".repeat(3 - stars)}`.trim() : "☆  ☆  ☆";
-        (panel.getChildByName("DetailText") as Laya.GTextField).text = won ? (usesEnglishUi() ? `${earned} COINS EARNED` : `获得 ${earned} 金币`) : uiText(failureDetail);
+        (panel.getChildByName("DetailText") as Laya.GTextField).text = won ? uiText(`${earned} COINS EARNED`) : uiText(failureDetail);
         const primary = panel.getChildByName("PrimaryButton") as Laya.Sprite;
         const secondary = panel.getChildByName("SecondaryButton") as Laya.Sprite;
         const levelSelect = panel.getChildByName("LevelSelectButton") as Laya.Sprite;
