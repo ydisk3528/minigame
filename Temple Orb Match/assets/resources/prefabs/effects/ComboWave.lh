@@ -1,0 +1,27 @@
+{
+  "_$ver": 1,
+  "_$id": "combowaveroot",
+  "_$type": "Sprite",
+  "name": "ComboWave",
+  "width": 108,
+  "height": 108,
+  "mouseThrough": true,
+  "_$child": [
+    {
+      "_$id": "waveimage001",
+      "_$type": "GImage",
+      "name": "Wave",
+      "x": 54,
+      "y": 54,
+      "width": 360,
+      "height": 360,
+      "pivotX": 180,
+      "pivotY": 180,
+      "alpha": 0,
+      "autoSize": false,
+      "src": "res://d2c077f0-a9a1-45a2-aa66-4340f068ec35"
+    },
+    { "_$id": "wavereceiver1", "_$type": "Sprite", "name": "LightReceiver", "x": 54, "y": 54, "width": 420, "height": 420 },
+    { "_$id": "wavesource001", "_$type": "Sprite", "name": "LightSource", "x": 54, "y": 54 }
+  ]
+}

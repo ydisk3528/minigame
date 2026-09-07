@@ -1,0 +1,29 @@
+{
+  "_$ver": 1,
+  "_$id": "specialbeamroot",
+  "_$type": "Sprite",
+  "name": "SpecialBeam",
+  "width": 864,
+  "height": 108,
+  "pivotX": 432,
+  "pivotY": 54,
+  "mouseThrough": true,
+  "_$child": [
+    {
+      "_$id": "beamimage001",
+      "_$type": "GImage",
+      "name": "Beam",
+      "x": 432,
+      "y": 54,
+      "width": 864,
+      "height": 288,
+      "pivotX": 432,
+      "pivotY": 144,
+      "alpha": 0,
+      "autoSize": false,
+      "src": "res://fa61b65b-5f07-485a-a11b-c86fdf4931dd"
+    },
+    { "_$id": "beamreceiver01", "_$type": "Sprite", "name": "LightReceiver", "x": 432, "y": 54, "width": 540, "height": 540 },
+    { "_$id": "beamsource001", "_$type": "Sprite", "name": "LightSource", "x": 432, "y": 54 }
+  ]
+}

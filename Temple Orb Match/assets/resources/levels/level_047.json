@@ -1,0 +1,268 @@
+{
+  "level": 47,
+  "rows": 8,
+  "columns": 8,
+  "difficulty": "hard",
+  "shape": "pyramid",
+  "matchLength": 3,
+  "moveLimit": 25,
+  "gemTypes": 6,
+  "starScores": [
+    6300,
+    9800,
+    13200
+  ],
+  "props": [
+    {
+      "type": "hammer",
+      "count": 3
+    },
+    {
+      "type": "magic",
+      "count": 1
+    },
+    {
+      "type": "refresh",
+      "count": 1
+    },
+    {
+      "type": "infinite",
+      "count": 0
+    }
+  ],
+  "goals": [
+    {
+      "type": "breakCrate",
+      "count": 2
+    },
+    {
+      "type": "breakIce",
+      "count": 3
+    }
+  ],
+  "obstacles": [
+    {
+      "row": 5,
+      "column": 5,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 7,
+      "column": 0,
+      "type": 1,
+      "hitPoints": 2
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "type": 2,
+      "hitPoints": 1
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "type": 3,
+      "hitPoints": 1
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "type": 3,
+      "hitPoints": 1
+    },
+    {
+      "row": 6,
+      "column": 3,
+      "type": 4,
+      "hitPoints": 2
+    }
+  ],
+  "initialSpecials": [
+    {
+      "row": 7,
+      "column": 3,
+      "specialType": 1
+    },
+    {
+      "row": 5,
+      "column": 6,
+      "specialType": 2
+    },
+    {
+      "row": 7,
+      "column": 5,
+      "specialType": 3
+    }
+  ],
+  "mask": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "initialLayout": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      3,
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      5,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      4,
+      0,
+      3,
+      5,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      4,
+      3,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      4,
+      5,
+      2,
+      0,
+      5,
+      5,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      5,
+      1,
+      0,
+      4,
+      0
+    ],
+    [
+      5,
+      1,
+      4,
+      4,
+      3,
+      4,
+      1,
+      0
+    ]
+  ]
+}

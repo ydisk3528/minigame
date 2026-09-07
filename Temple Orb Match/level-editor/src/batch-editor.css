@@ -1,0 +1,89 @@
+.mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 0 0 22px;
+  padding: 8px;
+  border: 1px solid #1d3d6c;
+  border-radius: 20px;
+  background: #050d20cc;
+}
+.mode-switch button { display: flex; align-items: flex-start; flex-direction: column; gap: 4px; border: 1px solid transparent; border-radius: 14px; padding: 16px 20px; background: transparent; color: #8398b9; text-align: left; font-size: 17px; font-weight: 900; }
+.mode-switch button span { font-size: 12px; font-weight: 500; }
+.mode-switch button.selected { border-color: #39d9ee; background: linear-gradient(135deg, #113d66, #34205f); box-shadow: 0 7px 25px #0006; color: #fff; }
+.mode-switch button.selected span { color: #8eeaf3; }
+.mode-intro { margin-bottom: 20px; color: #8298bc; }
+.mode-intro b { color: #f5ca61; }
+.batch-settings-panel { display: flex; flex-direction: column; gap: 20px; }
+.batch-top-fields { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.batch-rule-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.batch-rule-section { padding: 19px; border: 1px solid #203d6a; border-radius: 17px; background: #07142c; }
+.batch-rule-section > h3 { margin-bottom: 4px; }
+.batch-rule-section > p { margin-bottom: 14px; color: #7389aa; font-size: 12px; }
+.shape-rule-range { display: grid; grid-template-columns: 1fr 22px 1fr; align-items: center; gap: 7px; }
+.shape-rule-range span { text-align: center; color: #7187a9; }
+.shape-pool label { display: flex; align-items: center; gap: 5px; padding: 7px 9px; border: 1px solid #27456f; border-radius: 8px; color: #aabdd9; font-size: 12px; }
+.shape-pool label input { width: 15px; height: 15px; }
+.batch-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.batch-actions button {
+  min-height: 58px;
+  border: 1px solid;
+  border-radius: 14px;
+  padding: 13px 16px;
+  color: #fff;
+  box-shadow: 0 10px 24px #0005;
+  font-size: 16px;
+  font-weight: 900;
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+.batch-actions button:hover { transform: translateY(-2px); filter: brightness(1.12); box-shadow: 0 14px 30px #0007; }
+.batch-actions button:active { transform: translateY(0); }
+.batch-actions .check-batch { border-color: #63dff3; background: linear-gradient(135deg, #159fb8, #2863c4); }
+.batch-actions .zip { border-color: #70efb5; background: linear-gradient(135deg, #168b68, #176e9c); }
+.batch-actions .gold { border-color: #ffe195; background: linear-gradient(135deg, #f6c94a, #ed8b26); color: #352008; }
+.batch-settings-panel > .notice { margin: 0; padding: 12px 15px; border: 1px solid #275b68; border-radius: 11px; background: #0b282d; color: #77e9bd; font-size: 14px; font-weight: 700; }
+.batch-report { margin-top: 20px; }
+.batch-report-title { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 17px; }
+.batch-report-title span { color: #62e8f5; font-size: 12px; font-weight: 900; letter-spacing: .13em; }
+.batch-report-title h2 { margin-top: 5px; }
+.batch-report-title > b { padding: 10px 13px; border-radius: 10px; background: #17365d; color: #7ff0c2; }
+.batch-report-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; max-height: 650px; overflow: auto; padding: 3px; }
+.batch-level-card { display: flex; align-items: flex-start; flex-direction: column; gap: 6px; min-height: 112px; border: 1px solid #28527d; border-radius: 13px; padding: 13px; background: #0a1a37; color: #e6f2ff; text-align: left; transition: .16s ease; }
+.batch-level-card:hover { transform: translateY(-2px); border-color: #59dfea; background: #10284d; box-shadow: 0 8px 22px #0006; }
+.batch-level-card span { color: #90a9c9; font-size: 12px; }
+.batch-level-card small { color: #75e7b3; }
+.batch-level-card.warn { border-color: #a27634; }
+.batch-level-card.warn small { color: #f2c668; }
+.batch-level-card.bad { border-color: #a64c64; background: #281326; }
+.batch-level-card.bad small { color: #ff8ca7; }
+.modal-mask { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: start center; overflow: auto; padding: 32px; background: #000d; backdrop-filter: blur(4px); }
+.batch-modal { width: min(1040px, 100%); margin: auto; border: 1px solid #34749d; border-radius: 22px; padding: 24px; background: linear-gradient(150deg, #0d1d3d, #070d20); box-shadow: 0 30px 100px #000; }
+.batch-modal > header, .batch-modal > footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.batch-modal > header { margin-bottom: 18px; }
+.batch-modal > header p { margin-top: 5px; color: #7e95b7; }
+.modal-close { width: 42px; height: 42px; border: 1px solid #385274; border-radius: 50%; background: #111e36; color: #fff; font-size: 23px; }
+.modal-section { margin-top: 14px; padding: 17px; border: 1px solid #203d67; border-radius: 15px; background: #08142c; }
+.modal-section h3 { margin-bottom: 12px; color: #8debf3; }
+.modal-fields, .modal-count-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.modal-fields label, .modal-count-grid label, .modal-goal label { display: flex; flex-direction: column; gap: 7px; color: #aebfda; font-size: 12px; }
+.modal-goal { display: grid; grid-template-columns: 1.1fr .8fr .8fr 34px; align-items: end; gap: 8px; margin-top: 8px; }
+.modal-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.modal-error { margin-right: auto; color: #ff8ca7; font-weight: 700; }
+.save-level { border: 1px solid #72edf5; border-radius: 11px; padding: 12px 20px; background: linear-gradient(135deg, #1fb8c9, #2866c1); color: #fff; font-weight: 900; }
+.batch-modal > footer { margin-top: 18px; padding-top: 17px; border-top: 1px solid #213a60; }
+
+@media (max-width: 900px) {
+  .batch-top-fields, .modal-fields, .modal-count-grid { grid-template-columns: 1fr 1fr; }
+  .batch-rule-columns, .modal-columns { grid-template-columns: 1fr; }
+}
+@media (max-width: 650px) {
+  .mode-switch { grid-template-columns: 1fr; }
+  .batch-top-fields, .modal-fields, .modal-count-grid, .batch-actions { grid-template-columns: 1fr; }
+  .batch-report-title { align-items: flex-start; flex-direction: column; }
+  .modal-mask { padding: 10px; }
+  .batch-modal { padding: 15px; }
+  .modal-goal { grid-template-columns: 1fr 1fr; }
+  .modal-goal .delete { grid-column: span 2; }
+  .batch-modal > footer { align-items: stretch; flex-direction: column; }
+  .modal-error { margin: 0; }
+}

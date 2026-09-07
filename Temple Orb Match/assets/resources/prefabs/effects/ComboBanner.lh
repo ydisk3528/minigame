@@ -1,0 +1,62 @@
+{
+  "_$ver": 1,
+  "_$id": "combobannerroot",
+  "_$type": "Sprite",
+  "name": "ComboBanner",
+  "width": 640,
+  "height": 360,
+  "anchorX": 0.5,
+  "anchorY": 0.5,
+  "_mouseState": 1,
+  "_$child": [
+    {
+      "_$id": "comboframe01",
+      "_$type": "GImage",
+      "name": "Frame",
+      "x": 320,
+      "y": 180,
+      "width": 640,
+      "height": 360,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "src": "res://9b2d2001-8b22-4d42-a222-000000000001",
+      "autoSize": false
+    },
+    {
+      "_$id": "combotext001",
+      "_$type": "GTextField",
+      "name": "ComboText",
+      "x": 80,
+      "y": 146,
+      "width": 480,
+      "height": 125,
+      "text": "GREAT!",
+      "fontSize": 64,
+      "color": "#5B277C",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "letterSpacing": 0,
+      "stroke": 5,
+      "strokeColor": "#FFF1B0"
+    },
+    {
+      "_$id": "comboreceiver",
+      "_$type": "Sprite",
+      "name": "LightReceiver",
+      "x": 320,
+      "y": 180,
+      "width": 680,
+      "height": 680
+    },
+    {
+      "_$id": "combosource01",
+      "_$type": "Sprite",
+      "name": "LightSource",
+      "x": 320,
+      "y": 180,
+      "width": 0,
+      "height": 0
+    }
+  ]
+}
