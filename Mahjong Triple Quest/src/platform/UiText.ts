@@ -3,6 +3,7 @@ export type UiLanguage = "" | "en" | "id" | "th" | "ja" | "fr";
 let currentLanguage: UiLanguage = "";
 
 const ZH: Record<string, string> = {
+    "REVIVE SUCCESSFUL": "复活成功",
     "Mahjong Triple Quest": "麻将三消奇旅",
     "MAHJONG": "麻将", "TRIPLE QUEST": "三消奇旅", "PICK · SLOT · MATCH": "选牌 · 入槽 · 消除",
     "PLAY": "开始游戏", "SETTINGS": "设置", "SHOP": "商店", "DAILY": "签到", "SHARE": "分享",
@@ -54,6 +55,7 @@ const ZH: Record<string, string> = {
 };
 
 const ID: Record<string, string> = {
+    "REVIVE SUCCESSFUL": "BERHASIL HIDUP KEMBALI",
     "Mahjong Triple Quest": "Petualangan Tiga Mahjong",
     "MAHJONG": "MAHJONG", "TRIPLE QUEST": "PETUALANGAN TIGA", "PICK · SLOT · MATCH": "PILIH · SIMPAN · COCOKKAN",
     "PLAY": "MAIN", "SETTINGS": "PENGATURAN", "SHOP": "TOKO", "DAILY": "HARIAN", "SHARE": "BAGIKAN",
@@ -97,6 +99,7 @@ const ID: Record<string, string> = {
 };
 
 const TH: Record<string, string> = {
+    "REVIVE SUCCESSFUL": "ฟื้นคืนชีพสำเร็จ",
     "Mahjong Triple Quest": "ภารกิจไพ่นกกระจอกสามใบ", "MAHJONG": "ไพ่นกกระจอก", "TRIPLE QUEST": "ภารกิจสามใบ", "PICK · SLOT · MATCH": "เลือก · วาง · จับคู่",
     "PLAY": "เล่น", "SETTINGS": "ตั้งค่า", "SHOP": "ร้านค้า", "DAILY": "รายวัน", "SHARE": "แชร์", "TASKS": "ภารกิจ", "CHALLENGE": "ท้าทายรายวัน", "THEMES": "ธีม", "DECOR": "ตกแต่ง",
     "LEVEL": "ด่าน", "COINS": "เหรียญ", "OWNED": "มี", "CLAIM": "รับ", "WATCH AD · GET": "ดูโฆษณา · รับ", "DAY": "วันที่", "COMPLETE": "สำเร็จ", "COMBO": "คอมโบ",
@@ -126,6 +129,7 @@ const TH: Record<string, string> = {
 };
 
 const JA: Record<string, string> = {
+    "REVIVE SUCCESSFUL": "復活成功",
     "Mahjong Triple Quest": "麻雀トリプルクエスト", "MAHJONG": "麻雀", "TRIPLE QUEST": "トリプルクエスト", "PICK · SLOT · MATCH": "選ぶ · 入れる · 揃える",
     "PLAY": "プレイ", "SETTINGS": "設定", "SHOP": "ショップ", "DAILY": "デイリー", "SHARE": "シェア", "TASKS": "ミッション", "CHALLENGE": "デイリーチャレンジ", "THEMES": "テーマ", "DECOR": "装飾",
     "LEVEL": "レベル", "COINS": "コイン", "OWNED": "所持", "CLAIM": "受け取る", "WATCH AD · GET": "広告を見る · 獲得", "DAY": "日目", "COMPLETE": "完了", "COMBO": "コンボ",
@@ -155,6 +159,7 @@ const JA: Record<string, string> = {
 };
 
 const FR: Record<string, string> = {
+    "REVIVE SUCCESSFUL": "RÉSURRECTION RÉUSSIE",
     "Mahjong Triple Quest": "Mahjong Triple Quête", "MAHJONG": "MAHJONG", "TRIPLE QUEST": "TRIPLE QUÊTE", "PICK · SLOT · MATCH": "CHOISIR · PLACER · ASSOCIER",
     "PLAY": "JOUER", "SETTINGS": "PARAMÈTRES", "SHOP": "BOUTIQUE", "DAILY": "QUOTIDIEN", "SHARE": "PARTAGER", "TASKS": "MISSIONS", "CHALLENGE": "DÉFI DU JOUR", "THEMES": "THÈMES", "DECOR": "DÉCOR",
     "LEVEL": "NIVEAU", "COINS": "PIÈCES", "OWNED": "POSSÉDÉ", "CLAIM": "RÉCUPÉRER", "WATCH AD · GET": "VOIR LA PUB · OBTENIR", "DAY": "JOUR", "COMPLETE": "TERMINÉ", "COMBO": "COMBO",

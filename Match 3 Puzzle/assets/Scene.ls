@@ -27,14 +27,6 @@
       ]
     },
     {
-      "_$id": "f71vsgnx",
-      "_$type": "Sprite",
-      "name": "ThemeForeground",
-      "y": 1395,
-      "width": 330,
-      "height": 525
-    },
-    {
       "_$id": "title001",
       "_$type": "GTextField",
       "name": "TitleText",

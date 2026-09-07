@@ -38,6 +38,7 @@ interface AndroidBridge {
 }
 
 interface RewardWindow extends Window {
+    cocosjava?: AndroidBridge;
     cocosJava?: AndroidBridge;
     onReward?: () => void;
     onAdClosed?: () => void;
@@ -58,7 +59,7 @@ class BrowserPlatform implements PlatformAdapter {
     public readonly name = "browser" as const;
     public canShare(): boolean { return false; }
     public share(): boolean { return false; }
-    public showRewardVideo(): Promise<boolean> { return Promise.resolve(false); }
+    public showRewardVideo(): Promise<boolean> { return Promise.resolve(true); }
     public canOpenPrivacyContract(): boolean { return false; }
     public openPrivacyContract(): boolean { return false; }
     public exitGame(): boolean { return false; }
@@ -77,17 +78,18 @@ class AndroidPlatform implements PlatformAdapter {
     }
     public showRewardVideo(): Promise<boolean> {
         const java = this.bridge();
-        if (!java?.showVideo) return Promise.resolve(false);
+        if (!java?.showVideo) return Promise.resolve(true);
         return new Promise((resolve) => {
             const scope = window as RewardWindow; let completed = false;
             const previous = [scope.onReward, scope.onAdClosed, scope.onAdFailed] as const;
-            const timeout = window.setTimeout(() => finish(false), 120000);
-            const finish = (rewarded: boolean): void => {
+            const timeout = window.setTimeout(() => finish(), 120000);
+            // Android grants the game reward even when the ad cannot complete.
+            const finish = (): void => {
                 if (completed) return; completed = true; window.clearTimeout(timeout);
-                [scope.onReward, scope.onAdClosed, scope.onAdFailed] = previous; resolve(rewarded);
+                [scope.onReward, scope.onAdClosed, scope.onAdFailed] = previous; resolve(true);
             };
-            scope.onReward = () => finish(true); scope.onAdClosed = () => finish(false); scope.onAdFailed = () => finish(false);
-            try { java.showVideo(); } catch (error) { console.warn("Android rewarded ad failed", error); finish(false); }
+            scope.onReward = finish; scope.onAdClosed = finish; scope.onAdFailed = finish;
+            try { java.showVideo(); } catch (error) { console.warn("Android rewarded ad failed", error); finish(); }
         });
     }
     public canOpenPrivacyContract(): boolean { return false; }
@@ -95,7 +97,7 @@ class AndroidPlatform implements PlatformAdapter {
     public exitGame(): boolean { try { const exit = this.bridge()?.exitGame; if (!exit) return false; exit(); return true; } catch { return false; } }
     public showBanner(): void { this.call("showBanner"); }
     public hideBanner(): void { this.call("hideBanner"); }
-    private bridge(): AndroidBridge | undefined { return (window as RewardWindow).cocosJava; }
+    private bridge(): AndroidBridge | undefined { return androidBridge(); }
     private call(method: "showBanner" | "hideBanner"): void { try { this.bridge()?.[method]?.(); } catch (error) { console.warn(`Android ${method} failed`, error); } }
 }
 
@@ -158,15 +160,21 @@ function showMiniGameReward(api: MiniGameApi, adUnitId: string): Promise<boolean
     });
 }
 
+function androidBridge(): AndroidBridge | undefined {
+    if (typeof window === "undefined") return undefined;
+    const scope = window as RewardWindow;
+    return scope.cocosjava ?? scope.cocosJava;
+}
+
 function createPlatform(): PlatformAdapter {
+    if (androidBridge()) return new AndroidPlatform();
     if (typeof tt !== "undefined") return new DouyinPlatform();
     if (typeof wx !== "undefined") return new WeChatPlatform();
-    if (typeof window !== "undefined" && (window as RewardWindow).cocosJava) return new AndroidPlatform();
     return new BrowserPlatform();
 }
 
 export class GamePlatform {
-    private static readonly adapter = createPlatform();
+    private static get adapter(): PlatformAdapter { return createPlatform(); }
     public static platformName(): PlatformAdapter["name"] { return this.adapter.name; }
     public static canShare(): boolean { return GAME_PLATFORM_CONFIG.shareEnabled && this.adapter.canShare(); }
     public static share(options?: ShareOptions): boolean { return this.adapter.share(options); }

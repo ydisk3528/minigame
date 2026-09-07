@@ -58,16 +58,10 @@ export class ThemeConfig {
     public static async applyScene(scene: Laya.Scene): Promise<void> {
         const folder = THEMES[this.currentTheme].backgroundFolder;
         const backgroundPath = `${folder}/game_background.png`;
-        const foregroundPath = `${folder}/warrior.png`;
         await Laya.loader.loadPackage(folder);
-        const [backgroundTexture, foregroundTexture] = await Promise.all([
-            Laya.loader.load(backgroundPath),
-            Laya.loader.load(foregroundPath),
-        ]);
+        const backgroundTexture = await Laya.loader.load(backgroundPath);
         const background = scene.getChildByName("Background") as Laya.GImage;
         if (background) background.texture = backgroundTexture;
-        const foreground = scene.getChildByName("ThemeForeground") as Laya.Sprite;
-        if (foreground) foreground.texture = foregroundTexture;
     }
 
     public static async preload(): Promise<void> {

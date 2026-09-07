@@ -13,7 +13,7 @@
     {
       "_$type": "4c2fd2a2-b886-41a0-8f8f-21925821fa7c",
       "scriptPath": "../src/game/ThemeSelector.ts",
-      "theme": "mahjong"
+      "theme": "default"
     }
   ],
   "_$child": [

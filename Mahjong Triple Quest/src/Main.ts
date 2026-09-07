@@ -1,4 +1,5 @@
 import { MahjongSave } from "./game/MahjongSave";
+import { showRewardNotice } from "./game/RewardNotice";
 import { GameContext, MahjongGame } from "./game/MahjongGame";
 import { GuideSystem } from "./game/GuideSystem";
 import { TaskDefinition, TaskSystem } from "./game/TaskSystem";
@@ -371,13 +372,14 @@ async function showDaily(scene: Laya.Scene, refreshHomeCoins: () => void): Promi
     bindPress(doubleClaim, () => {
         if (adPending || !MahjongSave.canClaimDaily()) return;
         adPending = true; refresh("PLAYING REWARDED AD...");
-        void GamePlatform.showRewardVideo().then((rewarded) => {
+        void GamePlatform.showRewardVideo().then(async (rewarded) => {
             adPending = false;
             if (panel.destroyed) return;
             const amount = rewarded ? MahjongSave.claimDailyReward(2) : 0;
             if (amount) {
                 requireSound(scene, "CoinReward").play();
                 refresh(uiText(`${amount} COINS COLLECTED`));
+                await showRewardNotice(contentRoot(scene), uiText(`${amount} COINS COLLECTED`));
             } else refresh("WATCH THE FULL AD TO GET 2X");
         });
     }, requireSound(scene, "ButtonClick"));

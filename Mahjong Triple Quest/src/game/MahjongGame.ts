@@ -6,6 +6,7 @@ import { GamePlatform } from "../platform/GamePlatform";
 import { localizeTree, uiText } from "../platform/UiText";
 import { ThemeSystem } from "./ThemeSystem";
 import { GuideSystem } from "./GuideSystem";
+import { showRewardNotice } from "./RewardNotice";
 
 interface TileState extends TilePlacement { view: Laya.Sprite; }
 interface Navigation { home: () => void; levels: () => void; restart: () => void; next: (() => void) | null; goTo: (level: number) => void; }
@@ -259,7 +260,10 @@ export class MahjongGame {
             this.propAdClaimed = true;
             this.freePropCounts[type]++;
             this.propCounts[type]++;
-            this.showStatus("FREE PROP +1");
+            this.refreshPropLabels();
+            this.adPending = true;
+            try { await showRewardNotice(this.contentRoot, `${uiText("REWARD COLLECTED")}\n${uiText("FREE PROP +1")}`); }
+            finally { this.adPending = false; }
         }
         this.refreshPropLabels();
     }
@@ -338,7 +342,10 @@ export class MahjongGame {
         returned.forEach((tile) => { this.reparentAtSamePosition(tile.view, this.boardLayer); this.board.push(tile); });
         await Promise.all([this.arrangeSlots(), ...returned.map((tile) => this.tween(tile.view, { x: tile.x, y: tile.y, alpha: 1, scaleX: 1, scaleY: 1 }, 220, Laya.Ease.quadOut))]);
         this.failureReason = "slots"; this.finished = false;
-        this.recalculateBlocked(); this.refreshLimit(); panel.destroy(); this.busy = false; this.showStatus("CONTINUE");
+        this.recalculateBlocked(); this.refreshLimit(); panel.destroy();
+        await showRewardNotice(this.contentRoot, "REVIVE SUCCESSFUL");
+        if (this.scene.destroyed) return;
+        this.busy = false;
         if (this.level.limitType === "time") Laya.timer.loop(1000, this, this.tickLimit);
     }
 
