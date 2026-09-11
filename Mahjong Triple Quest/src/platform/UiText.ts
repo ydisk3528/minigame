@@ -1,4 +1,4 @@
-export type UiLanguage = "" | "en" | "id" | "th" | "ja" | "fr";
+export type UiLanguage = "" | "en" | "id" | "th" | "ja" | "fr" | "my";
 
 let currentLanguage: UiLanguage = "";
 
@@ -245,25 +245,67 @@ Object.assign(FR, {
     "Claim daily coins here, or watch an ad to double the reward.": "Récupérez vos pièces quotidiennes ici ou regardez une pub pour doubler la récompense.",
 });
 
-const PACKS: Record<Exclude<UiLanguage, "" | "en">, Record<string, string>> = { id: ID, th: TH, ja: JA, fr: FR };
+const MY: Record<string, string> = {
+    "REVIVE SUCCESSFUL": "ပြန်လည်ရှင်သန်မှု အောင်မြင်သည်",
+    "Mahjong Triple Quest": "မာကျောက် သုံးချပ်တွဲခရီး", "MAHJONG": "မာကျောက်", "TRIPLE QUEST": "သုံးချပ်တွဲခရီး", "PICK · SLOT · MATCH": "ရွေး · ထည့် · တွဲ",
+    "PLAY": "ကစားမည်", "SETTINGS": "ဆက်တင်များ", "SHOP": "ဆိုင်", "DAILY": "နေ့စဉ်ဆု", "SHARE": "မျှဝေမည်", "TASKS": "တာဝန်များ", "CHALLENGE": "နေ့စဉ်စိန်ခေါ်မှု", "THEMES": "အပြင်အဆင်များ", "DECOR": "အလှဆင်",
+    "LEVEL": "အဆင့်", "COINS": "ဒင်္ဂါး", "OWNED": "ပိုင်ဆိုင်", "CLAIM": "ရယူမည်", "WATCH AD · GET": "ကြော်ငြာကြည့် · ရယူ", "DAY": "နေ့", "COMPLETE": "ပြီးဆုံး", "COMBO": "ဆက်တိုက်တွဲမှု",
+    "CLEAR EVERY MAHJONG STACK": "မာကျောက်ချပ်အားလုံးကို ရှင်းပါ", "SELECT LEVEL": "အဆင့်ရွေးပါ", "CLEAR THIS LEVEL TO UNLOCK THE NEXT": "နောက်အဆင့်ဖွင့်ရန် ဤအဆင့်ကို အောင်မြင်ပါ",
+    "SCORE": "ရမှတ်", "TIME": "အချိန်", "MOVES": "ရွှေ့ကွက်", "TIME UP": "အချိန်ကုန်ပြီ", "OUT OF MOVES": "ရွှေ့ကွက်ကုန်ပြီ", "UNDO": "ပြန်ယူ", "SHUFFLE": "ရောမွှေ", "MOVE OUT": "ဖယ်ထုတ်", "HINT": "အရိပ်အမြွက်",
+    "CURRENT": "လက်ရှိ", "COMPLETED": "ပြီးဆုံးပြီ", "LOCKED": "မဖွင့်ရသေး", "LEVEL COMPLETE": "အဆင့်အောင်မြင်ပြီ", "NO SPACE": "နေရာပြည့်ပြီ", "NEXT LEVEL": "နောက်အဆင့်", "RESTART": "ပြန်စမည်", "LEVEL SELECT": "အဆင့်ရွေးချယ်မှု",
+    "NO MORE CONTINUES": "ဆက်ကစားခွင့် ကုန်ပြီ", "WATCH AD · CONTINUE": "ကြော်ငြာကြည့် · ဆက်ကစား", "CLOSE": "ပိတ်မည်", "MUSIC AND SOUND": "တေးဂီတနှင့် အသံ",
+    "WATCH AD · +2 MOVES": "ကြော်ငြာကြည့် · +2 ကွက်", "WATCH AD · +30 SECONDS": "ကြော်ငြာကြည့် · +30 စက္ကန့်", "MUSIC: ON": "တေးဂီတ: ဖွင့်", "MUSIC: OFF": "တေးဂီတ: ပိတ်", "SOUND: ON": "အသံ: ဖွင့်", "SOUND: OFF": "အသံ: ပိတ်",
+    "DAILY REWARD": "နေ့စဉ်ဆုလာဘ်", "WATCH AN AD FOR 2X": "ဆုနှစ်ဆရရန် ကြော်ငြာကြည့်ပါ", "YOUR DAILY COINS ARE READY": "နေ့စဉ်ဒင်္ဂါးများ ရယူနိုင်ပြီ", "COMING SOON": "မကြာမီလာမည်", "GOT IT": "နားလည်ပြီ",
+    "CLAIMED TODAY": "ယနေ့ ရယူပြီးပြီ", "COME BACK TOMORROW": "မနက်ဖြန် ပြန်လာပါ", "PLAYING REWARDED AD...": "ဆုရကြော်ငြာ ပြသနေသည်…", "WATCH THE FULL AD TO GET 2X": "ဆုနှစ်ဆရရန် ကြော်ငြာအဆုံးထိ ကြည့်ပါ",
+    "NOT ENOUGH COINS": "ဒင်္ဂါး မလုံလောက်ပါ", "SPECIAL DRAGONS": "အထူးနဂါးချပ်များ", "SEQUENCE": "အစဉ်လိုက်တွဲ", "MATCH 3": "သုံးချပ်တွဲ", "FREE PROP +1": "အခမဲ့ပစ္စည်း +1",
+    "NO SPACE. TRY AGAIN": "နေရာပြည့်ပြီ။ ပြန်ကြိုးစားပါ", "LOADING REWARDED AD...": "ကြော်ငြာ ဖွင့်နေသည်…", "TIME UP. TRY AGAIN": "အချိန်ကုန်ပြီ။ ပြန်ကြိုးစားပါ", "OUT OF MOVES. TRY AGAIN": "ရွှေ့ကွက်ကုန်ပြီ။ ပြန်ကြိုးစားပါ",
+    "AD NOT AVAILABLE. TRY AGAIN": "ကြော်ငြာ မရနိုင်ပါ။ ပြန်ကြိုးစားပါ", "CONTINUE": "ဆက်ကစားမည်", "TAP A FREE TILE": "မဖုံးနေသောချပ်ကို နှိပ်ပါ", "TAP TWO MORE MATCHING TILES": "တူညီသောချပ် နောက်နှစ်ချပ်ကို နှိပ်ပါ",
+    "THREE MATCHING TILES CLEAR AUTOMATICALLY": "တူညီသော သုံးချပ် အလိုအလျောက်ပျောက်မည်", "MATCH COMPLETE! ONLY 7 SLOTS": "တွဲပြီးပြီ။ နေရာ 7 ခုသာရှိသည်",
+    "UNDO +1": "ပြန်ယူ +1", "SHUFFLE +1": "ရောမွှေ +1", "MOVE +1": "ဖယ်ထုတ် +1", "HINT +1": "အရိပ်အမြွက် +1", "FREEZE +1": "အချိန်ရပ် +1",
+    "TAP ? TO PREVIEW A PROP": "ပစ္စည်းအသုံးပြုပုံကြည့်ရန် ? ကိုနှိပ်ပါ", "PROP GUIDE": "ပစ္စည်းလမ်းညွှန်", "ANIMATED PREVIEW": "လှုပ်ရှားမှု နမူနာ",
+    "RETURNS THE LAST SELECTED TILE TO THE BOARD.": "နောက်ဆုံးရွေးထားသောချပ်ကို ဘုတ်ပေါ်ပြန်တင်သည်။", "REARRANGES ALL REMAINING TILES ON THE BOARD.": "ဘုတ်ပေါ်ရှိ ကျန်ချပ်အားလုံးကို ပြန်စီသည်။",
+    "MOVES UP TO THREE SLOT TILES TO A TEMPORARY AREA.": "နေရာထဲမှ သုံးချပ်အထိ ယာယီနေရာသို့ ရွှေ့သည်။", "HIGHLIGHTS TILES THAT CAN FORM A MATCH.": "တွဲနိုင်သောချပ်များကို မီးမောင်းထိုးပြသည်။",
+    "PRIVACY & TERMS": "ကိုယ်ရေးအချက်အလက်နှင့် စည်းကမ်းများ", "PRIVACY & USER AGREEMENT": "ကိုယ်ရေးအချက်အလက်နှင့် အသုံးပြုသူသဘောတူညီချက်", "VERSION 1": "ဗားရှင်း 1",
+    "PLEASE READ BEFORE CONTINUING": "ဆက်မလုပ်မီ ဖတ်ရှုပါ", "YOU CAN REVIEW THIS AGREEMENT AT ANY TIME": "ဤသဘောတူညီချက်ကို အချိန်မရွေး ပြန်ကြည့်နိုင်သည်", "VIEW PLATFORM PRIVACY GUIDE": "ပလက်ဖောင်း ကိုယ်ရေးအချက်အလက်လမ်းညွှန်",
+    "CONFIRM": "အတည်ပြု", "LANGUAGE": "ဘာသာစကား", "TAP TO CHOOSE, THEN CONFIRM": "ဘာသာစကားရွေးပြီး အတည်ပြုပါ", "SELECT LANGUAGE": "ဘာသာစကားရွေးပါ", "CANCEL": "မလုပ်တော့ပါ",
+    "CONSENT IS REQUIRED TO CONTINUE. CLOSE THE GAME TO EXIT.": "ဆက်ကစားရန် သဘောတူရပါမည်။ ထွက်ရန် ဂိမ်းကိုပိတ်ပါ။",
+    "TASKS & ACHIEVEMENTS": "တာဝန်နှင့် အောင်မြင်မှုများ", "DAILY TASKS": "နေ့စဉ်တာဝန်များ", "ACHIEVEMENTS": "အောင်မြင်မှုများ", "CLAIMED": "ရယူပြီး", "IN PROGRESS": "လုပ်ဆောင်ဆဲ", "REWARD COLLECTED": "ဆုရယူပြီးပြီ",
+    "DAILY CHALLENGE": "နေ့စဉ်စိန်ခေါ်မှု", "CHALLENGE COMPLETE": "စိန်ခေါ်မှု အောင်မြင်ပြီ", "SPECIAL LAYOUT": "အထူးအခင်းအကျင်း", "TODAY'S REWARD COLLECTED": "ယနေ့ဆု ရယူပြီးပြီ",
+    "COMPLETE ONCE TO EARN THE REWARD": "ဆုရရန် တစ်ကြိမ်အောင်မြင်ပါ", "PLAY AGAIN": "ထပ်ကစားမည်", "START CHALLENGE": "စိန်ခေါ်မှု စမည်", "HOME": "ပင်မစာမျက်နှာ", "SELECTED": "ရွေးထားသည်", "SELECT": "ရွေးမည်",
+    "THEME SELECTED": "အပြင်အဆင် ရွေးပြီးပြီ", "DECORATIONS & BUFFS": "အလှဆင်နှင့် အားဖြည့်မှုများ", "ACHIEVEMENT REWARD": "အောင်မြင်မှုဆု", "UNLOCKED BY ACHIEVEMENT": "အောင်မြင်မှုဖြင့် ဖွင့်နိုင်သည်", "FREEZE": "အချိန်ရပ်",
+    "TIME LEVELS ONLY": "အချိန်ကန့်သတ်အဆင့်များသာ", "TIME FROZEN · 20S": "အချိန်ရပ် · 20 စက္ကန့်", "FREEZES THE LEVEL TIMER FOR 20 SECONDS.": "အဆင့်၏ အချိန်ကို 20 စက္ကန့်ရပ်ထားသည်။", "NEXT": "ရှေ့ဆက်", "START PLAYING": "စကစားမည်",
+    "Monday: Complete 1 Level": "တနင်္လာ: 1 အဆင့်အောင်မြင်ပါ", "Tuesday: Make 10 Matches": "အင်္ဂါ: 10 ကြိမ်တွဲပါ", "Wednesday: Use Hint Once": "ဗုဒ္ဓဟူး: အရိပ်အမြွက် 1 ကြိမ်သုံးပါ",
+    "Thursday: Earn 5 Stars": "ကြာသပတေး: ကြယ် 5 ပွင့်ရယူပါ", "Friday: Reach a 2 Combo": "သောကြာ: ဆက်တိုက် 2 ကြိမ်တွဲပါ", "Saturday: Use Freeze Once": "စနေ: အချိန်ရပ် 1 ကြိမ်သုံးပါ", "Sunday: Complete 3 Levels": "တနင်္ဂနွေ: 3 အဆင့်အောင်မြင်ပါ",
+    "First Clear": "ပထမဆုံးအောင်မြင်မှု", "Make 50 Matches": "50 ကြိမ်တွဲပါ", "Earn 15 Stars": "ကြယ် 15 ပွင့်ရယူပါ", "Reach a 2 Combo": "ဆက်တိုက် 2 ကြိမ်တွဲပါ", "Use Hint 3 Times": "အရိပ်အမြွက် 3 ကြိမ်သုံးပါ",
+    "Clear 10 Levels: Unlock Jade Decor": "10 အဆင့်အောင်မြင်: ကျောက်စိမ်းအလှဆင်ဖွင့်", "Use Freeze 5 Times": "အချိန်ရပ် 5 ကြိမ်သုံးပါ", "Make 200 Matches": "200 ကြိမ်တွဲပါ", "Earn 30 Stars: Unlock Amber Decor": "ကြယ် 30 ပွင့်: ပယင်းအလှဆင်ဖွင့်", "Complete 50 Levels": "50 အဆင့်အောင်မြင်ပါ",
+    "Classic": "ရိုးရာ", "Jade Buttons · Hint Buff": "ကျောက်စိမ်းခလုတ် · အရိပ်အမြွက်အားဖြည့်", "Amber Tiles · Freeze Buff": "ပယင်းချပ် · အချိန်ရပ်အားဖြည့်",
+    "Tap three matching One Characters. The set clears automatically.": "တူညီသော တစ်ဝမ်ချပ်သုံးချပ်ကို နှိပ်ပါ။ အလိုအလျောက်ပျောက်မည်။",
+    "Tap Hint to highlight tiles that can form a match.": "တွဲနိုင်သောချပ်များကို ပြရန် အရိပ်အမြွက်ကို နှိပ်ပါ။",
+    "Daily Challenge offers one fixed special layout and a coin reward each day.": "နေ့စဉ်စိန်ခေါ်မှုတွင် နေ့တိုင်း အထူးအခင်းအကျင်းတစ်ခုနှင့် ဒင်္ဂါးဆု ရနိုင်သည်။",
+    "Unlock themes with coins. Themes only change the appearance.": "ဒင်္ဂါးဖြင့် အပြင်အဆင်များဖွင့်ပါ။ အပြင်အဆင်သည် ရုပ်သွင်ကိုသာ ပြောင်းလဲသည်။",
+    "Tasks and achievements reward level clears, matches and prop use.": "အဆင့်အောင်မြင်ခြင်း၊ ချပ်တွဲခြင်းနှင့် ပစ္စည်းသုံးခြင်းတို့အတွက် တာဝန်နှင့် အောင်မြင်မှုဆုများ ရနိုင်သည်။",
+    "Claim daily coins here, or watch an ad to double the reward.": "နေ့စဉ်ဒင်္ဂါးကို ဤနေရာတွင်ရယူပါ သို့မဟုတ် ဆုနှစ်ဆရရန် ကြော်ငြာကြည့်ပါ။",
+};
 
-export function uiText(english: string): string {
-    if (currentLanguage === "en") return english;
-    const pack = currentLanguage === "" ? ZH : PACKS[currentLanguage];
+const PACKS: Record<Exclude<UiLanguage, "" | "en">, Record<string, string>> = { id: ID, th: TH, ja: JA, fr: FR, my: MY };
+
+export function uiText(english: string, selectedLanguage: UiLanguage = currentLanguage): string {
+    if (selectedLanguage === "en") return english;
+    const pack = selectedLanguage === "" ? ZH : PACKS[selectedLanguage];
     const exact = pack[english];
     if (exact) return exact;
-    const language: "zh" | "id" | "th" | "ja" | "fr" = currentLanguage === "" ? "zh" : currentLanguage;
-    let match = english.match(/^LEVEL (\d+)$/); if (match) return ({ zh: `关卡 ${match[1]}`, id: `LEVEL ${match[1]}`, th: `ด่าน ${match[1]}`, ja: `レベル ${match[1]}`, fr: `NIVEAU ${match[1]}` })[language];
-    match = english.match(/^COINS (\d+)$/); if (match) return `${uiText("COINS")} ${match[1]}`;
-    match = english.match(/^OWNED (\d+)$/); if (match) return `${uiText("OWNED")} ${match[1]}`;
-    match = english.match(/^(\d+) COINS$/); if (match) return `${match[1]} ${uiText("COINS")}`;
-    match = english.match(/^D(\d+)$/); if (match) return ({ zh: `第${match[1]}天`, id: `H${match[1]}`, th: `วันที่ ${match[1]}`, ja: `${match[1]}日目`, fr: `J${match[1]}` })[language];
-    match = english.match(/^DAY (\d+) OF 7$/); if (match) return ({ zh: `第 ${match[1]} / 7 天`, id: `HARI ${match[1]} DARI 7`, th: `วันที่ ${match[1]} / 7`, ja: `${match[1]} / 7日目`, fr: `JOUR ${match[1]} SUR 7` })[language];
-    match = english.match(/^DAY (\d+) COMPLETE$/); if (match) return ({ zh: `第 ${match[1]} 天已完成`, id: `HARI ${match[1]} SELESAI`, th: `วันที่ ${match[1]} สำเร็จ`, ja: `${match[1]}日目 完了`, fr: `JOUR ${match[1]} TERMINÉ` })[language];
-    match = english.match(/^CLAIM (\d+)$/); if (match) return `${uiText("CLAIM")} ${match[1]}`;
-    match = english.match(/^WATCH AD · GET (\d+)$/); if (match) return `${uiText("WATCH AD · GET")} ${match[1]}`;
-    match = english.match(/^(\d+) COINS (COLLECTED|EARNED)$/); if (match) return `${match[1]} ${uiText("COINS")} · ${match[2] === "COLLECTED" ? uiText("CLAIMED") : uiText("REWARD COLLECTED")}`;
-    match = english.match(/^(\d+) LEVELS · SWIPE TO SCROLL$/); if (match) return ({ zh: `共 ${match[1]} 关 · 上下滑动`, id: `${match[1]} LEVEL · GESER UNTUK MENGGULIR`, th: `${match[1]} ด่าน · ปัดเพื่อเลื่อน`, ja: `${match[1]}レベル · スワイプで移動`, fr: `${match[1]} NIVEAUX · BALAYEZ POUR DÉFILER` })[language];
+    const language: "zh" | "id" | "th" | "ja" | "fr" | "my" = selectedLanguage === "" ? "zh" : selectedLanguage;
+    let match = english.match(/^LEVEL (\d+)$/); if (match) return ({ zh: `关卡 ${match[1]}`, id: `LEVEL ${match[1]}`, th: `ด่าน ${match[1]}`, ja: `レベル ${match[1]}`, fr: `NIVEAU ${match[1]}`, my: `အဆင့် ${match[1]}` })[language];
+    match = english.match(/^COINS (\d+)$/); if (match) return `${uiText("COINS", selectedLanguage)} ${match[1]}`;
+    match = english.match(/^OWNED (\d+)$/); if (match) return `${uiText("OWNED", selectedLanguage)} ${match[1]}`;
+    match = english.match(/^(\d+) COINS$/); if (match) return `${match[1]} ${uiText("COINS", selectedLanguage)}`;
+    match = english.match(/^D(\d+)$/); if (match) return ({ zh: `第${match[1]}天`, id: `H${match[1]}`, th: `วันที่ ${match[1]}`, ja: `${match[1]}日目`, fr: `J${match[1]}`, my: `နေ့ ${match[1]}` })[language];
+    match = english.match(/^DAY (\d+) OF 7$/); if (match) return ({ zh: `第 ${match[1]} / 7 天`, id: `HARI ${match[1]} DARI 7`, th: `วันที่ ${match[1]} / 7`, ja: `${match[1]} / 7日目`, fr: `JOUR ${match[1]} SUR 7`, my: `7 ရက်အနက် ${match[1]} ရက်မြောက်` })[language];
+    match = english.match(/^DAY (\d+) COMPLETE$/); if (match) return ({ zh: `第 ${match[1]} 天已完成`, id: `HARI ${match[1]} SELESAI`, th: `วันที่ ${match[1]} สำเร็จ`, ja: `${match[1]}日目 完了`, fr: `JOUR ${match[1]} TERMINÉ`, my: `နေ့ ${match[1]} ပြီးဆုံးပြီ` })[language];
+    match = english.match(/^CLAIM (\d+)$/); if (match) return `${uiText("CLAIM", selectedLanguage)} ${match[1]}`;
+    match = english.match(/^WATCH AD · GET (\d+)$/); if (match) return `${uiText("WATCH AD · GET", selectedLanguage)} ${match[1]}`;
+    match = english.match(/^(\d+) COINS (COLLECTED|EARNED)$/); if (match) return `${match[1]} ${uiText("COINS", selectedLanguage)} · ${match[2] === "COLLECTED" ? uiText("CLAIMED", selectedLanguage) : uiText("REWARD COLLECTED", selectedLanguage)}`;
+    match = english.match(/^(\d+) LEVELS · SWIPE TO SCROLL$/); if (match) return ({ zh: `共 ${match[1]} 关 · 上下滑动`, id: `${match[1]} LEVEL · GESER UNTUK MENGGULIR`, th: `${match[1]} ด่าน · ปัดเพื่อเลื่อน`, ja: `${match[1]}レベル · スワイプで移動`, fr: `${match[1]} NIVEAUX · BALAYEZ POUR DÉFILER`, my: `${match[1]} အဆင့် · ရွှေ့ကြည့်ရန် ပွတ်ဆွဲပါ` })[language];
     return english;
 }
 
@@ -272,15 +314,15 @@ export function uiLanguage(): UiLanguage { return currentLanguage; }
 export function localizedText(english: string, chinese: string): string { return currentLanguage === "" ? chinese : uiText(english); }
 export function uiTextSelfCheck(): void {
     const previous = currentLanguage;
-    for (const language of ["id", "th", "ja", "fr"] as UiLanguage[]) {
+    for (const language of ["id", "th", "ja", "fr", "my"] as UiLanguage[]) {
         setUiLanguage(language);
         if (uiText("SETTINGS") === "SETTINGS" || uiText("COINS 2") === "COINS 2") throw new Error(`Missing ${language} UI translations`);
     }
     setUiLanguage(previous);
 }
 
-export function localizeTree(root: Laya.Node): void {
+export function localizeTree(root: Laya.Node, language: UiLanguage = currentLanguage): void {
     if (root.name === "DebugPanel") return;
-    if (root instanceof Laya.GTextField) root.text = uiText(root.text);
-    for (let index = 0; index < root.numChildren; index++) localizeTree(root.getChildAt(index));
+    if (root instanceof Laya.GTextField) root.text = uiText(root.text, language);
+    for (let index = 0; index < root.numChildren; index++) localizeTree(root.getChildAt(index), language);
 }

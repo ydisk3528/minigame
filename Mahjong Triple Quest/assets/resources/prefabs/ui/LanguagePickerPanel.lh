@@ -219,11 +219,48 @@
       ]
     },
     {
+      "_$id": "language-my",
+      "_$type": "Sprite",
+      "name": "BurmeseButton",
+      "x": 125,
+      "y": 815,
+      "width": 500,
+      "height": 76,
+      "_$child": [
+        {
+          "_$id": "language-myi",
+          "_$type": "GImage",
+          "name": "ButtonImage",
+          "x": 0,
+          "y": 0,
+          "width": 500,
+          "height": 76,
+          "src": "res://dc3998cf-766e-493d-83c3-2a271bab9f07",
+          "autoSize": false
+        },
+        {
+          "_$id": "language-myt",
+          "_$type": "GTextField",
+          "name": "Label",
+          "x": 0,
+          "y": 0,
+          "width": 500,
+          "height": 68,
+          "text": "မြန်မာ",
+          "fontSize": 23,
+          "color": "#3F6555",
+          "bold": true,
+          "align": "center",
+          "valign": "middle"
+        }
+      ]
+    },
+    {
       "_$id": "language-close",
       "_$type": "Sprite",
       "name": "CloseButton",
       "x": 215,
-      "y": 855,
+      "y": 955,
       "width": 320,
       "height": 88,
       "_$child": [

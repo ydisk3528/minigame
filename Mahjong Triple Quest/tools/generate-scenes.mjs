@@ -183,7 +183,8 @@ write("resources/prefabs/ui/LanguagePickerPanel.lh", { ...sprite("language-picke
   button("language-ja", "JapaneseButton", 125, 515, 500, 76, "assets/resources/images/ui/button_secondary.png", "日本語", 23),
   button("language-fr", "FrenchButton", 125, 615, 500, 76, "assets/resources/images/ui/button_secondary.png", "Français", 23),
   button("language-en", "EnglishButton", 125, 715, 500, 76, "assets/resources/images/ui/button_secondary.png", "English", 23),
-  button("language-close", "CloseButton", 215, 855, 320, 88, "assets/resources/images/ui/button_primary.png", "CANCEL", 24)
+  button("language-my", "BurmeseButton", 125, 815, 500, 76, "assets/resources/images/ui/button_secondary.png", "မြန်မာ", 23),
+  button("language-close", "CloseButton", 215, 955, 320, 88, "assets/resources/images/ui/button_primary.png", "CANCEL", 24)
 ]), _$ver: 1 }, "a2000020-2020-4020-8020-000000000020");
 
 write("resources/prefabs/ui/PrivacyPanel.lh", { ...sprite("privacy-root", "PrivacyPanel", 0, 0, 750, 1334, [

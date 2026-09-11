@@ -2,7 +2,7 @@ export interface TaskStats {
     levelsCompleted: number; starsEarned: number; matches: number; bestCombo: number;
     propsUsed: { undo: number; shuffle: number; move: number; hint: number; freeze: number };
 }
-export type SavedLanguage = "" | "en" | "id" | "th" | "ja" | "fr";
+export type SavedLanguage = "" | "en" | "id" | "th" | "ja" | "fr" | "my";
 export interface SaveData {
     highestCompleted: number; coins: number; musicEnabled: boolean; soundEnabled: boolean; language: SavedLanguage;
     dailyClaimDate: string; dailyStreak: number; privacyAcceptedVersion: string;
@@ -98,7 +98,7 @@ export class MahjongSave {
         const normalizeStats = (stats?: Partial<TaskStats>): TaskStats => ({ levelsCompleted: Math.max(0, Math.floor(Number(stats?.levelsCompleted) || 0)), starsEarned: Math.max(0, Math.floor(Number(stats?.starsEarned) || 0)), matches: Math.max(0, Math.floor(Number(stats?.matches) || 0)), bestCombo: Math.max(0, Math.floor(Number(stats?.bestCombo) || 0)), propsUsed: { undo: Math.max(0, Math.floor(Number(stats?.propsUsed?.undo) || 0)), shuffle: Math.max(0, Math.floor(Number(stats?.propsUsed?.shuffle) || 0)), move: Math.max(0, Math.floor(Number(stats?.propsUsed?.move) || 0)), hint: Math.max(0, Math.floor(Number(stats?.propsUsed?.hint) || 0)), freeze: Math.max(0, Math.floor(Number(stats?.propsUsed?.freeze) || 0)) } });
         const cleanIds = (items?: string[]): string[] => [...new Set((items ?? []).filter(item => typeof item === "string" && /^[a-z0-9_-]+$/i.test(item)))];
         const unlockedThemes = cleanIds(value.unlockedThemes); if (!unlockedThemes.includes("classic")) unlockedThemes.unshift("classic");
-        const supportedLanguages: SavedLanguage[] = ["en", "id", "th", "ja", "fr"];
+        const supportedLanguages: SavedLanguage[] = ["en", "id", "th", "ja", "fr", "my"];
         const language: SavedLanguage = supportedLanguages.indexOf(value.language ?? "") >= 0 ? value.language! : "";
         return { highestCompleted: Math.max(0, Math.floor(Number(value.highestCompleted) || 0)), coins: Math.max(0, Math.floor(Number(value.coins) || 0)), musicEnabled: value.musicEnabled !== false, soundEnabled: value.soundEnabled !== false, language, dailyClaimDate, dailyStreak: dailyClaimDate ? Math.max(1, Math.min(7, Math.floor(Number(value.dailyStreak) || 1))) : 0, privacyAcceptedVersion: value.privacyAcceptedVersion === PRIVACY_VERSION ? PRIVACY_VERSION : "", guideVersion: Math.max(0, Math.floor(Number(value.guideVersion) || 0)), guideStep: Math.max(0, Math.floor(Number(value.guideStep) || 0)), guideProgress: Math.max(0, Math.floor(Number(value.guideProgress) || 0)), dailyChallengeClaimDate: /^\d{4}-\d{1,2}-\d{1,2}$/.test(value.dailyChallengeClaimDate ?? "") ? value.dailyChallengeClaimDate! : "", selectedTheme: typeof value.selectedTheme === "string" ? value.selectedTheme : "classic", unlockedThemes, stats: normalizeStats(value.stats), dailyStatsDate: /^\d{4}-\d{1,2}-\d{1,2}$/.test(value.dailyStatsDate ?? "") ? value.dailyStatsDate! : "", dailyStats: normalizeStats(value.dailyStats), dailyTaskClaims: cleanIds(value.dailyTaskClaims), achievementClaims: cleanIds(value.achievementClaims),
             stars,
