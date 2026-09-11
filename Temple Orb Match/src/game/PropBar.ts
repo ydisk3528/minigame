@@ -120,10 +120,10 @@ export class PropBar {
         nameText.color = available ? "#FFFFFF" : "#888888";
         (view.button.getChildByName("ButtonImage") as Laya.GImage).color = available ? "#FFFFFF" : "#686868";
         const countText = view.button.getChildByName("CountText") as Laya.GTextField;
-        countText.text = `x${view.config.count}`;
-        countText.visible = available;
+        countText.text = !available && !GameSave.adsEnabled ? "FREE" : `x${view.config.count}`;
+        countText.visible = available || (!GameSave.adsEnabled && !view.rewardClaimed);
         const adIcon = view.button.getChildByName("AdIcon") as Laya.GImage;
-        adIcon.visible = !available && !view.rewardClaimed;
+        adIcon.visible = GameSave.adsEnabled && !available && !view.rewardClaimed;
         adIcon.color = "#FFFFFF";
         adIcon.alpha = 1;
         view.button.mouseEnabled = available || !view.rewardClaimed;

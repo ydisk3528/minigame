@@ -29,6 +29,8 @@ function javaBridge(): CocosJavaBridge | undefined {
 }
 
 export class GameSave {
+    // Temporarily disable ads; restore this flag to resume native ad calls.
+    public static readonly adsEnabled = false;
     private static data: SaveData;
 
     public static initialize(): void {
@@ -101,6 +103,7 @@ export class GameSave {
     }
 
     public static showRewardVideo(): Promise<boolean> {
+        if (!this.adsEnabled) return Promise.resolve(true);
         const bridge = javaBridge();
         const debugMock = typeof location !== "undefined"
             && new URLSearchParams(location.search).get("debug") === "1";
@@ -195,6 +198,7 @@ export class GameSave {
     }
 
     private static callJava(method: "showBanner" | "hideBanner"): void {
+        if (!this.adsEnabled) return;
         try {
             javaBridge()?.[method]?.();
         } catch (error) {

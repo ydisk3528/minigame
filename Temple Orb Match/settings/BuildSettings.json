@@ -9,23 +9,24 @@
     "res://91a20001-2222-4222-8222-000000000001"
   ],
   "enableVersion": true,
+  "enableFileConfigHash": true,
   "versionAlgorithm": "sha1",
   "versionTagLength": 16,
   "enableSubpackages": true,
   "subpackages": [
     {
       "path": "textures/gems/default",
-      "packAllAssets": true
-    },
-    {
-      "path": "textures/gems/mahjong"
+      "packAllAssets": true,
+      "autoLoad": true
     },
     {
       "path": "textures/backgrounds/default",
-      "packAllAssets": true
+      "packAllAssets": true,
+      "autoLoad": true
     }
   ],
   "web": {
+    "keepTextureSourceFile": true,
     "useSafeFileExtensions": true
   },
   "android": {

@@ -195,8 +195,8 @@ export class GameSession {
         title.color = "#E5D9FF";
         score.text = `FINAL SCORE  ${this.score}`;
         goals.text = this.level.goals.map((goal, index) => this.goalLabel(goal, index)).join("\n");
-        label.text = this.continued ? "TRY AGAIN" : "WATCH AD  +5 MOVES";
-        adIcon.visible = !this.continued;
+        label.text = this.continued ? "TRY AGAIN" : GameSave.adsEnabled ? "WATCH AD  +5 MOVES" : "FREE  +5 MOVES";
+        adIcon.visible = GameSave.adsEnabled && !this.continued;
         adStatus.text = this.continued ? "CONTINUE ALREADY USED" : "ONE CONTINUE AVAILABLE THIS ROUND";
         retry.visible = !this.continued;
         panel.pivot(540, 960);
@@ -214,8 +214,8 @@ export class GameSession {
             if (this.adPending || this.continued) return;
             this.adPending = true;
             button.mouseEnabled = false;
-            label.text = "LOADING AD...";
-            adStatus.text = "WATCH THE FULL VIDEO TO RECEIVE +5 MOVES";
+            label.text = GameSave.adsEnabled ? "LOADING AD..." : "CONTINUING...";
+            adStatus.text = GameSave.adsEnabled ? "WATCH THE FULL VIDEO TO RECEIVE +5 MOVES" : "";
             GameSave.hideBanner();
             const rewarded = await GameSave.showRewardVideo();
             this.adPending = false;
