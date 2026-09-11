@@ -1,0 +1,2329 @@
+{
+  "prefabs": [
+    {
+      "name": "MainPlayer",
+      "uuid": "02c68d52-835c-492c-8892-33e791c41580",
+      "path": "assets\\prefabs\\original\\MainPlayer.prefab",
+      "objects": 32
+    },
+    {
+      "name": "ReplayBoard",
+      "uuid": "0f177e8a-39f4-46ae-9664-49557b6de481",
+      "path": "assets\\prefabs\\original\\ReplayBoard.prefab",
+      "objects": 15
+    },
+    {
+      "name": "ReplayNode",
+      "uuid": "131739b8-0e29-4f4b-b510-9edf821f513b",
+      "path": "assets\\prefabs\\original\\ReplayNode.prefab",
+      "objects": 14
+    },
+    {
+      "name": "FX_GoldHeap",
+      "uuid": "186236ce-31d2-4cce-a498-14f8d347acbf",
+      "path": "assets\\prefabs\\original\\FX_GoldHeap.prefab",
+      "objects": 4
+    },
+    {
+      "name": "Players",
+      "uuid": "22f6b36f-01b1-44c7-903d-084c0fa0610f",
+      "path": "assets\\prefabs\\original\\Players.prefab",
+      "objects": 32
+    },
+    {
+      "name": "btn_root_RM",
+      "uuid": "58704092-3134-46a3-a45d-4469ce1d0caf",
+      "path": "assets\\prefabs\\original\\btn_root_RM.prefab",
+      "objects": 81
+    },
+    {
+      "name": "LobbyBar",
+      "uuid": "5f5a26a3-15f6-43be-8d92-4d28d1559cbe",
+      "path": "assets\\prefabs\\original\\LobbyBar.prefab",
+      "objects": 217
+    },
+    {
+      "name": "switchRoom_RM",
+      "uuid": "71c0dba3-90e7-43e0-bf7d-460a50166f82",
+      "path": "assets\\prefabs\\original\\switchRoom_RM.prefab",
+      "objects": 17
+    },
+    {
+      "name": "banner",
+      "uuid": "795398b2-f149-436c-b4c9-3bd868e44a35",
+      "path": "assets\\prefabs\\original\\banner.prefab",
+      "objects": 27
+    },
+    {
+      "name": "Compliment",
+      "uuid": "79cff449-eb05-46d7-9bcf-fe33649ccbd8",
+      "path": "assets\\prefabs\\original\\Compliment.prefab",
+      "objects": 233
+    },
+    {
+      "name": "AllPacked",
+      "uuid": "7f31ac05-8ba8-498a-a422-63c250f81e0d",
+      "path": "assets\\prefabs\\original\\AllPacked.prefab",
+      "objects": 22
+    },
+    {
+      "name": "Card_1",
+      "uuid": "96c88e08-52ff-4f56-a4f3-ec4a251d56a9",
+      "path": "assets\\prefabs\\original\\Card_1.prefab",
+      "objects": 19
+    },
+    {
+      "name": "s_card",
+      "uuid": "9a1f708f-bbd0-4a85-b376-07d99dbceda9",
+      "path": "assets\\prefabs\\original\\s_card.prefab",
+      "objects": 10
+    },
+    {
+      "name": "GameView",
+      "uuid": "9c2eeb32-0d3b-47dc-9a4c-b7c44d34b56d",
+      "path": "assets\\prefabs\\original\\GameView.prefab",
+      "objects": 1317
+    },
+    {
+      "name": "InfoBtn",
+      "uuid": "a3683719-ba0a-4450-a7f6-6ddc849049b0",
+      "path": "assets\\prefabs\\original\\InfoBtn.prefab",
+      "objects": 4
+    },
+    {
+      "name": "PlayerWinHint",
+      "uuid": "a6d4fb55-dce5-4cca-ba90-a9f9be825538",
+      "path": "assets\\prefabs\\original\\PlayerWinHint.prefab",
+      "objects": 7
+    },
+    {
+      "name": "finger",
+      "uuid": "aa4b22ac-41e1-45fd-9dc2-a471c39879c6",
+      "path": "assets\\prefabs\\original\\finger.prefab",
+      "objects": 2
+    },
+    {
+      "name": "PageInside",
+      "uuid": "c0aaad66-1bec-4d4b-8136-ec12211bb4bf",
+      "path": "assets\\prefabs\\original\\PageInside.prefab",
+      "objects": 8
+    },
+    {
+      "name": "Card_FX",
+      "uuid": "c9b6fec5-d7b3-472e-b058-6bdca298e9f7",
+      "path": "assets\\prefabs\\original\\Card_FX.prefab",
+      "objects": 12
+    },
+    {
+      "name": "Card_set",
+      "uuid": "e1cae5b1-1fb0-4733-be61-668c9f670e69",
+      "path": "assets\\prefabs\\original\\Card_set.prefab",
+      "objects": 21
+    },
+    {
+      "name": "Lobby",
+      "uuid": "e8bbeedb-a478-4738-b717-0c49fb7edfc0",
+      "path": "assets\\prefabs\\original\\Lobby.prefab",
+      "objects": 49
+    },
+    {
+      "name": "StartGame",
+      "uuid": "ec47f22f-f100-4daa-b160-1b47ba2508b6",
+      "path": "assets\\prefabs\\original\\StartGame.prefab",
+      "objects": 23
+    },
+    {
+      "name": "Card_replay",
+      "uuid": "f64415fa-cae2-4c65-b62e-6c72381b9651",
+      "path": "assets\\prefabs\\original\\Card_replay.prefab",
+      "objects": 9
+    }
+  ],
+  "sprites": [
+    {
+      "name": "LobbyIcon_05",
+      "sourceUuid": "003fa158-0a19-4858-a144-2654ea265184@f9941",
+      "uuid": "08d40e9e-10a4-57d6-95dc-8fd5cbacfaf2@f9941"
+    },
+    {
+      "name": "Level1_Btn_06_2",
+      "sourceUuid": "00e98ea8-cbf9-4c32-b1fb-266b763bfce4@f9941",
+      "uuid": "e03f8b68-2bf4-54aa-91d6-00572f8931be@f9941"
+    },
+    {
+      "name": "LobbyIcon_12",
+      "sourceUuid": "0241b42c-d73d-45bc-b0b6-ec651f535271@f9941",
+      "uuid": "4e3b7e36-d062-58ba-a443-82fc1b76afcf@f9941"
+    },
+    {
+      "name": "PlayerPoint_Num_0",
+      "sourceUuid": "044b2edd-c9f5-4886-8d43-681894789773@f9941",
+      "uuid": "a496ee3f-a616-5a20-9801-8de6574037a5@f9941"
+    },
+    {
+      "name": "Btn_drop05",
+      "sourceUuid": "04871581-d2ff-40bd-ba85-5d809095fbb8@f9941",
+      "uuid": "e280a095-592f-5ab2-9a63-3fdc3b63d647@f9941"
+    },
+    {
+      "name": "TableWM_01",
+      "sourceUuid": "05250358-b159-488c-a73e-886bcaad8fa6@f9941",
+      "uuid": "2ec35297-f72a-5390-8bdf-60e8caf05da9@f9941"
+    },
+    {
+      "name": "Flare",
+      "sourceUuid": "063a0606-fed7-4f6e-8a4d-e53a7c7736a0@f9941",
+      "uuid": "ee11eae7-aeb5-51fb-bd0c-a3e68480d3ce@f9941"
+    },
+    {
+      "name": "Games_hi",
+      "sourceUuid": "0860a631-ab35-4b57-8297-ea206527abc3@f9941",
+      "uuid": "d24a1b08-a687-5a97-b396-fd29c47829de@f9941"
+    },
+    {
+      "name": "UpFrame_S",
+      "sourceUuid": "08b26b21-a7f3-4ebe-9676-99f5a052541e@f9941",
+      "uuid": "2c1d3c3f-fc5d-5edd-a3c9-da99eda31719@f9941"
+    },
+    {
+      "name": "FX_HalfCircle_01",
+      "sourceUuid": "11cf4b17-0e22-4fd4-9ca0-da6ede067b4f@f9941",
+      "uuid": "9dfccd5f-4e95-53b2-8d65-9bfabc79fcc2@f9941"
+    },
+    {
+      "name": "BetLv8",
+      "sourceUuid": "11f894cf-5522-4b90-b5cf-cf0d120e2da5@f9941",
+      "uuid": "6dfada7f-8899-554f-8e7c-8c6fe1b478dc@f9941"
+    },
+    {
+      "name": "Btn_05",
+      "sourceUuid": "12ba0f03-adfa-4a6c-ab7c-7329df63f6c0@f9941",
+      "uuid": "20092910-632d-5805-8ad9-113eb17043a7@f9941"
+    },
+    {
+      "name": "coin_silver",
+      "sourceUuid": "132984c6-a276-450e-8327-309fe3027998@f9941",
+      "uuid": "9d793bcc-5edf-5d08-b5f1-f69c0e47912b@f9941"
+    },
+    {
+      "name": "speed02",
+      "sourceUuid": "14959fd6-67bc-418a-a99f-2832466ffecd@f9941",
+      "uuid": "762e3c0b-1f98-5a36-b4c9-877edd14559c@f9941"
+    },
+    {
+      "name": "Btn_IndiaHall_02",
+      "sourceUuid": "176e8185-2ebf-457b-acce-897b2b165582@f9941",
+      "uuid": "ddaf0d48-60a8-5492-b883-6fbe995d79e5@f9941"
+    },
+    {
+      "name": "SystemMsg_Board03",
+      "sourceUuid": "17f0151a-3f83-4eb1-89d9-11ec0e3dbfd7@f9941",
+      "uuid": "1da9926a-bbec-5945-a3e0-eefa66956197@f9941"
+    },
+    {
+      "name": "Black_BG",
+      "sourceUuid": "195cc024-03d8-4603-a652-8a6210a11e00@f9941",
+      "uuid": "e1d2721d-939f-54b2-8f66-b96cdba10f43@f9941"
+    },
+    {
+      "name": "TableWM_Num.png_0",
+      "sourceUuid": "1aecbd85-2b7a-4fb2-98ee-acab2d50ff9c@f9941",
+      "uuid": "efe1379c-8fc6-5dc5-8c51-c9c42867a3aa@f9941"
+    },
+    {
+      "name": "Btn_yellow",
+      "sourceUuid": "1af83216-56ae-444c-8017-9088c43d1082@f9941",
+      "uuid": "0418d74f-ffed-575f-955b-c3f9afa0f576@f9941"
+    },
+    {
+      "name": "LobbyIcon_02",
+      "sourceUuid": "1b69f77e-f3a1-4ca1-9dac-2a6625e66056@f9941",
+      "uuid": "97e2895f-bf8a-58b8-a3ed-bd041b73b253@f9941"
+    },
+    {
+      "name": "BetLv6",
+      "sourceUuid": "1febdddb-84c8-41b7-95c5-b27a79869da9@f9941",
+      "uuid": "74eacaca-3b27-5732-bb9c-7e06ad607ec3@f9941"
+    },
+    {
+      "name": "Common_Btn_Green",
+      "sourceUuid": "205b6bd1-cf43-44e3-9e06-a4b9d642a108@f9941",
+      "uuid": "8ed4f012-6693-501d-8527-4677b47e54ed@f9941"
+    },
+    {
+      "name": "default_btn_normal",
+      "sourceUuid": "20835ba4-6145-4fbc-a58a-051ce700aa3e@f9941",
+      "uuid": "0518df46-9014-5913-abf0-b0f6cd355e0d@f9941"
+    },
+    {
+      "name": "Joker_Num_0",
+      "sourceUuid": "20f4f589-35be-4e98-9823-6bfea89f4940@f9941",
+      "uuid": "a24e83df-0abc-56aa-9358-532cc708a72a@f9941"
+    },
+    {
+      "name": "Gold_Star_02",
+      "sourceUuid": "220eb10e-2c11-4b6e-b4c0-d87c467a197b@f9941",
+      "uuid": "dfe19b94-0d6c-5138-8f17-0527a6538b51@f9941"
+    },
+    {
+      "name": "BetLv4",
+      "sourceUuid": "222f3b07-61c6-4e47-90cd-744f56efda58@f9941",
+      "uuid": "09442fc8-920f-5aa5-8560-ad1a1c4fb194@f9941"
+    },
+    {
+      "name": "LoadingCircle2",
+      "sourceUuid": "24364b4e-819a-41a9-af07-ad2fc5fac815@f9941",
+      "uuid": "1fa7b4a2-16c2-5e98-90cc-571831cb0a30@f9941"
+    },
+    {
+      "name": "LT01",
+      "sourceUuid": "244c874d-b85e-4daa-a476-a407348f64ec@f9941",
+      "uuid": "d4b1f70b-e8f6-51e3-9e1a-e7ab29ca5ec0@f9941"
+    },
+    {
+      "name": "atom",
+      "sourceUuid": "24c419ea-63a8-4ea1-a9d0-7fc469489bbc@f9941",
+      "uuid": "acf442a8-942d-5a0a-be2f-765741f0d2c3@f9941"
+    },
+    {
+      "name": "SystemMsg_Arrow",
+      "sourceUuid": "24e65a85-8131-476c-bbe8-2dc7972a258c@f9941",
+      "uuid": "d55a8866-4ae5-56f3-96c1-a3158722f8bb@f9941"
+    },
+    {
+      "name": "Flare",
+      "sourceUuid": "28904bd9-233b-4353-94c5-df5a04780bb4@f9941",
+      "uuid": "b4e0cb5e-4553-5110-8d5a-4678c22812b7@f9941"
+    },
+    {
+      "name": "LV_line",
+      "sourceUuid": "29808d51-4770-4198-b239-ff2a604eb253@f9941",
+      "uuid": "2cf3ac68-6dd3-5e03-a232-13fe9d810e80@f9941"
+    },
+    {
+      "name": "Btn_09",
+      "sourceUuid": "2b5d3c44-22ed-4b4b-bc98-9da9b1a98f98@f9941",
+      "uuid": "581ed041-2928-5d6d-8543-e2c4f1c6b7da@f9941"
+    },
+    {
+      "name": "Win_02",
+      "sourceUuid": "2e665523-2859-434c-b51e-096f864deabb@f9941",
+      "uuid": "bff76e13-3c52-5fbf-9dc7-12f5c8823a60@f9941"
+    },
+    {
+      "name": "Btn_12",
+      "sourceUuid": "2fe0a9f8-1f66-4765-a9bb-077ee2bb5c1f@f9941",
+      "uuid": "5566c3b0-f874-590d-bafb-e12e42e90809@f9941"
+    },
+    {
+      "name": "Star_01",
+      "sourceUuid": "3417e035-0164-419a-8287-aa5b77030dd9@f9941",
+      "uuid": "0cb88903-aa13-51ee-ab79-1a9e3a836fb8@f9941"
+    },
+    {
+      "name": "Record_Bg02",
+      "sourceUuid": "36b6582a-c7e7-4d77-943a-04cb413e9c8b@f9941",
+      "uuid": "897efbdb-87e2-5c07-b9ca-5a62b15a121e@f9941"
+    },
+    {
+      "name": "LV_Btn_07",
+      "sourceUuid": "36bb591b-4387-4e2d-886d-2daf5d749257@f9941",
+      "uuid": "e27eb8fc-d52e-564a-a7e5-d157d7529634@f9941"
+    },
+    {
+      "name": "LV_Btn_05",
+      "sourceUuid": "38c2f7b3-ebb6-4033-b0fc-5bed59180c36@f9941",
+      "uuid": "9aea2314-4b74-5744-a45e-1ee33af1d431@f9941"
+    },
+    {
+      "name": "Btn_01",
+      "sourceUuid": "392e52b9-f3f4-4971-a5e3-bc4d317c3c14@f9941",
+      "uuid": "7eaaf081-b443-59cb-8eb7-b8147d00b388@f9941"
+    },
+    {
+      "name": "Level1_Btn_08",
+      "sourceUuid": "398350f0-f41d-4c01-a118-a2f950aaf86b@f9941",
+      "uuid": "a6a2f85b-d4cf-5707-affd-27d4a142523b@f9941"
+    },
+    {
+      "name": "TableTap_02",
+      "sourceUuid": "3cbdac77-4994-45f2-9f9e-6851716aaf2f@f9941",
+      "uuid": "cd5bd0d6-44a2-5f7b-a41f-aca645fa5303@f9941"
+    },
+    {
+      "name": "System_Btn_14",
+      "sourceUuid": "3ed600fc-d353-4b05-bc4f-3a16955d842c@f9941",
+      "uuid": "5ab20651-6666-52c2-aebb-251c25484dd1@f9941"
+    },
+    {
+      "name": "LobbyBtn_05",
+      "sourceUuid": "3f883312-d972-4631-9ab3-ef23bb12f3e3@f9941",
+      "uuid": "eb3b398e-8003-546d-8b85-fabf9804ebac@f9941"
+    },
+    {
+      "name": "ResultTitle_Lose02",
+      "sourceUuid": "42b1437d-4701-4ce7-a5a7-bff84fb2d952@f9941",
+      "uuid": "8ee2814d-2c36-5619-b88a-fea4935cea9c@f9941"
+    },
+    {
+      "name": "RecordTitle_01_bg",
+      "sourceUuid": "42b7f2e9-7dd5-42d2-8e29-30258461d995@f9941",
+      "uuid": "c027d920-d046-5082-9bf8-98c4c4e8b301@f9941"
+    },
+    {
+      "name": "Click_01",
+      "sourceUuid": "4334f475-6825-4190-8434-81835bc6b9c2@f9941",
+      "uuid": "2dc41cdc-809d-52d1-9494-a2c1e3ded665@f9941"
+    },
+    {
+      "name": "ThoseCards_line",
+      "sourceUuid": "449c0ada-2115-475a-a9c6-10fd07428b44@f9941",
+      "uuid": "31d17f72-264a-52ea-aa88-64fd7778c904@f9941"
+    },
+    {
+      "name": "btn_home",
+      "sourceUuid": "45351a35-769d-410a-8e02-bf4180f9a6b1@f9941",
+      "uuid": "75d201cd-9109-587e-8d09-0c9bcf5829ed@f9941"
+    },
+    {
+      "name": "TableTap_01",
+      "sourceUuid": "45bc2591-9af5-437b-8d4d-f957216cfa31@f9941",
+      "uuid": "b0bef693-b850-5242-bcc2-7f90443f0f92@f9941"
+    },
+    {
+      "name": "Level1_Btn_Shadow",
+      "sourceUuid": "477b42cc-15cf-47cf-8c8f-3fcb77ee7486@f9941",
+      "uuid": "b5182c1f-9815-5dc2-aebd-74addd02c684@f9941"
+    },
+    {
+      "name": "Txt_LV_4",
+      "sourceUuid": "47f40b4e-1696-437b-a834-4401d5f0bd3f@f9941",
+      "uuid": "157dda9f-ca27-50ab-8a14-a3b8f385c700@f9941"
+    },
+    {
+      "name": "Money_Bg",
+      "sourceUuid": "48249d32-e504-437a-8206-893d42a07269@f9941",
+      "uuid": "3d23b3ec-d7d5-524d-9473-122c02897bfa@f9941"
+    },
+    {
+      "name": "Intro_CheckBox",
+      "sourceUuid": "4b30c319-4eae-4662-a58b-9fe15282396e@f9941",
+      "uuid": "da71649e-55b1-58f8-902d-a42c1fb0b7e9@f9941"
+    },
+    {
+      "name": "LobbyBtn_06",
+      "sourceUuid": "50fe08fb-a905-472f-ae18-b29764cab484@f9941",
+      "uuid": "90175c93-6312-5943-aae9-c0e86bab282d@f9941"
+    },
+    {
+      "name": "Txt_LV_12",
+      "sourceUuid": "53cdc259-a4db-4ec6-a936-96adb66a4ab2@f9941",
+      "uuid": "90f16f8a-0f62-537c-9661-bfde315d3e63@f9941"
+    },
+    {
+      "name": "Gold_Put",
+      "sourceUuid": "53e680c8-8ab9-4f33-b3b1-731b5be9b03b@f9941",
+      "uuid": "af752d1c-7db3-582d-b456-a1d818d3f7a8@f9941"
+    },
+    {
+      "name": "Poker_R_13",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@003a4",
+      "uuid": "59955137-4365-5687-82a6-991908f3c49a@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num05",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@00442",
+      "uuid": "55a2de52-a28f-5001-a3e0-2e9b36a59bed@f9941"
+    },
+    {
+      "name": "Board_num_8",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@018c5",
+      "uuid": "7cd7d864-c5ed-5c60-a23f-221f86f3fc7a@f9941"
+    },
+    {
+      "name": "Poker_B_03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@0359b",
+      "uuid": "ff9fb5cc-a370-5c49-9765-b6dd25f02440@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@06a06",
+      "uuid": "3d0d463e-93de-5253-9d7d-f151ce6e887a@f9941"
+    },
+    {
+      "name": "PokerStatus_txt03_Hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@07920",
+      "uuid": "4f203f61-9f23-5d60-8760-2a69264f311f@f9941"
+    },
+    {
+      "name": "Poker_R_08",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@081db",
+      "uuid": "ea46435b-9aae-530a-90f0-3cb24174d2a0@f9941"
+    },
+    {
+      "name": "PokerSuit_04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@0b3d1",
+      "uuid": "4038de80-90b4-56cd-8fee-c7b8a6e8c26e@f9941"
+    },
+    {
+      "name": "PokerStatus_txt04_Ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@0e26f",
+      "uuid": "31546ccb-e0e2-59be-9283-a208a273c9a8@f9941"
+    },
+    {
+      "name": "PokerSuit_11",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@0f436",
+      "uuid": "5697fa7b-fa1f-571d-bcd6-3c55f8ceb830@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num09",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@0fc49",
+      "uuid": "84353141-1ac9-5332-ae8a-c15762c7591b@f9941"
+    },
+    {
+      "name": "PokerStatus_txt01_Ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@10255",
+      "uuid": "c62e869a-9dff-5310-815d-c5d5ee727cec@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num00",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@134c4",
+      "uuid": "8e70a55e-3351-54b4-be6e-7cbd9df37268@f9941"
+    },
+    {
+      "name": "SystemMsg_Board07",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@16803",
+      "uuid": "7c0f1b74-6f6f-5ff0-9496-92868efa8546@f9941"
+    },
+    {
+      "name": "Board_num_3",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@176eb",
+      "uuid": "fd32d5bc-88af-50cd-b2a1-e96d8548343d@f9941"
+    },
+    {
+      "name": "Board_txt11_ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@1c834",
+      "uuid": "e5a2de15-7439-57bd-8826-0c3e6f2f6aea@f9941"
+    },
+    {
+      "name": "Joker_Num07",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@1e91e",
+      "uuid": "4704573c-1113-5e1e-977f-2bc676d3db7e@f9941"
+    },
+    {
+      "name": "PokerStatus_02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@210f9",
+      "uuid": "c573b3f1-3b89-5e3f-998f-652bcb7d77b9@f9941"
+    },
+    {
+      "name": "SystemMsg_Board08",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@21f9f",
+      "uuid": "695975a8-9b27-54e3-98c8-efa0bb8c73e5@f9941"
+    },
+    {
+      "name": "Poker_R_11",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@22e4c",
+      "uuid": "c7f10f58-5265-5906-be9a-36d3e28f56b9@f9941"
+    },
+    {
+      "name": "Poker_J_02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@242c4",
+      "uuid": "aa4211c9-b12f-5cad-b159-50a6e86bcc4b@f9941"
+    },
+    {
+      "name": "PokerStatus_txt02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@2534b",
+      "uuid": "01ae7737-98d5-52a5-854d-912f2c1fce9e@f9941"
+    },
+    {
+      "name": "PokerSuit_07",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@27afd",
+      "uuid": "4cb29e5c-2a7f-5549-926b-e063b6b71f72@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@28b0d",
+      "uuid": "5f0598f4-c628-5c42-8dcf-6cf95537d806@f9941"
+    },
+    {
+      "name": "Poker_B_10",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@2def8",
+      "uuid": "a317cfdd-1134-56ad-89c4-939c12afb682@f9941"
+    },
+    {
+      "name": "DeclareTag_Num0",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@2e1d0",
+      "uuid": "e0ba875b-ab9a-5cdf-add7-325d4ab8c112@f9941"
+    },
+    {
+      "name": "Board_num_6",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@2f512",
+      "uuid": "636f5b88-d5b4-5c96-8d73-d9b110591c5a@f9941"
+    },
+    {
+      "name": "Joker_Num02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@304ef",
+      "uuid": "a5db7ccc-10d6-5f87-aefd-302761bc7258@f9941"
+    },
+    {
+      "name": "PokerStatus_txt01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3149f",
+      "uuid": "4b194791-29f9-5b16-92ad-e78ef226ee7a@f9941"
+    },
+    {
+      "name": "Poker_B_08",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3512f",
+      "uuid": "30ca5dbf-087d-5434-9b43-63551404215a@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num07",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@376a8",
+      "uuid": "799413be-83ef-5574-89a4-3ba5bc6df913@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3804a",
+      "uuid": "47469e48-da97-51fc-8865-ae2ac1462e5c@f9941"
+    },
+    {
+      "name": "Poker_B_09",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3905f",
+      "uuid": "40af9f76-a55e-5c4e-a810-ce4132cee007@f9941"
+    },
+    {
+      "name": "PokerSuit_01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3cb76",
+      "uuid": "c82d1b9f-faf9-54e4-897d-81584cd184e5@f9941"
+    },
+    {
+      "name": "PokerStatus_txt03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3cbb3",
+      "uuid": "07b50f01-b42b-5e04-bf54-7ef16a2738d4@f9941"
+    },
+    {
+      "name": "JokerMark",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3d687",
+      "uuid": "5a1cf83e-b0c3-5b81-b798-94d56071e83d@f9941"
+    },
+    {
+      "name": "DeclareTag_Num4",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@3e8b8",
+      "uuid": "50d51804-7f27-5788-b59d-92593f7951f2@f9941"
+    },
+    {
+      "name": "Board_txt11",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@41ac3",
+      "uuid": "084fa8b4-39a1-51c7-9552-16e21062be83@f9941"
+    },
+    {
+      "name": "PokerStatus_05",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@429c6",
+      "uuid": "ba7b609f-b813-5bc5-b3fc-0d296e642e86@f9941"
+    },
+    {
+      "name": "Card_L",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@4b337",
+      "uuid": "58687739-ac14-5717-bef4-55a74afa3d8a@f9941"
+    },
+    {
+      "name": "CardBack_03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@4cb03",
+      "uuid": "7219ac7b-724d-5707-ba40-346696125e15@f9941"
+    },
+    {
+      "name": "PokerStatus_txt02_Hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@4cd32",
+      "uuid": "8f5fd5ca-518d-5071-857c-3337f8da4f68@f9941"
+    },
+    {
+      "name": "Poker_B_04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@4d9ac",
+      "uuid": "3eeba2c9-158a-516c-84f5-9dab7a5384f5@f9941"
+    },
+    {
+      "name": "Board_num_1",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@4f18d",
+      "uuid": "63a85de9-2445-5ee3-8281-7ed40f3ebf3a@f9941"
+    },
+    {
+      "name": "Poker_B_12",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@5134f",
+      "uuid": "245dd080-17a5-5a40-81b8-1e0da86a4d67@f9941"
+    },
+    {
+      "name": "DeclareTag_Num3",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@5433d",
+      "uuid": "8f97d9a8-38b3-5ae8-a770-5d84c86af86c@f9941"
+    },
+    {
+      "name": "Poker_R_07",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@5444a",
+      "uuid": "cbcd447f-63c4-57c5-9bf1-149a5770b10f@f9941"
+    },
+    {
+      "name": "Poker_R_09",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@57f04",
+      "uuid": "05afd67c-3d51-574e-8775-f4e80264c40e@f9941"
+    },
+    {
+      "name": "DeclareTag_01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@57f9c",
+      "uuid": "e2e11368-f178-59de-b4dd-0dbe4b534dc2@f9941"
+    },
+    {
+      "name": "Poker_R_04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@5ad61",
+      "uuid": "e7d88f3f-362d-5dae-929c-8b72e7109269@f9941"
+    },
+    {
+      "name": "DeclareTag_Num7",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@5bb61",
+      "uuid": "badd38c1-904e-5f02-a0c0-b895b3901b92@f9941"
+    },
+    {
+      "name": "Poker_B_05",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@5d22a",
+      "uuid": "febb76a4-89de-5fbc-97a8-a89630bad9a0@f9941"
+    },
+    {
+      "name": "Board_num_9",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@5d921",
+      "uuid": "c2222517-6b47-5f60-8c72-8d9fc04682fd@f9941"
+    },
+    {
+      "name": "Joker_Num05",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@64a0d",
+      "uuid": "d6b723d8-e77a-57d2-9162-cecd89c805f4@f9941"
+    },
+    {
+      "name": "Joker_Num01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@6822f",
+      "uuid": "bc24d863-c809-5b0d-905c-a699ad65b36b@f9941"
+    },
+    {
+      "name": "PokerSuit_10",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@69ddf",
+      "uuid": "2b2e62f6-4b38-5a01-8678-1bf60c690ce7@f9941"
+    },
+    {
+      "name": "PokerSuit_06",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@6f407",
+      "uuid": "534d41ba-f83b-5bd5-84a9-e10b01dbbb20@f9941"
+    },
+    {
+      "name": "PokerStatus_txt08_Hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@72344",
+      "uuid": "af84a91d-fbc7-52a3-9631-178b6c6befc0@f9941"
+    },
+    {
+      "name": "DeclareTag_Num2",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@72af7",
+      "uuid": "be7e450b-97cb-5591-a4ff-4989456b4c31@f9941"
+    },
+    {
+      "name": "Poker_B_01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@72e63",
+      "uuid": "ada3775a-c31b-520d-b63a-bfa82b3c640f@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@752dd",
+      "uuid": "23178ede-d1e5-50ea-a150-2319a7213dc6@f9941"
+    },
+    {
+      "name": "Joker_Num09",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@7a679",
+      "uuid": "21f7b68e-98b2-5619-9e83-783e6200da0d@f9941"
+    },
+    {
+      "name": "Joker_Num03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@7fbdb",
+      "uuid": "ce806959-284b-50e9-b829-157d221e0a6c@f9941"
+    },
+    {
+      "name": "DeclareTag_03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@87920",
+      "uuid": "ca7fa47d-5073-5106-897a-b774881d8791@f9941"
+    },
+    {
+      "name": "DeclareTag_Num8",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@8c7bd",
+      "uuid": "845da03b-99ba-5e06-90af-3323111b7625@f9941"
+    },
+    {
+      "name": "PokerStatus_txt04_Hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@96cb3",
+      "uuid": "c006913a-13ea-5b49-9cdf-557b2462b851@f9941"
+    },
+    {
+      "name": "PokerSuit_02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@98c25",
+      "uuid": "23a41bf5-608f-53d5-b5c1-048609851912@f9941"
+    },
+    {
+      "name": "CardBack_01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@990d6",
+      "uuid": "c1a77794-3c8b-52e0-bc58-3b29649d7f96@f9941"
+    },
+    {
+      "name": "PokerSuit_12",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@9a5a8",
+      "uuid": "4fbc1f40-bd06-557a-8dfd-210231276f04@f9941"
+    },
+    {
+      "name": "PokerStatus_txt02_Ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@9b7de",
+      "uuid": "369da027-36f1-5ea0-8baa-2297a5eacdb9@f9941"
+    },
+    {
+      "name": "PokerSuit_09",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@9f7b8",
+      "uuid": "d6a2cdf3-1a7a-508b-8c5f-85605700b4a0@f9941"
+    },
+    {
+      "name": "Poker_J_01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@a1286",
+      "uuid": "6a0a3778-3c9f-56e8-b371-22237c3bbea8@f9941"
+    },
+    {
+      "name": "Poker_B_02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@a26b5",
+      "uuid": "c2bb8ae9-3c18-545b-a2d0-fffaa1e64686@f9941"
+    },
+    {
+      "name": "DeclareTag_Num1",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@a4563",
+      "uuid": "0300f591-f9c1-5a84-ad05-ba2e9bdcbc91@f9941"
+    },
+    {
+      "name": "DeclareTag_04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@a5d82",
+      "uuid": "f7fc23c2-ece6-53fe-a9f8-67a7ad87145a@f9941"
+    },
+    {
+      "name": "PokerStatus_txt09_Ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@a92e1",
+      "uuid": "bafda548-dced-55c6-b04f-16f105c7b721@f9941"
+    },
+    {
+      "name": "CardBack_02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@aa438",
+      "uuid": "03acdfa2-2695-5230-8db3-11f287e8d0c9@f9941"
+    },
+    {
+      "name": "PokerStatus_04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@aa44a",
+      "uuid": "30fc45d7-d2f0-5fb0-ae4b-1f6587415fe0@f9941"
+    },
+    {
+      "name": "Board_txt11_hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ac860",
+      "uuid": "2cb911f2-513a-5f55-b956-0ef00429f11a@f9941"
+    },
+    {
+      "name": "Poker_B_11",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@af0a1",
+      "uuid": "7847640b-0570-503a-8e6b-15948828e5bb@f9941"
+    },
+    {
+      "name": "Poker_R_10",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@b14f1",
+      "uuid": "62d9253f-a3d3-586a-957a-96f46a20aebb@f9941"
+    },
+    {
+      "name": "PokerSuit_08",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@b1814",
+      "uuid": "c763af56-c4ec-5d61-9ce9-bf67cccb345f@f9941"
+    },
+    {
+      "name": "PokerStatus_txt05_Ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@b3184",
+      "uuid": "f4dcb906-be48-52e5-a7cf-9b8512640587@f9941"
+    },
+    {
+      "name": "Card_M",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@b3319",
+      "uuid": "ab9c3732-85a5-589f-a900-cd203bb7b834@f9941"
+    },
+    {
+      "name": "Poker_R_12",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@b4817",
+      "uuid": "05d03630-3350-5b4a-8bf8-68a3995de100@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num08",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@bcbe8",
+      "uuid": "53b7bb3c-0eb6-53cc-ba39-fcf19db9209f@f9941"
+    },
+    {
+      "name": "PokerStatus_txt08_Ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@bf605",
+      "uuid": "508fcf8c-2a7b-5810-843b-678d7244d053@f9941"
+    },
+    {
+      "name": "PokerStatus_txt01_Hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@bf757",
+      "uuid": "c483dcb6-2164-574b-bd09-ff2719fbc003@f9941"
+    },
+    {
+      "name": "Poker_B_13",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@bfbeb",
+      "uuid": "3249fdbb-9de7-5066-9550-d53d4f5aacfc@f9941"
+    },
+    {
+      "name": "Board_num_2",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@bfce0",
+      "uuid": "eeb38b57-9c6c-5af9-b920-6d465e00a897@f9941"
+    },
+    {
+      "name": "PokerStatus_txt09",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@c1279",
+      "uuid": "e7bd6154-85ad-578e-bc09-f4a85cb96a66@f9941"
+    },
+    {
+      "name": "Poker_R_01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@c4e7b",
+      "uuid": "1f6f1403-6bf0-578c-8a1a-191643d87e2b@f9941"
+    },
+    {
+      "name": "DeclareTag_Num5",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@c6a36",
+      "uuid": "df8a6bc3-f5a9-5477-bb6d-173a30d9bc03@f9941"
+    },
+    {
+      "name": "DeclareTagB_Num06",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@c8efc",
+      "uuid": "1a765f49-5e72-552d-b9e0-f177cedf8a84@f9941"
+    },
+    {
+      "name": "MoreCards",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@cbe0d",
+      "uuid": "5f1874f3-30ff-5898-bdb5-7347eb80c3bf@f9941"
+    },
+    {
+      "name": "PokerStatus_01",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@d0bc1",
+      "uuid": "c720d53c-98d6-5770-84c1-28d0323fa2f2@f9941"
+    },
+    {
+      "name": "PokerStatus_txt05_Hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@d3955",
+      "uuid": "afb4d859-92b3-5e8c-b01a-1ed57954012e@f9941"
+    },
+    {
+      "name": "PokerStatus_txt08",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@d3ce4",
+      "uuid": "548de164-fe41-5294-8d33-86835bfff1c9@f9941"
+    },
+    {
+      "name": "Joker_Num06",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@d3f1d",
+      "uuid": "e0bb03f5-9469-56ee-b0e5-dc27d8bfba13@f9941"
+    },
+    {
+      "name": "Board_num_5",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@d723a",
+      "uuid": "64cbd4df-172c-59f5-84a4-e36957e82bf8@f9941"
+    },
+    {
+      "name": "Card_S",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@d7442",
+      "uuid": "4651632f-0fbb-55a0-8f7f-8586fc879c5f@f9941"
+    },
+    {
+      "name": "Poker_R_03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@d859e",
+      "uuid": "5338fd29-e2e7-5ddf-9c14-906b0b360685@f9941"
+    },
+    {
+      "name": "Poker_R_02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@dba5e",
+      "uuid": "443f7de1-f4f6-59b7-bd76-16833436497a@f9941"
+    },
+    {
+      "name": "Joker_Num00",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@dd70b",
+      "uuid": "ca075522-8302-5d04-972a-e66e2c94d640@f9941"
+    },
+    {
+      "name": "PokerStatus_txt03_Ta",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@dd902",
+      "uuid": "27d79641-3a17-58eb-80ad-52ce779e10df@f9941"
+    },
+    {
+      "name": "Joker_Num04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ddc0d",
+      "uuid": "1dcfd92b-9ac4-506a-8aa8-211ba92a6e77@f9941"
+    },
+    {
+      "name": "DeclareTag_Num6",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ddc26",
+      "uuid": "95f57fc3-df6d-5c05-afaf-f1fe86cc8644@f9941"
+    },
+    {
+      "name": "Joker_Num08",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@de52d",
+      "uuid": "bd2e0408-656d-5693-83fb-982f0bce5120@f9941"
+    },
+    {
+      "name": "PokerStatus_03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@def37",
+      "uuid": "6bbbb564-b84f-59e7-bca4-ab98e88ddea7@f9941"
+    },
+    {
+      "name": "PokerStatus_txt06",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@dfa0d",
+      "uuid": "583b3d32-e757-5ed1-be57-35d6395a75d2@f9941"
+    },
+    {
+      "name": "PokerStatus_txt05",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@e0772",
+      "uuid": "c9437cd7-784c-5a00-bdf0-65897bc587e1@f9941"
+    },
+    {
+      "name": "Joker",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@e0c55",
+      "uuid": "208e5827-9e06-539f-81bd-8e14d586ca98@f9941"
+    },
+    {
+      "name": "Poker_B_06",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@e6f9c",
+      "uuid": "7cde4e56-5690-524d-a0ad-ccf61cdbbbd4@f9941"
+    },
+    {
+      "name": "Board_num_4",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@e8819",
+      "uuid": "39ec1df1-18a9-5c8e-9ace-c2bdc4221b96@f9941"
+    },
+    {
+      "name": "Poker_R_05",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ebc93",
+      "uuid": "18a8ef01-ecc0-5f19-b55e-4f5f27584638@f9941"
+    },
+    {
+      "name": "Poker_R_06",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ecbd8",
+      "uuid": "545d19cb-206a-543a-a1a4-e1db328b3725@f9941"
+    },
+    {
+      "name": "PokerStatus_txt07",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ed512",
+      "uuid": "9c05de0c-f7a4-5ac3-b0ca-bcdb84e65304@f9941"
+    },
+    {
+      "name": "PokerSuit_05",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ed7d0",
+      "uuid": "825e24f8-9019-5501-b526-a4c96d95a9fc@f9941"
+    },
+    {
+      "name": "PokerSuit_03",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ee025",
+      "uuid": "d7cbfa79-4380-5b56-8643-0452ce537d15@f9941"
+    },
+    {
+      "name": "DeclareTag_Num9",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@f1e66",
+      "uuid": "2d3df61c-07e2-51c3-90ef-d644377ac4d4@f9941"
+    },
+    {
+      "name": "Poker_B_07",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@f553a",
+      "uuid": "ec2c50de-75af-541b-8b35-4099b485590d@f9941"
+    },
+    {
+      "name": "DeclareTag_02",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@fada4",
+      "uuid": "0cf50d5a-926f-5533-872a-247d0d1e3d81@f9941"
+    },
+    {
+      "name": "Board_num_0",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@fc782",
+      "uuid": "acbbd295-9038-51b1-86ce-d423850ab5c3@f9941"
+    },
+    {
+      "name": "PokerStatus_txt09_Hi",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@fcec3",
+      "uuid": "f20d7570-2c13-51c4-ba4b-c9f7ced3f7ec@f9941"
+    },
+    {
+      "name": "PokerStatus_txt04",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ffb08",
+      "uuid": "d4fec394-23bd-5d20-ac2e-c5da0ece1391@f9941"
+    },
+    {
+      "name": "Board_num_7",
+      "sourceUuid": "53f68a65-5611-4955-aa70-b00eb95395dc@ffea6",
+      "uuid": "c641d6a6-1c0c-549e-bd97-e540bc76a092@f9941"
+    },
+    {
+      "name": "Level1_Bg_Pattern",
+      "sourceUuid": "543d4860-907c-4069-b924-ee5cc07e2602@f9941",
+      "uuid": "db08ae27-ed47-5245-94e5-2d34baa2032d@f9941"
+    },
+    {
+      "name": "default_btn_pressed",
+      "sourceUuid": "544e49d6-3f05-4fa8-9a9e-091f98fc2ce8@f9941",
+      "uuid": "e701fa61-2ff4-5bc6-8ec7-2c262e651e54@f9941"
+    },
+    {
+      "name": "System_Btn",
+      "sourceUuid": "54944085-ac2c-4725-91ab-60aefa57aba5@f9941",
+      "uuid": "a38ff8d1-79ec-5f10-ae22-97d5d7a7d005@f9941"
+    },
+    {
+      "name": "LostPoint_Bg",
+      "sourceUuid": "55737001-5c48-4c8d-a5cc-05364618dc53@f9941",
+      "uuid": "facb6774-ecec-5429-9110-85d667afa276@f9941"
+    },
+    {
+      "name": "Click_02",
+      "sourceUuid": "56809875-abbe-4e3a-864a-b2108419829a@f9941",
+      "uuid": "4e7aa3fe-a5c1-5a69-802d-1759a323851b@f9941"
+    },
+    {
+      "name": "UpFrame",
+      "sourceUuid": "568a0a34-0fe1-4ddc-b0db-665276a5efed@f9941",
+      "uuid": "31411cfa-a424-504a-99fa-b805f78df1dc@f9941"
+    },
+    {
+      "name": "ResultTitle_Lose03",
+      "sourceUuid": "56fa08cd-9ca3-4533-a449-7f01c7ea1c17@f9941",
+      "uuid": "ce07f8fc-cb95-5d46-8de1-cd8ee6831e98@f9941"
+    },
+    {
+      "name": "SystemMsg_Board06",
+      "sourceUuid": "5739b1c2-6f69-4641-91bc-4823ccf6cf95@f9941",
+      "uuid": "d33f09e2-b2ef-5275-a348-3c027adca0f5@f9941"
+    },
+    {
+      "name": "Txt_LV_5",
+      "sourceUuid": "585c6796-80d4-439e-905e-6e8987c98e3b@f9941",
+      "uuid": "261380b9-854c-5eff-a512-042d81f838f1@f9941"
+    },
+    {
+      "name": "Fire_04",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@0aedf",
+      "uuid": "166d66d3-a16b-58c3-b909-8e896b8956ad@f9941"
+    },
+    {
+      "name": "Light_11",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@1b19c",
+      "uuid": "16f374b4-afe1-568c-b4c5-0b76a06039db@f9941"
+    },
+    {
+      "name": "Light_02",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@205d0",
+      "uuid": "20874f8d-b6e6-5876-a6d3-6ba4c5c167c5@f9941"
+    },
+    {
+      "name": "Fire_03",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@21c9e",
+      "uuid": "5e1e274e-2b34-5eb0-a0b2-00142f8de056@f9941"
+    },
+    {
+      "name": "MissionBntFlash01_21",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@2b3c2",
+      "uuid": "6051b363-ad2c-5727-8373-e53637764f2a@f9941"
+    },
+    {
+      "name": "Btn_Frame_LTa",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@2bdee",
+      "uuid": "fc1b374b-643d-5131-97df-42ec13d9b373@f9941"
+    },
+    {
+      "name": "SunLight",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@33a1b",
+      "uuid": "23bd117f-2017-5510-9aaf-2af805641d51@f9941"
+    },
+    {
+      "name": "spark_01",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@341a1",
+      "uuid": "d95ace50-4b7a-580c-977a-6b056fe1bf9c@f9941"
+    },
+    {
+      "name": "Light_2",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@378a0",
+      "uuid": "59fc0aa5-2692-5bcb-afd5-e126e70fca44@f9941"
+    },
+    {
+      "name": "SmallSpots",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@3860e",
+      "uuid": "baec16c5-9ca8-5078-999f-d1722eeb88a2@f9941"
+    },
+    {
+      "name": "spark_08",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@3bf78",
+      "uuid": "2dded1ab-e719-598f-ba7e-865c5866d7c3@f9941"
+    },
+    {
+      "name": "spark_03",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@4d14e",
+      "uuid": "8e5d1bb7-f496-5d81-bd7a-fd7edef765f3@f9941"
+    },
+    {
+      "name": "Light_03",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@5fdc4",
+      "uuid": "83b0ba8b-67ca-5065-8141-77317f1005c5@f9941"
+    },
+    {
+      "name": "spark_02",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@64f3f",
+      "uuid": "89664690-11b3-5f88-ba9d-c4abd147cf1d@f9941"
+    },
+    {
+      "name": "smoke01",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@6a185",
+      "uuid": "44131744-3c1f-58a0-b11d-85ef2a38dbdb@f9941"
+    },
+    {
+      "name": "Light_07",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@712f8",
+      "uuid": "af0f1a85-1eeb-5592-93a6-691f7508583f@f9941"
+    },
+    {
+      "name": "EffectLight_W",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@759e1",
+      "uuid": "10de639d-8628-5671-82a2-350032f0f43c@f9941"
+    },
+    {
+      "name": "spark_04",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@76959",
+      "uuid": "8d44d55d-a9c4-5c1a-8794-5b90c2b0326c@f9941"
+    },
+    {
+      "name": "wind",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@770e5",
+      "uuid": "38506a20-6925-5f2d-b85c-c5fc47a96c66@f9941"
+    },
+    {
+      "name": "StarShine01b_00",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@7b17b",
+      "uuid": "88e64975-5a4a-5204-9e77-5b9ad25890d5@f9941"
+    },
+    {
+      "name": "MissionRinglight01_00",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@7b265",
+      "uuid": "cc879743-8703-5161-89ad-f6e860faca1d@f9941"
+    },
+    {
+      "name": "Fire_02",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@860ec",
+      "uuid": "9dab0f16-470d-5da6-8c12-ec44e475afe2@f9941"
+    },
+    {
+      "name": "Light_04_c",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@8a0b0",
+      "uuid": "5909cf66-39b0-5ecc-b549-12256b54b199@f9941"
+    },
+    {
+      "name": "Light_02a",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@8abb1",
+      "uuid": "d9b7a353-5a2e-5e31-b543-cd9bcbb4540f@f9941"
+    },
+    {
+      "name": "spark_05",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@8be60",
+      "uuid": "ab00233b-771f-5b45-8a6b-53a6f6de2f28@f9941"
+    },
+    {
+      "name": "Card_Light",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@97156",
+      "uuid": "df0a63c6-565e-563c-abc0-0ad3c3877590@f9941"
+    },
+    {
+      "name": "Ray",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@9c348",
+      "uuid": "f500aab2-1f0c-5eb6-a6a6-5bacb8299c20@f9941"
+    },
+    {
+      "name": "4win_lpo_03_S",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@9cbd7",
+      "uuid": "7b0bf3cf-eeb4-5a3b-b655-5b8c9b8d0e80@f9941"
+    },
+    {
+      "name": "Light_04_b",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@a1a0e",
+      "uuid": "a82fca2a-bd39-5f50-a94c-d752ac65f794@f9941"
+    },
+    {
+      "name": "Light_04",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@aa0ac",
+      "uuid": "e6fb5a49-3cfa-5390-9c60-47f242c5787d@f9941"
+    },
+    {
+      "name": "spark_07",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@ac897",
+      "uuid": "7a2716ee-8c73-5bff-b850-a3755d63e126@f9941"
+    },
+    {
+      "name": "Light_06-b",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@bb1fe",
+      "uuid": "97b68ed0-05b6-5c86-8eb3-301fe4474ec3@f9941"
+    },
+    {
+      "name": "Btn_Frame_LT",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@c1403",
+      "uuid": "7b967503-f4f3-531e-8e0c-8272b87449ff@f9941"
+    },
+    {
+      "name": "SmallSpots_06",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@d44f0",
+      "uuid": "d133c2ba-5ae2-540e-b5e3-677fe749a691@f9941"
+    },
+    {
+      "name": "Light_12",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@dccaa",
+      "uuid": "386c472b-a1c3-5305-9949-f4e4f0b83dab@f9941"
+    },
+    {
+      "name": "wind_02a",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@e191f",
+      "uuid": "889beb2b-3d04-547f-9964-80a263bf4cc5@f9941"
+    },
+    {
+      "name": "Fire_01",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@e7314",
+      "uuid": "afa9a10d-7ef5-5f74-87ed-f0abd03f7d03@f9941"
+    },
+    {
+      "name": "wind_02",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@f3a1e",
+      "uuid": "1b76789e-b13f-53c4-9ee2-64589ad9b5cc@f9941"
+    },
+    {
+      "name": "spark_06",
+      "sourceUuid": "58625585-fe3f-4756-a234-cabf01ea2c9a@fe420",
+      "uuid": "3a7e2450-941a-51a3-9b19-f4708e37bf25@f9941"
+    },
+    {
+      "name": "LostPoint_Num_0",
+      "sourceUuid": "594a5bcd-6692-4dfd-a976-dbc953f70a49@f9941",
+      "uuid": "5a00c936-1819-5fc5-a72c-7f53baed776b@f9941"
+    },
+    {
+      "name": "SystemMsg_Board01",
+      "sourceUuid": "59f2d64c-1aa6-429d-a3d1-84c9cb326d9e@f9941",
+      "uuid": "17d54157-d7d2-5f4f-a786-4b7fcaee1a8c@f9941"
+    },
+    {
+      "name": "SystemMsg_Arrow",
+      "sourceUuid": "5a23226a-e728-4b49-9870-c7de8742ddfe@f9941",
+      "uuid": "96cb69ee-1fb3-58e1-8cde-5ae1f3f80292@f9941"
+    },
+    {
+      "name": "Txt_LV_1",
+      "sourceUuid": "5b2e92ff-54f9-43d8-b32d-167d5cecf3b2@f9941",
+      "uuid": "e6790e30-b51c-5fd7-9314-a627c84ae193@f9941"
+    },
+    {
+      "name": "LV_Btn_01",
+      "sourceUuid": "5ce645d0-4816-4499-b3d2-b237679c067f@f9941",
+      "uuid": "8b8c7dbb-37b3-583f-9915-642738c5bb38@f9941"
+    },
+    {
+      "name": "Btn_11",
+      "sourceUuid": "5dd0b25a-30d3-4cc3-b30e-e9d65b2f1e4c@f9941",
+      "uuid": "14d39d43-ea68-5ca9-a2f8-7283ad7afe7d@f9941"
+    },
+    {
+      "name": "Level2_Bg",
+      "sourceUuid": "5eaef906-6e65-468b-b6de-7c54cabc9ec4@f9941",
+      "uuid": "f3c882a5-1cf9-5bb1-b0a1-3e432b7f8317@f9941"
+    },
+    {
+      "name": "Player_Win_Light",
+      "sourceUuid": "5f1196ff-6fb8-4b9d-95ad-1488c46da030@f9941",
+      "uuid": "4bff4463-42b1-53c9-8c17-6c2b70ea40f7@f9941"
+    },
+    {
+      "name": "Txt_LV_6",
+      "sourceUuid": "5f57ef49-8430-47d1-9bd8-56ed8023b11b@f9941",
+      "uuid": "7d6aaa32-5b39-59cc-bd58-f7cd40f302f8@f9941"
+    },
+    {
+      "name": "FingerTips_01",
+      "sourceUuid": "60aaa777-f400-4e13-a1b0-fec7d9a8fb1a@f9941",
+      "uuid": "3c5edc00-29e8-586e-aca8-7e9612711856@f9941"
+    },
+    {
+      "name": "Win_02",
+      "sourceUuid": "61351add-7fe3-4e98-bd25-ff39e626ce7c@f9941",
+      "uuid": "bf84f1d3-dee7-51ca-8832-c3d84c97314e@f9941"
+    },
+    {
+      "name": "toggle",
+      "sourceUuid": "6161c96b-92cd-4a37-bdb6-5c5b9e701617@f9941",
+      "uuid": "7b80a3cb-88ac-5b05-a677-526cc93f25a6@f9941"
+    },
+    {
+      "name": "Level1_Bg",
+      "sourceUuid": "61e92022-19f2-4f4b-a438-64e75e9c1941@f9941",
+      "uuid": "dc29db68-0d0f-50d5-9660-52c161712f61@f9941"
+    },
+    {
+      "name": "LV_Btn_09",
+      "sourceUuid": "623635da-9279-4d0b-b6cb-6504fc3d871a@f9941",
+      "uuid": "1999fa81-fa6a-5764-bd3f-5ad2a011fdf0@f9941"
+    },
+    {
+      "name": "ThoseCards_bg_2",
+      "sourceUuid": "624daf28-e206-4470-9f6c-fb191dbae95c@f9941",
+      "uuid": "693fefe2-4753-5bd7-a882-c70cf3313ae7@f9941"
+    },
+    {
+      "name": "Win_03",
+      "sourceUuid": "6490f31c-18d4-4f71-858d-dc6a624fc22d@f9941",
+      "uuid": "64e93dc0-909a-58dd-9b5e-52199d2dec80@f9941"
+    },
+    {
+      "name": "Level1_Btn_07_2",
+      "sourceUuid": "64e77c22-8b72-4294-9d39-8b67d32f99d8@f9941",
+      "uuid": "3ccdf565-0741-5cd1-8cad-6f6edc549204@f9941"
+    },
+    {
+      "name": "ResultBoard",
+      "sourceUuid": "65d7def8-ce09-42b0-b38b-63b5dc6ad6f7@f9941",
+      "uuid": "b4034dca-de2e-53c8-a443-2da365f54c99@f9941"
+    },
+    {
+      "name": "Level2_Bg_Shadow",
+      "sourceUuid": "6751e24e-61be-4505-8e08-d71027f0ae18@f9941",
+      "uuid": "8991e296-8ac8-5f35-92a7-7a0cadc10a85@f9941"
+    },
+    {
+      "name": "coin_silver",
+      "sourceUuid": "67e8bfaa-4b48-4b58-9c73-9d4018cf078e@f9941",
+      "uuid": "4d10981a-4c3a-5942-988c-3835de4ed580@f9941"
+    },
+    {
+      "name": "RecordTitle_02_bg",
+      "sourceUuid": "685f6e6a-be3c-4721-ab1d-d81798b99175@f9941",
+      "uuid": "f57f6fcc-4c6a-5c19-9384-81f12c168906@f9941"
+    },
+    {
+      "name": "Bg_A",
+      "sourceUuid": "686ccad2-ed34-4561-a873-cd8f07e20c7f@f9941",
+      "uuid": "869ef713-3e1b-5b50-b944-651bd294731b@f9941"
+    },
+    {
+      "name": "Light_01",
+      "sourceUuid": "6951eba4-a6d8-4146-87a6-66d23845412a@f9941",
+      "uuid": "1b7f3d0c-e28c-50ae-8b3a-6b141d59376d@f9941"
+    },
+    {
+      "name": "LV_Btn_12",
+      "sourceUuid": "6b00e2d3-134b-4b0a-a2eb-5bc5f0a7f8b1@f9941",
+      "uuid": "93f9e764-0cd6-592e-9b66-2208fa30aefc@f9941"
+    },
+    {
+      "name": "Btn_Light",
+      "sourceUuid": "6bcd5478-e5fd-4588-ad73-cc816d7e577f@f9941",
+      "uuid": "baf96cd7-ce0a-5264-9d26-31235893b0d8@f9941"
+    },
+    {
+      "name": "Txt_LV_3",
+      "sourceUuid": "6cf16601-4731-4314-9a1e-61844f00de61@f9941",
+      "uuid": "90137dbf-f2be-5141-8c5d-13857dfbf792@f9941"
+    },
+    {
+      "name": "BetLv2",
+      "sourceUuid": "6d407e16-020f-4e5f-b849-30c7dc93260d@f9941",
+      "uuid": "888e155e-fbf6-522c-b3a5-994aa9e5a254@f9941"
+    },
+    {
+      "name": "LV_Btn_03",
+      "sourceUuid": "6d723cb4-d9fe-4cac-a2d5-257e7a87f4c6@f9941",
+      "uuid": "2cb2e60b-9b87-53b8-94a8-8fd91925ed2c@f9941"
+    },
+    {
+      "name": "cry_icon",
+      "sourceUuid": "6da1b73b-2b3a-4a84-a909-6a98a7db98b6@f9941",
+      "uuid": "a03170bb-41a6-5fd7-adfe-5ea479937560@f9941"
+    },
+    {
+      "name": "Record_Line",
+      "sourceUuid": "6fde14bb-e602-45a2-acef-ecb12f75774d@f9941",
+      "uuid": "5e9e290c-279e-5898-9b9b-60733baa0a28@f9941"
+    },
+    {
+      "name": "PlayerPoint_bg",
+      "sourceUuid": "70f36e60-6175-43b3-afcd-1c4ce8674277@f9941",
+      "uuid": "1bb344b8-0c47-5722-b7e1-0133dd5be3d3@f9941"
+    },
+    {
+      "name": "BG_Cube",
+      "sourceUuid": "70f7d522-44d4-4259-9bf2-86e5e783109c@f9941",
+      "uuid": "5c2af26e-09bf-5df7-ada3-abf8951d78a9@f9941"
+    },
+    {
+      "name": "LobbyBtn_07",
+      "sourceUuid": "710cddf2-7a96-4697-8d3b-df5a7d124184@f9941",
+      "uuid": "d432587d-4225-50c0-81aa-8850f44cbcd7@f9941"
+    },
+    {
+      "name": "Btn_07",
+      "sourceUuid": "7223688f-c957-4eea-8815-52ab81232a05@f9941",
+      "uuid": "69449351-9042-5fd8-8afd-d57aaf87b1ca@f9941"
+    },
+    {
+      "name": "I_Gold_02",
+      "sourceUuid": "722acaa4-bb14-44c9-9ff3-bc7c18b2c275@f9941",
+      "uuid": "11b5e380-5681-55c9-8e7f-962d087371e4@f9941"
+    },
+    {
+      "name": "User_01",
+      "sourceUuid": "72fb4c20-5af4-4843-bc23-d74e64523e21@f9941",
+      "uuid": "712e0e0a-028e-5f00-9d33-74218c3f18c0@f9941"
+    },
+    {
+      "name": "PlayerFrame",
+      "sourceUuid": "735dc048-01f7-430c-8d75-9c9f58d26b11@f9941",
+      "uuid": "ed17d122-4eeb-562e-a45f-e1f4edc961de@f9941"
+    },
+    {
+      "name": "Win_01",
+      "sourceUuid": "73a8355d-d8ba-4b7a-a704-51233201b760@f9941",
+      "uuid": "a5ec7f14-b723-5aee-93f7-06b1e81baf5b@f9941"
+    },
+    {
+      "name": "Gold_Star_03",
+      "sourceUuid": "765c7a4e-eb1c-49d9-8835-3485aa396f47@f9941",
+      "uuid": "0de5472c-95c9-5fb5-818a-5f547c494096@f9941"
+    },
+    {
+      "name": "Record_Bg",
+      "sourceUuid": "76e614f8-bd47-41da-8818-1a4f6159d0f2@f9941",
+      "uuid": "91252426-f3f4-5d0f-b76c-31533416d307@f9941"
+    },
+    {
+      "name": "Intro_Check",
+      "sourceUuid": "7774a1ea-5475-4c27-b615-7b799a41e4ef@f9941",
+      "uuid": "9b5ff39d-fd3b-56e2-9675-4a3f09c0e4e5@f9941"
+    },
+    {
+      "name": "SystemMsg_Board04",
+      "sourceUuid": "77d4fe04-03a4-4719-b846-90fa91d0ceb6@f9941",
+      "uuid": "f493633a-b765-5e21-8bcd-d4fcd24b1295@f9941"
+    },
+    {
+      "name": "System_Btn_02",
+      "sourceUuid": "79ca7d97-a5c4-4bb8-a95f-0ffdbde9d835@f9941",
+      "uuid": "ef1b2192-f4f7-5cca-8252-d308fd01a553@f9941"
+    },
+    {
+      "name": "Games_bn",
+      "sourceUuid": "79ff2637-4aba-4e9f-84f3-9fca9bcf345d@f9941",
+      "uuid": "b041520f-23f5-54fe-89f6-56cd8d540e9f@f9941"
+    },
+    {
+      "name": "Dealer",
+      "sourceUuid": "7d420b78-0fae-4493-9ee5-4a2ad70c320b@f9941",
+      "uuid": "5255803c-10d2-52f7-a363-8478e8365b95@f9941"
+    },
+    {
+      "name": "default_sprite_splash",
+      "sourceUuid": "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@f9941",
+      "uuid": "4ac98be0-fc6b-570c-84d3-1e1e0a5a7ede@f9941"
+    },
+    {
+      "name": "LV_Btn_10",
+      "sourceUuid": "7fcf6d60-58a9-437e-9721-592a3b2cb083@f9941",
+      "uuid": "2e177ad8-e667-5621-8337-158e819ee0ab@f9941"
+    },
+    {
+      "name": "I_Gold_04",
+      "sourceUuid": "80c41afa-defe-4103-9ce0-0f2951805a0c@f9941",
+      "uuid": "a7cb6531-3dee-558f-b0f7-cfe849c2cb93@f9941"
+    },
+    {
+      "name": "Btn_02",
+      "sourceUuid": "817bb5ae-97dc-468f-89ce-c8512dde02f7@f9941",
+      "uuid": "6ff706c8-818d-531f-a3ae-f244816a6f72@f9941"
+    },
+    {
+      "name": "I_Gold_03",
+      "sourceUuid": "821e1ffe-cb82-4357-8a56-62f8f6a4415f@f9941",
+      "uuid": "8746a1b6-dae9-57c0-81b5-bfe76a3c7686@f9941"
+    },
+    {
+      "name": "ThoseCards_bg",
+      "sourceUuid": "825e4a56-f90d-4a1c-8704-afcf4da7f8b5@f9941",
+      "uuid": "785be1cc-f1f9-59af-addc-c6914c1d63a1@f9941"
+    },
+    {
+      "name": "JP9_AttentionSweep_00",
+      "sourceUuid": "865e6b17-a85a-4fab-b1c0-133af275d20b@f9941",
+      "uuid": "cc8ef580-de3d-51ed-a81b-63684a805e41@f9941"
+    },
+    {
+      "name": "Txt_LV",
+      "sourceUuid": "884d2920-d359-49c0-a746-e80923894950@f9941",
+      "uuid": "fa91d6b4-8499-5cc5-b0b9-d9cbc068f83f@f9941"
+    },
+    {
+      "name": "Record_Num_0",
+      "sourceUuid": "88fbd587-65a5-4fb3-b116-919e9652b239@f9941",
+      "uuid": "c8c4972c-5372-55b4-b08c-9d7baab4c0a4@f9941"
+    },
+    {
+      "name": "Gold_Point02",
+      "sourceUuid": "8adcdf8d-67ee-402a-893b-dacc4fab384f@f9941",
+      "uuid": "855c1c4f-d9e9-56a0-aaba-8a23a6531805@f9941"
+    },
+    {
+      "name": "Win_01_02",
+      "sourceUuid": "8d535b7a-e8c9-4e9f-8a0e-4c127719589b@f9941",
+      "uuid": "dc4b4e40-9183-5ff7-9c40-2380b93ba513@f9941"
+    },
+    {
+      "name": "Btn_03",
+      "sourceUuid": "8eeba699-8acd-447b-8afb-f017b05a2d65@f9941",
+      "uuid": "489de528-35a0-52bb-8e0c-c670927639c8@f9941"
+    },
+    {
+      "name": "UnderFrame",
+      "sourceUuid": "8f2b1dc1-6539-4674-9d36-3e8b3ff18f8a@f9941",
+      "uuid": "5a057950-fc30-5ccc-b2f4-1b4fd9602a55@f9941"
+    },
+    {
+      "name": "Light_02",
+      "sourceUuid": "90363f8c-98e7-4265-b563-c970473de167@f9941",
+      "uuid": "c8e1f96c-45ac-5b55-85e2-541d2cfe1493@f9941"
+    },
+    {
+      "name": "LobbyBtn_03",
+      "sourceUuid": "90975d98-b220-4c0e-a72c-7397ba030fc9@f9941",
+      "uuid": "bb3e8f0b-371e-51b2-873f-d64fac061294@f9941"
+    },
+    {
+      "name": "Light_01",
+      "sourceUuid": "9100c622-7b3b-4e6a-b4ec-3d0a807bc5f6@f9941",
+      "uuid": "56131705-3318-5085-955b-e4f282a18624@f9941"
+    },
+    {
+      "name": "Btn_drop01",
+      "sourceUuid": "91b7c034-79f2-483b-b700-705b6aa468c1@f9941",
+      "uuid": "6abf8b32-c24c-5f94-8fc8-60c81c3ff0b8@f9941"
+    },
+    {
+      "name": "Bnt03",
+      "sourceUuid": "930ab358-b035-47c2-b21f-45a0f87034ad@f9941",
+      "uuid": "15496222-44dd-5dce-8674-a1451d81b90a@f9941"
+    },
+    {
+      "name": "Money_Num_0",
+      "sourceUuid": "948957ea-954e-475f-b0c5-7b8a5900cfa3@f9941",
+      "uuid": "06c4384c-e63a-519b-ab62-3d6809cb3261@f9941"
+    },
+    {
+      "name": "default_btn_disabled",
+      "sourceUuid": "951249e0-9f16-456d-8b85-a6ca954da16b@f9941",
+      "uuid": "6573728f-30d0-5804-a60f-51590b20158c@f9941"
+    },
+    {
+      "name": "LobbyBtn_04",
+      "sourceUuid": "96709158-9517-4dd3-aacd-1c219050df09@f9941",
+      "uuid": "ac373b32-f0e5-5ffd-a054-4aecd71cf8e7@f9941"
+    },
+    {
+      "name": "Dealer_D",
+      "sourceUuid": "98007f20-25fd-4404-96cf-d1eb715fe3f1@f9941",
+      "uuid": "1160ef5b-be72-5c5d-827a-8eeb9acd91a9@f9941"
+    },
+    {
+      "name": "BetLv7",
+      "sourceUuid": "9b3ef139-e5ea-4dc3-9542-cd502fb8c873@f9941",
+      "uuid": "85c26e2a-ee28-5a89-bb7a-a2a1683a3941@f9941"
+    },
+    {
+      "name": "select_bg",
+      "sourceUuid": "9b5a2ca9-b508-4d68-ad7e-c4858768eb42@f9941",
+      "uuid": "9d16dc51-1334-5604-bf95-6e5a9b322281@f9941"
+    },
+    {
+      "name": "Games_ICON",
+      "sourceUuid": "9cc9c4f8-b825-4453-97d0-ac1171dd4d58@f9941",
+      "uuid": "4c7ac44f-b73f-52bf-aa0e-f627aa864fac@f9941"
+    },
+    {
+      "name": "Btn_10",
+      "sourceUuid": "9dab6101-b4bf-4c0a-8c99-e4a8436a7fed@f9941",
+      "uuid": "66c1e107-9b09-5f6f-b22f-ae5b887c27f0@f9941"
+    },
+    {
+      "name": "Star_03",
+      "sourceUuid": "9db34876-9b70-485c-a38b-3f42c8481023@f9941",
+      "uuid": "02bcacc7-b120-5a31-a832-e4603d45653f@f9941"
+    },
+    {
+      "name": "ResultBtn_Blue",
+      "sourceUuid": "9e3b1b0b-7c0a-490a-a659-08cc7d9071ba@f9941",
+      "uuid": "599089ea-a9fd-5c0c-9373-4aac98a4bbcc@f9941"
+    },
+    {
+      "name": "Win_01_Light",
+      "sourceUuid": "9f98358b-02fa-4a7b-a8aa-5f06856c8076@f9941",
+      "uuid": "d0477d1f-ed6c-5b5b-8b58-55544db9b2d8@f9941"
+    },
+    {
+      "name": "Star_01",
+      "sourceUuid": "a03c89f4-ad15-4135-ac6f-903ba8bfb386@f9941",
+      "uuid": "60232a9d-35e1-5a7e-8d48-40551d7da4e5@f9941"
+    },
+    {
+      "name": "Txt_LV_7",
+      "sourceUuid": "a07e464f-8fa4-4daf-91df-ed268bbe56f9@f9941",
+      "uuid": "83224535-0d02-56b7-8367-e0d03bf0e91c@f9941"
+    },
+    {
+      "name": "Btn_deco",
+      "sourceUuid": "a2d81ab3-da6d-47e8-af57-ae938a586f06@f9941",
+      "uuid": "0ca22dc4-4e0d-58bd-9aed-d929816fe984@f9941"
+    },
+    {
+      "name": "Games_en",
+      "sourceUuid": "a5153d78-3cb7-4fad-80ce-78f134de2628@f9941",
+      "uuid": "a27dfe97-8193-56e5-b814-052ccb58a23b@f9941"
+    },
+    {
+      "name": "ResultBtn_Yellow",
+      "sourceUuid": "a524ac7c-9175-424e-af03-d2f87355b503@f9941",
+      "uuid": "983a32bd-288c-56e3-82d0-d818cbc2f428@f9941"
+    },
+    {
+      "name": "MainBg",
+      "sourceUuid": "aa43d108-fe3c-4c01-8519-7ab9fe31d3d9@f9941",
+      "uuid": "9fd013bd-3207-5019-beee-ddfc8ef68c20@f9941"
+    },
+    {
+      "name": "SystemMsg_Board02",
+      "sourceUuid": "aaeca8cc-4602-4c1f-80e9-c8bb3eef92bf@f9941",
+      "uuid": "428bf445-966a-550c-bc2b-5c54e2a00143@f9941"
+    },
+    {
+      "name": "LoadingCircleLight",
+      "sourceUuid": "ab656227-0879-485d-b6b3-be95534a2d0f@f9941",
+      "uuid": "d37858c7-f077-5dcc-9a9a-9f830044d5f5@f9941"
+    },
+    {
+      "name": "AP_Bg",
+      "sourceUuid": "abc336c2-230d-4902-a386-3b58288236ec@f9941",
+      "uuid": "a66678a5-a9f3-5de2-af89-644ebcdc70ae@f9941"
+    },
+    {
+      "name": "Loading",
+      "sourceUuid": "aeb4a486-08d0-4a29-9c7b-7d36fd54ca7f@f9941",
+      "uuid": "a7ac8746-866e-58f3-b431-b46e124262b2@f9941"
+    },
+    {
+      "name": "default_scrollbar_vertical",
+      "sourceUuid": "afc47931-f066-46b0-90be-9fe61f213428@f9941",
+      "uuid": "3d91db06-4d94-5562-8448-709eae58c754@f9941"
+    },
+    {
+      "name": "Btn_blue",
+      "sourceUuid": "b18c0486-74fc-4f66-bb75-db01bb40ca36@f9941",
+      "uuid": "a0fc61aa-824a-5a32-b67d-87e02fb83a81@f9941"
+    },
+    {
+      "name": "BigWin_purple_0",
+      "sourceUuid": "b1b36570-7d1e-46d9-8847-9e6e4befd7ef@f9941",
+      "uuid": "f15b562f-f514-56ac-be8a-a0f8930117d5@f9941"
+    },
+    {
+      "name": "LV_Btn_06",
+      "sourceUuid": "b1ec9dd5-a0b1-4270-a4a4-fb49863dcba4@f9941",
+      "uuid": "e3c293c6-41e9-5a49-a165-286745a69b2d@f9941"
+    },
+    {
+      "name": "Gold_Point",
+      "sourceUuid": "b22bb501-4180-4ec6-92c8-d93d68454ef8@f9941",
+      "uuid": "175738cb-618a-59e3-9ab2-51fad62e820d@f9941"
+    },
+    {
+      "name": "CountDown",
+      "sourceUuid": "b2e5c36b-2e3d-4a11-808f-a774e10e3652@f9941",
+      "uuid": "3d0cfaa1-2f1f-5646-bde4-5e5f7182af38@f9941"
+    },
+    {
+      "name": "FingerTips_02",
+      "sourceUuid": "b3b213b4-a2e9-43ac-b60e-660747642f1f@f9941",
+      "uuid": "034565de-f667-5655-a38c-277f1df766b3@f9941"
+    },
+    {
+      "name": "SystemMsg_Board05",
+      "sourceUuid": "b46e4b48-ede2-487b-b59f-8dc1009ae791@f9941",
+      "uuid": "8396a9db-e258-5e2a-92c4-ff2958c36828@f9941"
+    },
+    {
+      "name": "LobbyIcon_04",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@08576",
+      "uuid": "bc7b125e-38ff-59dc-9239-2c415f76cdd9@f9941"
+    },
+    {
+      "name": "help_BtnTxt_02b",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@0c425",
+      "uuid": "0dc52490-8947-5d71-8145-2ad1c9c03d5b@f9941"
+    },
+    {
+      "name": "LobbyIcon_06",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@13d72",
+      "uuid": "a244abdf-d541-5a14-815e-d57b9c87a708@f9941"
+    },
+    {
+      "name": "sound_on",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@15f56",
+      "uuid": "4f193037-1082-5d48-8bdd-a109195252ca@f9941"
+    },
+    {
+      "name": "gold_01",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@18015",
+      "uuid": "371e9910-ac63-5448-b374-613c4987b2b0@f9941"
+    },
+    {
+      "name": "data_bg",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@22385",
+      "uuid": "d0ff37c5-8742-5c34-8e5e-3d832701e188@f9941"
+    },
+    {
+      "name": "help_BtnTxt_01b",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@2e0a5",
+      "uuid": "f3837d59-c6de-511d-8c20-6fef7a190e82@f9941"
+    },
+    {
+      "name": "LobbyBnt_01",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@3ac22",
+      "uuid": "8c014b86-9a85-5201-8373-a43dd62d67d7@f9941"
+    },
+    {
+      "name": "help_Bg",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@3b641",
+      "uuid": "ec124b66-eb93-5ac6-b9d1-af95e34124c6@f9941"
+    },
+    {
+      "name": "help_BtnTxt_03a",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@3e7e0",
+      "uuid": "4a7d3890-3ad8-5676-ac18-8ed22cbde3e4@f9941"
+    },
+    {
+      "name": "help_BtnTxt_04b",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@3f093",
+      "uuid": "4f22fac2-cf76-50ef-b79b-65e661c8c48e@f9941"
+    },
+    {
+      "name": "btn_02",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@3f1f4",
+      "uuid": "174cb82a-3c5a-54e9-83bf-2224b3d91dce@f9941"
+    },
+    {
+      "name": "txt_01",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@435a6",
+      "uuid": "cb1a310b-c998-5b01-9770-94808aa28d6f@f9941"
+    },
+    {
+      "name": "interface_03",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@43bfc",
+      "uuid": "7d4ef5ca-9b1d-5e7e-a8c8-fb58d32f65cc@f9941"
+    },
+    {
+      "name": "Hot",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@46530",
+      "uuid": "74f38586-88d0-58b4-a5f9-abf82d9dd1d8@f9941"
+    },
+    {
+      "name": "btn_05",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@4c878",
+      "uuid": "cd6b5a55-0d63-55d7-b9ea-98b071a15811@f9941"
+    },
+    {
+      "name": "interface_04",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@52f0e",
+      "uuid": "a35ea02b-54df-5268-bdda-32a433feae59@f9941"
+    },
+    {
+      "name": "help_BtnTxt_03b",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@53d44",
+      "uuid": "1ac751fe-b1ac-586a-8221-f9500b32dd10@f9941"
+    },
+    {
+      "name": "help_BtnOff",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@5623b",
+      "uuid": "64619a98-4593-5998-a09a-1bdbf4019635@f9941"
+    },
+    {
+      "name": "txt_deju",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@58732",
+      "uuid": "6271aeaf-f2bd-54df-8e21-384bc3cae492@f9941"
+    },
+    {
+      "name": "interface_02",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@5c1cb",
+      "uuid": "35982b26-4628-5b80-bb5e-ee95587b4aec@f9941"
+    },
+    {
+      "name": "help_Titletxt",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@601fa",
+      "uuid": "9a775209-a3e3-519e-a5c7-90aef490c331@f9941"
+    },
+    {
+      "name": "help_BtnOn",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@61718",
+      "uuid": "68e034ce-beaa-5af1-a504-fde2d8cd6b5b@f9941"
+    },
+    {
+      "name": "txt_04",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@6369d",
+      "uuid": "265c0427-b920-50eb-a7f7-de060987d7cd@f9941"
+    },
+    {
+      "name": "JP_02",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@667b9",
+      "uuid": "38e46d08-5d5a-5f6d-bfb8-8ff80bed7a06@f9941"
+    },
+    {
+      "name": "txt_05",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@691ee",
+      "uuid": "74a2dd42-0dba-57e1-af75-db0c45061e10@f9941"
+    },
+    {
+      "name": "help_TopBg",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@7b89f",
+      "uuid": "2c2d500a-8f4c-5723-a9a6-8f5ac5db7df3@f9941"
+    },
+    {
+      "name": "btn_06",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@7fa4f",
+      "uuid": "c0079bcb-0f2e-5440-928f-ce3e0bd5a5d1@f9941"
+    },
+    {
+      "name": "LobbyIcon_02",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@7fc12",
+      "uuid": "f1653362-4d66-583e-b4f3-976bb502430f@f9941"
+    },
+    {
+      "name": "LobbyIcon_01",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@824f6",
+      "uuid": "b488a5db-3165-5e6d-a094-88a71d99237e@f9941"
+    },
+    {
+      "name": "Logo",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@8a646",
+      "uuid": "1d7e2806-fb17-5d78-9033-fb7e34fe5cf9@f9941"
+    },
+    {
+      "name": "LobbyIcon_03",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@8cf1a",
+      "uuid": "aa2be122-703c-5609-afaa-253aef538e2e@f9941"
+    },
+    {
+      "name": "btn_03",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@8f908",
+      "uuid": "9d527458-96d0-57c2-8450-0c3dfcaf78e2@f9941"
+    },
+    {
+      "name": "LobbyIcon_05",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@92b5d",
+      "uuid": "fa0d60d1-124c-530d-9377-65c2a96fdc18@f9941"
+    },
+    {
+      "name": "txt_03",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@9e8ce",
+      "uuid": "744787e1-e6d4-59d9-9781-f92afae08473@f9941"
+    },
+    {
+      "name": "interface_01",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@bdb07",
+      "uuid": "9749e656-a181-55dd-b350-7750ec16b17c@f9941"
+    },
+    {
+      "name": "txt_julu",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@bdb5c",
+      "uuid": "655d219f-9b85-55e0-b665-7104fdacf5e4@f9941"
+    },
+    {
+      "name": "help_BtnTxt_01a",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@be703",
+      "uuid": "9da16da2-27a8-5cef-b598-f28f977dba6b@f9941"
+    },
+    {
+      "name": "btn_04",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@bf06b",
+      "uuid": "68e57839-7f00-52e0-8adc-b88c05770264@f9941"
+    },
+    {
+      "name": "help_BtnTxt_04a",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@c114c",
+      "uuid": "27671196-c126-5a09-93b1-f1bf4e6cec06@f9941"
+    },
+    {
+      "name": "Btn_Frame_LT",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@c1403",
+      "uuid": "7596245d-0613-5b66-bbac-1e342eb0aa8a@f9941"
+    },
+    {
+      "name": "sound_off",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@c2b7d",
+      "uuid": "8de63e3a-ed53-5661-ba14-fd1d673eee55@f9941"
+    },
+    {
+      "name": "poto",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@c2f12",
+      "uuid": "ef0ce9d1-4cc7-596b-a498-8de659e9b1c4@f9941"
+    },
+    {
+      "name": "off_btn",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@d298c",
+      "uuid": "758840e2-3ea8-516f-b43b-74a5adf2b0ed@f9941"
+    },
+    {
+      "name": "btn_01",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@dae81",
+      "uuid": "72966a9a-c7e3-5e3e-a3de-4619b27fbeeb@f9941"
+    },
+    {
+      "name": "txt_02",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@dc04b",
+      "uuid": "e593e286-6c2d-57d4-973b-98cd24d68bc6@f9941"
+    },
+    {
+      "name": "JP_03",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@e03fc",
+      "uuid": "e4c79d83-8950-5dde-8821-6c29b2553fe7@f9941"
+    },
+    {
+      "name": "LobbyBnt_03",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@e2228",
+      "uuid": "62266eda-6022-5a3d-b122-fe281a690785@f9941"
+    },
+    {
+      "name": "txt_06",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@e53df",
+      "uuid": "53c51619-6995-596e-8ad2-55437c762a29@f9941"
+    },
+    {
+      "name": "JP_01",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@e756a",
+      "uuid": "bc5ab4be-f998-5793-9d5d-5a6735ee231e@f9941"
+    },
+    {
+      "name": "help_BtnTxt_02a",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@eba53",
+      "uuid": "85e9a9e1-265e-5106-959c-fc5873caacf7@f9941"
+    },
+    {
+      "name": "LobbyBnt_02",
+      "sourceUuid": "b4a4822d-74d3-4eee-a1eb-02a376e86fd7@ed54f",
+      "uuid": "c1839d40-3d58-58be-bbb4-d7c591b951c1@f9941"
+    },
+    {
+      "name": "DoubleBet",
+      "sourceUuid": "b502e961-77cb-44b3-a832-7599bc0bbc26@f9941",
+      "uuid": "647e8c20-9afc-52f9-bdd4-688ade2e5e0f@f9941"
+    },
+    {
+      "name": "default_panel",
+      "sourceUuid": "b730527c-3233-41c2-aaf7-7cdab58f9749@f9941",
+      "uuid": "56dc0b4d-793c-5050-a87c-471f9ebea569@f9941"
+    },
+    {
+      "name": "Txt_LV_2",
+      "sourceUuid": "b7cff963-23d2-4055-a60c-d6adede2f269@f9941",
+      "uuid": "637df905-9d15-5d7c-aafc-3affaa9b706a@f9941"
+    },
+    {
+      "name": "LV_Btn_08",
+      "sourceUuid": "b8780419-4f39-4a8b-b246-52d01a71575b@f9941",
+      "uuid": "aa0b663d-41c3-52cf-b095-00422e32f072@f9941"
+    },
+    {
+      "name": "Star_02",
+      "sourceUuid": "bc716555-090c-4a39-8696-f34cb551afaf@f9941",
+      "uuid": "93f66928-03ee-557e-a6f8-1ed1eca630a9@f9941"
+    },
+    {
+      "name": "Btn_green",
+      "sourceUuid": "bf49f665-8293-44e4-8d62-b976f4e4653b@f9941",
+      "uuid": "87daf600-3ba7-55da-9ec6-92c1aeb2d602@f9941"
+    },
+    {
+      "name": "Btn_IndiaHall_03",
+      "sourceUuid": "bfa3906a-6c83-4eda-b4a1-7cc727eceffb@f9941",
+      "uuid": "2530be96-7f8a-5d44-b192-313c0823d520@f9941"
+    },
+    {
+      "name": "System_Btn_bg",
+      "sourceUuid": "c1b35485-c826-4683-b662-5d671f3edfd7@f9941",
+      "uuid": "584d80bb-d279-5755-ab1d-e1bd4fed0371@f9941"
+    },
+    {
+      "name": "System_Btn",
+      "sourceUuid": "c1bc00f0-0e1b-49a8-8d0c-f111533b4816@f9941",
+      "uuid": "4d7d5e3e-091c-5a13-928b-e437bc3622ad@f9941"
+    },
+    {
+      "name": "User_02",
+      "sourceUuid": "c504ce28-5024-48de-820f-4f149c148dea@f9941",
+      "uuid": "e9caf415-696f-5c2b-8e78-c0c54ae095f0@f9941"
+    },
+    {
+      "name": "I_Gold_01",
+      "sourceUuid": "c622b9f1-1c72-4b9c-9814-32df5d873e3c@f9941",
+      "uuid": "310a8c87-198e-50e8-89a8-a4bb57e74bd9@f9941"
+    },
+    {
+      "name": "Btn_drop06",
+      "sourceUuid": "c94163d7-cbe1-4de2-8c0e-024ece04f579@f9941",
+      "uuid": "f6037b10-abe2-596f-8bd8-36942dbe2030@f9941"
+    },
+    {
+      "name": "lock",
+      "sourceUuid": "cbabb502-cd6a-4ba6-8e92-c179acc21eb5@f9941",
+      "uuid": "79c1d28a-767a-56b3-8fe1-55a64bb3d6af@f9941"
+    },
+    {
+      "name": "Btn_04",
+      "sourceUuid": "ce1968c2-eda4-45af-ab60-b7f5f9e7afde@f9941",
+      "uuid": "7057e242-7e2b-5ae7-9f91-c5187111200b@f9941"
+    },
+    {
+      "name": "LV_Btn_02",
+      "sourceUuid": "cfcfde7a-e40a-4ef2-86f4-fd9eccfc1372@f9941",
+      "uuid": "5e93eef1-dad4-5f50-bb1d-2f1571387325@f9941"
+    },
+    {
+      "name": "LobbyIcon_01",
+      "sourceUuid": "d2104808-70e4-4345-b230-5526323a5d8a@f9941",
+      "uuid": "6530d681-10c9-5523-a0d4-ebded137c6be@f9941"
+    },
+    {
+      "name": "BetLv3",
+      "sourceUuid": "d253f556-571a-465b-925e-6120b7bb9e7f@f9941",
+      "uuid": "59369e7e-e95f-5eda-84bb-6ea13677e173@f9941"
+    },
+    {
+      "name": "Txt_LV_11",
+      "sourceUuid": "d283d28d-d0b2-4ca3-9045-606bf726df8a@f9941",
+      "uuid": "1db8221c-8eec-58bd-91ce-a7cef56c2f60@f9941"
+    },
+    {
+      "name": "Btn_B_1",
+      "sourceUuid": "d28b6368-1176-4e7e-997b-a3583de1decf@f9941",
+      "uuid": "fa39fce9-10f8-5ac9-a8e6-615d7be50ef4@f9941"
+    },
+    {
+      "name": "Button_02",
+      "sourceUuid": "d53afdc8-4499-4bbb-900b-f94caecf55ae@f9941",
+      "uuid": "46dcd72d-4076-5060-a90d-4e1ea85e938d@f9941"
+    },
+    {
+      "name": "LV_Btn_04",
+      "sourceUuid": "d7672952-ba7a-4f69-9901-75b4eaf19172@f9941",
+      "uuid": "de61b428-139d-517c-97ba-080b2cbb2069@f9941"
+    },
+    {
+      "name": "LV_Btn_11",
+      "sourceUuid": "d7ab7b5e-ecaa-405d-b2db-65d20251de42@f9941",
+      "uuid": "f096596a-5b92-52b6-a70a-9c540dc22fe1@f9941"
+    },
+    {
+      "name": "Add_bg",
+      "sourceUuid": "d9985545-25bd-49e1-a911-7a85b8811d57@f9941",
+      "uuid": "55868345-0f77-5e8e-ae6b-dc140d17f614@f9941"
+    },
+    {
+      "name": "Txt_LV_8",
+      "sourceUuid": "da5fcfa5-c49b-408d-a46d-7505b240a742@f9941",
+      "uuid": "5c854ea6-f7c6-5e6b-b9ec-b2eaf056d881@f9941"
+    },
+    {
+      "name": "Bg_G",
+      "sourceUuid": "db318aca-a778-4c35-91b8-9666f7ebffa9@f9941",
+      "uuid": "219341f7-a607-5cd3-9cf3-72ea38a0e611@f9941"
+    },
+    {
+      "name": "Poker",
+      "sourceUuid": "dbcdfdc9-9f35-491a-babc-9e9143127911@f9941",
+      "uuid": "0ec2f10f-f289-5d0a-b849-49faac94f78e@f9941"
+    },
+    {
+      "name": "Txt_LV_10",
+      "sourceUuid": "dcb849f0-45b6-4bb9-86f5-a0a48a9ee4e2@f9941",
+      "uuid": "3409a122-12ff-524d-a594-e901fb264362@f9941"
+    },
+    {
+      "name": "Btn_drop02",
+      "sourceUuid": "dfb0a593-08aa-4a0a-9910-9921bc9c286a@f9941",
+      "uuid": "632a0f6b-676f-59a0-927b-1c7ddc9b2138@f9941"
+    },
+    {
+      "name": "LobbyIcon_11",
+      "sourceUuid": "dfe9b87b-1515-4f28-b926-8499fcc0c0fa@f9941",
+      "uuid": "7e36b92d-aab9-5574-a9a5-83cf7349deab@f9941"
+    },
+    {
+      "name": "Poker_Out_Light",
+      "sourceUuid": "e0a11ae8-1a57-4578-87eb-5f1979a21de7@f9941",
+      "uuid": "70aef164-c13d-5624-9e11-28a838826b72@f9941"
+    },
+    {
+      "name": "Gold",
+      "sourceUuid": "e0b87f77-9677-447e-8671-00af89e28929@f9941",
+      "uuid": "4aee375b-8a41-5bba-b5ad-6829e57b410d@f9941"
+    },
+    {
+      "name": "hand",
+      "sourceUuid": "e15a567c-8a3b-471a-8301-81de7eec33bb@f9941",
+      "uuid": "0e347fe2-75cb-525c-9ad2-b202d84481fe@f9941"
+    },
+    {
+      "name": "FX_LT_001",
+      "sourceUuid": "e35cfd0d-158d-4c76-a127-d5661661689c@f9941",
+      "uuid": "dbd00beb-109f-5b9f-81a8-6f0085ba8de2@f9941"
+    },
+    {
+      "name": "Btn_08",
+      "sourceUuid": "e53c4d6d-be79-4dce-9357-5ad7d3f796be@f9941",
+      "uuid": "3c9a1a98-80ee-5968-b975-c8daf97cd0e1@f9941"
+    },
+    {
+      "name": "FX_HalfCircle_01",
+      "sourceUuid": "e5db77c5-71f0-481b-a2fd-3e3afc77f4bc@f9941",
+      "uuid": "1266102a-90ab-5fa7-9989-aa44aec3c651@f9941"
+    },
+    {
+      "name": "BetLv5",
+      "sourceUuid": "e6668530-b477-43c9-9d89-0397ad9b1479@f9941",
+      "uuid": "e62af056-7547-55fd-a4aa-e3aff66520a9@f9941"
+    },
+    {
+      "name": "LobbyIcon_08",
+      "sourceUuid": "e700a625-f1d6-481f-8b14-dbbde5ad571b@f9941",
+      "uuid": "7a3bfa9b-fe8a-5273-8d5c-a4f69d1d1cfb@f9941"
+    },
+    {
+      "name": "Gold_02",
+      "sourceUuid": "e70c080b-a357-45b1-8394-4d2950770289@f9941",
+      "uuid": "9c34a968-e971-543c-968b-f965c983778a@f9941"
+    },
+    {
+      "name": "Level1_Btn_06",
+      "sourceUuid": "ead386c1-4105-43ad-bdb2-f89bc3ecf991@f9941",
+      "uuid": "cc8c949b-2289-5b27-80e5-944efbc53b88@f9941"
+    },
+    {
+      "name": "Btn_06",
+      "sourceUuid": "eb2b94ce-e1bc-414c-8fe1-e5ef4173bafb@f9941",
+      "uuid": "2a0e665b-810c-52b3-a89a-01ddf6de606d@f9941"
+    },
+    {
+      "name": "Level1_Btn_07",
+      "sourceUuid": "ebb8abb4-524e-4767-9e70-ee772b8e8074@f9941",
+      "uuid": "d8af402b-7abf-516b-ab62-3452033b5f7a@f9941"
+    },
+    {
+      "name": "PlayerMoney_Bg",
+      "sourceUuid": "ef0ca34b-1388-43bb-9cda-f3bf8106893a@f9941",
+      "uuid": "a136c77c-1705-5e66-be6a-171f42ee253b@f9941"
+    },
+    {
+      "name": "LobbyIcon_10",
+      "sourceUuid": "f1e90463-4913-47e1-a400-7e346191a5d4@f9941",
+      "uuid": "66028c42-b79b-5b43-919a-838533eba207@f9941"
+    },
+    {
+      "name": "Start_LT02",
+      "sourceUuid": "f325db0c-1be7-4dda-9b9b-aee1bb64b696@f9941",
+      "uuid": "6ea85a90-bf01-5558-b38c-d1cfc5c78898@f9941"
+    },
+    {
+      "name": "LobbyBtn_02",
+      "sourceUuid": "f42cea06-4db7-44e0-bf4a-152a1ce7ee25@f9941",
+      "uuid": "0f79cd9a-d237-5a5a-a163-c5969b3efade@f9941"
+    },
+    {
+      "name": "LobbyIcon_09",
+      "sourceUuid": "f5073fa6-d313-4ac1-8953-5cfbd88b8169@f9941",
+      "uuid": "aeb276da-f425-5ebd-9dcc-a7944976632a@f9941"
+    },
+    {
+      "name": "System_Btn_bg",
+      "sourceUuid": "f63752aa-cf72-4bae-b46c-0012aaa24a0a@f9941",
+      "uuid": "92a05405-3e1c-5a5e-bee0-21d3c10dcaf6@f9941"
+    },
+    {
+      "name": "ResultTitle_Win03",
+      "sourceUuid": "f9d370bc-9a71-425d-a583-dc416c336d57@f9941",
+      "uuid": "06df5cd1-f52d-53c8-8952-d2b0ab44c262@f9941"
+    },
+    {
+      "name": "Button_Grey_02",
+      "sourceUuid": "fb24c417-41a9-4f18-9d10-529a4501517e@f9941",
+      "uuid": "11bf8572-55cd-589b-a16a-7eabdc8f78ed@f9941"
+    },
+    {
+      "name": "System_Btn_13",
+      "sourceUuid": "fb58f9b9-55b0-442a-82af-173e523b9f11@f9941",
+      "uuid": "56cad487-594f-5298-98ea-ac3d678cdf21@f9941"
+    },
+    {
+      "name": "BetLv1",
+      "sourceUuid": "fc877d74-0722-4379-97ac-899d05e51dc7@f9941",
+      "uuid": "c8bd3f23-a009-5426-87eb-0aac2b7ae0f6@f9941"
+    },
+    {
+      "name": "bg",
+      "sourceUuid": "fcb3e521-de48-49d4-bb15-9eee14bf24e4@f9941",
+      "uuid": "b781b52e-10a9-5e3e-86e0-011850f02720@f9941"
+    },
+    {
+      "name": "Txt_LV_9",
+      "sourceUuid": "fd9f61a7-90da-4463-bea0-5ab1559766de@f9941",
+      "uuid": "15740a61-605b-5545-8b16-ab5363bc7a52@f9941"
+    },
+    {
+      "name": "Gold_Star_01",
+      "sourceUuid": "fea487cf-ecc8-463e-a3b5-0f6f6659cbd0@f9941",
+      "uuid": "0272619e-e9e9-529a-b6cd-51e47c77bdb1@f9941"
+    },
+    {
+      "name": "default_scrollbar_vertical_bg",
+      "sourceUuid": "ffb88a8f-af62-48f4-8f1d-3cb606443a43@f9941",
+      "uuid": "4eda73af-691b-5969-98e0-14c02b52220c@f9941"
+    }
+  ],
+  "omittedComponents": {
+    "331d3DyAYFNrLjhRRl6vJvK": 96,
+    "03ce6mDDtRMMb4gTmWIJyiQ": 1,
+    "b6ba4nImpJLO4urZ/+GcSYz": 1,
+    "4ec7dyT3KZJCKjaSOmzrZOP": 29,
+    "cc.LabelOutline": 18,
+    "cc.LabelShadow": 6,
+    "cc.TargetOverrideInfo": 27,
+    "b1fabgKlctP3rfM06r34QwT": 13,
+    "cc.ScrollBar": 4,
+    "cc.ScrollView": 4,
+    "cc.WebView": 2,
+    "ac19dJwnfBGW4Zw5StxHmuu": 1,
+    "3b3d1qSE21JZ55UL73CWS/i": 1,
+    "e512eBQ9i9FOJiLTsS6bRb6": 1,
+    "03991L6mxtIAJyCeMohMdl4": 1,
+    "cc.Toggle": 2,
+    "c7bb2Z8UGFH/5zNSVQCP4eH": 15,
+    "cc.ParticleSystem2D": 18,
+    "abf14NZ6I5K5pyFwwVOu59Z": 8,
+    "25250XW8gRNJ44dzrnCvtUQ": 18,
+    "7d584prjJ5Dsaq4ZTApCJiu": 1,
+    "a1764C/TR9Dso9D2Aud96R3": 1,
+    "45486ALT2JAJIbK2DDxOHuT": 10,
+    "6a6c8jklf5Cj5caO+HM0YWX": 1,
+    "cc.MotionStreak": 1,
+    "c1ea7Pii+dAi78piqmmzKpD": 1,
+    "cd19d8rxilGeLEsAri+QMmb": 1,
+    "ae5aaaeyRZHgJG6XUbRx4lG": 1,
+    "52273fgHSBOGYVFbLtgIThs": 1,
+    "a687ci6v6ZPKL1rp6PKFZTM": 1,
+    "b07b9COc/pMpbRIGyALW1eF": 1,
+    "sp.Skeleton": 1
+  },
+  "missingAssets": []
+}

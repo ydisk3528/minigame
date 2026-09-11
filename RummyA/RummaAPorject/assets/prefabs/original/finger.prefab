@@ -1,0 +1,129 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "finger",
+    "data": {
+      "__id__": 1
+    },
+    "persistent": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "finger",
+    "_layer": 33554432,
+    "_active": true,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_parent": null,
+    "_children": [],
+    "_components": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      {
+        "__id__": 5
+      },
+      {
+        "__id__": 6
+      }
+    ],
+    "_id": "73d9d3fc-ee7c-518f-a77b-f0fbd62e42e7",
+    "_prefab": {
+      "__id__": 2
+    }
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "34oLQNFstJkamMZxDFKaFf_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_spriteFrame": {
+      "__uuid__": "3c5edc00-29e8-586e-aca8-7e9612711856@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "_sizeMode": 0,
+    "_customMaterial": null,
+    "_enabled": true,
+    "node": {
+      "__id__": 1
+    },
+    "__prefab": null,
+    "_id": "a026d06a-1af0-57ac-a1f9-a1bf7c1e76e4"
+  },
+  {
+    "__type__": "cc.Animation",
+    "playOnLoad": true,
+    "_clips": [
+      {
+        "__uuid__": "5e15cff3-1af1-40a5-8864-dc2482301b2d",
+        "__expectedType__": "cc.AnimationClip"
+      }
+    ],
+    "_defaultClip": {
+      "__uuid__": "5e15cff3-1af1-40a5-8864-dc2482301b2d",
+      "__expectedType__": "cc.AnimationClip"
+    },
+    "_enabled": true,
+    "node": {
+      "__id__": 1
+    },
+    "__prefab": null,
+    "_id": "a3f4dc03-9a08-5b46-8825-cab78b076819"
+  },
+  {
+    "__type__": "cc.UIOpacity",
+    "_enabled": true,
+    "node": {
+      "__id__": 1
+    },
+    "__prefab": null,
+    "_id": "1147d9f8-4af1-5ee6-a2dc-9f6a6a3ea399"
+  },
+  {
+    "__type__": "cc.UITransform",
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 108,
+      "height": 85
+    },
+    "_enabled": true,
+    "node": {
+      "__id__": 1
+    },
+    "__prefab": null,
+    "_id": "0b39dc8c-bc6f-548c-838f-0f1ac0e66571"
+  }
+]

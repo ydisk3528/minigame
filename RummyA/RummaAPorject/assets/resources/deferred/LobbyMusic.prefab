@@ -1,0 +1,87 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "LobbyMusic",
+    "data": {
+      "__id__": 1
+    },
+    "persistent": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "LobbyMusic",
+    "_active": true,
+    "_layer": 33554432,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_parent": null,
+    "_children": [],
+    "_components": [
+      {
+        "__id__": 2
+      }
+    ],
+    "_id": "5c61fe66-4f9b-5a88-a600-af040beb222b",
+    "_prefab": {
+      "__id__": 3
+    }
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_clip": {
+      "__uuid__": "4214fc57-2daa-402c-85c3-7ddb6a022625",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "_loop": true,
+    "_volume": 0.3,
+    "_playOnAwake": false,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 4
+    },
+    "_id": "374a4dfa-8cb5-5a7f-bd1a-1bb35ce488a5"
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "53d9d401-725d-5094-ac1c-f66bf3f752dd",
+    "instance": null,
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "7d7df14b-7cdf-592c-8d01-da363925d64b"
+  }
+]

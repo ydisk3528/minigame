@@ -1,0 +1,2 @@
+// Recovered compiled B client module; not original TypeScript.
+System.register("virtual:///prerequisite-imports/main",["chunks:///_virtual/main"],function(_0x13fb02,_0x214f46){return{'setters':[function(_0x21475e){var _0x20a7ad=_0160_0x4970,_0x581083={};for(var _0x2f8d5a in _0x21475e){if(_0x2f8d5a!==_0x20a7ad(_0160_0x5ae1a8._0x36550f)+_0x20a7ad(_0160_0x5ae1a8._0x3ee8aa)+'t'&&_0x2f8d5a!==_0x20a7ad(0x1414)+_0x20a7ad(0x59e)+_0x20a7ad(0x1aaf)+'e')_0x581083[_0x2f8d5a]=_0x21475e[_0x2f8d5a];}_0x13fb02(_0x581083);}],'execute':function(){}};});
