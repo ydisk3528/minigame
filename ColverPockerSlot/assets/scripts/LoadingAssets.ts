@@ -1,0 +1,3 @@
+// Paths in the clover bundle; no static references from the startup scene.
+export const SYMBOL_PATHS = ["effects/Symbol_00_11d4b832", "effects/Symbol_01_287b8d50", "effects/Symbol_02_6f8ee078", "effects/Symbol_03_be48b0bd", "effects/Symbol_04_0bce98bb", "effects/Symbol_05_46ed70cb", "effects/Symbol_06_5baa8518", "effects/Symbol_07_5e824b21", "effects/Symbol_08_a31b5395", "effects/Symbol_09_01a010fa"];
+export const CARD_PATHS = ["cards/Symbol_10_81a54270/spriteFrame", "cards/Symbol_11_79a2e02e/spriteFrame", "cards/Symbol_12_e86aa52b/spriteFrame", "cards/Symbol_13_8ea0a070/spriteFrame", "cards/Symbol_14_cd3f8b10/spriteFrame", "cards/Symbol_15_49411e85/spriteFrame", "cards/Symbol_16_0b08f18a/spriteFrame"];

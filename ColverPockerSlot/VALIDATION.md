@@ -1,4 +1,22 @@
-# 验证记录（2026-09-12，表现补全版）
+# 验证记录
+
+## 2026-09-12 按需加载调整
+
+- Creator 3.8.6 web-mobile 构建成功；导入与构建任务无错误。引擎的 Windows 网络检测提示及旧构建配置版本警告仍在，不影响此构建完成。
+- TypeScript、原规则与滚轴测试、全部预制体 UUID 引用检查、加载结构检查通过。
+- 启动场景为 7,611 字节，仅保留相机和加载控制器；运行主预制体为 245,368 字节、46 个图片绑定。以上为源文件大小，不代表实际网络传输量。
+- loading 图片为 128×128 PNG、3,421 字节。网页入口和引擎内均为纯黑底、小圆环、动态百分比。
+- Chrome 浏览器实际点击回归通过：启动阻塞时显示黑底 loading；首次进入没有自动介绍或弹窗；资源缓存没有 Rules/Bonus/BigWin/GameIntro/牌面/音频资源；Settings 首次点击加载，重复打开没有新请求。
+- Rules、Paytable、翻牌（×2/×5/移除梅花/三张黑桃）、结算与 Collect 返回通过。
+- 主动阻断首次 SPIN 资源请求：显示 RETRY，余额保持不变；恢复请求后点击 RETRY，加载并完成转动。
+- 固定 Wild 盘面实际完成扩展、收集、中奖线与首次 BigWin 加载；无未处理 JavaScript 错误。
+- 最新测试在本地无头 Chrome 上运行，初始页面共 113 个请求（含引擎），Settings 首次新增 3 个请求。没有旧版本同条件测速，不声明提速比例。
+- 结果见 `tools/test-output/loading-browser-report.json` 和 `loading-*.png`；可重跑 `tools/loading.test.cjs`、`tools/loading_audit.py`。
+- 当前主界面编辑入口为 `assets/clover/core/CloverMain.prefab`，GameIntro 不再自动播放。未上传生产服务器，未完成 Android/iOS 真机或音频听觉验收。
+
+以下为此次调整之前的表现验证记录，不能视为当前加载结构的验证结果。
+
+## 历史记录：表现补全版
 
 ## 已完成检查
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>100 Blazing Clover</title>
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="<%= cssUrl %>">
+<style>
+html,body { margin:0; background:#000; }
+#clover-startup { position:fixed; inset:0; z-index:99999; background:#000; color:#fff; display:flex; align-items:center; justify-content:center; flex-direction:column; font:22px Arial,sans-serif; touch-action:none; }
+#clover-startup img { width:128px; height:128px; animation:clover-turn 1.5s linear infinite; }
+#clover-startup p { margin:4px 0 0; }
+#clover-startup button { margin-top:20px; border:1px solid #777; color:#fff; background:#000; padding:12px 28px; font:18px Arial; }
+@keyframes clover-turn { to { transform:rotate(360deg); } }
+</style>
+</head><body>
+<div id="clover-startup" role="status" aria-live="polite">
+<img alt="" src="data:image/png;base64,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">
+<p id="clover-startup-message">Loading 0%</p>
+<button id="clover-startup-retry" hidden onclick="location.reload()">RETRY</button>
+</div>
+<script>
+(function(){
+  function retry(failed) {
+    var button=document.getElementById('clover-startup-retry');
+    if(button)button.hidden=false;
+    var message=document.getElementById('clover-startup-message');
+    if(failed&&message)message.textContent='Unable to load. Check connection.';
+  }
+  window.addEventListener('error',function(event){if(event.target&&event.target.tagName==='SCRIPT')retry(true);},true);
+  window.addEventListener('unhandledrejection',function(){retry(true);});
+  // A slow engine download can be retried without pretending to know its byte progress.
+  setTimeout(function(){retry(false);},30000);
+})();
+</script>
+<div id="GameDiv" cc_exact_fit_screen="true"><div id="Cocos3dGameContainer">
+<canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
+</div></div>
+<%- include(cocosTemplate, {}) %>
+</body></html>

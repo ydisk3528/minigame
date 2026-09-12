@@ -3,6 +3,9 @@ import re,shutil
 from editor import *
 from recover import expand
 
+if (ASSETS / "clover/core/CloverMain.prefab").exists():
+ raise SystemExit("Legacy generator disabled after lazy-loading migration; edit current prefabs directly.")
+
 def uid(s):return str(uuid.uuid5(uuid.NAMESPACE_URL,'bc100-local/'+s))
 def comp(n,t):return next((c for c in n.get('_components',[]) if c and c.get('__type__')==t),None)
 def add(p,n):p['_children'].append(n);n['_parent']=p;return n
@@ -77,7 +80,7 @@ text(hud,'WinTitle','WIN',69,17,210,28,19);text(hud,'Win','0.00',69,-17,210,38,3
 button(hud,'Turbo','⚡',242,0,58,58);button(hud,'Auto','AUTO',321,0,63,63)
 spin=button(hud,'Spin','',424,13,123,123,'Btn_Spin_BG');picture(spin,'Arrow','Btn_Spin_1_2',0,0,113,113)
 text(game,'Status','100 LINES · EXPANDING WILDS',0,-192,700,25,16)
-text(game,'LocalMode','LOCAL DEMO',488,305,155,22,12)
+text(game,'LocalMode','',488,305,155,22,12)
 # Modal prefab with settings, help, history; no runtime UI construction.
 dialog=node('CloverDialog',0,0,1136,640);dialog['_active']=False
 shade=picture(dialog,'Shade','Black',0,0,1136,640);comp(shade,'cc.Sprite')['_color']['a']=235;shade['_components'].append({'__type__':'cc.BlockInputEvents','node':shade})
@@ -87,7 +90,7 @@ text(dialog,'Body','',0,15,750,300,22)
 for name,title,x in [('Help','RULES',-275),('Sound','SOUND ON',-90),('History','HISTORY',95),('Reset','RESET',280)]:button(dialog,name,title,x,142,150,44,'JP_Club')
 button(dialog,'Close','CLOSE',0,-204,170,46,'JP_Club')
 button(dialog,'Paytable','PAYTABLE',-240,-204,170,46,'JP_Club')
-button(dialog,'Feature','BONUS DEMO',240,-204,185,46,'JP_Club')
+button(dialog,'Feature','BONUS',240,-204,185,46,'JP_Club')
 # 15 image-bound card buttons; collect three matching suits.
 bonus=node('CloverBonus',0,0,1136,640);bonus['_active']=False
 sh=picture(bonus,'Shade','Black',0,0,1136,640);sh['_components'].append({'__type__':'cc.BlockInputEvents','node':sh})

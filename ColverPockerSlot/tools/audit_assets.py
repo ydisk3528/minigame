@@ -14,13 +14,13 @@ def metas(v):
   if 'uuid'in v:uuids.add(v['uuid'])
   for x in v.values():metas(x)
 for p in (ROOT/'assets').rglob('*.meta'):metas(json.loads(p.read_bytes()))
-files=list((ROOT/'assets/prefabs/playable').glob('*.prefab'))+list((ROOT/'assets/scenes').glob('*.scene'))
+files=list((ROOT/'assets/prefabs/playable').glob('*.prefab'))+list((ROOT/'assets/clover').rglob('*.prefab'))+list((ROOT/'assets/scenes').glob('*.scene'))
 counts={}
 for p in files:
  d=json.loads(p.read_bytes());missing=set(refs(d))-uuids
  assert not missing,(p,missing)
  count=sum(1 for o in d if o.get('__type__')=='cc.Sprite' and o.get('_spriteFrame'))
- assert count>0 or any(o.get('__type__')=='sp.Skeleton' and o.get('_skeletonData') for o in d),p
+ assert count>0 or any(o.get('__type__')=='sp.Skeleton' and o.get('_skeletonData') for o in d) or any(o.get('spinner') for o in d),p
  for o in d:
   if o.get('__type__')=='cc.Node':
    for r in o.get('_components',[]):assert 0<=r['__id__']<len(d)

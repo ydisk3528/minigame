@@ -1,22 +1,22 @@
-import { _decorator, Component, Node, Sprite, SpriteFrame, Label, Button, Color, tween, Tween, Vec3, sys, AudioClip, AudioSource, input, Input, EventKeyboard, KeyCode, view, ResolutionPolicy, CCString, Prefab, instantiate, sp, Animation, UIOpacity } from 'cc';
+import { _decorator, Component, Node, Sprite, SpriteFrame, Label, Button, Color, tween, Tween, Vec3, sys, AudioClip, AudioSource, input, Input, EventKeyboard, KeyCode, view, ResolutionPolicy, Prefab, instantiate, sp, Animation, UIOpacity } from 'cc';
 import { reelFrame, reelStop, REEL } from './ReelMotion';
+import { CloverLoading, LoadItem } from './CloverLoading';
+import { SYMBOL_PATHS, CARD_PATHS } from './LoadingAssets';
 import { LINES, evaluate, makeBoard, newBonus, revealCard, BonusState } from './SlotRules';
 const { ccclass, property } = _decorator;
 const STORE = 'clover-slot-local-v1';
 @ccclass('CloverApp')
 export class CloverApp extends Component {
     @property(Node) gameRoot: Node = null!;
-    @property(Node) dialogRoot: Node = null!;
-    @property(Node) bonusRoot: Node = null!;
+    private dialogRoot: Node = null!;
+    private bonusRoot: Node = null!;
     @property([SpriteFrame]) symbols: SpriteFrame[] = [];
-    @property([SpriteFrame]) cardFaces: SpriteFrame[] = [];
-    @property(SpriteFrame) cardBack: SpriteFrame = null!;
-    @property(SpriteFrame) cardFront: SpriteFrame = null!;
-    @property([AudioClip]) sounds: AudioClip[] = [];
-    @property([CCString]) soundNames: string[] = [];
-    @property([Prefab]) symbolPrefabs: Prefab[] = [];
-    @property(Prefab) linePrefab: Prefab = null!;
-    @property(Prefab) flyPrefab: Prefab = null!;
+    private cardFaces: SpriteFrame[] = [];
+    private sounds: AudioClip[] = [];
+    private soundNames: string[] = [];
+    private symbolPrefabs: Prefab[] = [];
+    private linePrefab: Prefab = null!;
+    private flyPrefab: Prefab = null!;
     private belt: {node:Node,col:number,row:number,wrap:number}[] = [];
     private rolling: {time:number,board:number[],turbo:boolean,resolve:()=>void,stops:Set<number>,stopOverride?:number} | null = null;
     private effectEpoch = 0;
@@ -40,7 +40,7 @@ export class CloverApp extends Component {
     private readonly keyDown = (event:EventKeyboard) => {
         if(event.keyCode !== KeyCode.SPACE || this.keyHeld) return;
         this.keyHeld = true;
-        if(!this.dialogRoot.active && !this.bonusRoot.active) this.spin();
+        if(!this.dialogRoot?.active && !this.bonusRoot?.active && !CloverLoading.instance.active) this.spin();
     };
     private readonly keyUp = (event:EventKeyboard) => {if(event.keyCode===KeyCode.SPACE)this.keyHeld=false;};
     private find(root:Node,name:string):Node {
@@ -50,7 +50,7 @@ export class CloverApp extends Component {
     }
     private search(n:Node,name:string):Node|null {if(n.name===name)return n;for(const child of n.children){const found=this.search(child,name);if(found)return found;}return null;}
     private label(root:Node,name:string,value:string){this.find(root,name).getComponent(Label)!.string=value;}
-    private on(root:Node,name:string,fn:()=>void){this.find(root,name).on(Button.EventType.CLICK,()=>{console.info('[Clover] click',name);fn();},this);}
+    private on(root:Node,name:string,fn:()=>void){this.find(root,name).on(Button.EventType.CLICK,()=>{if(CloverLoading.instance.active)return;console.info('[Clover] click',name);fn();},this);}
     private money(v:number){return v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
     private get bet(){return this.bets[this.betIndex];}
     start(){
@@ -70,22 +70,9 @@ export class CloverApp extends Component {
         this.on(this.gameRoot,'BetDown',()=>this.changeBet(-1));this.on(this.gameRoot,'BetUp',()=>this.changeBet(1));
         this.on(this.gameRoot,'Turbo',()=>{this.turbo=!this.turbo;this.status(this.turbo?'TURBO ON':'TURBO OFF');this.updateHud();});
         this.on(this.gameRoot,'Auto',()=>{this.auto=this.auto?0:25;this.updateHud();if(this.auto&&!this.busy)this.spin();});
-        this.on(this.gameRoot,'Settings',()=>{if(this.busy)return;this.auto=0;this.dialogRoot.active=true;this.showRules();this.updateHud();});
-        this.on(this.dialogRoot,'Close',()=>{this.dialogRoot.active=false;});
-        this.on(this.dialogRoot,'Help',()=>this.showRules());
-        this.on(this.dialogRoot,'Paytable',()=>{this.label(this.dialogRoot,'Title','LOCAL DEMO PAYTABLE');this.label(this.dialogRoot,'Body','Symbol                    3 / 4 / 5 in a line\nCherry / Lemon                5 / 15 / 40\nOrange / Plum                 8 / 20 / 50\nGrape / Melon               12 / 30 / 80\nBell                             15 / 40 / 100\nRed 7 / Wild                25 / 100 / 250\nAmounts × (total bet ÷ 100). Best match per line.');});
-        this.on(this.dialogRoot,'Feature',()=>{this.dialogRoot.active=false;this.busy=true;this.auto=0;this.openBonus();this.updateHud();});
-        this.on(this.dialogRoot,'Sound',()=>{this.muted=!this.muted;if(this.muted)this.music.stop();else this.startMusic();this.persist();this.updateHud();});
-        this.on(this.dialogRoot,'History',()=>{this.label(this.dialogRoot,'Title','RECENT SPINS');this.label(this.dialogRoot,'Body',this.history.slice(0,9).join('\n')||'No spins yet');});
-        this.on(this.dialogRoot,'Reset',()=>{this.balance=10000;this.history=[];this.betIndex=3;this.persist();this.updateHud();this.label(this.dialogRoot,'Title','BALANCE RESET');this.label(this.dialogRoot,'Body','Local demo balance restored to 10,000.00.');});
-        for(let i=0;i<15;i++)this.on(this.bonusRoot,'Card'+i,()=>this.pick(i));
-        this.on(this.bonusRoot,'Collect',()=>{this.bonusRoot.active=false;this.busy=false;this.animate(this.find(this.find(this.gameRoot,'Node_Character'),'Spine').getComponent(sp.Skeleton)!,'Lv1_Idle',true);this.music.stop();this.startMusic();this.clearEffects();this.updateHud();this.nextAuto();});
+        this.on(this.gameRoot,'Settings',()=>this.openSettings());
         const qaMode=sys.isBrowser?new URLSearchParams(window.location.search).get('qa'):null;
-        if(qaMode==='gallery')this.scheduleOnce(()=>{for(let i=0;i<20;i++)this.animate(this.symbolEffect(i,i%10).getComponentInChildren(sp.Skeleton)!,'Win',true);},.1);
-        if(qaMode==='intro'||(!qaMode&&!sys.localStorage.getItem('clover-intro-seen-v2'))){
-            this.busy=true;
-            this.scheduleOnce(()=>{this.showSpinePanel(this.gameRoot,'Node_GameIntro','GameIntro_L').then(()=>{this.busy=false;this.updateHud();sys.localStorage.setItem('clover-intro-seen-v2','1');});},.1);
-        }
+        if(qaMode==='gallery')this.scheduleOnce(async()=>{while(CloverLoading.instance.active)await this.pause(.05);await this.prepareSpin();for(let i=0;i<20;i++)this.animate(this.symbolEffect(i,i%10).getComponentInChildren(sp.Skeleton)!,'Win',true);},.1);
         input.on(Input.EventType.KEY_DOWN,this.keyDown);input.on(Input.EventType.KEY_UP,this.keyUp);
         this.updateHud();
         if(sys.isBrowser&&new URLSearchParams(window.location.search).has('qa')){
@@ -93,6 +80,58 @@ export class CloverApp extends Component {
             for(const d of new Set(data))if(d){const runtime=d.getRuntimeData();for(const skin of runtime.skins)for(const entry of skin.getAttachments()){const attachment=entry.attachment as sp.spine.RegionAttachment;if(!attachment.path)console.info('[Clover] non-image attachment',d.name,entry.name);if(attachment.path&&!d.atlasText.split(/\r?\n/).includes(attachment.path))console.warn('[Clover] atlas missing',d.name,skin.name,attachment.path);}
             console.info('[Clover] catalog',d.name,JSON.stringify({animations:runtime.animations.map(a=>[a.name,a.duration]),skins:runtime.skins.map(s=>s.name)}));}
         }
+    }
+    private bindDialog(){
+        this.on(this.dialogRoot,'Close',()=>{this.dialogRoot.active=false;});
+        this.on(this.dialogRoot,'Help',()=>this.showRules());
+        this.on(this.dialogRoot,'Paytable',()=>{this.label(this.dialogRoot,'Title','PAYTABLE');this.label(this.dialogRoot,'Body','Symbol                    3 / 4 / 5 in a line\nCherry / Lemon                5 / 15 / 40\nOrange / Plum                 8 / 20 / 50\nGrape / Melon               12 / 30 / 80\nBell                             15 / 40 / 100\nRed 7 / Wild                25 / 100 / 250\nAmounts × (total bet ÷ 100). Best match per line.');});
+        this.on(this.dialogRoot,'Feature',()=>{this.dialogRoot.active=false;this.busy=true;this.auto=0;this.openBonus();this.updateHud();});
+        this.on(this.dialogRoot,'Sound',()=>{this.muted=!this.muted;if(this.muted)this.music.stop();else this.startMusic();this.persist();this.updateHud();});
+        this.on(this.dialogRoot,'History',()=>{this.label(this.dialogRoot,'Title','RECENT SPINS');this.label(this.dialogRoot,'Body',this.history.slice(0,9).join('\n')||'No spins yet');});
+        this.on(this.dialogRoot,'Reset',()=>{this.balance=10000;this.history=[];this.betIndex=3;this.persist();this.updateHud();this.label(this.dialogRoot,'Title','BALANCE RESET');this.label(this.dialogRoot,'Body','Balance restored to 10,000.00.');});
+    }
+    private bindBonus(){
+        for(let i=0;i<15;i++)this.on(this.bonusRoot,'Card'+i,()=>this.pick(i));
+        this.on(this.bonusRoot,'Collect',()=>{this.bonusRoot.active=false;this.busy=false;this.animate(this.find(this.find(this.gameRoot,'Node_Character'),'Spine').getComponent(sp.Skeleton)!,'Lv1_Idle',true);this.music.stop();this.startMusic();this.clearEffects();this.updateHud();this.nextAuto();});
+    }
+    private async openSettings(){
+        if(this.busy)return;
+        this.busy=true;this.auto=0;this.updateHud();
+        if(!this.dialogRoot)await CloverLoading.instance.load([{path:'panels/CloverDialog',type:Prefab}],assets=>{
+            this.dialogRoot=instantiate(assets[0] as Prefab);this.node.addChild(this.dialogRoot);this.bindDialog();
+        });
+        this.dialogRoot.active=true;this.busy=false;this.showRules();this.updateHud();
+    }
+    private audioItems(names:string[]):LoadItem[]{return names.map(name=>({path:'audio/'+name,type:AudioClip}));}
+    private cacheAudio(names:string[],clips:AudioClip[]){
+        names.forEach((name,i)=>{if(!this.soundNames.includes(name)){this.soundNames.push(name);this.sounds.push(clips[i]);}});
+    }
+    private async prepareSpin(){
+        if(this.linePrefab)return;
+        const names=['BGM_MG','Reel_Spin','Reel_Rotating','Reel_Stop','Wild_Stop','Scatter_Stop01','Wild_Extension','Wild_Fly','Win_Small_01'];
+        const paths=[...SYMBOL_PATHS,'effects/WaysRunEffect','effects/FXEffect','effects/Fx_Expand'];
+        await CloverLoading.instance.load([...paths.map(path=>({path,type:Prefab})),...this.audioItems(names)],assets=>{
+            this.symbolPrefabs=assets.slice(0,10) as Prefab[];this.linePrefab=assets[10] as Prefab;this.flyPrefab=assets[11] as Prefab;
+            const expand=instantiate(assets[12] as Prefab);this.gameRoot.addChild(expand);
+            this.cacheAudio(names,assets.slice(paths.length) as AudioClip[]);
+        });
+    }
+    private async prepareBonus(){
+        if(this.bonusRoot)return;
+        const names=['BGM_MG','BGM_BG','BG_Start','BG_Card_Deal','BG_Card_Flip','BG_Card_Del','BG_Card_Flip_Multiplier_01','BG_Card_Flip_Multiplier_02','BG_Coins'];
+        const items:LoadItem[]=[{path:'panels/CloverBonus',type:Prefab},{path:'effects/Node_BGDeclare',type:Prefab},...CARD_PATHS.map(path=>({path,type:SpriteFrame})),...this.audioItems(names)];
+        await CloverLoading.instance.load(items,assets=>{
+            this.bonusRoot=instantiate(assets[0] as Prefab);this.node.addChild(this.bonusRoot);
+            this.gameRoot.addChild(instantiate(assets[1] as Prefab));this.cardFaces=assets.slice(2,9) as SpriteFrame[];
+            this.cacheAudio(names,assets.slice(9) as AudioClip[]);this.bindBonus();
+        });
+    }
+    private async prepareBigWin(){
+        if(this.search(this.gameRoot,'Node_BigWin'))return;
+        const names=['Win_Big','Win_Big_End'];
+        await CloverLoading.instance.load([{path:'effects/Node_BigWin',type:Prefab},...this.audioItems(names)],assets=>{
+            this.gameRoot.addChild(instantiate(assets[0] as Prefab));this.cacheAudio(names,assets.slice(1) as AudioClip[]);
+        });
     }
     onDestroy(){input.off(Input.EventType.KEY_DOWN,this.keyDown);input.off(Input.EventType.KEY_UP,this.keyUp);for(const n of this.cells)Tween.stopAllByTarget(n);}
     private persist(){if(sys.isBrowser&&new URLSearchParams(window.location.search).has("qa"))return;try{sys.localStorage.setItem(STORE,JSON.stringify({balance:this.balance,betIndex:this.betIndex,muted:this.muted,history:this.history}));}catch(e){console.warn('Save unavailable',e);}}
@@ -103,7 +142,7 @@ export class CloverApp extends Component {
         this.find(this.gameRoot,'Turbo').getComponent(Sprite)!.color=this.turbo?new Color(255,215,70):Color.WHITE;
         for(const name of ['BetDown','BetUp','Settings'])this.find(this.gameRoot,name).getComponent(Button)!.interactable=!this.busy;
         this.find(this.gameRoot,'Spin').getComponent(Button)!.interactable=!this.busy||!!this.rolling;
-        this.label(this.find(this.dialogRoot,'Sound'),'Label',this.muted?'SOUND OFF':'SOUND ON');
+        if(this.dialogRoot)this.label(this.find(this.dialogRoot,'Sound'),'Label',this.muted?'SOUND OFF':'SOUND ON');
         for(const [name,mult] of [['JP_Mini',5],['JP_Minor',20],['JP_Major',50],['JP_Grand',1000]] as [string,number][]){this.label(this.find(this.gameRoot,name),'Value',(this.bet*mult).toLocaleString('en-US'));}
     }
     private changeBet(delta:number){if(this.busy)return;this.betIndex=Math.max(0,Math.min(this.bets.length-1,this.betIndex+delta));this.updateHud();this.persist();}
@@ -112,9 +151,11 @@ export class CloverApp extends Component {
     private async pause(seconds:number){return new Promise<void>(resolve=>this.scheduleOnce(resolve,seconds));}
     private async spin(){
         if(this.rolling){const run=this.rolling;const start=run.turbo?0:REEL.rise*5;run.stopOverride??=(Math.ceil(Math.max(0,run.time-start)/REEL.cycle)+1)*REEL.cycle;this.status('STOPPING REELS');return;}
-        if(this.busy||this.dialogRoot.active||this.bonusRoot.active)return;
+        if(this.busy||CloverLoading.instance.active||this.dialogRoot?.active||this.bonusRoot?.active)return;
         if(this.balance<this.bet){this.auto=0;this.status('Not enough balance · reset in Settings');this.updateHud();return;}
-        this.busy=true;if(this.auto)this.auto--;const bet=this.bet;
+        this.busy=true;this.updateHud();
+        await this.prepareSpin();
+        if(this.auto)this.auto--;const bet=this.bet;
         this.balance=Math.round((this.balance-bet)*100)/100;this.persist();this.label(this.gameRoot,'Win','0.00');this.status('GOOD LUCK!');this.updateHud();this.startMusic();this.play('Reel_Spin');
         for(const n of this.cells){Tween.stopAllByTarget(n);n.setScale(1,1,1);n.getComponent(Sprite)!.color=Color.WHITE;}
         const qa=sys.isBrowser?new URLSearchParams(window.location.search).get("qa"):null;
@@ -144,7 +185,9 @@ export class CloverApp extends Component {
     }
     private nextAuto(){if(this.auto>0)this.scheduleOnce(()=>{if(this.auto>0)this.spin();},this.turbo?.25:1.2);}
     private async openBonus(){
-        this.busy=true;this.clearEffects();this.updateHud();this.play('BG_Start');
+        this.busy=true;this.clearEffects();this.updateHud();
+        await this.prepareBonus();
+        this.play('BG_Start');
         const character=this.find(this.find(this.gameRoot,'Node_Character'),'Spine').getComponent(sp.Skeleton)!;
         this.animate(character,'Win_Start');
         await this.showSpinePanel(this.gameRoot,'Node_BGDeclare','BG_Declare_L');
@@ -290,13 +333,11 @@ export class CloverApp extends Component {
         const root=this.find(parent,name);root.active=true;
         root.getComponentsInChildren(Label).forEach(l=>{if(l.node.name!=='AwardAmount')l.node.active=false;});
         const sk=root.getComponentInChildren(sp.Skeleton)!;if(skin)sk.setSkin(skin);
-        const intro=name==='Node_GameIntro';
-        const setControls=(active:boolean)=>{for(const key of ['HUD','Status','LocalMode'])this.find(this.gameRoot,key).active=active;};
-        if(intro){setControls(false);sk.setEventListener((_entry,event)=>{if(typeof event!=='number'&&event.data.name==='Open')setControls(true);});}
         const label=this.search(root,'AwardAmount');if(label)label.getComponent(Label)!.string=this.money(this.bonusReward);
-        await this.pause(this.animate(sk,animation));root.active=false;if(intro){sk.setEventListener(null!);setControls(true);}
+        await this.pause(this.animate(sk,animation));root.active=false;
     }
     private async bigWin(amount:number,bet:number){
+        await this.prepareBigWin();
         const root=this.find(this.gameRoot,'Node_BigWin');root.active=true;
         // Old imported bitmap labels require the original controller; the HUD holds the counter.
         root.getComponentsInChildren(Label).forEach(l=>{if(l.node.name!=='AwardAmount')l.node.active=false;});
@@ -309,6 +350,6 @@ export class CloverApp extends Component {
     }
     private showRules(){
         this.label(this.dialogRoot,'Title','100 BLAZING CLOVER · RULES');
-        this.label(this.dialogRoot,'Body','5 reels × 4 rows · 100 original paylines\nMatch 3 or more from the leftmost reel.\nClover WILD expands to fill its reel and substitutes symbols.\n3 ladybugs: collect 3 matching suits in the card bonus.\n♠ 1000×   ♥ 50×   ♦ 20×   ♣ 5× total bet\n×2 / ×5 multiply prizes · REMOVE clears all clubs.\nDemo credits only · no cash value.');
+        this.label(this.dialogRoot,'Body','5 reels × 4 rows · 100 original paylines\nMatch 3 or more from the leftmost reel.\nClover WILD expands to fill its reel and substitutes symbols.\n3 ladybugs: collect 3 matching suits in the card bonus.\n♠ 1000×   ♥ 50×   ♦ 20×   ♣ 5× total bet\n×2 / ×5 multiply prizes · REMOVE clears all clubs.\nCredits have no cash value.');
     }
 }
