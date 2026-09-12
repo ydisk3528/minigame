@@ -1,0 +1,232 @@
+[
+  {
+    "__type__": "cc.SceneAsset",
+    "_name": "MainGame",
+    "scene": {
+      "__id__": 3
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Canvas",
+    "_layer": 1,
+    "_id": "ceHEN5rgpN/oNPs0/ONdvp",
+    "_children": [
+      {
+        "__id__": 2
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.Canvas",
+        "_cameraComponent": {
+          "__id__": 4
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.Widget",
+        "_alignFlags": 45,
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.UIOpacity",
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.UITransform",
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 640,
+          "height": 1136
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "89025dALbBFj7AFo+6o3xYM",
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "c933866GvpLKaZlVxLlOz0C",
+        "m_gameShortName": "bc100",
+        "m_scenePrefabPath": "/Prefab/MainGame",
+        "m_gameImgPath": "/Text/",
+        "m_gameId": "591",
+        "m_logoName": "logo",
+        "m_chilliNum": 2,
+        "m_autoplayPanelNo": 1,
+        "m_isRemote": true,
+        "m_isRSA": true,
+        "m_infoNames": [
+          "txt1",
+          "txt2"
+        ],
+        "m_pagePrefabPaths": [
+          "Prefab/Intro/Intro_Cell_01",
+          "Prefab/Intro/Intro_Cell_02"
+        ],
+        "m_featureSpriteFrames": [
+          {
+            "__uuid__": "7ca567e7-9299-4564-bf3d-eb513264393f@f9941"
+          },
+          {
+            "__uuid__": "67b39d14-1d72-4754-9c7e-6673bf309903@f9941"
+          }
+        ],
+        "m_bgSpriteFrames": [
+          {
+            "__uuid__": "841f0631-b2ed-4b29-b6f5-97f2a12d44a9@f9941"
+          },
+          {
+            "__uuid__": "d05f311c-dbf4-4bc7-8c26-2705b04c10f7@f9941"
+          }
+        ],
+        "m_styleSetting": {
+          "__type__": "StyleSetting"
+        },
+        "m_playTypeSetting": {
+          "__type__": "PlayTypeSetting"
+        },
+        "m_logoSpriteAtlas": {
+          "__uuid__": "cec8379c-1fa9-4d49-954a-c84e20dccead"
+        },
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 320,
+      "y": 568,
+      "z": 0
+    },
+    "_parent": {
+      "__id__": 3
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Main Camera",
+    "_layer": 1,
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__id__": 4
+      },
+      {
+        "__type__": "cc.UIOpacity",
+        "node": {
+          "__id__": 2
+        }
+      },
+      {
+        "__type__": "cc.UITransform",
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 0,
+          "height": 0
+        },
+        "node": {
+          "__id__": 2
+        }
+      }
+    ],
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 1000
+    }
+  },
+  {
+    "__type__": "cc.Scene",
+    "_name": "MainGame",
+    "autoReleaseAssets": true,
+    "_children": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "d666760d-fa37-4083-91cd-37d2699a91b7"
+    },
+    "_globals": {
+      "__type__": "cc.SceneGlobals",
+      "ambient": {
+        "__type__": "cc.AmbientInfo",
+        "_skyIllumLDR": 0.78125,
+        "_skyColorHDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.2,
+          "y": 0.5019607843137255,
+          "z": 0.8,
+          "w": 0.520833125
+        },
+        "_skyColorLDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.2,
+          "y": 0.5019607843137255,
+          "z": 0.8,
+          "w": 0.520833125
+        }
+      },
+      "shadows": {
+        "__type__": "cc.ShadowsInfo",
+        "_size": {
+          "__type__": "cc.Vec2",
+          "x": 512,
+          "y": 512
+        }
+      },
+      "_skybox": {
+        "__type__": "cc.SkyboxInfo"
+      },
+      "fog": {
+        "__type__": "cc.FogInfo",
+        "_fogColor": {
+          "__type__": "cc.Color",
+          "r": 225,
+          "g": 225,
+          "b": 225,
+          "a": 255
+        }
+      },
+      "octree": {
+        "__type__": "cc.OctreeInfo"
+      }
+    }
+  },
+  {
+    "__type__": "cc.Camera",
+    "_projection": 0,
+    "_priority": -1,
+    "_fov": 60,
+    "_orthoHeight": 568,
+    "_far": 4096,
+    "_visibility": 4294967295,
+    "node": {
+      "__id__": 2
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    }
+  }
+]

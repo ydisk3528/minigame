@@ -1,0 +1,5 @@
+# Preserve downloaded reference bytes and their manifest hashes.
+coderesoures/** -text whitespace=cr-at-eol
+# These two vendor files contain original trailing whitespace.
+coderesoures/index.html -whitespace
+coderesoures/assets/internal/index.41b5e.js -whitespace
