@@ -1,0 +1,73 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "FreeSpinMgr",
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "FreeSpinMgr",
+    "_layer": 33554432,
+    "_children": [
+      {
+        "__id__": 2
+      }
+    ],
+    "_components": [],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "1bwdkwFBNAwrO+2MYL2x/y",
+      "asset": {
+        "__id__": 0
+      },
+      "root": {
+        "__id__": 1
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Root",
+    "_layer": 33554432,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 3
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "f2noYyTwVNcqyNFV3EtPfg",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    },
+    "_components": []
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "FreeSpinShowNode",
+    "_layer": 33554432,
+    "_parent": {
+      "__id__": 2
+    },
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "26277G/V9Puaou+O/TL6q+",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    },
+    "_components": []
+  }
+]

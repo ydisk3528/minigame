@@ -10,10 +10,10 @@ export function loadSave(storage:Storage,bridge?:Bridge):GameSave {
     try{saved=parse(bridge?.getGameSave()||null);}catch(e){console.warn('Native save read failed',e);}
     if(!saved)try{saved=parse(storage.getItem(key));}catch{}
     if(saved)return saved;
-    const fresh:GameSave={game:'rummy',version:1,balance:10000,player:randomPlayers()[0],music:false,sound:false,records:[]};
+    const fresh:GameSave={game:'rummy',version:1,balance:10000,player:randomPlayers()[0],music:true,sound:true,records:[]};
     try{
         const raw=storage.getItem('rummy.local.balance');if(raw!==null&&raw.trim()!==''&&Number.isFinite(Number(raw)))fresh.balance=Number(raw);
-        fresh.music=storage.getItem('rummy.music')==='on';fresh.sound=storage.getItem('rummy.sound')==='on';
+        fresh.music=storage.getItem('rummy.music')!=='off';fresh.sound=storage.getItem('rummy.sound')!=='off';
         const records=JSON.parse(storage.getItem('rummy.local.records')||'[]');
         if(Array.isArray(records))fresh.records=records.filter(r=>typeof r?.time==='string'&&Number.isFinite(r.delta)&&Number.isFinite(r.balance)).slice(-30);
     }catch{}

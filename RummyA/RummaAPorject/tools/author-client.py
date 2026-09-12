@@ -316,3 +316,6 @@ print('Authored original lobby, room cards, 7 card groups, original result panel
 # Keep the generated first scene light after restoring the full authored layout.
 from split_loading import migrate
 migrate()
+
+from first_play_guide import main as author_first_play_guide
+author_first_play_guide()

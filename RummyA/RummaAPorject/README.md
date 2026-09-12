@@ -58,3 +58,12 @@
 `author-client.py` 恢复生成的最后一步会调用 `split_loading.py`，保持首场景优化；不要在编辑器手工调整后随意运行恢复工具。
 
 Auto Sort：手牌顺序、分组未变化时使用现有 Confirmation 预制体显示 Already sorted 提示，仅一个 OK；有变化时正常理牌。
+
+
+## 首次游玩引导
+
+第一次进房间、发牌动画结束后，显示三步真实操作引导：点击牌堆摸牌、点击高亮手牌、点击 Discard。只允许高亮区域接收点击，其余区域由四块黑色 Sprite 遮挡并阻止输入，Alpha 为 180/255；引导期间暂停倒计时，完成一次手动弃牌后恢复牌局并保存本机完成标记 `rummyA.firstPlayGuide.v1`，刷新或再次进房间不重复。未完成就退出会在下次重新引导。
+
+可编辑资源：`assets/prefabs/playable/FirstPlayGuide.prefab`（同时嵌入按需加载的 RummyTable），`assets/art/TutorialHand.png`。手指图片已绑定，带轻微缩放动画。引导只随牌桌下载，不增加大厅首屏依赖。
+
+手指使用内置 imagegen 生成透明 PNG，提示词记录在 `tools/tutorial-hand-prompt.txt`。`tools/first_play_guide.py` 可重建新增预制体，在原始恢复工具完成后自动调用。

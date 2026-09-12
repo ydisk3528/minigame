@@ -1,0 +1,1 @@
+cclegacy._RF.push({},"d2c26fQQiVLvbSkPD2JFzk5","rankboardManager",void 0);class RankboardManager{setIconNode(e,t){return null}showRankboard(){return null}}function UpdateRankboard(){Annin.Rankboard||(Annin.Rankboard=new RankboardManager),Annin.Rankboard}

@@ -1,0 +1,89 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "finger",
+    "data": {
+      "__id__": 1
+    },
+    "persistent": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "finger",
+    "_layer": 1,
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "adC6f+OqJHRKLh5yDIbAZP"
+        },
+        "_customMaterial": null,
+        "_spriteFrame": {
+          "__uuid__": "a8ef4c7f-d6bf-5e06-b2d8-01913f1ba04e@f9941"
+        },
+        "node": {
+          "__id__": 1
+        },
+        "_sizeMode": 0
+      },
+      {
+        "__type__": "cc.Animation",
+        "playOnLoad": true,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "5ap//+PPJPtLpEiuU8UbO7"
+        },
+        "_clips": [
+          {
+            "__uuid__": "5e15cff3-1af1-40a5-8864-dc2482301b2d"
+          }
+        ],
+        "_defaultClip": {
+          "__uuid__": "5e15cff3-1af1-40a5-8864-dc2482301b2d"
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.UIOpacity",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "f4N7Af9EBCg4+zFXBsK70X"
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "576hQSVlFJMILxmZJ5ud5c"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 108,
+          "height": 85
+        },
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "34oLQNFstJkamMZxDFKaFf",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "asset": {
+        "__id__": 0
+      },
+      "root": {
+        "__id__": 1
+      }
+    }
+  }
+]

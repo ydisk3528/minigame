@@ -1,0 +1,99 @@
+cclegacy._RF.push({}
+,"a1764C/TR9Dso9D2Aud96R3","indoManager",void 0);
+var{ccclass:ccclass$i,property:property$h}
+=_decorator,indoManager=(_dec$i=property$h(Node$1),_dec2$e=property$h(Node$1),_dec3$c=property$h(Node$1),_dec4$c=property$h(Node$1),_dec5$9=property$h(Node$1),_dec6$6=property$h(Node$1),_dec7$6=property$h(Prefab),_dec8$6=property$h(Prefab),_dec9$3=property$h(Prefab),_dec10$3=property$h(Prefab),_dec11$3=property$h(Prefab),_dec12$3=property$h(WebPage),_dec13$3=property$h(SpriteFrame),_dec14$3=property$h(SpriteFrame),_dec15$3=property$h(SpriteFrame),_dec16$3=property$h(sp.SkeletonData),_dec17$3=property$h(SpriteFrame),ccclass$i((_class2$h=class extends Component{constructor(){super(...arguments),_initializerDefineProperty(this,"lobbyNode",_descriptor$h,this),_initializerDefineProperty(this,"settingNode",_descriptor2$g,this),_initializerDefineProperty(this,"switchNode",_descriptor3$e,this),_initializerDefineProperty(this,"loadingNode",_descriptor4$e,this),_initializerDefineProperty(this,"loadingEffectNode",_descriptor5$b,this),_initializerDefineProperty(this,"bannerNode",_descriptor6$8,this),_initializerDefineProperty(this,"switchRoom_prefab",_descriptor7$6,this),_initializerDefineProperty(this,"lobby_prefab",_descriptor8$6,this),_initializerDefineProperty(this,"room_prefab",_descriptor9$3,this),_initializerDefineProperty(this,"infoBtn_prefab",_descriptor10$3,this),_initializerDefineProperty(this,"banner_prefab",_descriptor11$3,this),_initializerDefineProperty(this,"webPage",_descriptor12$3,this),_initializerDefineProperty(this,"lobbyBgSprite",_descriptor13$3,this),_initializerDefineProperty(this,"lobbyBgSprite_S",_descriptor14$3,this),_initializerDefineProperty(this,"lobbyGirl_img",_descriptor15$3,this),_initializerDefineProperty(this,"lobbyGirl_spine",_descriptor16$3,this),_initializerDefineProperty(this,"logoSprite",_descriptor17$3,this),this.lobbyView=null,this.lobbybar=null,this.isInLobby=!0,this.switchRoom=null,this.infoBtn=null,this.bannerManager=null}
+onLoad(){setTimeout((()=>{if(!sys.isNative){var e=document.getElementById("LogoPage");
+e&&(e.style.display="none")}
+}
+),2500-((new Date).getTime()-window.logoTimer)),node$9.always(BusEvent.CanvasResize,this.onRotation,this)}
+onDestroy(){node$9.cancel(BusEvent.CanvasResize,this.onRotation,this)}
+init(e,t,i,r){for(var n=0;
+n<indoDefine.OLDRD4_apiid.length;
+n++)node.apiID==indoDefine.OLDRD4_apiid[n]&&(indoDefine.isOLDRD4=!0);
+var o=instantiate(this.switchRoom_prefab);
+this.switchNode.addChild(o),this.switchRoom=o.getComponent(switchRoom);
+var a=instantiate(this.lobby_prefab);
+this.lobbyNode.addChild(a),this.lobbyView=a.getComponent(Lobby),this.lobbyView.Init(this.lobbyBgSprite,this.lobbyGirl_img,this.lobbyGirl_spine,t,this.room_prefab,r),this.lobbyBgSprite_S&&this.lobbyView.setBg_S(this.lobbyBgSprite_S),this.lobbybar=a.getChildByName("LobbyBar").getComponent(LobbyBar),this.lobbybar.Init(e,this.logoSprite,(()=>{this.webPage.showIntro()}
+),(()=>{this.webPage.showReport()}
+)),this.getIndoRecommand((e=>{this.lobbybar.initIndoRecommend(e)}
+)),this.initYtubeBtn();
+var s=instantiate(this.banner_prefab);
+this.bannerNode.addChild(s),this.bannerManager=s.getComponent(bannerManager),this.bannerManager.init();
+var l=node.getLang();
+"hi-IN"!=l&&"ta-IN"!=l&&"bn-IN"!=l||(indoDefine.USE_INR_MONEY=!0),"vi-VN"!=l&&"es-AR"!=l&&"pt-BR"!=l&&"it-IT"!=l&&"sv-SE"!=l&&"de-DE"!=l&&"da-DK"!=l&&"ro-RO"!=l&&"nl-NL"!=l||(indoDefine.SWITCH_COMMAS=!0),node$9.always(BusEvent.ClickSettingReturn,(()=>{i&&i()}
+),this),this.onRotation()}
+init_BA(e){for(var t=0;
+t<indoDefine.OLDRD4_apiid.length;
+t++)node.apiID==indoDefine.OLDRD4_apiid[t]&&(indoDefine.isOLDRD4=!0);
+var i=instantiate(this.switchRoom_prefab);
+this.switchNode.addChild(i),this.switchRoom=i.getComponent(switchRoom_BA);
+var r=instantiate(this.banner_prefab);
+this.bannerNode.addChild(r),this.bannerManager=r.getComponent(bannerManager),this.bannerManager.init();
+var n=node.getLang();
+"hi-IN"!=n&&"ta-IN"!=n&&"bn-IN"!=n||(indoDefine.USE_INR_MONEY=!0),"vi-VN"!=n&&"es-AR"!=n&&"pt-BR"!=n&&"it-IT"!=n&&"sv-SE"!=n&&"de-DE"!=n&&"da-DK"!=n&&"ro-RO"!=n&&"nl-NL"!=n||(indoDefine.SWITCH_COMMAS=!0),node$9.always(BusEvent.ClickSettingReturn,(()=>{e&&e()}
+),this),this.onRotation()}
+initLobbyBar(e,t){this.lobbybar&&(this.lobbybar.destroy(),this.lobbybar=null),this.lobbybar=e,this.lobbybar.Init(t,this.logoSprite,(()=>{this.webPage.showIntro()}
+),(()=>{this.webPage.showReport()}
+)),this.getIndoRecommand((e=>{this.lobbybar.initIndoRecommend(e)}
+)),this.initYtubeBtn()}
+getBackpackItem(){node$7.node.entry.item&&node$5.getItemInfo&&this.scheduleOnce((()=>{node$5.getItemInfo()}
+),.5)}
+inRoomSetting(e){this.closeLoadingView(),this.lobbyView&&this.lobbyView.Hide(),this.lobbybar&&this.lobbybar.InRoomSetting(),e&&this.switchRoom&&(this.switchRoom.show(),this.switchRoom.setBtnMask(!0),this.switchRoom.setRoomLV(e)),this.infoBtn&&(this.infoBtn.active=!0),this.isInLobby=!1}
+onBackToLobby(){this.lobbyView&&this.lobbyView.Show(),this.lobbybar&&this.lobbybar.BackToLobby(),this.switchRoom&&this.switchRoom.hide(),this.lobbyView&&this.lobbyView.ThemeRecommend(),this.infoBtn&&(this.infoBtn.active=!1),node$6.setConfig(SettingConfig.Return,!1,!0),this.isInLobby=!0}
+onRotation(){this.isInLobby&&(this.lobbybar&&this.lobbybar.OnRotation(node$7.state.isLandscape),this.lobbyView&&this.lobbyView.onRotate(node$7.state.isLandscape)),this.bannerManager&&this.bannerManager.onRotate(node$7.state.isLandscape)}
+closeLoadingView(){this.loadingNode.active=!1}
+initInfoBtn(e){this.infoBtn=instantiate(this.infoBtn_prefab),this.settingNode.addChild(this.infoBtn),this.infoBtn.on(Node$1.EventType.TOUCH_END,(()=>{node$3.playEffect("button01"),e&&e()}
+)),this.infoBtn.active=!1}
+initYtubeBtn(){for(var e,t=node.checkSwitchOn(SwitchOffKeyDefine.CloseYTHelpInfo),i=0;
+i<indoDefine.noYoutube_apiid.length;
+i++)node.apiID==indoDefine.noYoutube_apiid[i]&&(t=!1);
+t&&(null==(e=this.lobbybar)||e.setYTubeLink())}
+getIndoRecommand(e,t){void 0===t&&(t=!1);
+var i=new XMLHttpRequest;
+i.open("POST",node.pokerRecommand),i.responseType="arraybuffer",i.timeout=1e4,i.onload=()=>{if(4==i.readyState)if(i.status>=200&&i.status<300||304==i.status)if(i.response){var r=new Uint8Array(i.response),n=_cjsExports.promotionProto.GamePromotionIndiaCommand.decode(r);
+e(n)}
+else e(null);
+else t?(node.disconnect(),node.shutdownByMsgBox("Connection Error"),node$2.showErrorCode(987)):e(null);
+else t?(node.disconnect(),node.shutdownByMsgBox("Connection Error"),node$2.showErrorCode(986)):e(null)}
+,i.ontimeout=()=>{t?(node.disconnect(),node.shutdownByMsgBox("Connection Timeout"),node$2.showErrorCode(985)):e(null)}
+,i.onerror=()=>{t?(node.disconnect(),node.shutdownByMsgBox("Connection Error"),node$2.showErrorCode(984)):e(null)}
+;
+var r={apiID:node.apiID,accountID:node.playerUID,loginGameID:node.gameID,gameID:node.gameID,userID:"",token:node.token,siteID:node.siteID}
+,n=_cjsExports.promotionProto.PromotionRequest.encode(r).finish();
+i.send(n)}
+}
+,_descriptor$h=_applyDecoratedDescriptor(_class2$h.prototype,"lobbyNode",[_dec$i],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor2$g=_applyDecoratedDescriptor(_class2$h.prototype,"settingNode",[_dec2$e],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor3$e=_applyDecoratedDescriptor(_class2$h.prototype,"switchNode",[_dec3$c],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor4$e=_applyDecoratedDescriptor(_class2$h.prototype,"loadingNode",[_dec4$c],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor5$b=_applyDecoratedDescriptor(_class2$h.prototype,"loadingEffectNode",[_dec5$9],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor6$8=_applyDecoratedDescriptor(_class2$h.prototype,"bannerNode",[_dec6$6],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor7$6=_applyDecoratedDescriptor(_class2$h.prototype,"switchRoom_prefab",[_dec7$6],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor8$6=_applyDecoratedDescriptor(_class2$h.prototype,"lobby_prefab",[_dec8$6],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor9$3=_applyDecoratedDescriptor(_class2$h.prototype,"room_prefab",[_dec9$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor10$3=_applyDecoratedDescriptor(_class2$h.prototype,"infoBtn_prefab",[_dec10$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor11$3=_applyDecoratedDescriptor(_class2$h.prototype,"banner_prefab",[_dec11$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor12$3=_applyDecoratedDescriptor(_class2$h.prototype,"webPage",[_dec12$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor13$3=_applyDecoratedDescriptor(_class2$h.prototype,"lobbyBgSprite",[_dec13$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor14$3=_applyDecoratedDescriptor(_class2$h.prototype,"lobbyBgSprite_S",[_dec14$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor15$3=_applyDecoratedDescriptor(_class2$h.prototype,"lobbyGirl_img",[_dec15$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor16$3=_applyDecoratedDescriptor(_class2$h.prototype,"lobbyGirl_spine",[_dec16$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor17$3=_applyDecoratedDescriptor(_class2$h.prototype,"logoSprite",[_dec17$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_class$k=_class2$h))||_class$k);

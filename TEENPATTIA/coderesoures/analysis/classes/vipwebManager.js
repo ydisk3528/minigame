@@ -1,0 +1,1 @@
+cclegacy._RF.push({},"e1682XmpcpEgo63zgS7fR6q","vipwebManager",void 0);class VipwebManager{setVipSprUpdate(e){return null}clearVipSprUpdate(e){return null}openVipWeb(){return null}}function UpdateVipWeb(){Annin.VipWeb||(Annin.VipWeb=new VipwebManager),Annin.VipWeb}function UpdateWallet(){node$4=Annin.Wallet}

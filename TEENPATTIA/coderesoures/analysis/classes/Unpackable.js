@@ -1,0 +1,1 @@
+cclegacy._RF.push({},"f1a38zi3xtCOK9b1/tIYd5Q","Unpackable",void 0);var{ccclass:ccclass$y,property:property$x}=_decorator,Unpackable=(_dec$x=ccclass$y("Unpackable"),_dec$x(_class$A=class extends Component{start(){var e=this.node.getComponent(Sprite);e&&e.spriteFrame&&(e.spriteFrame.packable=!1)}})||_class$A),_dec$y,_dec2$q,_class$B,_class2$w,_descriptor$w,_descriptor2$t;

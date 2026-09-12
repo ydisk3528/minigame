@@ -44,6 +44,10 @@ export class OfflineGame extends Component {
     private pendingPanels=new Map<string,Promise<Node>>();
     private loadingPanel="";
     private panelProgress=new Map<string,number>();
+    private guide:Node|null=null;
+    private guideStep=-1;
+    private guidePulse=0;
+    private sorting=false;
     private retryAction:(()=>void)|null=null;
     private panel(name:string):Promise<Node>{
         const existing=this.app.getChildByName(name);if(existing)return Promise.resolve(existing);
@@ -57,14 +61,14 @@ export class OfflineGame extends Component {
                 let node:Node|undefined;
                 try {
                     node=instantiate(prefab);node.active=false;this.app.addChild(node);
-                    const order=['LobbyView','TableView','ResultView','MenuVertical','ChangeAvatorView','Help','AudioBank','Status','LoadingOverlay','NoticeDialog'];
+                    const order=['LobbyView','TableView','ResultView','MenuVertical','ChangeAvatorView','Help','AudioBank','Status','LoadingOverlay','NoticeDialog','FirstPlayGuide'];
                     [...this.app.children].sort((a,b)=>order.indexOf(a.name)-order.indexOf(b.name)).forEach((n,i)=>n.setSiblingIndex(i));
                     if(name==='TableView'){
                         this.table=node;this.hand=this.find(node,'HandSettingView')!;
                         const assets=node.getComponent(DeferredAssets)!;
                         this.cards=assets.cards;this.blackRanks=assets.blackRanks;this.redRanks=assets.redRanks;this.suits=assets.suits;this.portraits=assets.portraits;
                         for(const n of this.all(node)){const sk=n.getComponent(sp.Skeleton);if(sk?.skeletonData)sk.setAnimation(0,'idle',true);}
-                        this.setupTable();
+                        this.guide=this.table.getChildByName('FirstPlayGuide')!;this.guide.setParent(this.app);this.guide.setPosition(0,0,0);this.guide.setSiblingIndex(this.app.children.length-1);this.setupTable();
                     }else if(name==='ResultView'){this.result=node;this.setupResult();}
                     else if(name==='Help')this.setupHelp();
                     else if(name==='ChangeAvatorView')this.setupProfile();
@@ -105,7 +109,7 @@ export class OfflineGame extends Component {
     private playMusic(win=false){
         const clip=win?this.winMusic:this.backgroundMusic;if(!clip)return;
         if(this.music.clip!==clip){this.music.stop();this.music.clip=clip;}
-        this.music.loop=true;this.music.volume=this.muted?0:.35;
+        this.music.volume=this.muted?0:.35;
         if(!this.music.playing)this.music.play();
     }
     private picker(){return this.app.getChildByName('ChangeAvatorView')!;}
@@ -130,7 +134,7 @@ export class OfflineGame extends Component {
         });
     }
     private cancelPresentation(){
-        this.presentationToken++;this.presenting=false;
+        this.presentationToken++;this.presenting=false;this.sorting=false;this.guideStep=-1;if(this.guide)this.guide.active=false;
         for(const n of this.all(this.app))n.getComponent(Animation)?.stop();
         for(const n of this.cards)Tween.stopAllByTarget(n);
     }
@@ -151,7 +155,7 @@ export class OfflineGame extends Component {
                 if(!this.muted&&this.cardSound)this.music.playOneShot(this.cardSound,.3);
             }).start();
         });
-        this.scheduleOnce(()=>{if(token!==this.presentationToken)return;start.active=false;this.presenting=false;this.turnTime=30;this.render();},1.6);
+        this.scheduleOnce(()=>{if(token!==this.presentationToken)return;start.active=false;this.presenting=false;this.turnTime=30;if(sys.localStorage.getItem('rummyB.firstPlayGuide.v1')!=='done')this.guideStep=0;this.render();},1.6);
     }
     private finishRound(){
         const r=this.round!,token=this.presentationToken;this.presenting=true;
@@ -214,13 +218,46 @@ export class OfflineGame extends Component {
             n.on(Node.EventType.TOUCH_END,(e:EventTouch)=>this.dragEnd(i,e),this);
             n.on(Node.EventType.TOUCH_CANCEL,()=>{this.drag=null;this.render();},this);
         });
-        this.bind(this.hand,'AutoSortButton',()=>{if(this.canArrange()){if(!this.round!.sort()){this.noticeDialog.active=true;return;}this.selected.clear();this.render();}});
-        this.bind(this.hand,'GroupButton',()=>{if(this.round?.group(Array.from(this.selected))){this.selected.clear();this.render();}});
+        this.bind(this.hand,'AutoSortButton',()=>this.sortCards());
+        this.bind(this.hand,'GroupButton',()=>{if(this.canArrange()&&this.round?.group(Array.from(this.selected))){this.selected.clear();this.render();}});
         this.bind(this.hand,'DumpButton',()=>this.discard());
         this.bind(this.hand,'DeclareButton',()=>this.declare());
-        this.bind(this.hand,'DropButton',()=>{if(this.canArrange()){this.round!.drop();this.afterAction();}});
+        this.bind(this.hand,'DropButton',()=>{if(this.canUseTableAction()){this.round!.drop();this.afterAction();}});
         this.bind(this.table,'CardPile',()=>this.draw(false));this.bind(this.table,'DiscardCards',()=>this.draw(true));
         this.setupRooms();
+    }
+    private sortCards(){
+        if(!this.canUseTableAction())return;
+        const r=this.round!,starts=new Map(r.seats[0].hand.map((c,i)=>[c.id,this.cards[i].position.clone()]));
+        if(!r.sort()){this.text(this.noticeDialog,'Message','Your cards are already sorted.\nNo changes are needed.');this.noticeDialog.active=true;return;}
+        this.selected.clear();this.render();this.sorting=true;this.presenting=true;
+        const cards=this.cards.filter(n=>n.active),token=this.presentationToken;
+        cards.forEach((n,i)=>{
+            const end=n.position.clone(),start=starts.get(r.seats[0].hand[i].id)!;n.setPosition(start);
+            tween(n).delay(i*.015).to(.16,{position:new Vec3(start.x,start.y+30,start.z)},{easing:'quadOut'})
+                .to(.34,{position:end},{easing:'quadInOut'}).call(()=>{
+                    if(i===cards.length-1&&token===this.presentationToken){this.sorting=false;this.presenting=false;this.render();}
+                }).start();
+        });
+    }
+    private refreshGuide(){
+        if(!this.guide||this.guideStep<0||!this.round)return;
+        this.guide.active=true;this.guide.setSiblingIndex(this.app.children.length-1);
+        this.guideStep=this.round.phase==='draw'?0:this.selected.size===1?2:1;
+        const dump=this.hand.getChildByName('DumpButton')!;
+        if(this.guideStep===2){dump.active=true;dump.getComponent(Button)!.interactable=true;this.hand.getChildByName('DeclareButton')!.active=false;}
+        const index=this.round.seats[0].hand.findIndex(c=>c.id!==this.round!.pickedOpen);
+        const target=this.guideStep===0?this.find(this.table,'CardPile')!:this.guideStep===1?this.cards[index]:dump;
+        const box=target.getComponent(UITransform)!.getBoundingBoxToWorld(),space=this.guide.getComponent(UITransform)!;
+        const lo=space.convertToNodeSpaceAR(new Vec3(box.xMin,box.yMin,0)),hi=space.convertToNodeSpaceAR(new Vec3(box.xMax,box.yMax,0));
+        if(this.guideStep===1)hi.x=Math.min(hi.x,lo.x+60);
+        const l=lo.x-4,r=hi.x+4,b=lo.y-4,t=hi.y+4,e=4096;
+        const rect=(name:string,x:number,y:number,w:number,h:number)=>{const n=this.guide!.getChildByName(name)!;n.setPosition(x,y,0);n.getComponent(UITransform)!.setContentSize(w,h);};
+        rect('Top',0,(e+t)/2,e*2,e-t);rect('Bottom',0,(-e+b)/2,e*2,e+b);
+        rect('Left',(-e+l)/2,(b+t)/2,e+l,t-b);rect('Right',(e+r)/2,(b+t)/2,e-r,t-b);
+        const finger=this.guide.getChildByName('Finger')!;finger.angle=this.guideStep===1?180:0;
+        finger.setPosition((l+r)/2,this.guideStep===1?t+10:b-10,0);
+        this.text(this.guide,'Label',['1 / 3   Tap the highlighted pile to draw a card.','2 / 3   Tap the highlighted card to select it.','3 / 3   Tap Discard to play your selected card.'][this.guideStep]);
     }
     private setupResult(){
         this.bind(this.result,'LobbyButton',()=>this.home());this.bind(this.result,'ContinueButton',()=>this.begin(this.rates.indexOf(this.round?.perPoint||1)));
@@ -231,6 +268,15 @@ export class OfflineGame extends Component {
         ['HowToPlayButton','HandExampleButton','AdditionNoteButton'].forEach((name,i)=>this.bind(help,name,()=>this.showHelp(i)));
     }
     private canArrange(){return !this.noticeDialog.active&&!this.presenting&&!!this.round&&this.round.turn===0&&this.round.phase!=='ended'&&!this.round.seats[0].dropped;}
+    private canUseTableAction(){
+        const r=this.round;
+        if(!r||r.phase==='ended'||this.noticeDialog.active)return false;
+        const message=r.seats[0].dropped?'You have already dropped this hand.\nPlease wait for the next hand.'
+            :r.turn!==0?'Please wait for your turn.\nAnother player is playing.'
+            :this.presenting?'Cards are moving.\nPlease wait a moment.':'';
+        if(message){this.text(this.noticeDialog,'Message',message);this.noticeDialog.active=true;return false;}
+        return true;
+    }
     private setMenu(open:boolean){this.toggle(this.menu,'InputLayer',open);this.toggle(this.menu,'UI_Menu_Board_Mask',open);}
     private async showHelp(index:number){
         const epoch=++this.navigationEpoch;
@@ -292,23 +338,25 @@ export class OfflineGame extends Component {
         else this.message('This card cannot be taken from the open pile.');
     }
     private discard(){if(!this.canArrange()||this.selected.size!==1)return;
-        if(this.round!.discard(Array.from(this.selected)[0]))this.afterAction();else this.message('A card taken from the open pile cannot be returned immediately.');
+        if(this.round!.discard(Array.from(this.selected)[0])){if(this.guideStep>=0){sys.localStorage.setItem('rummyB.firstPlayGuide.v1','done');this.guideStep=-1;this.guide!.active=false;}this.afterAction();}else this.message('A card taken from the open pile cannot be returned immediately.');
     }
     private declare(){if(!this.canArrange())return;const r=this.round!,id=r.phase==='discard'?Array.from(this.selected)[0]:undefined;
         if(!r.canDeclare(id)){this.message('Form two runs, including a pure run, before declaring.');return;}
         r.declare(id);this.afterAction();
     }
     private afterAction(){this.selected.clear();this.render();}
-    private paused(){return this.noticeDialog.active||this.loadingOverlay?.active||this.presenting||!!this.picker()?.active||this.find(this.roomMenu(),'Board')!.active||!!this.app.getChildByName('Help')?.active||this.find(this.menu,'UI_Menu_Board_Mask')!.active;}
+    private paused(){return this.guideStep>=0||this.noticeDialog.active||this.loadingOverlay?.active||this.presenting||!!this.picker()?.active||this.find(this.roomMenu(),'Board')!.active||!!this.app.getChildByName('Help')?.active||this.find(this.menu,'UI_Menu_Board_Mask')!.active;}
     private botTurn=()=>{if(!this.round||this.round.phase==='ended'||this.paused())return;if(this.round.turn!==0||this.round.seats[0].dropped){this.round.bot();this.afterAction();}};
     update(dt:number){
         if(this.loadingOverlay?.active){const spinner=this.loadingOverlay.getChildByName('Spinner')!;if(spinner.active)spinner.angle=(spinner.angle-240*dt)%360;}
+        if(this.guideStep>=0){this.refreshGuide();this.guidePulse+=dt;const scale=1+Math.sin(this.guidePulse*5)*.06;this.guide!.getChildByName('Finger')!.setScale(scale,scale,1);}
         const r=this.round;if(!r||r.phase==='ended'||this.paused())return;
         this.turnTime=Math.max(0,this.turnTime-dt);
         const p=this.find(this.players()[r.turn],'TimeProgressBar')?.getComponent(ProgressBar);if(p)p.progress=this.turnTime/30;
         if(r.turn===0&&this.turnTime===0){r.timeout();this.turnTime=30;this.afterAction();}
     }
     private dragMove(index:number,e:EventTouch){
+        if(this.guideStep>=0)return;
         if(!this.drag||this.drag.index!==index||!this.canArrange())return;
         const n=this.cards[index],p=e.getUILocation(),local=n.parent!.getComponent(UITransform)!.convertToNodeSpaceAR(new Vec3(p.x,p.y,0));
         const start=e.getUIStartLocation();if(Math.abs(p.x-start.x)+Math.abs(p.y-start.y)>12)this.drag.moved=true;
@@ -354,7 +402,7 @@ export class OfflineGame extends Component {
         const name=r.winner===0?'Base_Result_Win':'Base_Result_Lose';this.playClip(this.result,name);
         if(r.winner===0){const token=this.presentationToken;this.scheduleOnce(()=>{if(token===this.presentationToken&&this.result.active)this.playClip(this.result,'Base_Result_WinLoop');},1);}
     }
-    private render(){const r=this.round;if(!r)return;const hand=r.seats[0].hand,groups=r.seats[0].groups;
+    private render(){if(this.sorting)return;const r=this.round;if(!r)return;const hand=r.seats[0].hand,groups=r.seats[0].groups;
         const key=r.turn+':'+r.phase;if(key!==this.phaseKey){this.phaseKey=key;this.turnTime=30;}
         const gaps=Math.max(0,groups.length-1)*22,step=Math.min(78,(1180-114-gaps)/Math.max(1,hand.length-1));let offset=0;
         const width=(hand.length-1)*step+gaps;
@@ -364,7 +412,7 @@ export class OfflineGame extends Component {
         this.cardFace(this.find(this.table,'WildJokerCard')!,r.indicator);this.text(this.table,'Base_RestCard_FNT',String(r.stock.length));
         const active=this.canArrange(),canDiscard=active&&r.phase==='discard'&&this.selected.size===1;
         const canDeclare=active&&r.canDeclare(r.phase==='discard'?Array.from(this.selected)[0]:undefined);
-        const buttons:Record<string,boolean>={DropButton:active,AutoSortButton:active,DumpButton:canDiscard&&!canDeclare,GroupButton:active&&this.selected.size>1,DeclareButton:canDeclare};
+        const buttons:Record<string,boolean>={DropButton:r.phase!=='ended',AutoSortButton:r.phase!=='ended',DumpButton:canDiscard&&!canDeclare,GroupButton:active&&this.selected.size>1,DeclareButton:canDeclare};
         for(const [name,on]of Object.entries(buttons)){const n=this.hand.getChildByName(name)!;n.active=on;const b=n.getComponent(Button);if(b)b.interactable=on;}
         const drop=this.hand.getChildByName('DropButton')!,penalty=r.seats[0].draws?40:20;
         this.text(drop,'PointNum','(-'+penalty+')');this.text(drop,'Label-001',String(penalty*r.perPoint));this.toggle(drop,'Base_Drop_Red_BTN',penalty===40);
@@ -372,6 +420,7 @@ export class OfflineGame extends Component {
         this.toggle(bubbles,'PickCardMsg',active&&r.phase==='draw');this.toggle(bubbles,'DiscardButtonMsg',canDiscard&&!canDeclare);this.toggle(bubbles,'GroupButtonMsg',active&&this.selected.size>1);
         this.toggle(this.table,'CardPile_FX',active&&r.phase==='draw');this.toggle(this.table,'DiscardCards_FX',active&&r.phase==='draw'&&r.canDrawOpen);
         this.players().forEach((n,i)=>{this.toggle(n,'TimeProgressBar',!this.presenting&&r.phase!=='ended'&&r.turn===i);this.toggle(n,'OtherWINGlow',false);this.toggle(n,'Base_Crown',false);this.toggle(n,'Base_Other_Win_Board',false);this.toggle(n,'Base_Drop_Black',r.seats[i].dropped);this.toggle(n,'Points',i===0);this.toggle(n,'Credits',i===0);this.text(n,'Credit',this.balance.toLocaleString());if(i===0)this.text(n,'PointNum',String(analyze(hand,r.wildRank).score));});
+        this.refreshGuide();
         if(r.phase==='ended'&&!this.settled){this.settled=true;this.balance=Math.max(0,this.balance+r.deltas[0]);this.saveBalance();this.finishRound();}
     }
 }

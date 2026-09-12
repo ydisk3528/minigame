@@ -1,0 +1,184 @@
+[
+  {
+    "__type__": "cc.SceneAsset",
+    "_name": "Game",
+    "scene": {
+      "__id__": 3
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Canvas",
+    "_layer": 33554432,
+    "_id": "9du7e2mYhCOpeh1kH3fdUh",
+    "_children": [
+      {
+        "__id__": 2
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 1136,
+          "height": 640
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.Canvas",
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.Widget",
+        "_alignFlags": 45,
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.UIOpacity",
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 568,
+      "y": 320,
+      "z": 0
+    },
+    "_parent": {
+      "__id__": 3
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Entry",
+    "_layer": 33554432,
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "node": {
+          "__id__": 2
+        }
+      },
+      {
+        "__type__": "09b4cr4VYtCKKLu6Z6ctkJd",
+        "project": "teenpatti",
+        "gameID": 72,
+        "serverPath": "teenpatti",
+        "serverPrefix": 2,
+        "favorite": true,
+        "promotion": true,
+        "item": true,
+        "mission": true,
+        "livebet": true,
+        "agent": true,
+        "orientation": 1,
+        "gameBundleName": "game",
+        "gamePrefabPath": "Prefab/GameView",
+        "remote": true,
+        "featurePagePrefabs": [
+          {
+            "__uuid__": "8b032ba3-4de6-4e1a-a9c2-af0081560467"
+          }
+        ],
+        "iconPrefab": {
+          "__uuid__": "21cb91b6-564c-4c8c-86e0-f9083b824133"
+        },
+        "bgSpr": {
+          "__uuid__": "7f6fec97-2077-48d0-8284-633c8898e43c@f9941"
+        },
+        "node": {
+          "__id__": 2
+        }
+      }
+    ]
+  },
+  {
+    "__type__": "cc.Scene",
+    "_name": "Game",
+    "autoReleaseAssets": true,
+    "_children": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": null,
+      "asset": null,
+      "fileId": "5146cfa8-3ca4-4b87-897f-6ef246b6b434",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null
+    },
+    "_globals": {
+      "__type__": "cc.SceneGlobals",
+      "ambient": {
+        "__type__": "cc.AmbientInfo",
+        "_skyIllumLDR": 0.8,
+        "_skyColorHDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.2,
+          "y": 0.5,
+          "z": 0.8,
+          "w": 0.520833125
+        },
+        "_skyColorLDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.452588,
+          "y": 0.607642,
+          "z": 0.755699,
+          "w": 0
+        },
+        "_groundAlbedoLDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.618555,
+          "y": 0.577848,
+          "z": 0.544564,
+          "w": 0
+        }
+      },
+      "shadows": {
+        "__type__": "cc.ShadowsInfo"
+      },
+      "_skybox": {
+        "__type__": "cc.SkyboxInfo",
+        "_enabled": true
+      },
+      "fog": {
+        "__type__": "cc.FogInfo",
+        "_fogColor": {
+          "__type__": "cc.Color",
+          "r": 225,
+          "g": 225,
+          "b": 225,
+          "a": 255
+        }
+      },
+      "octree": {
+        "__type__": "cc.OctreeInfo"
+      },
+      "skin": {
+        "__type__": "cc.SkinInfo"
+      },
+      "lightProbeInfo": {
+        "__type__": "cc.LightProbeInfo"
+      },
+      "postSettings": {
+        "__type__": "cc.PostSettingsInfo"
+      }
+    }
+  }
+]

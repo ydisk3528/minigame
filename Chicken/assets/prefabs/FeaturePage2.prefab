@@ -1,0 +1,188 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "FeaturePage2",
+    "data": {
+      "__id__": 1
+    },
+    "persistent": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "FeaturePage2",
+    "_children": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 3
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "55xnGpfkNB66jNw9408af8"
+        },
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "51WuO0x6NAH4OByC4pnITQ",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "asset": {
+        "__id__": 0
+      },
+      "root": {
+        "__id__": 1
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "img_right",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "_isTrimmedMode": false,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "14vAJJycRCw4a5we6ipw6A"
+        },
+        "_spriteFrame": {
+          "__uuid__": "03308a10-1346-5e7b-978e-8e06c8e8a786@f9941"
+        },
+        "node": {
+          "__id__": 2
+        },
+        "_customMaterial": null,
+        "_sizeMode": 0
+      },
+      {
+        "__type__": "cc.UIOpacity",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "3bt3In2vpDpK7HrZ6tuIEO"
+        },
+        "node": {
+          "__id__": 2
+        }
+      },
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "5ao675hXBJc6n6FUo096e4"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 355,
+          "height": 204
+        },
+        "node": {
+          "__id__": 2
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "fal0inIYVN/Y7bvoM4XhbA",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 30,
+      "z": 0
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 0.8
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "FeatureTxt2",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "6cm4fHUbpAA4lOTzH4dHpf"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 500,
+          "height": 37.8
+        },
+        "_anchorPoint": {
+          "__type__": "cc.Vec2",
+          "x": 0.5,
+          "y": 1
+        },
+        "node": {
+          "__id__": 3
+        }
+      },
+      {
+        "__type__": "cc.Label",
+        "_string": "选择关卡难易度，决定风险与赔率",
+        "_actualFontSize": 27,
+        "_fontSize": 27,
+        "_lineHeight": 30,
+        "_overflow": 3,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "f3Y8fNvF1O3Kr9/hwWCLs6"
+        },
+        "node": {
+          "__id__": 3
+        },
+        "_useSystemFont": true,
+        "_fontFamily": "Arial",
+        "_font": null
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "eaNuNiYZ1OpLgQrlc6hgb1",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": -80,
+      "z": 0
+    }
+  }
+]

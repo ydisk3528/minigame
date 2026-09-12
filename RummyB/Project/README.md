@@ -111,3 +111,8 @@ Creator 3.8.6 Web 构建通过；场景/预制体引用校验和离线规则测�
 加载提示现显示 Loading… N%，使用 Cocos resources.load 的已完成资源项/总资源项回调（非下载字节比例），成功实例化后完成。背景音乐加载不会覆盖当前面板进度。已通过 TypeScript、资源引用检查及 Release 构建，并在浏览器暂缓牌桌资源时观察到 69% 加载提示。
 
 Auto Sort 无变化提示：手牌顺序与分组均不变时，显示图片绑定的 NoticeDialog 预制体，点击 OK 关闭。弹窗期间暂停操作与倒计时；正常排序行为保留。源码排序判断、TypeScript、资源绑定及首屏隔离检查通过，已重新 Release 构建。
+
+
+首次游玩引导：assets/tutorial/FirstPlayGuide.prefab 复用 RummyA 的透明手指与图片绑定遮罩，嵌入 deferred/TableView 后在运行时置于最上层。三步为摸牌、选牌、Discard；四块遮罩 Alpha 180，外部点击被拦截，期间暂停倒计时与机器人。手动弃牌完成后记录 rummyB.firstPlayGuide.v1，RummyA 与 B 分别记录。tools/first_play_guide.py 可重建嵌入，split_loading.py 已接入此步骤。
+
+AutoSort：用牌 ID 对应排序前位置，逐张抬起并滑动约 0.7 秒，结束后恢复操作；无变化时保留游戏内提示框。音乐循环由 RummyB.scene 的 AudioSource Loop 控制，当前开启，不再由脚本覆盖。

@@ -37,6 +37,8 @@ def main():
     config=json.loads((PROJECT/'build-config.json').read_bytes())
     config.update(debug=False,sourceMaps=False,md5Cache=True)
     save(PROJECT/'build-config.json',config)
+    from first_play_guide import main as add_guide
+    add_guide()
     print('First scene: LobbyView, MenuVertical, Status; deferred:',[p['_name'] for p in panels])
 
 if __name__=='__main__':main()

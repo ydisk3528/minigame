@@ -1,0 +1,1 @@
+cclegacy._RF.push({},"0d520GItQlOwpwksIp8NVys","winmoreManager",void 0);class WinmoreManager{constructor(){this.featureShowPageIdxs=void 0}autoShow(){}openMenu(){}closeMenu(){}switchPage(e,t){}createPage(e,t,i,r,n){}}function UpdateWinMore(){Annin.WinMore||(Annin.WinMore=new WinmoreManager),Annin.WinMore}

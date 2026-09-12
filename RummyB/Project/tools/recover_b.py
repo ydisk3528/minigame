@@ -114,7 +114,8 @@ def main():
                     if typ=='sp.SkeletonData':
                         obj=decode(data,entry)[0];folder=ASSETS/'spine'/obj['_name']
                         path=folder/(obj['_name']+'.json');save(path,obj['_skeletonJson']);meta(path,uid,'spine-data','1.2.5')
-                        (folder/(obj['_name']+'.atlas')).write_text(obj['_atlasText'],encoding='utf-8')
+                        # Preserve atlas page separators; Windows text-mode newline conversion can add blank lines.
+                        (folder/(obj['_name']+'.atlas')).write_bytes(obj['_atlasText'].encode('utf-8'))
                         for tex,name in zip(obj['textures'],obj['textureNames']):
                             image=images[tex['__uuid__'].split('@')[0]]
                             Image.open(image).save(folder/name)

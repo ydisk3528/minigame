@@ -1,0 +1,67 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "Wheel_s",
+    "data": {
+      "__id__": 1
+    },
+    "persistent": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Wheel_s",
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "68nvUd8LZP7KibS96oRsRj"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 80,
+          "height": 83
+        },
+        "_anchorPoint": {
+          "__type__": "cc.Vec2",
+          "x": 0.5,
+          "y": 0.4939759036144578
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "sp.Skeleton",
+        "defaultSkin": "default",
+        "defaultAnimation": "Fly",
+        "_premultipliedAlpha": false,
+        "_preCacheMode": 0,
+        "loop": false,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "7cyxU4aMpMRI496pUGwQEH"
+        },
+        "_skeletonData": {
+          "__uuid__": "7b3363b3-685b-4ce2-bfb2-0caeb3a807c7"
+        },
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "39OtObMMhGg5RtZmVX2/CH",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "asset": {
+        "__id__": 0
+      },
+      "root": {
+        "__id__": 1
+      }
+    }
+  }
+]

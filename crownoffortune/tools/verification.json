@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-12",
+  "creator": "3.8.6",
+  "typescript": "passed (engine declaration checking skipped)",
+  "build": "web-mobile passed, Creator exit 36",
+  "flowTests": "passed: 1000 seeded rounds; actual serialized prefab bindings with mocked engine; win/loss, cap, locks/respin, retries, auto stop, persistence",
+  "browser": {
+    "viewports": [
+      "1280x720",
+      "844x390"
+    ],
+    "observed": [
+      "main game",
+      "first-entry intro",
+      "manual spin and loss",
+      "settings",
+      "auto setup",
+      "auto rounds",
+      "big win animation and settlement",
+      "balance restored after reopening"
+    ],
+    "errors": 0,
+    "knownWarning": "Spine blank attachment texture name; all atlas pages and texture references verified"
+  },
+  "notVerified": [
+    "Android device and cocosJava bridge on device",
+    "remote server deployment",
+    "original server probabilities and full giant Wild merge choreography"
+  ]
+}

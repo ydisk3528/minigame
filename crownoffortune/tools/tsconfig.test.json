@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "outDir": "./test-build",
+    "noEmit": false,
+    "types": [
+      "../temp/declarations/cc",
+      "../temp/declarations/cc.custom-macro",
+      "../temp/declarations/cc.env",
+      "../temp/declarations/jsb"
+    ]
+  },
+  "include": [
+    "../assets/scripts/**/*.ts"
+  ]
+}

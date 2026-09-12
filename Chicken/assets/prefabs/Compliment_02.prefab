@@ -1,0 +1,379 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "Compliment_02",
+    "data": {
+      "__id__": 1
+    },
+    "persistent": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Compliment_02",
+    "_children": [
+      {
+        "__id__": 6
+      },
+      {
+        "__id__": 7
+      },
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      {
+        "__id__": 5
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "fdNiDAa2BHC7Kd/dC4kAzR"
+        },
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "c46/YsCPVOJYA4mWEpNYRx",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "asset": {
+        "__id__": 0
+      },
+      "root": {
+        "__id__": 1
+      }
+    }
+  },
+  {
+    "__type__": "sp.Skeleton",
+    "defaultSkin": "default",
+    "defaultAnimation": "Start_02",
+    "_premultipliedAlpha": false,
+    "_preCacheMode": 0,
+    "loop": false,
+    "__prefab": {
+      "__type__": "cc.CompPrefabInfo",
+      "fileId": "75GKvdIcFK5pdxVPOlfCRH"
+    },
+    "node": {
+      "__id__": 7
+    },
+    "_skeletonData": {
+      "__uuid__": "f01976a7-acd8-442f-8844-65cd2bef5042"
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "HP_NUM1",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "022cw30iZHHIpX/+vOPd71"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 500,
+          "height": 100
+        },
+        "node": {
+          "__id__": 3
+        }
+      },
+      {
+        "__type__": "cc.Label",
+        "_string": "000000X",
+        "_actualFontSize": 44,
+        "_fontSize": 60,
+        "_lineHeight": 100,
+        "_overflow": 2,
+        "_enableWrapText": false,
+        "_isSystemFontUsed": false,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "e3y0haj55Pdqs+WNqzFgd7"
+        },
+        "_font": null,
+        "node": {
+          "__id__": 3
+        },
+        "_useSystemFont": true,
+        "_fontFamily": "Arial"
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "64Rj7g+jZBcJ5xVGMGjBdg",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 75.454,
+      "z": 0
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "HP_NUM2",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "d0qSm/R5dItrE1j/mlM08J"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 500,
+          "height": 200
+        },
+        "node": {
+          "__id__": 4
+        }
+      },
+      {
+        "__type__": "cc.Label",
+        "_string": "999,999.99",
+        "_actualFontSize": 99,
+        "_fontSize": 100,
+        "_lineHeight": 100,
+        "_overflow": 2,
+        "_enableWrapText": false,
+        "_isSystemFontUsed": false,
+        "_spacingX": -3,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "d0MqMlVQBEKI7+sQ/gWS7R"
+        },
+        "_font": null,
+        "node": {
+          "__id__": 4
+        },
+        "_useSystemFont": true,
+        "_fontFamily": "Arial"
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "efER9c5vJLNoemdMxc1+L1",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 48.285,
+      "z": 0
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "HP_NUM5",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "38m3e4iB9G4alNFj1oijfr"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 300,
+          "height": 100
+        },
+        "node": {
+          "__id__": 5
+        }
+      },
+      {
+        "__type__": "cc.Label",
+        "_string": "88888888X",
+        "_actualFontSize": 44,
+        "_fontSize": 60,
+        "_lineHeight": 100,
+        "_overflow": 2,
+        "_enableWrapText": false,
+        "_isSystemFontUsed": false,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "8eIvP+7LVGtZyVCLWNo6yr"
+        },
+        "_font": null,
+        "node": {
+          "__id__": 5
+        },
+        "_useSystemFont": true,
+        "_fontFamily": "Arial"
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "b310Q8XAtP4JfHG96gBlzs",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 173.936,
+      "y": 62.016,
+      "z": 0
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "block",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "c9WDKyNGpMH7eCOg+Xqt1N"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 2000,
+          "height": 2000
+        },
+        "node": {
+          "__id__": 6
+        }
+      },
+      {
+        "__type__": "cc.Sprite",
+        "_sizeMode": 0,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "21h0wXwyNO6qIne7KaItgJ"
+        },
+        "_color": {
+          "__type__": "cc.Color",
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 150
+        },
+        "_spriteFrame": {
+          "__uuid__": "9f3cc2a1-5432-5805-961d-f7a1e7857a2b@f9941"
+        },
+        "node": {
+          "__id__": 6
+        },
+        "_customMaterial": null
+      },
+      {
+        "__type__": "cc.Button",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "b3pwNfsrZLwL7PduSS7aHB"
+        },
+        "clickEvents": [],
+        "node": {
+          "__id__": 6
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "24ls9Pwr1Ac7qUbLqxlDrk",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Spine",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "9eLZ3So2pDkZMXK8JaQYC5"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 356.029052734375,
+          "height": 330.8724670410156
+        },
+        "_anchorPoint": {
+          "__type__": "cc.Vec2",
+          "x": 0.4993744406995841,
+          "y": 0.015482803080493513
+        },
+        "node": {
+          "__id__": 7
+        }
+      },
+      {
+        "__id__": 2
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "baxOhvSQdG1Jd08QbucrOU",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    }
+  }
+]

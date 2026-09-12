@@ -1,0 +1,234 @@
+cclegacy._RF.push({}
+,"c1ea7Pii+dAi78piqmmzKpD","GameView",void 0);
+var{ccclass:ccclass$j,property:property$i}
+=_decorator,RoomCount=5,GameView=(_dec$j=property$i(SpriteAtlas),_dec2$f=property$i(Label),ccclass$j((_class2$i=class extends Component{constructor(){super(...arguments),_initializerDefineProperty(this,"pokerSprite",_descriptor$i,this),_initializerDefineProperty(this,"roundIndex",_descriptor2$h,this),this.m_state=null,this.m_totalbets=0,this.focus_time_check=0,this.isGamimg=!1,this.isNewSync=!1,this.isContinue=!1,this.m_mainstate=new FiniteState(TP_Define.MAINGAME_STATE.GAME_INIT),this.m_themeId=0,this.m_maxbet=0,this.m_potLimit=0,this.m_baseMpney=0,this.m_maxBlind=0,this.m_chaalLimit=0,this.m_minCoin=0,this.m_nowAction=0,this.m_mainGame=null,this.m_lobbyView=null,this.m_lobbybar=null,this.m_isInLobby=!0,this.m_isFold=[!0,!0,!0,!0,!0],this.m_showCard=!1,this.m_tableInfo=new NextAck,this.m_themeInfo=[],this.m_playerInfo=[],this.m_dealer=-1,this.m_cards=[null,null,null,null,null],this.m_PKComfirm=!1,this.m_PKWin=0,this.m_isShowed=[!1,!1,!1,!1,!1],this.m_isSee=[!1,!1,!1,!1,!1],this.m_game_Started=!1,this.m_showAllPoker=[!1,!1,!1,!1,!1],this.m_wins=[0,0,0,0,0],this.m_win_seat=[],this.m_isGetGameInfo=!1,this.m_isHardStop=!1,this.switchRoom=null,this.indoManager=null,this.m_avatar=[1,1,1,1,1],this.autoInGame=!0,this.waitResponse=!1}
+get TotalBets(){return this.m_totalbets}
+get MaxBet(){return this.m_maxbet}
+get PotLimit(){return this.m_potLimit}
+set PotLimit(e){this.m_potLimit=e}
+get BaseMoney(){return this.m_baseMpney}
+set BaseMoney(e){this.m_baseMpney=e}
+get MaxBlind(){return this.m_maxBlind}
+set MaxBlind(e){this.m_maxBlind=e}
+get ChaalLimit(){return this.m_chaalLimit}
+set ChaalLimit(e){this.m_chaalLimit=e}
+get MinCoin(){return this.m_minCoin}
+set MinCoin(e){this.m_minCoin=e}
+get NowAction(){return this.m_nowAction}
+set NowAction(e){this.m_nowAction=e}
+get Lobby(){return this.m_lobbyView}
+get IsInLobby(){return this.m_isInLobby}
+set IsInLobby(e){this.m_isInLobby=e}
+get isFold(){return this.m_isFold}
+get ShowCard(){return this.m_showCard}
+get TableInfo(){return this.m_tableInfo}
+get PlayerInfo(){return this.m_playerInfo}
+get Dealer(){return this.m_dealer}
+get cards(){return this.m_cards}
+get IsShowed(){return this.m_isShowed}
+get isSee(){return this.m_isSee}
+get Game_Started(){return this.m_game_Started}
+set Game_Started(e){this.m_game_Started=e}
+get ShowAllPoker(){return this.m_showAllPoker}
+get Wins(){return this.m_wins}
+get WinSeat(){return this.m_win_seat}
+get IsHardStop(){return this.m_isHardStop}
+onLoad(){_cjsExports$1.util.Long=Long,_cjsExports$1.configure(),AnninInit(),node$3.load("game","Sound"),node$3.setMusicPath("Sound");
+for(var e=0;
+e<this.m_avatar.length;
+e++)this.m_avatar[e]=node.randomAvatar();
+this.indoManager=this.node.getChildByName("indoManager").getComponent(indoManager),this.indoManager.init(this.m_avatar[0],this.inRoomClick.bind(this),(()=>{this.prepareBackToLobby(),this.node.dispatchEvent(new Event("backToLobby",!0))}
+),v3(-415,-150)),this.indoManager.initInfoBtn((()=>{this.m_mainGame&&this.m_mainGame.openMSG()}
+)),game.on(Game.EVENT_HIDE,(()=>{this.focus_time_check=(new Date).getTime()}
+)),game.on(Game.EVENT_SHOW,(()=>{(new Date).getTime()-this.focus_time_check>TP_Define.NEED_SYNC_ROOM&&this.isGamimg&&this.m_state.NextState(TP_Define.GAMEVIEW_STATE.RESYNC)}
+)),this.node.on("InRoomSetting",(e=>{this.autoInGame?(this.autoInGame=!1,this.m_mainGame.quickSetting.show(),this.m_mainGame.quickSetting.init(this.BaseMoney,this.MaxBlind,this.ChaalLimit,this.PotLimit,(()=>{this.m_state.NextState(TP_Define.GAMEVIEW_STATE.IDLE),this.prepareBackToLobby(),this.OnBackToLobby()}
+),(()=>{node$4.coin>=this.MinCoin?(TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_ALLOCATED),this.m_mainGame.quickSetting.hide()):node$2.msgOK(node$1.getCommString(1020)).then((()=>{}
+))}
+))):(TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_ALLOCATED),this.m_mainGame.quickSetting.hide()),this.m_mainGame.actProperty(node$4.coin),this.m_mainGame.node.active=!0,this.m_isInLobby=!1,this.indoManager.inRoomSetting(this.m_themeId)}
+)),this.node.on("backToLobby",(e=>{this.sendToServer(UserToServer.U2S_LEAVE_REQ)}
+)),this.OnRotation(),view.setResizeCallback((()=>{this.OnRotation()}
+)),node.disableIOSDownBarDiff=!0,node.setCommand(this.onCommand.bind(this)),node$9.always(BusEvent.UpdateWallet,this.updateWallet,this)}
+onDestroy(){node$9.cancel(BusEvent.UpdateWallet,this.updateWallet,this)}
+updateWallet(){this.isGamimg||this.m_mainGame.resultProperty()}
+start(){this.m_state=new FiniteState(TP_Define.GAMEVIEW_STATE.LOGIN),this.m_lobbyView=this.indoManager.lobbyView,this.m_lobbybar=this.indoManager.lobbybar,this.m_lobbybar.SetLogoSize(.6),this.switchRoom=this.indoManager.switchRoom,this.m_mainGame=this.node.getChildByName("MainGame").getComponent(MainGame),this.m_mainGame.Init(this,this.m_mainstate)}
+OnRotation(){this.indoManager.onRotation()}
+update(e){switch(this.MainState(),this.m_state.Tick()){case TP_Define.GAMEVIEW_STATE.RESYNC:this.m_state.IsEntering()&&(this.isGamimg?this.SyncData():this.m_state.NextState(TP_Define.GAMEVIEW_STATE.IDLE));
+break;
+case TP_Define.GAMEVIEW_STATE.LOGIN:this.m_state.IsEntering()&&this.ThemeData(),this.m_isGetGameInfo&&this.m_lobbybar.indiaRecommend_ready&&(this.switchRoom.init(this.m_themeInfo,v3(-330,275),this.changeTheme.bind(this)),this.m_state.NextState(TP_Define.GAMEVIEW_STATE.IDLE),sys.localStorage.setItem("Loading_Dont_Show_"+node.gameID,"true"),node.readyToCloseLoading());
+break;
+case TP_Define.GAMEVIEW_STATE.IDLE:if(this.m_state.IsEntering()&&this.autoInGame){for(var t=0,i=0;
+i<this.m_themeInfo.length;
+i++)if(this.m_lobbyView.m_themeSequence[0]==this.m_themeInfo[i].themeId){t=i;
+break}
+node$4.coin>=this.m_themeInfo[t].mincoin?this.m_lobbyView.OnClickedButton(null,t.toString()):(this.autoInGame=!1,this.indoManager.closeLoadingView())}
+}
+}
+syncChipComponent(){this.IsInLobby?(this.m_lobbybar.updatePlayerWallet(),this.m_lobbyView.ThemeRecommend()):this.m_mainGame.actProperty(node$4.coin)}
+MainState(){var e=this;
+switch(this.m_mainstate.Tick(),this.m_mainstate.Current()){case TP_Define.MAINGAME_STATE.GAME_WAIT_ALLOCATED:this.m_mainstate.IsEntering()&&(log("======= MAINGAME ENTER ======="),this.m_mainGame.node.active=!0,this.m_mainGame.resetAll(),this.m_mainGame.gameFirstSetting(),this.switchRoom.setBtnMask(!0),this.Allocate());
+break;
+case TP_Define.MAINGAME_STATE.GAME_ROOM_INFO:this.m_mainstate.IsEntering()&&(log("======= MAINGAME MATCHED ======="),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_mainGame.initPlayer(),this.m_mainGame.initBTN()));
+break;
+case TP_Define.MAINGAME_STATE.GAME_WAIT_START:this.m_mainstate.IsEntering()&&(log("======= READY TO START ======="),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_mainGame.enterPlayer(),this.m_mainGame.initStartGame((()=>{this.m_mainGame.bootGold(),this.m_mainGame.bootPlayer(),this.m_mainGame.actProperty(node$4.coin)}
+))));
+break;
+case TP_Define.MAINGAME_STATE.GAME_WAIT_NEXT:if(this.m_mainstate.IsEntering()&&(log("======= WAIT NEXT MOVE ======="),null!==this.m_mainGame)){this.m_nowAction=(this.m_tableInfo.nextSeat+2)%5,this.m_mainGame.node.active=!0;
+var t=TP_Define.RO_ACTION_DELAY[this.m_mainGame.getBetStake(this.m_nowAction)],i=TP_Define.LEAST_ACTION_DELAY;
+this.m_tableInfo.otherSee&&this.m_tableInfo.otherSee.length>0&&(i+=TP_Define.SEE_ACTION_DELAY);
+var r=Math.pow(Math.random(),2)*(t-i)+i;
+if(this.isNewSync){var n=Math.random()*(TP_Define.NEED_SYNC_ROOM-1e3*r)*-1;
+this.isNewSync=!1,this.m_mainGame.changePlayerWait(n),r+=-.001*n}
+if(this.m_mainGame.actPlayerWait(r),this.m_mainGame.actBTN(),null!=this.m_tableInfo.otherSee)for(var o=function(){var t=(e.m_tableInfo.otherSee[a]+2)%5;
+e.scheduleOnce((()=>{e.m_mainGame.seeCard(t)}
+),Math.random()*(r-TP_Define.SEE_ACTION_DELAY))}
+,a=0;
+a<this.m_tableInfo.otherSee.length;
+a++)o()}
+break;
+case TP_Define.MAINGAME_STATE.GAME_NEXT:this.m_mainstate.IsEntering()&&(log("======= NEXT MOVE LOOP ======="),-1!==this.m_tableInfo.nextSeat&&this.sendToServer(UserToServer.U2S_NEXT_REQ));
+break;
+case TP_Define.MAINGAME_STATE.GAME_NEXT_MOVING:this.m_mainstate.IsEntering()&&(log("======= NEXT ACT ======="),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_mainGame.playBetAction((()=>{this.m_tableInfo.showTarget>=0?(TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_PK),this.isNewSync=!1):this.m_tableInfo.isEnd?(TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_RESULT),this.isNewSync=!1):TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_NEXT)}
+))));
+break;
+case TP_Define.MAINGAME_STATE.GAME_BETTING:this.m_mainstate.IsEntering()&&(log("======= ACT BET ======="),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_mainGame.playBetAction((()=>{this.m_tableInfo.showTarget>=0?TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_PK):this.m_tableInfo.isEnd?TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_RESULT):TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_NEXT)}
+))));
+break;
+case TP_Define.MAINGAME_STATE.GAME_PK_NEXT:this.m_mainstate.IsEntering()&&(log("======= PK NEXT ======="),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_tableInfo.showWin===TP_Define.WIN?this.m_mainGame.packCard(null,(this.m_tableInfo.showTarget+2)%5):this.m_tableInfo.showWin===TP_Define.LOSE&&this.m_mainGame.packCard(null,(this.m_tableInfo.seatIdx+2)%5),this.m_tableInfo.isEnd?TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_RESULT):TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_NEXT)));
+break;
+case TP_Define.MAINGAME_STATE.GAME_WAIT_PK:if(this.m_mainstate.IsEntering()&&(log("======= WAIT PK ======="),null!==this.m_mainGame))if(this.m_mainGame.node.active=!0,this.m_tableInfo.action===TP_Define.BET_ACTION.show)this.m_PKComfirm=this.m_tableInfo.showWin<3,this.m_PKWin=this.m_tableInfo.showWin,this.m_showCard=!0,this.m_mainGame.askPK(this.m_tableInfo.seatIdx,this.m_tableInfo.showTarget);
+else{var s=void 0;
+if(0!==this.m_tableInfo.showTarget){var l=TP_Define.MOST_PK_DELAY-4,c=TP_Define.LEAST_ACTION_DELAY;
+s=Math.pow(Math.random(),2)*(l-c)+c}
+this.m_PKComfirm=this.m_tableInfo.showWin<3,this.m_PKWin=this.m_tableInfo.showWin,this.m_mainGame.askPK(this.m_tableInfo.seatIdx,this.m_tableInfo.showTarget,s)}
+break;
+case TP_Define.MAINGAME_STATE.GAME_PKING:this.m_mainstate.IsEntering()&&(log("======= PKING ======="),this.m_mainGame.stopPKcountDown(),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_mainGame.actPK(this.m_PKComfirm,this.m_PKWin)));
+break;
+case TP_Define.MAINGAME_STATE.GAME_WAIT_RESULT:this.m_mainstate.IsEntering()&&(log("======= WAIT RESULT ======="),this.m_game_Started=!1,this.m_state.NextState(TP_Define.GAMEVIEW_STATE.IDLE),TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_GAME_RESULT));
+break;
+case TP_Define.MAINGAME_STATE.GAME_GAME_RESULT:this.m_mainstate.IsEntering()&&(log("======= RESULT ======="),this.sendToServer(UserToServer.U2S_END_REQ));
+break;
+case TP_Define.MAINGAME_STATE.GAME_END_COUNT:this.m_mainstate.IsEntering()&&(log("======= END ======="),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_mainGame.playResult()));
+break;
+case TP_Define.MAINGAME_STATE.GAME_WAIT_CONTINUE:this.m_mainstate.IsEntering()&&(log("======= WAIT CONTINUE ======="),null!==this.m_mainGame&&(this.m_mainGame.node.active=!0,this.m_mainGame.resultBTN(),this.m_mainGame.resultProperty()));
+break;
+case TP_Define.MAINGAME_STATE.GAME_SYNC:this.m_mainstate.IsEntering()&&(log("======= CONTINUED ======="),null!==this.m_mainGame&&(this.isNewSync=!0,this.m_state.NextState(TP_Define.GAMEVIEW_STATE.SPIN),this.m_mainGame.node.active=!0,this.unscheduleAllCallbacks(),this.m_mainGame.stopPlayerWait(),this.m_mainGame.stopPKcountDown(),this.m_mainGame.syncTable(),this.m_tableInfo.isEnd?TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_RESULT):(this.m_tableInfo.nextSeat+2)%5===TP_Define.MainPlayerSeat?this.m_nowAction===(this.m_tableInfo.nextSeat+2)%5?this.Action():TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_NEXT):(this.m_nowAction=(this.m_tableInfo.nextSeat+2)%5,TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_NEXT))))}
+}
+inRoomClick(e){this.MinCoin=this.m_themeInfo[e].mincoin,this.m_themeId=this.m_themeInfo[e].themeId,this.BaseMoney=this.m_themeInfo[e].boot,this.PotLimit=this.m_themeInfo[e].potlimit,this.ChaalLimit=this.m_themeInfo[e].maxchaal,this.MaxBlind=this.m_themeInfo[e].blindlimit,this.node.dispatchEvent(new Event("InRoomSetting",!0))}
+getPokerSprite(e,t){1!==t&&14!==t||(t=14);
+var i="Card_"+e;
+return i+=t<10?"_0"+t:"_"+t,0===t&&0===e&&(i="Card_Back"),this.pokerSprite.getSpriteFrame(i)}
+Action(e){var t=new ActionReq;
+t.action=e||TP_Define.BET_ACTION.pack,t.auto=!e;
+var i=t.toBinary();
+this.sendToServer(UserToServer.U2S_ACTION_REQ,i),this.m_tableInfo.action=t.action}
+See(){this.sendToServer(UserToServer.U2S_SEE_REQ)}
+Confirm(e){this.m_mainGame.stopPKcountDown();
+var t=new AgreeReq;
+t.agree=e;
+var i=t.toBinary();
+this.sendToServer(UserToServer.U2S_AGREE_REQ,i)}
+End(){this.sendToServer(UserToServer.U2S_END_REQ)}
+ThemeData(){this.sendToServer(UserToServer.U2S_THEME_REQ)}
+Allocate(){for(var e in this.m_themeInfo)this.m_themeInfo[e].themeId==this.m_themeId&&(this.MinCoin=this.m_themeInfo[e].mincoin);
+var t=new AllocateReq;
+t.ThemeId=this.m_themeId;
+var i=t.toBinary();
+this.sendToServer(UserToServer.U2S_ALLOCATE_REQ,i)}
+SyncData(){this.m_mainGame.stopPlayerWait(),this.m_mainGame.stopPKcountDown(),this.sendToServer(UserToServer.U2S_SYNC_REQ)}
+Cheat(){for(var e=location.search.split(/(?:\?|&)/g),t=0;
+t<e.length;
+t++)e[t].split("ct=")[1]}
+onCommand(e,t){switch(console.log("onCommand",e),e){case ServerToUser.S2U_THEME_ACK:this.waitResponse=!1;
+var i=ThemeAck.fromBinary(t);
+this.m_isGetGameInfo=!0;
+var r=i.theme;
+this.m_themeInfo=[];
+var n=node$4.coin/400;
+r.sort(((e,t)=>e.boot-t.boot));
+for(var o=0;
+o<r.length;
+o++)n>=r[o].boot&&this.m_themeInfo.push({themeId:r[o].ThemeId,boot:r[o].boot,mincoin:r[o].minCoin,blindlimit:r[o].blindLimit,maxchaal:r[o].maxChaal,potlimit:r[o].potlimit,maxPrize:0,minbet:0,maxbet:0}
+);
+if(this.m_themeInfo.length>RoomCount)for(var a=this.m_themeInfo.length-RoomCount,s=0;
+s<a;
+s++)this.m_themeInfo.shift();
+for(var l=this.m_themeInfo.length;
+l<RoomCount;
+l++)this.m_themeInfo.push({themeId:r[l].ThemeId,boot:r[l].boot,mincoin:r[l].minCoin,blindlimit:r[l].blindLimit,maxchaal:r[l].maxChaal,potlimit:r[l].potlimit,maxPrize:0,minbet:0,maxbet:0}
+);
+this.m_lobbyView.SetData(this.m_themeInfo),this.m_lobbyView.ThemeRecommend();
+break;
+case ServerToUser.S2U_SYNC_ACK:this.waitResponse=!1;
+var c=AllocateAck.fromBinary(t);
+this.m_dealer=c.banker,this.m_playerInfo=c.seat,this.m_playerInfo.forEach((e=>{e.avatar=this.m_avatar[e.SeatIdx%5]}
+)),this.m_tableInfo.canAction=c.canAction,this.m_tableInfo.isEnd=c.isEnd,this.m_tableInfo.nextSeat=c.nextSeat,this.m_tableInfo.pot=c.pot,this.m_tableInfo.otherSee=null,this.m_mainstate.NextState(TP_Define.MAINGAME_STATE.GAME_SYNC);
+for(var p=0;
+p<c.seat.length;
+p++)(c.seat[p].SeatIdx+2)%5===TP_Define.MainPlayerSeat&&(node$4.coin=c.seat[p].money),c.seat[p].isSee&&(this.m_isSee[(c.seat[p].SeatIdx+2)%5]=!0),c.seat[p].isFold&&(this.m_isFold[(c.seat[p].SeatIdx+2)%5]=!0);
+this.m_game_Started=!0;
+break;
+case ServerToUser.S2U_ALLOCATE_ACK:this.waitResponse=!1,node.startBet(1);
+var u=AllocateAck.fromBinary(t);
+this.isGamimg=!0,this.m_isInLobby=!1,this.m_isShowed=[!1,!1,!1,!1,!1],this.m_isSee=[!1,!1,!1,!1,!1],this.m_showAllPoker=[!1,!1,!1,!1,!1],this.m_cards=[null,null,null,null,null],this.m_wins=[0,0,0,0,0],this.m_tableInfo=new NextAck,this.m_isFold=[!0,!0,!0,!0,!0],this.m_showCard=!1,TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_ROOM_INFO),this.m_playerInfo=u.seat,this.m_playerInfo.forEach((e=>{e.SeatIdx+2==TP_Define.MainPlayerSeat?e.avatar=this.m_avatar[0]:e.avatar=node.randomAvatar()}
+)),this.m_dealer=u.banker,this.m_tableInfo.blind=this.m_baseMpney,this.m_tableInfo.canAction=u.canAction,this.m_tableInfo.chaal=2*this.m_baseMpney,this.m_tableInfo.nextSeat=u.nextSeat,this.m_nowAction=u.nextSeat,this.m_tableInfo.pot=u.pot,this.m_tableInfo.action=PlayerAction.UNKNOWN;
+for(var d=0;
+d<u.seat.length;
+d++)(u.seat[d].SeatIdx+2)%5===TP_Define.MainPlayerSeat&&(node$4.coin=u.seat[d].money,this.m_totalbets=u.seat[d].totalBet),this.m_isFold[(u.seat[d].SeatIdx+2)%5]=u.seat[d].isFold;
+this.roundIndex.string=u.roundIdx.toString();
+break;
+case ServerToUser.S2U_NEXT_ACK:this.waitResponse=!1;
+var m=NextAck.fromBinary(t);
+if(this.m_tableInfo=m,null!==m.card&&m.card.length>0)for(var h=0;
+h<m.card.length;
+h++)this.m_cards[(m.card[h].seat+2)%5]=m.card[h];
+if(null!=this.m_tableInfo.otherSee)for(var _=0;
+_<this.m_tableInfo.otherSee.length;
+_++){var f=(this.m_tableInfo.otherSee[_]+2)%5;
+f===this.m_tableInfo.seatIdx&&this.m_tableInfo.nextSeat===TP_Define.MainPlayerSeat&&this.m_mainGame.seeCard(f)}
+var y=0;
+this.m_tableInfo.see&&!this.isSee[(this.m_tableInfo.seatIdx+2)%5]&&(this.m_mainGame.seeCard((this.m_tableInfo.seatIdx+2)%5),y=Math.random()*TP_Define.SEE_ACTION_DELAY*.5+.5*TP_Define.SEE_ACTION_DELAY),this.scheduleOnce((()=>{TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_NEXT_MOVING)}
+),y);
+break;
+case ServerToUser.S2U_SEE_ACK:this.waitResponse=!1;
+var g=SeeAck.fromBinary(t);
+this.m_cards[TP_Define.MainPlayerSeat]=g.card,this.m_tableInfo.canAction=g.canAction,this.m_mainGame.seeCard((g.card.seat+2)%5);
+break;
+case ServerToUser.S2U_AGREE_ACK:this.waitResponse=!1;
+var b=AgreeAck.fromBinary(t);
+this.m_tableInfo.nextSeat=b.nextSeat,this.m_tableInfo.isEnd=b.isEnd,this.m_tableInfo.showWin=b.showWin,this.m_PKComfirm=this.m_tableInfo.showWin<3,this.m_PKWin=this.m_tableInfo.showWin,null!==b.targetCard&&this.m_PKComfirm&&(this.m_cards[(b.targetCard.seat+2)%5]=b.targetCard),TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_PKING);
+break;
+case ServerToUser.S2U_ACTION_ACK:this.waitResponse=!1;
+var T=ActionAck.fromBinary(t);
+if(node$4.coin=T.money,(T.fold&&0===T.showWin||!0===T.isTimeOut)&&(this.m_game_Started=!1,this.m_state.NextState(TP_Define.GAMEVIEW_STATE.IDLE),this.m_tableInfo.action=TP_Define.BET_ACTION.pack),this.m_tableInfo.blind=T.blind,this.m_tableInfo.canAction=PlayerAction.UNKNOWN,this.m_tableInfo.card=T.card,null!==T.card&&T.card.length>0)for(var w=0;
+w<T.card.length;
+w++)this.m_cards[(T.card[w].seat+2)%5]=T.card[w];
+this.m_tableInfo.chaal=T.chaal,this.m_tableInfo.isEnd=T.isEnd,this.m_tableInfo.money=T.money,this.m_tableInfo.bet=T.bet,this.m_tableInfo.nextSeat=T.nextSeat,this.m_tableInfo.otherSee=T.otherSee,this.m_tableInfo.pot=T.pot,this.m_tableInfo.seatIdx=0,this.m_tableInfo.see=this.m_isSee[TP_Define.MainPlayerSeat],this.m_tableInfo.showTarget=T.showTarget,this.m_tableInfo.showWin=T.showWin,this.m_totalbets=T.totalBet,this.m_nowAction=TP_Define.MainPlayerSeat,this.m_mainGame.actBTN(),TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_BETTING);
+break;
+case ServerToUser.S2U_END_ACK:this.waitResponse=!1,node.endBet(),this.isGamimg=!1;
+var v=EndAck.fromBinary(t);
+if(null!==v.card&&v.card.length>0){for(var $=0;
+$<v.card.length;
+$++)this.m_cards[(v.card[$].seat+2)%5]=v.card[$],this.m_showAllPoker[(v.card[$].seat+2)%5]=!0;
+this.m_isFold[TP_Define.MainPlayerSeat]||(this.m_showAllPoker[TP_Define.MainPlayerSeat]=!0)}
+if(null!==v.winner){this.m_win_seat=[];
+for(var P=0;
+P<v.winner.length;
+P++)this.m_win_seat.push((v.winner[P].seat+2)%5),void 0!==v.winner[P].roundWin&&(this.m_wins[(v.winner[P].seat+2)%5]=v.winner[P].roundWin),(v.winner[P].seat+2)%5===TP_Define.MainPlayerSeat&&(node$4.coin=v.winner[P].money)}
+this.syncChipComponent(),TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_END_COUNT);
+break;
+case ServerToUser.S2U_Leave_ACK:this.waitResponse=!1,node.endBet();
+var I=LeaveAck.fromBinary(t);
+node$4.coin=I.pMoney,this.m_mainGame.resetAll(),this.isGamimg=!1,this.m_mainGame.resultProperty(),this.isContinue?(this.isContinue=!1,this.m_mainGame.stopPlayerWait(),this.m_mainGame.stopPKcountDown(),TP_Define.MainGameStateTrans(this.m_mainstate,TP_Define.MAINGAME_STATE.GAME_WAIT_ALLOCATED)):this.OnBackToLobby()}
+}
+prepareBackToLobby(){this.m_state.NextState(TP_Define.GAMEVIEW_STATE.IDLE),this.m_lobbyView.ThemeRecommend(),this.m_mainstate.Tick(),this.m_mainGame.stopPlayerWait(),this.m_mainGame.stopPKcountDown(),this.unscheduleAllCallbacks(),this.m_mainGame.m_btn[5].getComponent(AnimationButton).Disable()}
+OnBackToLobby(){this.isGamimg=!1,this.m_isInLobby=!0,this.m_mainGame.node.active=!1,this.indoManager.onBackToLobby(),this.OnRotation(),this.ThemeData()}
+changeTheme(e,t){var i=parseInt(t);
+node$4.coin>=this.m_themeInfo[i].mincoin?(this.MinCoin=this.m_themeInfo[i].mincoin,this.m_themeId=this.m_themeInfo[i].themeId,this.BaseMoney=this.m_themeInfo[i].boot,this.PotLimit=this.m_themeInfo[i].potlimit,this.ChaalLimit=this.m_themeInfo[i].maxchaal,this.MaxBlind=this.m_themeInfo[i].blindlimit,this.isContinue=!0,this.prepareBackToLobby(),this.node.dispatchEvent(new Event("backToLobby",!0)),this.switchRoom.setRoomLV(this.m_themeId),this.switchRoom.changeRoom()):node$2.msgOK(node$1.getCommString(1020)).then((()=>{}
+))}
+sendToServer(e,t){console.log("sendToServer",e,(new Date).getTime()),this.waitResponse||(this.waitResponse=!0,node.send(e,t),node.resetIdleTimer())}
+}
+,_descriptor$i=_applyDecoratedDescriptor(_class2$i.prototype,"pokerSprite",[_dec$j],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor2$h=_applyDecoratedDescriptor(_class2$i.prototype,"roundIndex",[_dec2$f],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_class$l=_class2$i))||_class$l),_class$m;

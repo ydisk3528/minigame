@@ -1,487 +1,243 @@
-
-
 Base_Dealer.png
-
 size: 1075,396
-
 format: RGBA8888
-
 filter: Linear,Linear
-
 repeat: none
-
 Accessory
-
   rotate: true
-
   xy: 675, 81
-
   size: 52, 113
-
   orig: 55, 113
-
   offset: 3, 0
-
   index: -1
-
 Bangs
-
   rotate: true
-
   xy: 888, 150
-
   size: 244, 181
-
   orig: 244, 181
-
   offset: 0, 0
-
   index: -1
-
 Body
-
   rotate: true
-
   xy: 384, 190
-
   size: 204, 502
-
   orig: 527, 749
-
   offset: 281, 247
-
   index: -1
-
 Card_01
-
   rotate: false
-
   xy: 588, 23
-
   size: 75, 84
-
   orig: 78, 86
-
   offset: 1, 1
-
   index: -1
-
 Card_02
-
   rotate: true
-
   xy: 62, 11
-
   size: 52, 68
-
   orig: 54, 70
-
   offset: 1, 1
-
   index: -1
-
 Card_03
-
   rotate: true
-
   xy: 588, 109
-
   size: 79, 85
-
   orig: 82, 88
-
   offset: 1, 1
-
   index: -1
-
 Face
-
   rotate: true
-
   xy: 384, 29
-
   size: 159, 202
-
   orig: 161, 204
-
   offset: 1, 0
-
   index: -1
-
 FaceMole
-
   rotate: false
-
   xy: 665, 98
-
   size: 8, 9
-
   orig: 11, 11
-
   offset: 1, 1
-
   index: -1
-
 Hair
-
   rotate: true
-
   xy: 2, 65
-
   size: 329, 380
-
   orig: 329, 380
-
   offset: 0, 0
-
   index: -1
-
 L_Arm01
-
   rotate: false
-
   xy: 2, 7
-
   size: 58, 56
-
   orig: 61, 58
-
   offset: 2, 1
-
   index: -1
-
 L_Bracelet
-
   rotate: false
-
   xy: 248, 18
-
   size: 48, 45
-
   orig: 48, 45
-
   offset: 0, 0
-
   index: -1
-
 L_Ear
-
   rotate: false
-
   xy: 132, 13
-
   size: 55, 50
-
   orig: 57, 52
-
   offset: 1, 1
-
   index: -1
-
 L_Earring
-
   rotate: true
-
   xy: 383, 4
-
   size: 23, 74
-
   orig: 28, 74
-
   offset: 0, 0
-
   index: -1
-
 L_Eye
-
   rotate: false
-
   xy: 972, 10
-
   size: 34, 34
-
   orig: 36, 36
-
   offset: 1, 1
-
   index: -1
-
 L_Eyebrow
-
   rotate: false
-
   xy: 853, 4
-
   size: 60, 16
-
   orig: 64, 19
-
   offset: 3, 2
-
   index: -1
-
 L_Eyelash
-
   rotate: true
-
   xy: 1033, 84
-
   size: 64, 40
-
   orig: 77, 41
-
   offset: 11, 0
-
   index: -1
-
 L_Eyelash02
-
   rotate: false
-
   xy: 517, 8
-
   size: 58, 19
-
   orig: 76, 22
-
   offset: 17, 2
-
   index: -1
-
 L_Hand
-
   rotate: false
-
   xy: 887, 22
-
   size: 83, 51
-
   orig: 87, 53
-
   offset: 2, 1
-
   index: -1
-
 L_Sleeve
-
   rotate: false
-
   xy: 665, 5
-
   size: 78, 74
-
   orig: 78, 87
-
   offset: 0, 0
-
   index: -1
-
 L_Sleeve02
-
   rotate: true
-
   xy: 815, 43
-
   size: 71, 70
-
   orig: 75, 70
-
   offset: 0, 0
-
   index: -1
-
 Mouse
-
   rotate: true
-
   xy: 790, 6
-
   size: 49, 22
-
   orig: 49, 22
-
   offset: 0, 0
-
   index: -1
-
 Necklace
-
   rotate: false
-
   xy: 972, 81
-
   size: 59, 67
-
   orig: 59, 67
-
   offset: 0, 0
-
   index: -1
-
 R_Arm01
-
   rotate: true
-
   xy: 972, 46
-
   size: 33, 91
-
   orig: 38, 94
-
   offset: 2, 1
-
   index: -1
-
 R_Bracelet
-
   rotate: false
-
   xy: 814, 5
-
   size: 37, 36
-
   orig: 39, 36
-
   offset: 0, 0
-
   index: -1
-
 R_Ear
-
   rotate: true
-
   xy: 189, 17
-
   size: 46, 57
-
   orig: 49, 61
-
   offset: 2, 2
-
   index: -1
-
 R_Earring
-
   rotate: false
-
   xy: 790, 57
-
   size: 23, 76
-
   orig: 23, 76
-
   offset: 0, 0
-
   index: -1
-
 R_Eye
-
   rotate: false
-
   xy: 1008, 10
-
   size: 34, 34
-
   orig: 36, 36
-
   offset: 1, 1
-
   index: -1
-
 R_Eyebrow
-
   rotate: false
-
   xy: 459, 4
-
   size: 56, 23
-
   orig: 59, 25
-
   offset: 2, 1
-
   index: -1
-
 R_Eyelash
-
   rotate: true
-
   xy: 745, 21
-
   size: 58, 43
-
   orig: 78, 43
-
   offset: 0, 0
-
   index: -1
-
 R_Eyelash02
-
   rotate: false
-
   xy: 577, 2
-
   size: 57, 19
-
   orig: 74, 22
-
   offset: 1, 2
-
   index: -1
-
 R_Hand
-
   rotate: true
-
   xy: 298, 19
-
   size: 44, 83
-
   orig: 48, 85
-
   offset: 2, 1
-
   index: -1
-
 R_Sleeve
-
   rotate: false
-
   xy: 887, 75
-
   size: 83, 73
-
   orig: 83, 73
-
   offset: 0, 0
-
   index: -1
-
 R_Sleeve02
-
   rotate: true
-
   xy: 818, 116
-
   size: 72, 67
-
   orig: 72, 67
-
   offset: 0, 0
-
   index: -1
-
 WhiteEye
-
   rotate: false
-
   xy: 675, 135
-
   size: 141, 53
-
   orig: 144, 55
-
   offset: 2, 1
-
   index: -1

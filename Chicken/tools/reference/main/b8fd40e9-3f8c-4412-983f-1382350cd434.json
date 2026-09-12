@@ -1,0 +1,183 @@
+[
+  {
+    "__type__": "cc.SceneAsset",
+    "_name": "Game",
+    "scene": {
+      "__id__": 2
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Canvas",
+    "_id": "23XnBbecNC85yIB4VVubsY",
+    "_children": [
+      {
+        "__id__": 3
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 640,
+          "height": 1136
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.Canvas",
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "cc.Widget",
+        "_alignFlags": 45,
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 320,
+      "y": 568,
+      "z": 0
+    },
+    "_parent": {
+      "__id__": 2
+    }
+  },
+  {
+    "__type__": "cc.Scene",
+    "_name": "Game",
+    "autoReleaseAssets": true,
+    "_children": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": null,
+      "asset": null,
+      "fileId": "b8fd40e9-3f8c-4412-983f-1382350cd434",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null
+    },
+    "_globals": {
+      "__type__": "cc.SceneGlobals",
+      "ambient": {
+        "__type__": "cc.AmbientInfo",
+        "_skyIllumHDR": 24000,
+        "_skyIllumLDR": 0.72,
+        "_skyColorHDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.9411764705882353,
+          "y": 0.8156862745098039,
+          "z": 0.9254901960784314,
+          "w": 0.62499975
+        },
+        "_groundAlbedoHDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.18823529411764706,
+          "y": 0.13333333333333333,
+          "z": 0.07058823529411765,
+          "w": 1
+        },
+        "_skyColorLDR": {
+          "__type__": "cc.Vec4",
+          "x": 1,
+          "y": 1,
+          "z": 1,
+          "w": 0.72
+        },
+        "_groundAlbedoLDR": {
+          "__type__": "cc.Vec4",
+          "x": 0.8627450980392157,
+          "y": 0.8627450980392157,
+          "z": 0.8627450980392157,
+          "w": 1
+        }
+      },
+      "shadows": {
+        "__type__": "cc.ShadowsInfo",
+        "_type": 1,
+        "_shadowColor": {
+          "__type__": "cc.Color",
+          "r": 76,
+          "g": 76,
+          "b": 76,
+          "a": 255
+        }
+      },
+      "_skybox": {
+        "__type__": "cc.SkyboxInfo",
+        "_useHDR": false
+      },
+      "fog": {
+        "__type__": "cc.FogInfo"
+      },
+      "octree": {
+        "__type__": "cc.OctreeInfo"
+      },
+      "skin": {
+        "__type__": "cc.SkinInfo"
+      },
+      "lightProbeInfo": {
+        "__type__": "cc.LightProbeInfo"
+      },
+      "postSettings": {
+        "__type__": "cc.PostSettingsInfo"
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Entry",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "09b4cr4VYtCKKLu6Z6ctkJd",
+        "project": "chickendash10000",
+        "gameID": 748,
+        "serverPath": "chickendash10000",
+        "favorite": true,
+        "promotion": true,
+        "item": true,
+        "mission": true,
+        "livebet": true,
+        "mail": true,
+        "agent": true,
+        "rankboard": true,
+        "orientation": 0,
+        "gameBundleName": "game",
+        "gamePrefabPath": "res/prefab/main/Stage",
+        "remote": true,
+        "featurePagePrefabs": [
+          {
+            "__uuid__": "1ad4e4f8-b067-4fb0-b718-9e9fe6fda867"
+          },
+          {
+            "__uuid__": "cebe820a-1f2a-480a-bb10-6e8fb39ed8c5"
+          }
+        ],
+        "iconPrefab": {
+          "__uuid__": "80e312a6-964a-496e-a972-5580ce95f0ce"
+        },
+        "bgSpr": {
+          "__uuid__": "fd3110c7-db93-44af-a57e-cb466fec54e2@f9941"
+        },
+        "node": {
+          "__id__": 3
+        }
+      }
+    ]
+  }
+]

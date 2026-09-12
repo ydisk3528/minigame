@@ -1,0 +1,97 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "FreeSpinMgr",
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "FreeSpinMgr",
+    "_layer": 33554432,
+    "_children": [
+      {
+        "__id__": 2
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "f057dsJt0dIjYqCwaRbkU6h",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "dfNmcQdA5GEJIYXexN2eWs"
+        },
+        "m_freeSpinBoardPrefab": {
+          "__uuid__": "f6ffd48d-c446-458a-8e3e-fff496d1ac4f"
+        },
+        "m_freeSpinDeclarePrefab": {
+          "__uuid__": "432c997d-574d-4090-89e1-7bc1fadfce65"
+        },
+        "m_freeSpinButtonPrefab": {
+          "__uuid__": "7c062924-d875-46b3-a72d-809c1aca78e3"
+        },
+        "m_pigImg": {
+          "__uuid__": "15476d56-4564-4af0-9b97-02df26253f27@f9941"
+        },
+        "m_FreeSpinShowRoot": {
+          "__id__": 3
+        },
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "1bwdkwFBNAwrO+2MYL2x/y",
+      "asset": {
+        "__id__": 0
+      },
+      "root": {
+        "__id__": 1
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Root",
+    "_layer": 33554432,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 3
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "f2noYyTwVNcqyNFV3EtPfg",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "FreeSpinShowNode",
+    "_layer": 33554432,
+    "_parent": {
+      "__id__": 2
+    },
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "26277G/V9Puaou+O/TL6q+",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    }
+  }
+]

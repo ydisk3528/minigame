@@ -1,0 +1,1 @@
+cclegacy._RF.push({},"2ba36mJDKpDaba07yt10CpS","timer",void 0);var Forever=macro.REPEAT_FOREVER,node$8;function UpdateTimer(){node$8=Annin.Timer}

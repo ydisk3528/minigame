@@ -81,3 +81,25 @@
 - 尚未上传远端服务器；Google 审核结果不在本次验证范围内。
 
 Auto Sort 无变化提示：源码及 Release 构建模型测试通过；浏览器实测已排序手牌点击 Auto Sort 显示游戏内单 OK 提示，关闭后普通 Drop 确认框恢复 Confirm/Cancel 两按钮。未使用 window.alert。
+
+2026-09-12 首次游玩引导：
+- 新增图片绑定 FirstPlayGuide 预制体及透明手指 PNG；四块黑色 Sprite Alpha 180，遮罩节点拦截点击。
+- TypeScript 检查、47 个动画绑定、首场景隔离和 Creator Release 构建通过；实际构建 JS 的 round.test.cjs 通过。
+- 浏览器独立测试来源 localhost:8797：首次 LV1 依次显示摸牌、选牌、Discard 三步；手动点击全部通过，选牌阶段仅高亮一张牌的可点击部分。
+- 引导期间倒计时保持 20；点击高亮区域外的 Discard 被拦截。手动弃牌后遮罩消失，正常对手回合恢复。
+- 完成后刷新页面再进入 LV2，不再显示引导，倒计时正常走到 17。完成标记保存在当前来源 localStorage；未做 Android 真机验证。
+
+2026-09-12 Auto Sort 移动动画与音乐循环：
+- Auto Sort 按牌 ID 记录旧世界位置，布局完成后让牌面抬起并滑到新位置，逐张延迟 15ms，总时长约 0.7 秒；动画中暂停操作和计时，退出清理 Tween。
+- 浏览器实际捕获了手牌抬起的中间状态与排序后落位；再次无变化排序仍弹出游戏内提示。
+- LobbyMusic.prefab 与 Rummy.scene 的 AudioSource 原本已有 _loop=true；RummyApp 加载音乐时现在明确同步预制体的 loop 到实际播放源，以预制体为配置来源。未进行完整音频周期听测。
+- TypeScript、47 个动画绑定、首场景依赖隔离、Release 构建和实际构建 JS 牌局回归通过。
+
+2026-09-12 默认音频 / Lobby 任意回合退出：
+- 新存档音乐和音效默认 true；旧版 off 值与完整存档中的关闭设置仍保留。实际构建 JS 的 save.test.cjs 验证默认开启、旧 off 迁移和显式关闭保留通过。
+- Lobby 独立 leaveTable，不受当前回合或 motionBusy 限制。确认后停止动画、清除 AI 调度，仅结算本人退出费用；不再调用会作用于当前 AI 座位的 Round.drop。
+- Lobby 保持预制体原有层级，新手引导不对 Lobby 做特殊处理；确认弹窗置于牌桌根节点顶层。普通 Drop 保持原本人回合限制。
+- 浏览器 AI Zoe 行动时点击 Lobby，确认后回大厅；余额 9960 -> 9920，未重复扣分。
+- TypeScript、47 个动画绑定、存档及牌局模型回归通过。Android 真机未验证本次 Cocos 改动。
+
+2026-09-12 层级修正：按要求移除 Lobby 的运行时重设父节点及置顶逻辑，保留任意回合退出逻辑。本次只改源码，未重新编译或打包。

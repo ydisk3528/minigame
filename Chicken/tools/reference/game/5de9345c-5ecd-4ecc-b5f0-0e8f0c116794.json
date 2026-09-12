@@ -1,0 +1,191 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "chip-xs",
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "chip-xs",
+    "_children": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 3
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "52uds6gw9M+7mfNfKTjk/V"
+        },
+        "node": {
+          "__id__": 1
+        }
+      },
+      {
+        "__type__": "ac2c0npCYVJtq4wnw3Q3xMg",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "26j99UKxRAcYhTu1lDi+W7"
+        },
+        "chip_spriteArr": [
+          {
+            "__uuid__": "147c1a1b-b3f0-410f-bcd2-fd3926f40601@f9941"
+          },
+          {
+            "__uuid__": "ac993781-93a1-4389-8824-5673bf1a2083@f9941"
+          },
+          {
+            "__uuid__": "d5881742-ee1a-4cd7-b8c7-adeb822131f6@f9941"
+          },
+          {
+            "__uuid__": "007190a1-3508-4295-8acb-34ba919b2be1@f9941"
+          },
+          {
+            "__uuid__": "e6786f23-d9fe-4489-81ec-f30469ec4994@f9941"
+          },
+          {
+            "__uuid__": "e7ed5acc-58bb-4bf3-99d9-dbda2e2b95fb@f9941"
+          }
+        ],
+        "node": {
+          "__id__": 1
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "31fJgxDSpBCpH7/lN5Lt3y",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "asset": {
+        "__id__": 0
+      },
+      "root": {
+        "__id__": 1
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "img",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "06qK1CN4lMx5HnO7d5Jnvx"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 58,
+          "height": 59
+        },
+        "node": {
+          "__id__": 2
+        }
+      },
+      {
+        "__type__": "cc.Sprite",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "31LJg9ryRJL6CcFCqJbQ/z"
+        },
+        "_spriteFrame": {
+          "__uuid__": "147c1a1b-b3f0-410f-bcd2-fd3926f40601@f9941"
+        },
+        "node": {
+          "__id__": 2
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "5b14DthYdBZq9j/rsUYFIz",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "num",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.UITransform",
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "23vAqXYXhBj4uqdGOjzrcF"
+        },
+        "_contentSize": {
+          "__type__": "cc.Size",
+          "width": 40,
+          "height": 30
+        },
+        "node": {
+          "__id__": 3
+        }
+      },
+      {
+        "__type__": "cc.Label",
+        "_string": "200",
+        "_actualFontSize": 20,
+        "_fontSize": 20,
+        "_lineHeight": 30,
+        "_overflow": 2,
+        "_enableWrapText": false,
+        "_isSystemFontUsed": false,
+        "_spacingX": -1,
+        "__prefab": {
+          "__type__": "cc.CompPrefabInfo",
+          "fileId": "ferlLLAHZB+Iivly3TbxK4"
+        },
+        "_color": {
+          "__type__": "cc.Color",
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 255
+        },
+        "_font": {
+          "__uuid__": "7dd0c4db-03cb-409d-96f7-097183e27a3a"
+        },
+        "node": {
+          "__id__": 3
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "fileId": "91AqRvqq5F9bXR/tC+SZn6",
+      "instance": null,
+      "targetOverrides": null,
+      "nestedPrefabInstanceRoots": null,
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      }
+    }
+  }
+]

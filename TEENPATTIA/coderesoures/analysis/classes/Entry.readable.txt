@@ -1,0 +1,206 @@
+cclegacy._RF.push({}
+,"09b4cr4VYtCKKLu6Z6ctkJd","Entry",void 0),globalThis.console.log("prevent catche_anninframework 1785203783816");
+var useAVIF2ReplaceWEBP=!1,lstZipBundleName=["game"],{ccclass:ccclass$$,property:property$_,executeInEditMode:executeInEditMode$d,executionOrder:executionOrder$3}
+=_decorator;
+sys.isBrowser&&useAVIF2ReplaceWEBP&&isAVIFSupported().then((e=>{e&&assetManager.downloader.register(".webp",((e,t,i)=>{var r=assetManager.downloader;
+if(r.downloadImage)return assetManager.allowImageBitmap=!0,void r.downloadImage(e.replace(".webp",".avif"),t,i);
+r.downloadDomImage(e.replace(".webp",".avif"),t,i)}
+))}
+));
+var Orientation=function(e){return e[e.Auto=0]="Auto",e[e.Landscape=1]="Landscape",e[e.Portrait=2]="Portrait",e}
+({}
+),ServerPrefix=function(e){return e[e.Fish=0]="Fish",e[e.Bingo=1]="Bingo",e[e.Poker=2]="Poker",e[e.Real=3]="Real",e[e.Stream=4]="Stream",e}
+({}
+),CommonType=function(e){return e[e.Annin=0]="Annin",e[e.Annin_Simple=1]="Annin_Simple",e}
+(CommonType||{}
+),Entry=(_dec$_=ccclass$$("Entry"),_dec2$N=executeInEditMode$d(!0),_dec3$D=executionOrder$3(-1),_dec4$x=property$_({tooltip:"專案名稱"}
+),_dec5$r=property$_({tooltip:"遊戲編號"}
+),_dec6$n=property$_({tooltip:"serverPath"}
+),_dec7$k=property$_({tooltip:"伺服器路徑前綴",type:Enum(ServerPrefix)}
+),_dec8$j=property$_({tooltip:"(開關)我的最愛"}
+),_dec9$g=property$_({tooltip:"(開關)VIP"}
+),_dec10$e=property$_({tooltip:"(開關)推薦"}
+),_dec11$d=property$_({tooltip:"(開關)Top50"}
+),_dec12$b=property$_({tooltip:"(開關)Slot道具卡"}
+),_dec13$b=property$_({tooltip:"(開關)每日任務"}
+),_dec14$b=property$_({tooltip:"(開關)livebet"}
+),_dec15$9=property$_({tooltip:"(開關)競賽通知"}
+),_dec16$9=property$_({tooltip:"(開關)魚機道具卡"}
+),_dec17$8=property$_({tooltip:"(開關)廠商客製參數"}
+),_dec18$6=property$_({tooltip:"(開關)排行榜"}
+),_dec19$5=property$_({tooltip:"(開關)Slot收集碎片活動"}
+),_dec20$5=property$_({tooltip:"(開關)Tada等級系統"}
+),_dec21$3=property$_({tooltip:"(開關)返回大廳按鈕顯示"}
+),_dec22$3=property$_({tooltip:"遊戲適配方向",type:Enum(Orientation)}
+),_dec23$2=property$_({tooltip:"遊戲最高長短邊比"}
+),_dec24$1=property$_({tooltip:"遊戲最高短長邊比"}
+),_dec25$1=property$_({tooltip:"遊戲場景短邊長度"}
+),_dec26$1=property$_({tooltip:"遊戲場景長邊長度"}
+),_dec27$1=property$_({tooltip:"共用Bundle名稱"}
+),_dec28$1=property$_({tooltip:"遊戲包Bundle名稱"}
+),_dec29$1=property$_({tooltip:"遊戲Prefab路徑"}
+),_dec30$1=property$_({type:Prefab,tooltip:"特色頁第一頁Prefab"}
+),_dec31$1=property$_({type:Prefab,tooltip:"特色頁第二頁Prefab"}
+),_dec32$1=property$_({type:[Prefab],tooltip:"特色頁Prefab"}
+),_dec33=property$_({type:[Prefab],tooltip:"送審隱藏特色頁Prefab"}
+),_dec34=property$_({type:Prefab,tooltip:"遊戲主Icon的Prefab"}
+),_dec35=property$_({type:SpriteFrame,tooltip:"特色loading頁背景圖"}
+),_dec36=property$_({tooltip:"特色loading頁背景圖拉伸模式  0=Custom  1=Trimmed  2=Raw"}
+),_dec37=property$_({tooltip:"辣椒度"}
+),_dec38=property$_({tooltip:"星星度"}
+),_dec39=property$_({tooltip:"有幾種特色遊戲可以試玩"}
+),_dec40=property$_({tooltip:"使用遠程公版"}
+),_dec41=property$_({tooltip:"使用遠程語言包"}
+),_dec42=property$_({tooltip:"公版版本",type:Enum(CommonType)}
+),_dec$_(_class2$V=_dec2$N(_class2$V=_dec3$D((_class3$4=class extends Component{constructor(){super(...arguments),_initializerDefineProperty(this,"project",_descriptor$U,this),_initializerDefineProperty(this,"gameID",_descriptor2$N,this),_initializerDefineProperty(this,"serverPath",_descriptor3$E,this),_initializerDefineProperty(this,"serverPrefix",_descriptor4$y,this),_initializerDefineProperty(this,"favorite",_descriptor5$s,this),_initializerDefineProperty(this,"vip",_descriptor6$n,this),_initializerDefineProperty(this,"promotion",_descriptor7$k,this),_initializerDefineProperty(this,"top50",_descriptor8$j,this),_initializerDefineProperty(this,"item",_descriptor9$g,this),_initializerDefineProperty(this,"mission",_descriptor10$e,this),_initializerDefineProperty(this,"livebet",_descriptor11$c,this),_initializerDefineProperty(this,"mail",_descriptor12$b,this),_initializerDefineProperty(this,"card",_descriptor13$b,this),_initializerDefineProperty(this,"agent",_descriptor14$b,this),_initializerDefineProperty(this,"rankboard",_descriptor15$9,this),_initializerDefineProperty(this,"debris",_descriptor16$8,this),_initializerDefineProperty(this,"level",_descriptor17$8,this),_initializerDefineProperty(this,"backToLobbyBtn",_descriptor18$7,this),_initializerDefineProperty(this,"orientation",_descriptor19$6,this),_initializerDefineProperty(this,"screenLongSideRate",_descriptor20$6,this),_initializerDefineProperty(this,"screenShortSideRate",_descriptor21$3,this),_initializerDefineProperty(this,"screenShortSideSize",_descriptor22$3,this),_initializerDefineProperty(this,"screenLongSideSize",_descriptor23$2,this),_initializerDefineProperty(this,"commonBundleName",_descriptor24$2,this),_initializerDefineProperty(this,"gameBundleName",_descriptor25$1,this),_initializerDefineProperty(this,"gamePrefabPath",_descriptor26$1,this),_initializerDefineProperty(this,"featurePage1Prefab",_descriptor27$1,this),_initializerDefineProperty(this,"featurePage2Prefab",_descriptor28$1,this),_initializerDefineProperty(this,"featurePagePrefabs",_descriptor29$1,this),_initializerDefineProperty(this,"licenseHidePagePrefabs",_descriptor30$1,this),_initializerDefineProperty(this,"iconPrefab",_descriptor31$1,this),_initializerDefineProperty(this,"bgSpr",_descriptor32$1,this),_initializerDefineProperty(this,"bgSprSizeMode",_descriptor33,this),_initializerDefineProperty(this,"hardNums",_descriptor34,this),_initializerDefineProperty(this,"starNums",_descriptor35,this),_initializerDefineProperty(this,"hasFeatureCnt",_descriptor36,this),_initializerDefineProperty(this,"remote",_descriptor37,this),_initializerDefineProperty(this,"remoteLang",_descriptor38,this),_initializerDefineProperty(this,"commonType",_descriptor39,this),this.loading=null,this.blurBGSpf=null,this.host="",this.remoteName="",this.apiID=0,this.isSSS=!1,this.commonPrefabPath="prefeb/main/Common",this.loadingBundle=null,this.commonBundle=null,this.gameBundle=null}
+onLoad(){var e=this;
+return _asyncToGenerator((function*(){var t;
+e.featurePage1Prefab&&(e.featurePagePrefabs.push(e.featurePage1Prefab),e.featurePage1Prefab=null),e.featurePage2Prefab&&(e.featurePagePrefabs.push(e.featurePage2Prefab),e.featurePage2Prefab=null),globalThis.Annin||(globalThis.Annin={}
+),assetManager.downloader.maxConcurrency=12,assetManager.downloader.maxRequestsPerFrame=12,e.inithost(),e.apiID=e.getQuery("apiId")?Number(e.getQuery("apiId")):0,globalThis.temp_Brand=e.getBrandType(),globalThis.temp_GameBundleName=e.gameBundleName;
+var i=e.getQuery("lang");
+e.isSSS=null==(t=getQuery(getUrl(),"name"))?void 0:t.includes("sss-"),e.isSSS&&(i="en-US"),Annin.i18nStrings=new i18nStrings(e.host,e.gameID,i),e.sendLog(96),e.checkCanvasSizeRegular(),e.serverPrefix==ServerPrefix.Real&&(e.serverPath+=e.getQuery("uid")?e.getQuery("uid"):123),Annin.Version=5,yield e.loadLoadingBundle(),e.loadingBundle.load("res/prefab/main/PrepareApp",Prefab,((t,i)=>{if(t)console.error(t);
+else{var r=instantiate(i);
+r.parent=e.node.parent,r.emit("Init",e)}
+}
+))}
+))()}
+onDestroy(){globalThis.temp_Brand=null,globalThis.temp_GameBundleName=null}
+update(){}
+inithost(){this.host="https://"+window.location.host+"/",this.remoteName="annin";
+var e=globalThis.LobbyData;
+e&&(this.host=e.cdnHost);
+-1==this.host.indexOf("localhost")&&1!=/^http(s)?:\/\/([0-9]{1,3}
+\.){3}
+[0-9]{1,3}
+(:[0-9]+)?\/.*?$/.test(this.host)&&this.serverPrefix!=ServerPrefix.Real||(this.host="https://test-wbgame.jlfafafa3.com/",this.remoteName="annind")}
+loadZip(e,t,i,r){return _asyncToGenerator((function*(){if(void 0===i&&(i=""),void 0===r&&(r=""),instance&&!(instance.loadedZipNames.indexOf(e)>=0)&&(t||-1!==lstZipBundleName.indexOf(e))){var n=i,o=r;
+if(!t){var a=settings.querySettings(Settings.Category.ASSETS,"bundleVers");
+n="./assets/"+e,o=a[e]}
+instance.loadedZipNames.push(e),yield instance.loadZip(n,o)}
+}
+))()}
+loadLoadingBundle(){var e=this;
+return _asyncToGenerator((function*(){var t="",i="",r="annin_loading";
+if(e.remote){var n=VERSION.match(/(\d+)\.(\d+)/),o=n[1]+"."+n[2],a=sys.isNative?"android":"web-mobile",s=""+e.host+e.remoteName+"/"+o+"/"+a,l=yield e.loadJson(s+"/assets/versions.json?"+(Date.now()/600).toFixed(0)),c=s+"/src/chunks/bundle."+l.json["bundle.js"]+".js";
+yield e.loadAnninChunks(c),t=s+"/assets/"+r,i=l.json.annin_loading}
+else t=r;
+var[p]=yield Promise.all([e.loadBundle(t,i),e.loadZip(r,e.remote,t,i)]);
+e.loadingBundle=p}
+))()}
+getBrandType(){var e=this.getQuery("domain_gs"),t=this.getQuery("tadaSkin"),i=this.getQuery("skin");
+return i&&""!=i?Number(i):this.apiID>=200&&this.apiID<300?202==this.apiID?3:2:301==this.apiID?4:3==this.apiID||e.toLowerCase().indexOf("adat")>=0||"1"==t?1:0}
+getQuery(e){return getQuery(getUrl(),e)}
+sendLog(e){if(!1!=!!globalThis.URLSearchParams){var t=new URLSearchParams(window.location.search);
+if(t.get("domain_platform")){var i="https://"+t.get("domain_platform").split("").reverse().join("")+"/webservice/event/trigger",r="?EventID="+e+"&GameVersion=-1&EventStatus=0&BrowserSystem=-1&DeviceSystem=-1&AccountID=-1&ApiId="+this.apiID+"&SSOKey="+t.get("ssoKey")+"&GameID="+this.gameID+"&CreateTime="+new Date;
+if("true"!=t.get("demo")){var n=new XMLHttpRequest;
+n.open("get",i+r),n.send()}
+}
+}
+}
+loadBundle(e,t){return new Promise(((i,r)=>{assetManager.loadBundle(e,{version:t}
+,((e,t)=>{e?r(e):i(t)}
+))}
+))}
+loadJson(e){return new Promise(((t,i)=>{assetManager.loadRemote(e,{reload:!0,cacheAsset:!1,cacheEnabled:!1,maxRetryCount:0}
+,_asyncToGenerator((function*(e,r){e?i(e):t(r)}
+)))}
+))}
+loadAnninChunks(e){return sys.isNative?new Promise(((t,i)=>{assetManager.downloader.downloadScript(e,{systemJs:!0}
+,_asyncToGenerator((function*(e,r){e?i(e):t()}
+)))}
+)):System.import(e)}
+checkCanvasSizeRegular(){var e=find$1("Canvas");
+if(Number.isNaN(e.getComponent(UITransform).contentSize.x)||Number.isNaN(e.worldMatrix.m15))var t=tween(e).delay(1).call((()=>{e.active=!1,e.active=!0,Number.isNaN(e.getComponent(UITransform).contentSize.x)||Number.isNaN(e.worldMatrix.m15)||t.stop()}
+)).union().repeatForever().start()}
+login(){var e=this;
+return _asyncToGenerator((function*(){if(3==e.serverPrefix)return"test123456789";
+var t,i,r=_cjsExports$4.sprintf("https://%s/",e.getQuery("be").split("").reverse().join("")),n=yield(t=e.getQuery("ssoKey"),i=e.getQuery("lang"),fetch(r+"sso-login.api",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded;
+charset=UTF-8"}
+,body:e.objectToParams({key:t,lang:i}
+)}
+));
+return n.ok?yield n.json():{response:{error:99}
+}
+}
+))()}
+objectToParams(e){return Object.keys(e).map((t=>encodeURIComponent(t)+"="+encodeURIComponent(e[t]))).join("&")}
+}
+,_descriptor$U=_applyDecoratedDescriptor(_class3$4.prototype,"project",[_dec4$x],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return""}
+}
+),_descriptor2$N=_applyDecoratedDescriptor(_class3$4.prototype,"gameID",[_dec5$r],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 0}
+}
+),_descriptor3$E=_applyDecoratedDescriptor(_class3$4.prototype,"serverPath",[_dec6$n],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return""}
+}
+),_descriptor4$y=_applyDecoratedDescriptor(_class3$4.prototype,"serverPrefix",[_dec7$k],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return ServerPrefix.Fish}
+}
+),_descriptor5$s=_applyDecoratedDescriptor(_class3$4.prototype,"favorite",[_dec8$j],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor6$n=_applyDecoratedDescriptor(_class3$4.prototype,"vip",[_dec9$g],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor7$k=_applyDecoratedDescriptor(_class3$4.prototype,"promotion",[_dec10$e],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor8$j=_applyDecoratedDescriptor(_class3$4.prototype,"top50",[_dec11$d],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor9$g=_applyDecoratedDescriptor(_class3$4.prototype,"item",[_dec12$b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor10$e=_applyDecoratedDescriptor(_class3$4.prototype,"mission",[_dec13$b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor11$c=_applyDecoratedDescriptor(_class3$4.prototype,"livebet",[_dec14$b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor12$b=_applyDecoratedDescriptor(_class3$4.prototype,"mail",[_dec15$9],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor13$b=_applyDecoratedDescriptor(_class3$4.prototype,"card",[_dec16$9],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor14$b=_applyDecoratedDescriptor(_class3$4.prototype,"agent",[_dec17$8],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor15$9=_applyDecoratedDescriptor(_class3$4.prototype,"rankboard",[_dec18$6],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor16$8=_applyDecoratedDescriptor(_class3$4.prototype,"debris",[_dec19$5],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor17$8=_applyDecoratedDescriptor(_class3$4.prototype,"level",[_dec20$5],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor18$7=_applyDecoratedDescriptor(_class3$4.prototype,"backToLobbyBtn",[_dec21$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!0}
+}
+),_descriptor19$6=_applyDecoratedDescriptor(_class3$4.prototype,"orientation",[_dec22$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return Orientation.Portrait}
+}
+),_descriptor20$6=_applyDecoratedDescriptor(_class3$4.prototype,"screenLongSideRate",[_dec23$2],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 21/9}
+}
+),_descriptor21$3=_applyDecoratedDescriptor(_class3$4.prototype,"screenShortSideRate",[_dec24$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 9/16}
+}
+),_descriptor22$3=_applyDecoratedDescriptor(_class3$4.prototype,"screenShortSideSize",[_dec25$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 640}
+}
+),_descriptor23$2=_applyDecoratedDescriptor(_class3$4.prototype,"screenLongSideSize",[_dec26$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 1136}
+}
+),_descriptor24$2=_applyDecoratedDescriptor(_class3$4.prototype,"commonBundleName",[_dec27$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return"common"}
+}
+),_descriptor25$1=_applyDecoratedDescriptor(_class3$4.prototype,"gameBundleName",[_dec28$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return""}
+}
+),_descriptor26$1=_applyDecoratedDescriptor(_class3$4.prototype,"gamePrefabPath",[_dec29$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return""}
+}
+),_descriptor27$1=_applyDecoratedDescriptor(_class3$4.prototype,"featurePage1Prefab",[_dec30$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor28$1=_applyDecoratedDescriptor(_class3$4.prototype,"featurePage2Prefab",[_dec31$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor29$1=_applyDecoratedDescriptor(_class3$4.prototype,"featurePagePrefabs",[_dec32$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor30$1=_applyDecoratedDescriptor(_class3$4.prototype,"licenseHidePagePrefabs",[_dec33],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor31$1=_applyDecoratedDescriptor(_class3$4.prototype,"iconPrefab",[_dec34],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor32$1=_applyDecoratedDescriptor(_class3$4.prototype,"bgSpr",[_dec35],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}
+}
+),_descriptor33=_applyDecoratedDescriptor(_class3$4.prototype,"bgSprSizeMode",[_dec36],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 0}
+}
+),_descriptor34=_applyDecoratedDescriptor(_class3$4.prototype,"hardNums",[_dec37],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 0}
+}
+),_descriptor35=_applyDecoratedDescriptor(_class3$4.prototype,"starNums",[_dec38],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 0}
+}
+),_descriptor36=_applyDecoratedDescriptor(_class3$4.prototype,"hasFeatureCnt",[_dec39],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return 0}
+}
+),_descriptor37=_applyDecoratedDescriptor(_class3$4.prototype,"remote",[_dec40],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor38=_applyDecoratedDescriptor(_class3$4.prototype,"remoteLang",[_dec41],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return!1}
+}
+),_descriptor39=_applyDecoratedDescriptor(_class3$4.prototype,"commonType",[_dec42],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return CommonType.Annin}
+}
+),_class2$V=_class3$4))||_class2$V)||_class2$V)||_class2$V),_dec$$,_dec2$O,_class$11,_class2$W,_descriptor$V;

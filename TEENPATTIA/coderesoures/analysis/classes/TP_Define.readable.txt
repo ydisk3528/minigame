@@ -1,0 +1,89 @@
+cclegacy._RF.push({}
+,"24f7bt9iSpO66UO6wO4z/Md","TP_Define",void 0);
+var AWARD_PAY_TYPE=function(e){return e[e.ANY=0]="ANY",e[e.TSU=1]="TSU",e[e.SHIH=2]="SHIH",e[e.SHUO=3]="SHUO",e[e.FA=4]="FA",e}
+(AWARD_PAY_TYPE||{}
+),RES_PATH_PREFAB_ROOT="Prefab/",RES_PATH_TEXTURE_ROOT="TP/Img_Common/",LANG="{0}
+",NickNameLengthLimit=10,GAME_LANG="en",{ccclass:ccclass$4,property:property$4}
+=_decorator,TP_Define=(_dec$4=property$4(SpriteFrame),_dec2$3=property$4(SpriteFrame),_dec3$3=property$4(SpriteFrame),_dec4$3=property$4(SpriteFrame),_dec5$2=property$4(SpriteFrame),_dec6$1=property$4(SpriteFrame),_dec7$1=property$4(SpriteFrame),_dec8$1=property$4(SpriteFrame),ccclass$4((_class3=class extends Component{constructor(){super(...arguments),_initializerDefineProperty(this,"SymbolSpriteFrame",_descriptor$4,this),_initializerDefineProperty(this,"FreeSymbolSpriteFrame",_descriptor2$4,this),_initializerDefineProperty(this,"UpgradeSymbolSripteFrame",_descriptor3$4,this),_initializerDefineProperty(this,"TitleSpriteFrames",_descriptor4$4,this),_initializerDefineProperty(this,"LeftSpriteFrames",_descriptor5$3,this),_initializerDefineProperty(this,"RecordWinSpriteFrames",_descriptor6$2,this),_initializerDefineProperty(this,"RecordBgSpriteFrames",_descriptor7$1,this),_initializerDefineProperty(this,"UpgradeSpriteFrames",_descriptor8$1,this)}
+static CanActionAnalyze(e){void 0===e&&(e=0);
+for(var t=[!1,!1,!1,!1,!1],i=0;
+i<t.length;
+i++)(e&Math.pow(2,i))>0&&(t[i]=!0);
+return t}
+static GetCurrencyInt(e){var t=e.split(".")[0].replace(/,/g,"");
+return Number(t)}
+static MainGameStateTrans(e,t){e.NextState(t)}
+}
+,_class3.Ver="100",_class3.BgAudioId=-1,_class3.SPICY_LEVEL=1,_class3.FULL_HOUSE_AWARD_TYPE=4,_class3.ITEM_PATH="/OLS/common/Item_card",_class3.NEED_SYNC_ROOM=15e3,_class3.INR=6,_class3.LOSE=1,_class3.WIN=2,_class3.BET_ACTION={call:1,raise:2,pack:4,showside:8,showed:16,show:32,seen_call:64,seen_raise:128}
+,_class3.RO_ACTION_DELAY=[5,5,6,7,8,9,10,12],_class3.MOST_ACTION_DELAY=15,_class3.HURRY_ACTION_DELAY=4,_class3.SEE_ACTION_DELAY=3,_class3.LEAST_ACTION_DELAY=.5,_class3.MOST_PK_DELAY=10,_class3.LobbyGameType={Lobby_HeadIcon:"Img",Lobby_Nickname:"TXT_Name",Lobby_Gold:"Num_Gold",Lobby_GoldMark:"TXT_Mark",Lobby_BaseMoney:"boot",Lobby_MinMoney:"min",Lobby_LimitMoney:"limit",Lobby_BtnMask:"btn_0",Lobby_BtnLT:"Btn0",Lobby_ModelNode:"Model",Lobby_Model01:"01",Lobby_Model02:"02",Lobby_Bonus:"Bonus",Lobby_BonusToken:"JP",Lobby_BonusBar:"BonusBar",Lobby_BonusLabel:"BonusLabel",Lobby_BonusPrize:"BonusPrize",Lobby_PW_Light:"PW_0",Lobby_BTN_Root:"btn_root"}
+,_class3.MainGameType={Main_Poker:"Poker",Main_SendPoker:"SendPoker",Main_PokerType:"PokerType",Main_Players:"Players",Main_MainPlayer:"MainPlayer",Main_Num_Gold:"Num_Gold",Main_DoubleBet:"DoubleBet",Main_Win_Gold:"WinGold",Main_StartGame:"StartGame",Main_Matching:"Matching",Main_FX_Property:"FX_Property",Main_FX_Gold:"FX_Gold",Main_AllPacked:"AllPacked",Main_PotLimit:"PotLimit",Main_Num_Property:"Num_Property",Main_PlayerPK:"PlayerPK",Main_BTN_Num:"Num",Main_BTN_Txt:"Label",Main_MSG:"HelpMSG",Main_CheatBar:"CheatBar",Main_Gold_Icon:"Icon",FiveBonusGullak:"BonusLucky",FiveBonus:"FiveBonus"}
+,_class3.PlayerType={Name:"TXT_Name",Face:"img",Face2:"img2",DealerLeft:"Dealer_L",DealerRight:"Dealer_R",Status:"Status",Win:"Win",Crown:"Crown",WinRate:"WinRate",CountDown:"CountDown",CountDown2:"CountDown2",SeeRing:"SeeRing"}
+,_class3.PokerType={Poker1:"Card_1",Poker2:"Card_2",Poker3:"Card_3",FaceUp:"img",highcard:"TXT0",pair:"TXT1",color:"TXT2",sequence:"TXT3",pureSequence:"TXT4",set:"TXT5",Bg:"Bg"}
+,_class3.PKType={Red:"Red",Blue:"Blue",Accept:"Btn_Accept",Reject:"Btn_Reject",Time:"TimeBg",TimeNum:"TimeNum",Clock:"Clock",PlayerR:"PlayersR",PlayerB:"PlayersB",PokerR:"PokerR",PokerB:"PokerB",PokerTypeR:"PokerTypeR",PokerTypeB:"PokerTypeB"}
+,_class3.MSGType={Boot:"BootNum",Blind:"BlindNum",Chaal:"ChaalNum",Pot:"PotNum",Close:"X_Btn"}
+,_class3.BONUSType={BonusLobby:"BonusLobby",BonusLucky:"BonusLucky",BonusRetain:"BonusRetain",BonusHelpMsg:"BonusHelpMsg"}
+,_class3.BURGERLIST_UIName={GPKBurgerList:"GPKBurgerList",BTN_SYSTEM:"system",NODE_MORE_BG:"MoreBg",BTN_RECORD:"RecordBtn",BTN_HELP:"HelpBtn",BTN_SOUND_ON:"SoundBtnOn",BTN_SOUND_OFF:"SoundBtnOff",BTN_EXIT:"ExitBtn"}
+,_class3.HelpViewGameType={HV_BtnSprite:"Btn_Sprite",HV_Item_Play:0,HV_Item_Count:1,HV_Item_Size:2,HV_Item_Multiple:3}
+,_class3.Theme={THEME_INFO_ONE:1001,THEME_INFO_TWO:1002,THEME_INFO_THREE:1003,THEME_INFO_FOUR:1004,THEME_INFO_FIVE:1005,THEME_INFO_SIX:1006,THEME_INFO_SEVEN:1007,THEME_INFO_EIGHT:1008,THEME_INFO_NIGHT:1009,THEME_INFO_TEN:1010,THEME_INFO_ELEVEN:1011,THEME_INFO_TWELVE:1012}
+,_class3.LoadingState={LOADING_NULL:0,LOADING_CHECK_MONEY:1,LOADING_MAIN_GAME:2}
+,_class3.ResPath={GPK_BURGER_LIST:"Prefab/BurgerList",RES_PATH_MAINGAME:RES_PATH_PREFAB_ROOT+"Prefab_"+LANG+"/MainGame",RES_PATH_LOBBY:RES_PATH_PREFAB_ROOT+"Lobby",RES_PATH_HELP_VIEW:RES_PATH_PREFAB_ROOT+"Prefab_"+LANG+"/HelpView",RES_PATH_HELP_MSG:RES_PATH_PREFAB_ROOT+"Prefab_"+LANG+"/HelpMSG",RES_PATH_FIVE_BONUS:RES_PATH_PREFAB_ROOT+"Prefab_"+LANG+"/FiveBonus",RES_PATH_SETTING:RES_PATH_PREFAB_ROOT+"Prefab_"+LANG+"/Setting",RES_PATH_NEWSETTING:RES_PATH_PREFAB_ROOT+"Prefab_"+LANG+"/NewSetting",RES_PATH_CURRENCYSPRITE:RES_PATH_PREFAB_ROOT+"CurrencySymbol",RES_PATH_FIVE_BONUS_GULLAK:RES_PATH_PREFAB_ROOT+"BonusLucky",RES_PATH_HEAD_ICON:RES_PATH_TEXTURE_ROOT+"HeadIcon",RES_PATH_POKER:RES_PATH_TEXTURE_ROOT+"TPpoker"}
+,_class3.SoundPath={BTNslide:"Button_Slide",BG:"BGMusic",Deal:"SendCard",See:"SendCard",Bet:"Bet",Turn:"Banker",HurryUp:"Sound_HurryUp",LightUp:"LightUp",LuckyFull:"LuckyGoldenFlower",PKstart:"PKstart",PKact:"PKact",PKresult:"PKresult",PKresult_win:"PKresult_win",PKmove:"LEcomplete",End:"BellRing",Win:"win"}
+,_class3.MainPlayerSeat=2,_class3.DEMO_THEME_DATA={info:{Theme:[{themeId:_class3.Theme.THEME_INFO_ONE,boot:1,mincoin:512}
+,{themeId:_class3.Theme.THEME_INFO_TWO,boot:5,mincoin:2560}
+,{themeId:_class3.Theme.THEME_INFO_THREE,boot:10,mincoin:5120}
+,{themeId:_class3.Theme.THEME_INFO_FOUR,boot:30,mincoin:15360}
+,{themeId:_class3.Theme.THEME_INFO_FIVE,boot:100,mincoin:51200}
+,{themeId:_class3.Theme.THEME_INFO_SIX,boot:300,mincoin:153600}
+]}
+}
+,_class3.DEMO_Player_DATA={info:{seat:[{Nickname:"1058",SeatIdx:0,Money:12e3,IsFold:!1,IsSee:!1}
+,{Nickname:"0",SeatIdx:2,Money:0,IsFold:!1,IsSee:!1}
+,{Nickname:"2308",SeatIdx:3,Money:15e3,IsFold:!1,IsSee:!1}
+],nextseat:1,canaction:0,banker:3,pot:5,end:!1}
+}
+,_class3.DEMO_NEXT_DATA={info:{end:!1,canaction:15,nextseat:1}
+}
+,_class3.GET_LANG=function(){return GAME_LANG}
+,_class3.SET_LANG=function(e){GAME_LANG=e}
+,_class3.GET_UI=function(e,t){if(isValid(e)){if(e._name==t)return e;
+var i=e._children.length;
+if(i>0)for(var r=void 0,n=0;
+n<i;
+n++)if(null!=(r=_class3.GET_UI(e._children[n],t)))return r}
+}
+,_class3.StringFormat=function(e){for(var t=0;
+t<(arguments.length<=1?0:arguments.length-1);
+t++){var i=new RegExp("\\{"+t+"\\}
+","gm");
+e=e.replace(i,t+1<1||arguments.length<=t+1?void 0:arguments[t+1])}
+return e}
+,_class3.NickNameFormat=function(e){return e.length>NickNameLengthLimit&&(e=e[0]+e[1]+e[2]+e[3]+e[4]+"****"+e[e.length-3]+e[e.length-2]+e[e.length-1]),e}
+,_class3.MAINGAME_STATE={GAME_NULL:0,GAME_INIT:1,GAME_WAIT_ALLOCATED:2,GAME_ROOM_INFO:3,GAME_WAIT_START:4,GAME_WAIT_NEXT:5,GAME_NEXT:6,GAME_NEXT_MOVING:7,GAME_BETTING:8,GAME_PK_NEXT:9,GAME_WAIT_PK:10,GAME_PKING:11,GAME_WAIT_RESULT:12,GAME_GAME_RESULT:13,GAME_END_COUNT:14,GAME_WAIT_CONTINUE:15,GAME_SYNC:16}
+,_class3.MAINGAME_STATE_TRANS=[[_class3.MAINGAME_STATE.GAME_INIT],[_class3.MAINGAME_STATE.GAME_INIT,_class3.MAINGAME_STATE.GAME_WAIT_ALLOCATED],[_class3.MAINGAME_STATE.GAME_ROOM_INFO],[_class3.MAINGAME_STATE.GAME_WAIT_START],[_class3.MAINGAME_STATE.GAME_WAIT_NEXT],[_class3.MAINGAME_STATE.GAME_NEXT,_class3.MAINGAME_STATE.GAME_BETTING],[_class3.MAINGAME_STATE.GAME_NEXT_MOVING],[_class3.MAINGAME_STATE.GAME_WAIT_NEXT,_class3.MAINGAME_STATE.GAME_WAIT_PK,_class3.MAINGAME_STATE.GAME_WAIT_RESULT],[_class3.MAINGAME_STATE.GAME_WAIT_NEXT,_class3.MAINGAME_STATE.GAME_WAIT_PK,_class3.MAINGAME_STATE.GAME_WAIT_RESULT],[_class3.MAINGAME_STATE.GAME_WAIT_NEXT,_class3.MAINGAME_STATE.GAME_WAIT_RESULT],[_class3.MAINGAME_STATE.GAME_PKING],[_class3.MAINGAME_STATE.GAME_PK_NEXT],[_class3.MAINGAME_STATE.GAME_GAME_RESULT],[_class3.MAINGAME_STATE.GAME_END_COUNT],[_class3.MAINGAME_STATE.GAME_WAIT_CONTINUE],[_class3.MAINGAME_STATE.GAME_INIT],[_class3.MAINGAME_STATE.GAME_NEXT,_class3.MAINGAME_STATE.GAME_WAIT_NEXT,_class3.MAINGAME_STATE.GAME_BETTING,_class3.MAINGAME_STATE.GAME_WAIT_RESULT]],_class3.GAMEVIEW_STATE={LOGIN:0,IDLE:1,SPIN:2,STOP:3,AWARD:4,END:5,CHECK_SOCKET:21,RESYNC:22,BUNDLE:6}
+,_class3.SPIN_ACK_TYPE={AT_SUCCESS:0,AT_MONEY_NOT_ENOUGH:1,AT_MONEY_ABNORMAL:2,API_BETONCE_FAIL:2003}
+,_class3.AWARD_TYPE={AWARD_TYPE_NON:0,AWARD_TYPE_LINE:1,AWARD_TYPE_ALL_PLATE:2,AWARD_TYPE_MAX:32767}
+,_class3.AckType={login:0,info:1,spin:2,regrade:3,spinEnd:4,floating:10,exchangeChips:11,getdailymission:30,backpack:40,useItem:41,contestInfo:50,contestHistory:51,contestReward:52,contestBet:53,heartBeat:98,serverMsg:99,theme:101,allocate:102,next:103,see:104,agree:105,action:106,end:107,sync:108,leave:109}
+,_class3.SERVER_RET_TYPE={SERVER_SUCCESS:0,SERVER_ERROR_SEATE:799,SERVER_NOUSE:899,SERVER_MISSION_ERROR:987,SERVER_BACKPACK_ERROR:988,SERVER_ITEMUSE_ERROR:989,SERVER_MAINTAIN:998,SERVER_SHUTDOWN:999,SERVER_NEED_UID:1001,SERVER_NEED_LOGIN:1002,SERVER_TOKEN_ERROR:1003,SERVER_MONEY_NOT_ENOUGH:3002,SERVER_NEED_SYNC:3012,SERVER_PRE_MAINTAIN:3014,SERVER_NEW_APIID:3015,SERVER_TRANSCRIPT_FAIL:3016}
+,_class3.LOGIN_RESULT_TYPE={LOGIN_SUCCESS:0,LOGIN_FAIL:1,API_VERIFY_FAIL:2001,API_LOGIN_REPEAT_FAIL:2002}
+,_class3.HEART_BEAT_STATE={NOTIFY:97,MAINTAIN:98,CLOSE:99}
+,_class3.DelayType={Normal:0,Get:1,NotGet:2}
+,_class3.TimeoutType={Ignore:0,Handle:1}
+,_class3.USE_ITEM_REASON={NORMAL:0,USING:1}
+,_class3.StringKey={OLS_FEATURES_LEFT:"OLS_FEATURES_LEFT",OLS_FEATURES_RIGHT:"OLS_FEATURES_RIGHT",FREE_GAME_NAME_STRING:"FREE_GAME_NAME_STRING"}
+,_class3.AwardPayType=Enum(AWARD_PAY_TYPE),_class2$4=_class3,_descriptor$4=_applyDecoratedDescriptor(_class2$4.prototype,"SymbolSpriteFrame",[_dec$4],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor2$4=_applyDecoratedDescriptor(_class2$4.prototype,"FreeSymbolSpriteFrame",[_dec2$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor3$4=_applyDecoratedDescriptor(_class2$4.prototype,"UpgradeSymbolSripteFrame",[_dec3$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor4$4=_applyDecoratedDescriptor(_class2$4.prototype,"TitleSpriteFrames",[_dec4$3],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor5$3=_applyDecoratedDescriptor(_class2$4.prototype,"LeftSpriteFrames",[_dec5$2],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor6$2=_applyDecoratedDescriptor(_class2$4.prototype,"RecordWinSpriteFrames",[_dec6$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor7$1=_applyDecoratedDescriptor(_class2$4.prototype,"RecordBgSpriteFrames",[_dec7$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_descriptor8$1=_applyDecoratedDescriptor(_class2$4.prototype,"UpgradeSpriteFrames",[_dec8$1],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}
+}
+),_class$5=_class2$4))||_class$5),_dec$5,_class$6,_class2$5,_descriptor$5;

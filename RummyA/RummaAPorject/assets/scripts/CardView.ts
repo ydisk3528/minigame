@@ -32,5 +32,13 @@ export class CardView extends Component {
         tween(this.face).to(.1, { position: new Vec3(this.rest.x, this.rest.y + (selected ? 22 : 0), this.rest.z) }).start();
     }
     showHint(){this.face.getComponent(Sprite)!.color=new Color(255,245,125);}
-    animateSort(){const a=this.node.getComponent(Animation);const c=a?.clips.find(c=>c?.name.replace(/_[0-9a-f]{8}$/,'')==='Clip_CardSort');if(c){Tween.stopAllByTarget(this.face);a!.play(c.name);}}
+    animateSort(from:Vec3,delay:number,done:()=>void){
+        this.node.getComponent(Animation)?.stop();
+        Tween.stopAllByTarget(this.face);
+        this.face.setWorldPosition(from);
+        const start=this.face.position.clone(),end=this.rest.clone();
+        tween(this.face).delay(delay)
+            .to(.16,{position:new Vec3(start.x,start.y+30,start.z)},{easing:'quadOut'})
+            .to(.34,{position:end},{easing:'quadInOut'}).call(done).start();
+    }
 }

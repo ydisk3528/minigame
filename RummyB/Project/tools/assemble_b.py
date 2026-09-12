@@ -87,6 +87,8 @@ def serialize(root,scene=False):
     add_test_buttons(out)
     add_loading_overlay(out)
     add_notice_dialog(out)
+    from dealer_spine import apply as bind_dealer_spine
+    bind_dealer_spine(out)
     if out[0].get('__type__')=='cc.Prefab':attach_prefab_info(out)
     return out
 

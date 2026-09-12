@@ -74,7 +74,7 @@ export class RummyApp extends Component {
         if(this.music.clip||this.musicLoad)return;
         this.musicLoad=new Promise<void>((resolve,reject)=>resources.load('deferred/LobbyMusic',Prefab,(error,prefab)=>{
             if(error){reject(error);return;}
-            if(isValid(this.node)){this.music.clip=prefab.data.getComponent(AudioSource)!.clip;this.audioState();}
+            if(isValid(this.node)){const source=prefab.data.getComponent(AudioSource)!;this.music.loop=source.loop;this.music.clip=source.clip;this.audioState();}
             resolve();
         })).catch(error=>{console.warn('Lobby music could not load',error);}).finally(()=>{this.musicLoad=null;});
     }

@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, instantiate, Label, Button, Layout, UITransform, Animation, Sprite, SpriteFrame, EventTouch, Vec3, AudioSource, AudioClip, tween, Tween } from 'cc';
+import { _decorator, Component, Node, Prefab, instantiate, Label, Button, Layout, UITransform, Animation, Sprite, SpriteFrame, EventTouch, Vec3, AudioSource, AudioClip, tween, Tween, sys } from 'cc';
 import { CardView } from './CardView';
 import { Round } from './Round';
 import {analyze,chooseDiscard} from './Rules';
@@ -7,6 +7,10 @@ import { DEBUG } from 'cc/env';
 const {ccclass,property}=_decorator;
 @ccclass('TableController')
 export class TableController extends Component {
+    @property(Node) firstPlayGuide:Node=null!;
+    private guidePending=false;
+    private guideStep=-1;
+    private guidePulse=0;
     @property(Animation) shuffleAnimation: Animation=null!;
     @property([CardView]) shuffleCards: CardView[]=[];
     @property(Animation) startAnimation: Animation=null!;
@@ -104,13 +108,14 @@ export class TableController extends Component {
     localPlayer:{avatar:number;name:string}|undefined;
     private assignPlayers(){const players=randomPlayers(Math.random,this.localPlayer);this.names=players.map(p=>p.name);players.forEach((p,i)=>{this.playerNames[i].string=p.name;this.playerAvatars[i].spriteFrame=this.avatarFrames[p.avatar];this.resultAvatars[i].spriteFrame=this.avatarFrames[p.avatar];});}
     onLoad(){
+        this.confirmation.setParent(this.node,true);this.confirmation.setSiblingIndex(this.node.children.length-1);
         if(DEBUG)this.node.on(Node.EventType.TOUCH_END,(e:EventTouch)=>{const target=e.target as Node;const canvas=document.getElementById('GameCanvas');if(canvas)canvas.dataset.rummyTarget=target?.name+' / '+target?.parent?.name;},this,true);
         this.celebrationHomes=this.celebrationPieces.map(n=>n.position.clone());
         this.pool=Array.from({length:14},()=>{
             const v=this.makeCard(this.cardRoots[0]);let origin=new Vec3(),down=new Vec3(),moved=false;
             v.node.on(Node.EventType.TOUCH_START,(e:EventTouch)=>{origin.set(v.node.position);const p=e.getUILocation();down.set(p.x,p.y,0);moved=false;});
             v.node.on(Node.EventType.TOUCH_MOVE,(e:EventTouch)=>{
-                if(!this.canTouch())return;const p=e.getUILocation();if(!moved&&Math.hypot(p.x-down.x,p.y-down.y)<8)return;moved=true;
+                if(!this.canTouch()||this.guideStep>=0)return;const p=e.getUILocation();if(!moved&&Math.hypot(p.x-down.x,p.y-down.y)<8)return;moved=true;
                 v.node.parent!.getComponent(Layout)!.enabled=false;
                 const local=v.node.parent!.getComponent(UITransform)!.convertToNodeSpaceAR(new Vec3(p.x,p.y,0));v.node.setPosition(local.x,local.y-80,0);
             });
@@ -127,17 +132,60 @@ export class TableController extends Component {
         this.click(this.actionButton,()=>this.discardSelected());
         this.click(this.groupButton,()=>{if(this.canTouch()&&this.round.group(Array.from(this.selected)))this.selected.clear();this.render();});
         this.addGroupButtons.forEach((button,i)=>this.click(button,()=>{if(this.canTouch()&&this.round.addToGroup(Array.from(this.selected),i)){this.selected.clear();this.render();}}));
-        this.click(this.sortButton,()=>{if(this.canTouch()){if(!this.round.sort()){this.confirm('Your cards are already sorted.\nNo changes are needed.');return;}this.groupKeys=[];this.selected.clear();this.render();this.pool.filter(v=>v.node.activeInHierarchy).forEach(v=>v.animateSort());}});
+        this.click(this.sortButton,()=>this.sortCards());
         this.click(this.declareButton,()=>{if(!this.canTouch())return;const id=this.round.phase==='discard'?Array.from(this.selected)[0]:undefined;this.confirm('Declare this hand? An invalid declaration costs 80 points.',()=>{this.round.declare(id);this.advance();});});
-        this.click(this.dropButton,()=>this.drop(false));this.click(this.backButton,()=>this.drop(true));
+        this.click(this.dropButton,()=>this.drop());this.click(this.backButton,()=>this.leaveTable());
         this.click(this.continueButton,()=>this.closeResult(()=>this.preview?this.onLobby():this.onContinue()));this.click(this.lobbyButton,()=>this.closeResult(()=>this.onLobby()));
         this.click(this.cancelButton,()=>{this.pending=null;this.confirmation.active=false;});
         this.click(this.confirmButton,()=>{const fn=this.pending;this.pending=null;this.confirmation.active=false;fn?.();});
     }
     private click(n:Node,fn:()=>void){n.on(Button.EventType.CLICK,fn);}
     private makeCard(parent:Node){const n=instantiate(this.cardPrefab);parent.addChild(n);return n.getComponent(CardView)!;}
-    begin(perPoint:number){this.preview=false;this.hintState="";this.stopMotions();this.shownTurn=-1;this.nextBotAt=0;this.lastTick=Date.now();this.hurryPlayed=false;this.round=new Round(perPoint);this.localCoins=[this.getBalance(),...Array.from({length:4},(_,i)=>perPoint*80*(i+2))];this.groupKeys=[];this.assignPlayers();this.selected.clear();this.settled=false;this.resultPanel.active=false;this.confirmation.active=false;this.setTableControls(true);this.pointLabel.string=String(perPoint);this.wildView.show(this.round.indicator,this.round.wildRank);this.remaining=this.turnSeconds;this.render();this.effects.playOneShot(this.drawSound,this.effects.volume);this.motionBusy=true;this.playMotion(this.startAnimation,'Clip_StartGame',()=>{this.startAnimation.node.active=false;this.handRoot.active=false;this.shuffleCards.forEach((v,i)=>v.show(this.round.seats[0].hand[i],this.round.wildRank));this.playMotion(this.shuffleAnimation,'Shuffle',()=>{this.shuffleAnimation.node.active=false;this.handRoot.active=true;this.motionBusy=false;this.groupKeys=[];this.render();this.lastTick=Date.now();});});}
+    begin(perPoint:number){this.guideStep=-1;this.firstPlayGuide.active=false;this.guidePending=sys.localStorage.getItem('rummyA.firstPlayGuide.v1')!=='done';this.preview=false;this.hintState="";this.stopMotions();this.shownTurn=-1;this.nextBotAt=0;this.lastTick=Date.now();this.hurryPlayed=false;this.round=new Round(perPoint);this.localCoins=[this.getBalance(),...Array.from({length:4},(_,i)=>perPoint*80*(i+2))];this.groupKeys=[];this.assignPlayers();this.selected.clear();this.settled=false;this.resultPanel.active=false;this.confirmation.active=false;this.setTableControls(true);this.pointLabel.string=String(perPoint);this.wildView.show(this.round.indicator,this.round.wildRank);this.remaining=this.turnSeconds;this.render();this.effects.playOneShot(this.drawSound,this.effects.volume);this.motionBusy=true;this.playMotion(this.startAnimation,'Clip_StartGame',()=>{this.startAnimation.node.active=false;this.handRoot.active=false;this.shuffleCards.forEach((v,i)=>v.show(this.round.seats[0].hand[i],this.round.wildRank));this.playMotion(this.shuffleAnimation,'Shuffle',()=>{this.shuffleAnimation.node.active=false;this.handRoot.active=true;this.motionBusy=false;this.groupKeys=[];this.render();this.lastTick=Date.now();if(this.guidePending){this.guideStep=0;this.refreshGuide();}});});}
+    private refreshGuide(){
+        if(this.guideStep<0||!this.round)return;
+        this.firstPlayGuide.active=!this.confirmation.active;
+        // The hole follows the actual controls after responsive layout and card grouping.
+        this.guideStep=this.round.phase==='draw'?0:this.selected.size===1?2:1;
+        this.actionButton.active=true;this.declareButton.active=false;
+        const card=this.pool.find(v=>v.node.activeInHierarchy&&this.ids.get(v)!==this.round.pickedOpen)?.node;
+        const target=this.guideStep===0?this.drawButton:this.guideStep===1?card:this.actionButton;
+        if(!target)return;
+        const box=target.getComponent(UITransform)!.getBoundingBoxToWorld(),space=this.firstPlayGuide.getComponent(UITransform)!;
+        const lo=space.convertToNodeSpaceAR(new Vec3(box.xMin,box.yMin,0)),hi=space.convertToNodeSpaceAR(new Vec3(box.xMax,box.yMax,0));
+        // Cards overlap: reveal only the left exposed portion of the chosen card.
+        if(this.guideStep===1)hi.x=Math.min(hi.x,lo.x+60);
+        const left=lo.x-4,right=hi.x+4,bottom=lo.y-4,top=hi.y+4,edge=4096;
+        const rect=(name:string,x:number,y:number,w:number,h:number)=>{const n=this.firstPlayGuide.getChildByName(name)!;n.setPosition(x,y,0);n.getComponent(UITransform)!.setContentSize(w,h);};
+        rect('Top',0,(edge+top)/2,edge*2,edge-top);
+        rect('Bottom',0,(-edge+bottom)/2,edge*2,edge+bottom);
+        rect('Left',(-edge+left)/2,(bottom+top)/2,edge+left,top-bottom);
+        rect('Right',(edge+right)/2,(bottom+top)/2,edge-right,top-bottom);
+        const finger=this.firstPlayGuide.getChildByName('Finger')!;
+        finger.angle=this.guideStep===1?180:0;finger.setPosition((left+right)/2,this.guideStep===1?top+10:bottom-10,0);
+        const messages=['1 / 3   Tap the highlighted pile to draw a card.','2 / 3   Tap the highlighted card to select it.','3 / 3   Tap Discard to play your selected card.'];
+        this.firstPlayGuide.getChildByName('Instruction')!.getChildByName('Label')!.getComponent(Label)!.string=messages[this.guideStep];
+    }
+    private sorting=false;
+    private sortCards(){
+        if(!this.canUseTableAction())return;
+        const starts=new Map(this.pool.filter(v=>v.node.activeInHierarchy).map(v=>[this.ids.get(v)!,v.face.worldPosition.clone()]));
+        if(!this.round.sort()){this.confirm('Your cards are already sorted.\nNo changes are needed.');return;}
+        this.groupKeys=[];this.selected.clear();this.render();
+        this.sorting=true;this.motionBusy=true;
+        const cards=this.pool.filter(v=>v.node.activeInHierarchy);
+        cards.forEach((v,i)=>v.animateSort(starts.get(this.ids.get(v)!)!,i*.015,()=>{
+            if(i===cards.length-1){this.sorting=false;this.motionBusy=false;this.lastTick=Date.now();this.render();}
+        }));
+    }
     private canTouch(){return !!this.round&&!this.motionBusy&&this.round.turn===0&&this.round.phase!=='ended'&&!this.confirmation.active;}
+    private canUseTableAction(){
+        if(!this.round||this.round.phase==='ended'||this.confirmation.active)return false;
+        if(this.round.seats[0].dropped){this.confirm('You have already dropped this hand.\nPlease wait for the next hand.');return false;}
+        if(this.round.turn!==0){this.confirm('Please wait for your turn.\nAnother player is playing.');return false;}
+        if(this.motionBusy){this.confirm('Cards are moving.\nPlease wait a moment.');return false;}
+        return true;
+    }
     private fly(card:{id:number;suit:number;rank:number},from:Vec3,to:Vec3,fromScale:number,toScale:number,done:()=>void){
         this.motionBusy=true;const space=this.flightLayer.getComponent(UITransform)!;
         const start=space.convertToNodeSpaceAR(from),end=space.convertToNodeSpaceAR(to);
@@ -151,10 +199,13 @@ export class TableController extends Component {
             this.effects.playOneShot(this.cardSound,this.effects.volume);this.fly(card,from,end,.762,1,()=>this.advance());}
     }
     private discardSelected(automatic=false){
-        if(!this.canTouch()||this.selected.size!==1)return;const id=Array.from(this.selected)[0],card=this.round.current.hand.find(c=>c.id===id)!;
-        if(id===this.round.pickedOpen){this.statusLabel.node.active=true;this.statusLabel.string='Cannot return the card just taken from the open pile';return;}
+        if(!this.canTouch())return;
+        if(this.round.phase!=='discard'){if(!automatic)this.confirm('Draw a card first, then select\none card and press Discard.');return;}
+        if(this.selected.size!==1){if(!automatic)this.confirm(this.selected.size?'Select only one card to discard.':'Select one card from your hand,\nthen press Discard.');return;}
+        const id=Array.from(this.selected)[0],card=this.round.current.hand.find(c=>c.id===id)!;
+        if(id===this.round.pickedOpen){if(!automatic)this.confirm('You cannot discard the card just taken\nfrom the open pile. Select another card.');return;}
         const view=this.pool.find(v=>this.ids.get(v)===id)!,from=view.node.worldPosition.clone(),to=this.openView.node.worldPosition.clone();view.node.active=false;
-        this.effects.playOneShot(this.cardSound,this.effects.volume);this.fly(card,from,to,1,.762,()=>{this.round.discard(id,automatic);if(automatic)this.round.autoDiscardCount++;this.selected.clear();this.advance();});
+        this.effects.playOneShot(this.cardSound,this.effects.volume);this.fly(card,from,to,1,.762,()=>{this.round.discard(id,automatic);if(!automatic&&this.guideStep>=0){sys.localStorage.setItem('rummyA.firstPlayGuide.v1','done');this.guideStep=-1;this.guidePending=false;this.firstPlayGuide.active=false;}if(automatic)this.round.autoDiscardCount++;this.selected.clear();this.advance();});
     }
     private confirm(text:string,fn?:()=>void){
         this.pending=fn??null;this.cancelButton.active=!!fn;
@@ -162,11 +213,23 @@ export class TableController extends Component {
         this.confirmButton.getChildByName('Label')!.getComponent(Label)!.string=fn?'Confirm':'OK';
         this.confirmationText.string=text;this.confirmation.active=true;
     }
-    private drop(exit:boolean){if(!this.canTouch())return;const penalty=this.round.seats[0].draws?40:20;this.confirm(`Drop for ${penalty} points?`,()=>{this.round.drop();if(exit){this.settled=true;this.onSettlement(-penalty*this.round.perPoint);this.onLobby();}else this.advance();});}
+    private leaveTable(){
+        if(!this.round||this.confirmation.active)return;
+        if(this.settled){this.stopMotions();this.onLobby();return;}
+        const seat=this.round.seats[0],penalty=seat.dropped?seat.penalty:seat.draws?40:20;
+        this.confirm(`Return to lobby for ${penalty} points?`,()=>{
+            this.nextBotAt=0;this.stopMotions();
+            // Leaving abandons this local round; never drop the current AI seat.
+            if(!this.settled){this.settled=true;this.onSettlement(-penalty*this.round.perPoint);}
+            this.guideStep=-1;this.firstPlayGuide.active=false;this.onLobby();
+        });
+    }
+    private drop(){if(!this.canUseTableAction())return;const penalty=this.round.seats[0].draws?40:20;this.confirm(`Drop for ${penalty} points?`,()=>{this.round.drop();this.advance();});}
     private advance(){this.remaining=this.turnSeconds;this.hurryPlayed=false;this.lastTick=Date.now();this.render();this.nextBotAt=this.round.phase!=='ended'&&this.round.turn!==0?Date.now()+3000:0;}
     private bot=()=>{if(!this.node.activeInHierarchy||this.round.phase==='ended')return;const seat=this.round.turn,top=this.round.pile.at(-1);this.round.bot();const a=this.opponentAnimations[seat-1];if(!a){this.advance();return;}const fromOpen=!!top&&!this.round.pile.some(c=>c.id===top.id),prefix=String(seat).padStart(2,'0');this.motionBusy=true;this.playMotion(a,prefix+(fromOpen?'_Get_Dis':'_Get_Deck'),()=>this.playMotion(a,prefix+'_Dis',()=>{a.node.active=false;this.motionBusy=false;this.advance();}));};
-    update(){const now=Date.now(),elapsed=(now-this.lastTick)/1000;this.lastTick=now;if(!this.round||this.round.phase==='ended'||this.confirmation.active||this.motionBusy)return;if(this.nextBotAt&&now>=this.nextBotAt){this.nextBotAt=0;this.bot();return;}this.remaining-=elapsed;this.seatClocks.forEach((l,i)=>{l.node.active=i===this.round.turn;l.string=String(Math.max(0,Math.ceil(this.remaining)));});this.countdowns.forEach((s,i)=>{s.node.active=i===this.round.turn;s.fillRange=-Math.max(0,this.remaining/this.turnSeconds);});this.turnLabel.string=String(Math.max(0,Math.ceil(this.remaining)));if(this.round.turn===0&&this.remaining<=5&&!this.hurryPlayed){this.hurryPlayed=true;this.effects.playOneShot(this.hurrySound,this.effects.volume);}if(this.remaining<=0&&this.round.turn===0){if(this.round.phase==='draw'){this.draw(false,true);}else if(this.round.autoDiscardCount<1){const id=this.round.current.hand.find(c=>c.id===this.round.actionCard&&c.id!==this.round.pickedOpen)?.id??this.round.current.hand.find(c=>c.id!==this.round.pickedOpen)!.id;this.selected=new Set([id]);this.discardSelected(true);}else{this.round.timeout();this.selected.clear();this.advance();}}}
+    update(){const now=Date.now(),elapsed=(now-this.lastTick)/1000;this.lastTick=now;if(this.guideStep>=0){this.refreshGuide();this.guidePulse+=elapsed;const finger=this.firstPlayGuide.getChildByName('Finger')!;const scale=1+Math.sin(this.guidePulse*5)*.06;finger.setScale(scale,scale,1);return;}if(!this.round||this.round.phase==='ended'||this.confirmation.active||this.motionBusy)return;if(this.nextBotAt&&now>=this.nextBotAt){this.nextBotAt=0;this.bot();return;}this.remaining-=elapsed;this.seatClocks.forEach((l,i)=>{l.node.active=i===this.round.turn;l.string=String(Math.max(0,Math.ceil(this.remaining)));});this.countdowns.forEach((s,i)=>{s.node.active=i===this.round.turn;s.fillRange=-Math.max(0,this.remaining/this.turnSeconds);});this.turnLabel.string=String(Math.max(0,Math.ceil(this.remaining)));if(this.round.turn===0&&this.remaining<=5&&!this.hurryPlayed){this.hurryPlayed=true;this.effects.playOneShot(this.hurrySound,this.effects.volume);}if(this.remaining<=0&&this.round.turn===0){if(this.round.phase==='draw'){this.draw(false,true);}else if(this.round.autoDiscardCount<1){const id=this.round.current.hand.find(c=>c.id===this.round.actionCard&&c.id!==this.round.pickedOpen)?.id??this.round.current.hand.find(c=>c.id!==this.round.pickedOpen)!.id;this.selected=new Set([id]);this.discardSelected(true);}else{this.round.timeout();this.selected.clear();this.advance();}}}
     private render(){
+        if(this.sorting)return;
         const r=this.round,groups=r.seats[0].groups,count=r.seats[0].hand.length;
         this.statusLabel.node.active=false;
         this.balanceLabel.string=this.getBalance().toLocaleString('en-US');
@@ -197,12 +260,13 @@ export class TableController extends Component {
         this.addGroupButtons.forEach((button,i)=>button.active=can&&!!groups[i]&&Array.from(this.selected).some(id=>!groups[i].includes(id)));
         const id=this.selected.size===1?Array.from(this.selected)[0]:undefined;
         this.declareButton.active=can&&this.selected.size<=1&&r.canDeclare(id);this.actionButton.active=can&&this.selected.size<=1&&!this.declareButton.active;
-        this.actionButton.getComponent(Button)!.interactable=can&&r.phase==='discard'&&this.selected.size===1;
-        this.sortButton.getComponent(Button)!.interactable=can;this.dropButton.getComponent(Button)!.interactable=can;
+        this.actionButton.getComponent(Button)!.interactable=can;
+        this.sortButton.getComponent(Button)!.interactable=r.phase!=='ended';this.dropButton.getComponent(Button)!.interactable=r.phase!=='ended';
         this.playerStates.forEach((l,i)=>{l.node.active=true;l.string=r.seats[i].dropped?'Drop':r.turn===i?(i===0?'Your turn':'Playing'):`${r.seats[i].hand.length} cards`;});
         if(this.shownTurn!==r.turn){this.turnAnimations.forEach((a,i)=>{a.stop();a.node.active=i===r.turn;if(i===r.turn)this.playMotion(a,'Clip_PlayerTurn');});this.shownTurn=r.turn;}
         this.statusLabel.string=r.phase==='ended'?r.reason:r.turn===0?r.phase==='draw'?'Draw from the closed or open pile':'Select one card to discard · select several cards to group':`${this.names[r.turn]} is playing`;
         if(r.phase==='ended'&&!this.settled)this.showResult();
+        if(this.guideStep>=0)this.refreshGuide();
         if(DEBUG && typeof document!=='undefined'){
             const canvas=document.getElementById('GameCanvas');
             if(canvas)canvas.dataset.rummy=JSON.stringify({players:this.names.map((name,i)=>({name,avatar:this.avatarFrames.indexOf(this.playerAvatars[i].spriteFrame!)})),turn:r.turn,phase:r.phase,selected:Array.from(this.selected),lastTouch:this.lastTouch,groups:r.seats[0].groups,hand:r.seats[0].hand,confirmation:this.confirmation.active,cards:this.pool.filter(v=>v.node.activeInHierarchy).map(v=>({id:this.ids.get(v),position:v.node.position,box:v.node.getComponent(UITransform)!.getBoundingBoxToWorld()}))});
@@ -246,6 +310,6 @@ export class TableController extends Component {
     }
     private setTableControls(active:boolean){[this.handRoot.parent!,this.balanceLabel.node.parent!.parent!,this.statusLabel.node,this.pointLabel.node,this.backButton].forEach(n=>n.active=active);}
     private closeResult(done:()=>void){if(this.motionBusy)return;this.stopCelebration();this.motionBusy=true;this.playMotion(this.resultPanel.getComponent(Animation)!,this.round.winner===0?'Compliment_End':'Compliment_End__Lose',()=>{this.motionBusy=false;done();});}
-    private stopMotions(){this.stopCelebration();Tween.stopAllByTarget(this.flightCard.node);this.flightCard.node.active=false;this.animationEnds.forEach((end,a)=>{a.off(Animation.EventType.FINISHED,end);a.stop();});this.animationEnds.clear();this.drawHints.forEach(a=>{a.stop();a.node.parent!.active=false;});this.pickHint.stop();this.pickHint.node.active=false;this.opponentAnimations.forEach(a=>{a.stop();a.node.active=false;});this.shuffleAnimation.stop();this.shuffleAnimation.node.active=false;this.handRoot.active=true;this.motionBusy=false;}
+    private stopMotions(){this.sorting=false;this.pool.forEach(v=>Tween.stopAllByTarget(v.face));this.stopCelebration();Tween.stopAllByTarget(this.flightCard.node);this.flightCard.node.active=false;this.animationEnds.forEach((end,a)=>{a.off(Animation.EventType.FINISHED,end);a.stop();});this.animationEnds.clear();this.drawHints.forEach(a=>{a.stop();a.node.parent!.active=false;});this.pickHint.stop();this.pickHint.node.active=false;this.opponentAnimations.forEach(a=>{a.stop();a.node.active=false;});this.shuffleAnimation.stop();this.shuffleAnimation.node.active=false;this.handRoot.active=true;this.motionBusy=false;}
     onDisable(){this.nextBotAt=0;this.stopMotions();}
 }
